@@ -5,10 +5,22 @@
  */
 package Business.Role;
 
+import Business.EcoSystem;
+import Business.Enterprise.Enterprise;
+import Business.Organization.Organization;
+import Business.UserAccount.UserAccount;
+import UserInterface.BankRole.BankWorkAreaJPanel;
+import UserInterface.DonorRole.DonorWorkAreaJPanel;
+import javax.swing.JPanel;
+
 /**
  *
  * @author devma
  */
-public class DonorRole {
-    
+public class DonorRole extends Role{
+    @Override
+    public JPanel createWorkArea(JPanel container, UserAccount account, 
+            Organization organization, Enterprise enterprise, EcoSystem business) {
+        return new DonorWorkAreaJPanel();
+    }
 }

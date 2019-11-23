@@ -5,10 +5,21 @@
  */
 package Business.Enterprise;
 
+import Business.Role.Role;
+import java.util.ArrayList;
+
 /**
  *
  * @author devma
  */
-public class BankEnterprise {
+public class BankEnterprise extends Enterprise{
     
+    public BankEnterprise(String name){
+        super(name,Enterprise.EnterpriseType.Bank);
+    }
+    
+    @Override
+    public ArrayList<Role> getSupportedRole() {
+        return null;
+    }
 }

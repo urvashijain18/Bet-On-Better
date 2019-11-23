@@ -5,10 +5,21 @@
  */
 package Business.Role;
 
+import Business.EcoSystem;
+import Business.Enterprise.Enterprise;
+import Business.Organization.Organization;
+import Business.UserAccount.UserAccount;
+import UserInterface.ReceiverRole.ReceiverWorkAreaJPanel;
+import javax.swing.JPanel;
+
 /**
  *
  * @author devma
  */
-public class ReceiverRole {
-    
+public class ReceiverRole extends Role{
+    @Override
+    public JPanel createWorkArea(JPanel container, UserAccount account, 
+            Organization organization, Enterprise enterprise, EcoSystem business) {
+        return new ReceiverWorkAreaJPanel();
+    }
 }
