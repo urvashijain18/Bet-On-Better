@@ -5,10 +5,24 @@
  */
 package Business.Organization;
 
+import Business.Role.AdminRole;
+import Business.Role.Role;
+import java.util.ArrayList;
+
 /**
  *
  * @author devma
  */
-public class EducationOrganization {
+public class EducationOrganization extends Organization{
     
+    public EducationOrganization() {
+        super(Organization.Type.Education.getValue());
+    }
+    
+    @Override
+    public ArrayList<Role> getSupportedRole() {
+        ArrayList<Role> roles = new ArrayList();
+        roles.add(new AdminRole());
+        return roles;
+    }
 }
