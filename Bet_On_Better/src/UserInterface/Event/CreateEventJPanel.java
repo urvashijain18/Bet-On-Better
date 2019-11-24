@@ -3,18 +3,18 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package UserInterface.DonorRole;
+package UserInterface.Event;
 
 /**
  *
  * @author @author Urvashi
  */
-public class DonorWorkAreaJPanel extends javax.swing.JPanel {
+public class CreateEventJPanel extends javax.swing.JPanel {
 
     /**
-     * Creates new form DonorWorkAreaJPanel
+     * Creates new form CreateEventJPanel
      */
-    public DonorWorkAreaJPanel() {
+    public CreateEventJPanel() {
         initComponents();
     }
 
