@@ -27,19 +27,102 @@ public class UserWorkAreaJPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+        jSplitPane1 = new javax.swing.JSplitPane();
+        leftJPanel = new javax.swing.JPanel();
+        btnHome = new javax.swing.JButton();
+        btnLogOut = new javax.swing.JButton();
+        btnBack = new javax.swing.JButton();
+        btnDashboard = new javax.swing.JButton();
+        btnPromote = new javax.swing.JButton();
+        RightJPanel = new javax.swing.JPanel();
+
+        setLayout(new java.awt.CardLayout());
+
+        btnHome.setText("Home");
+        btnHome.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnHomeActionPerformed(evt);
+            }
+        });
+
+        btnLogOut.setText("Log Out");
+        btnLogOut.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLogOutActionPerformed(evt);
+            }
+        });
+
+        btnBack.setText("Back");
+
+        btnDashboard.setText("Dashboard");
+
+        btnPromote.setText("Promote");
+
+        javax.swing.GroupLayout leftJPanelLayout = new javax.swing.GroupLayout(leftJPanel);
+        leftJPanel.setLayout(leftJPanelLayout);
+        leftJPanelLayout.setHorizontalGroup(
+            leftJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(leftJPanelLayout.createSequentialGroup()
+                .addGap(25, 25, 25)
+                .addGroup(leftJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnPromote)
+                    .addComponent(btnDashboard)
+                    .addComponent(btnBack)
+                    .addComponent(btnLogOut)
+                    .addComponent(btnHome))
+                .addContainerGap(40, Short.MAX_VALUE))
         );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+        leftJPanelLayout.setVerticalGroup(
+            leftJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(leftJPanelLayout.createSequentialGroup()
+                .addGap(55, 55, 55)
+                .addComponent(btnHome)
+                .addGap(63, 63, 63)
+                .addComponent(btnDashboard)
+                .addGap(65, 65, 65)
+                .addComponent(btnPromote)
+                .addGap(72, 72, 72)
+                .addComponent(btnLogOut)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 76, Short.MAX_VALUE)
+                .addComponent(btnBack)
+                .addGap(56, 56, 56))
         );
+
+        jSplitPane1.setLeftComponent(leftJPanel);
+
+        javax.swing.GroupLayout RightJPanelLayout = new javax.swing.GroupLayout(RightJPanel);
+        RightJPanel.setLayout(RightJPanelLayout);
+        RightJPanelLayout.setHorizontalGroup(
+            RightJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 374, Short.MAX_VALUE)
+        );
+        RightJPanelLayout.setVerticalGroup(
+            RightJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 492, Short.MAX_VALUE)
+        );
+
+        jSplitPane1.setRightComponent(RightJPanel);
+
+        add(jSplitPane1, "card2");
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnHomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHomeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnHomeActionPerformed
+
+    private void btnLogOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogOutActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnLogOutActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel RightJPanel;
+    private javax.swing.JButton btnBack;
+    private javax.swing.JButton btnDashboard;
+    private javax.swing.JButton btnHome;
+    private javax.swing.JButton btnLogOut;
+    private javax.swing.JButton btnPromote;
+    private javax.swing.JSplitPane jSplitPane1;
+    private javax.swing.JPanel leftJPanel;
     // End of variables declaration//GEN-END:variables
 }
