@@ -4,9 +4,13 @@
  * and open the template in the editor.
  */
 package UserInterface.AdminRole;
-
+import Business.FundRaiserEvents.EventDirectory;
 import Business.Enterprise.Enterprise;
+import java.awt.CardLayout;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import Business.FundRaiserEvents.Event;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -17,9 +21,35 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
     /**
      * Creates new form AdminWorkAreaJPanel
      */
-    public AdminWorkAreaJPanel(JPanel container, Enterprise enterprise) {
+    private JPanel leftContainer;
+    private JPanel rightContainer;
+    private EventDirectory eventdirectory;
+    public AdminWorkAreaJPanel(JPanel rightContainer, Enterprise enterprise, EventDirectory eventdirectory) {
         initComponents();
+        this.eventdirectory = eventdirectory;
+        populateTable();
     }
+    
+     private void populateTable(){
+        DefaultTableModel dtm = (DefaultTableModel) tblLiveEvents.getModel();
+        dtm.setRowCount(0);
+        for(Event event: eventdirectory.getEventDirectory()){
+           Object[] row= new Object[9]; 
+           row[0] = event;
+           row[1] = event.getEventName();
+           row[2] = event.getDescription();
+           row[3] = event.getCategory();
+           row[4] = event.getRaisedBy();
+           row[5] = event.getRequestAmt();
+           row[6] = event.getRaisedAmt();
+           row[7] = event.getCreateDate();
+           row[8] = event.getTargetDate();
+           
+           dtm.addRow(row);
+           
+        }
+    }
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -48,10 +78,25 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
         jScrollPane1.setViewportView(tblLiveEvents);
 
         btnViewEvent.setText("View Event");
+        btnViewEvent.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnViewEventActionPerformed(evt);
+            }
+        });
 
         btnTargetDate.setText("Target Date Reached");
+        btnTargetDate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTargetDateActionPerformed(evt);
+            }
+        });
 
         btnTargetAmount.setText("Traget Amount Reached");
+        btnTargetAmount.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTargetAmountActionPerformed(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel1.setText("Live Fund Raising Events");
@@ -89,6 +134,51 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
                 .addContainerGap(44, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnViewEventActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewEventActionPerformed
+    int selectedRow = tblLiveEvents.getSelectedRow();
+    if(selectedRow<0){
+      JOptionPane.showMessageDialog(null, "Please select a row from the table", "Warning", JOptionPane.WARNING_MESSAGE);
+    }
+    else{
+      Event event = (Event)tblLiveEvents.getValueAt(selectedRow, 0);
+      ViewEventsJPanel panel = new ViewEventsJPanel(rightContainer, event);
+      rightContainer.add("ViewDetailsJPanel", panel);
+      CardLayout layout = (CardLayout) rightContainer.getLayout();
+      layout.next(rightContainer);
+      
+        }      // TODO add your handling code here:
+    }//GEN-LAST:event_btnViewEventActionPerformed
+
+    private void btnTargetDateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTargetDateActionPerformed
+  int selectedRow = tblLiveEvents.getSelectedRow();
+    if(selectedRow<0){
+      JOptionPane.showMessageDialog(null, "Please select a row from the table", "Warning", JOptionPane.WARNING_MESSAGE);
+    }
+    else{
+      Event event = (Event)tblLiveEvents.getValueAt(selectedRow, 0);
+      AdminTargetDateJPanel panel = new AdminTargetDateJPanel(rightContainer, eventdirectory);
+      rightContainer.add("AdminTargetDateJPanel", panel);
+      CardLayout layout = (CardLayout) rightContainer.getLayout();
+      layout.next(rightContainer);
+      
+        }       // TODO add your handling code here:
+    }//GEN-LAST:event_btnTargetDateActionPerformed
+
+    private void btnTargetAmountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTargetAmountActionPerformed
+      int selectedRow = tblLiveEvents.getSelectedRow();
+    if(selectedRow<0){
+      JOptionPane.showMessageDialog(null, "Please select a row from the table", "Warning", JOptionPane.WARNING_MESSAGE);
+    }
+    else{
+      Event event = (Event)tblLiveEvents.getValueAt(selectedRow, 0);
+      AdminAmountReachedJPanel panel = new AdminAmountReachedJPanel(rightContainer, eventdirectory);
+      rightContainer.add("AdminAmountReachedJPanel", panel);
+      CardLayout layout = (CardLayout) rightContainer.getLayout();
+      layout.next(rightContainer);
+      
+        }   // TODO add your handling code here:
+    }//GEN-LAST:event_btnTargetAmountActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -13,6 +13,14 @@ import java.util.ArrayList;
  */
 public class EventDirectory {
     private ArrayList<Event> eventDirectory;
+    
+    public ArrayList<Event> getEventDirectory() {
+        return eventDirectory;
+    }
+
+    public void setEventDirectory(ArrayList<Event> eventDirectory) {
+        this.eventDirectory = eventDirectory;
+    }
 
     public EventDirectory() {
         eventDirectory = new ArrayList();
@@ -20,5 +28,8 @@ public class EventDirectory {
     
     public ArrayList<Event> getOrganizationList() {
         return eventDirectory;
+    }
+    public void deleteEvent(Event event){
+        eventDirectory.remove(event);
     }
 }
