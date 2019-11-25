@@ -10,7 +10,7 @@ import Business.Enterprise.Enterprise;
 import Business.FundRaiserEvents.EventDirectory;
 import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
-import UserInterface.BankRole.BankWorkAreaJPanel;
+import UserInterface.BankRole.BankDashBoardJPanel;
 import javax.swing.JPanel;
 
 /**
@@ -21,6 +21,6 @@ public class BankEmployee extends Role{
     @Override
     public JPanel createWorkArea(JPanel container, UserAccount account, 
             Organization organization, Enterprise enterprise, EcoSystem business, EventDirectory eventdirectory) {
-        return new BankWorkAreaJPanel();
+        return new BankDashBoardJPanel();
     }
 }
