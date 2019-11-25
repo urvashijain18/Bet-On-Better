@@ -3,18 +3,18 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package UserInterface.ReceiverRole;
+package UserInterface.UserRole;
 
 /**
  *
  * @author @author Urvashi
  */
-public class ReceiverWorkAreaJPanel extends javax.swing.JPanel {
+public class UserWorkAreaJPanel extends javax.swing.JPanel {
 
     /**
      * Creates new form ReceiverWorkAreaJPanel
      */
-    public ReceiverWorkAreaJPanel() {
+    public UserWorkAreaJPanel() {
         initComponents();
     }
 
