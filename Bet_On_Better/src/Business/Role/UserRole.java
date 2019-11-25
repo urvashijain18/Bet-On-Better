@@ -9,18 +9,17 @@ import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
 import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
-import UserInterface.BankRole.BankWorkAreaJPanel;
-import UserInterface.DonorRole.DonorWorkAreaJPanel;
+import UserInterface.UserRole.UserWorkAreaJPanel;
 import javax.swing.JPanel;
 
 /**
  *
  * @author devma
  */
-public class DonorRole extends Role{
+public class UserRole extends Role{
     @Override
     public JPanel createWorkArea(JPanel container, UserAccount account, 
             Organization organization, Enterprise enterprise, EcoSystem business) {
-        return new DonorWorkAreaJPanel();
+        return new UserWorkAreaJPanel();
     }
 }
