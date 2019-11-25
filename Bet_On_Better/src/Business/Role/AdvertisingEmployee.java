@@ -7,6 +7,7 @@ package Business.Role;
 
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
+import Business.FundRaiserEvents.EventDirectory;
 import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
 import UserInterface.AdvertisingRole.AdvertisingWorkAreaJPanel;
@@ -19,7 +20,7 @@ import javax.swing.JPanel;
 public class AdvertisingEmployee extends Role{
     @Override
     public JPanel createWorkArea(JPanel container, UserAccount account, 
-            Organization organization, Enterprise enterprise, EcoSystem business) {
+            Organization organization, Enterprise enterprise, EcoSystem business, EventDirectory eventdirectory) {
         return new AdvertisingWorkAreaJPanel();
     }
 }
