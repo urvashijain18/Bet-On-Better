@@ -36,8 +36,10 @@ public class BankApprovedRequestsJPanel extends javax.swing.JPanel {
         btnVerifDtls = new javax.swing.JButton();
         btnFundTransferDtls = new javax.swing.JButton();
 
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel1.setText("APPROVED VERIFICATION REQUESTS");
 
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel2.setText("COMPLETED FUND ALLOCATION REQUESTS");
 
         tblFundAllocationRecords.setModel(new javax.swing.table.DefaultTableModel(
@@ -45,7 +47,7 @@ public class BankApprovedRequestsJPanel extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Request Number", "User", "Status", "Request Date", "Allocation Date", "Amount Requested", "Amount Allocated"
+                "Request Number", "User", "Request Date", "Allocation Date", "Amount Requested", "Amount Allocated"
             }
         ));
         jScrollPane1.setViewportView(tblFundAllocationRecords);
@@ -55,7 +57,7 @@ public class BankApprovedRequestsJPanel extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Request Number", "User", "Requested Date", "Approved Date", "Status"
+                "Request Number", "User", "Requested Date", "Approved Date"
             }
         ));
         jScrollPane2.setViewportView(tblVerifRecords);

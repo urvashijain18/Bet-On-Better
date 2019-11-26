@@ -32,8 +32,10 @@ public class VerificationRequestJPanel extends javax.swing.JPanel {
         jScrollPane2 = new javax.swing.JScrollPane();
         tblVerifRecords = new javax.swing.JTable();
 
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel1.setText("VERIFICATION REQUESTS ");
 
+        btnActionTaken.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         btnActionTaken.setText("Take Action");
 
         tblVerifRecords.setModel(new javax.swing.table.DefaultTableModel(
@@ -56,28 +58,28 @@ public class VerificationRequestJPanel extends javax.swing.JPanel {
                         .addGap(276, 276, 276)
                         .addComponent(btnActionTaken))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(267, 267, 267)
+                        .addGap(256, 256, 256)
                         .addComponent(jLabel1)))
-                .addContainerGap(270, Short.MAX_VALUE))
+                .addContainerGap(272, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(18, 18, 18)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 631, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(18, Short.MAX_VALUE)))
+                    .addContainerGap(21, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(38, 38, 38)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 208, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 213, Short.MAX_VALUE)
                 .addComponent(btnActionTaken)
-                .addGap(36, 36, 36))
+                .addGap(142, 142, 142))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(102, 102, 102)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(103, Short.MAX_VALUE)))
+                    .addContainerGap(214, Short.MAX_VALUE)))
         );
     }// </editor-fold>//GEN-END:initComponents
 

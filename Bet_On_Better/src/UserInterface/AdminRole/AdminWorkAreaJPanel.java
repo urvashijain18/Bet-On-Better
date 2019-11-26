@@ -24,9 +24,11 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
     private JPanel leftContainer;
     private JPanel rightContainer;
     private EventDirectory eventdirectory;
+    
     public AdminWorkAreaJPanel(JPanel rightContainer, Enterprise enterprise, EventDirectory eventdirectory) {
         initComponents();
         this.eventdirectory = eventdirectory;
+        this.rightContainer = rightContainer;
         populateTable();
     }
     
@@ -151,33 +153,19 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_btnViewEventActionPerformed
 
     private void btnTargetDateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTargetDateActionPerformed
-  int selectedRow = tblLiveEvents.getSelectedRow();
-    if(selectedRow<0){
-      JOptionPane.showMessageDialog(null, "Please select a row from the table", "Warning", JOptionPane.WARNING_MESSAGE);
-    }
-    else{
-      Event event = (Event)tblLiveEvents.getValueAt(selectedRow, 0);
       AdminTargetDateJPanel panel = new AdminTargetDateJPanel(rightContainer, eventdirectory);
       rightContainer.add("AdminTargetDateJPanel", panel);
       CardLayout layout = (CardLayout) rightContainer.getLayout();
       layout.next(rightContainer);
-      
-        }       // TODO add your handling code here:
     }//GEN-LAST:event_btnTargetDateActionPerformed
 
     private void btnTargetAmountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTargetAmountActionPerformed
-      int selectedRow = tblLiveEvents.getSelectedRow();
-    if(selectedRow<0){
-      JOptionPane.showMessageDialog(null, "Please select a row from the table", "Warning", JOptionPane.WARNING_MESSAGE);
-    }
-    else{
-      Event event = (Event)tblLiveEvents.getValueAt(selectedRow, 0);
+      
       AdminAmountReachedJPanel panel = new AdminAmountReachedJPanel(rightContainer, eventdirectory);
       rightContainer.add("AdminAmountReachedJPanel", panel);
       CardLayout layout = (CardLayout) rightContainer.getLayout();
       layout.next(rightContainer);
       
-        }   // TODO add your handling code here:
     }//GEN-LAST:event_btnTargetAmountActionPerformed
 
 

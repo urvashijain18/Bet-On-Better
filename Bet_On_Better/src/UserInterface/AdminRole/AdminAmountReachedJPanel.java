@@ -17,38 +17,39 @@ import javax.swing.table.DefaultTableModel;
  * @author devma
  */
 public class AdminAmountReachedJPanel extends javax.swing.JPanel {
-    private JPanel leftContainer;
+
     private JPanel rightContainer;
     private EventDirectory eventdirectory;
+
     /**
      * Creates new form AdminAmountReachedJPanel
      */
     public AdminAmountReachedJPanel(JPanel rightContainer, EventDirectory eventdirectory) {
         initComponents();
         this.rightContainer = rightContainer;
-    this.eventdirectory = eventdirectory;
-    populateAmountTable();
+        this.eventdirectory = eventdirectory;
+        populateAmountTable();
     }
-    
-    private void populateAmountTable(){
+
+    private void populateAmountTable() {
         DefaultTableModel dtm = (DefaultTableModel) tblTargetAmountReached.getModel();
         dtm.setRowCount(0);
-        for(Event event: eventdirectory.getEventDirectory()){
-            if(event.getRaisedAmt().equals(event.getRequestAmt())){
-           Object[] row= new Object[9]; 
-           row[0] = event;
-           row[1] = event.getEventName();
-           row[2] = event.getDescription();
-           row[3] = event.getCategory();
-           row[4] = event.getRaisedBy();
-           row[5] = event.getRequestAmt();
-           row[6] = event.getRaisedAmt();
-           row[7] = event.getCreateDate();
-           row[8] = event.getTargetDate();
-           
-           dtm.addRow(row);
+        for (Event event : eventdirectory.getEventDirectory()) {
+            if (event.getRaisedAmt().equals(event.getRequestAmt())) {
+                Object[] row = new Object[9];
+                row[0] = event;
+                row[1] = event.getEventName();
+                row[2] = event.getDescription();
+                row[3] = event.getCategory();
+                row[4] = event.getRaisedBy();
+                row[5] = event.getRequestAmt();
+                row[6] = event.getRaisedAmt();
+                row[7] = event.getCreateDate();
+                row[8] = event.getTargetDate();
+
+                dtm.addRow(row);
             }
-           
+
         }
     }
 
@@ -136,26 +137,24 @@ public class AdminAmountReachedJPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
-rightContainer.remove(this);
-        CardLayout leftLayout = (CardLayout) leftContainer.getLayout();
-        leftLayout.previous(leftContainer);         // TODO add your handling code here:
+        rightContainer.remove(this);
+        CardLayout leftLayout = (CardLayout) rightContainer.getLayout();
+        leftLayout.previous(rightContainer);
     }//GEN-LAST:event_btnBackActionPerformed
 
     private void btnDeleteEventActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteEventActionPerformed
-int selectedRow = tblTargetAmountReached.getSelectedRow();
-    if(selectedRow >=0)
-    {
-    int dialogButton = JOptionPane.YES_NO_OPTION;
-    int dialogResult = JOptionPane.showConfirmDialog(null, "Would you like to delete?", "Warning", dialogButton);
-    if(dialogResult == JOptionPane.YES_OPTION){
-    Event event = (Event) tblTargetAmountReached.getValueAt(selectedRow, 0);
-    eventdirectory.deleteEvent(event);
-    populateAmountTable();
-    }
-    }
-    else{
-    JOptionPane.showMessageDialog(null, "Please select a row from the table", "Warning", JOptionPane.WARNING_MESSAGE);
-    }         // TODO add your handling code here:
+        int selectedRow = tblTargetAmountReached.getSelectedRow();
+        if (selectedRow >= 0) {
+            int dialogButton = JOptionPane.YES_NO_OPTION;
+            int dialogResult = JOptionPane.showConfirmDialog(null, "Would you like to delete?", "Warning", dialogButton);
+            if (dialogResult == JOptionPane.YES_OPTION) {
+                Event event = (Event) tblTargetAmountReached.getValueAt(selectedRow, 0);
+                eventdirectory.deleteEvent(event);
+                populateAmountTable();
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Please select a row from the table", "Warning", JOptionPane.WARNING_MESSAGE);
+        }         // TODO add your handling code here:
     }//GEN-LAST:event_btnDeleteEventActionPerformed
 
 
