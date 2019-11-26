@@ -10,7 +10,7 @@ import Business.Enterprise.BankEnterprise;
 import Business.Enterprise.Enterprise;
 import Business.Enterprise.FundRaisingEnterprise;
 import Business.FundRaiserEvents.EventDirectory;
-import Business.Role.AdminRole;
+import Business.Role.FundRaisingAdmin;
 import Business.Role.Role;
 import Business.Role.UserRole;
 import Business.UserAccount.UserAccount;
@@ -238,7 +238,7 @@ public class CreateNewUser extends javax.swing.JPanel {
         Role role = null;
         
         if (btnAdmin.isSelected()) {
-            role = new AdminRole();
+            role = new FundRaisingAdmin();
         }else if (btnUser.isSelected()) {
             role = new UserRole();
         }

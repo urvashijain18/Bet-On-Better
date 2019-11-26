@@ -11,13 +11,13 @@ import Business.FundRaiserEvents.EventDirectory;
 import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
 import javax.swing.JPanel;
-import UserInterface.AdminRole.AdminWorkAreaJPanel;
+import UserInterface.FundRaisingAdminRole.AdminWorkAreaJPanel;
 
 /**
  *
  * @author devma
  */
-public class AdminRole extends Role{
+public class FundRaisingAdmin extends Role{
     @Override
     public JPanel createWorkArea(JPanel container, UserAccount account, 
             Organization organization, Enterprise enterprise, EcoSystem business, EventDirectory eventdirectory) {

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package UserInterface.AdminRole;
+package UserInterface.FundRaisingAdminRole;
 import Business.FundRaiserEvents.EventDirectory;
 import Business.Enterprise.Enterprise;
 import java.awt.CardLayout;

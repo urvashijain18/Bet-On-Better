@@ -7,13 +7,13 @@ package UserInterface;
 
 import Business.Enterprise.Enterprise;
 import Business.FundRaiserEvents.EventDirectory;
-import Business.Role.AdminRole;
+import Business.Role.FundRaisingAdmin;
 import Business.Role.BankEmployee;
 import Business.Role.UserRole;
 import Business.UserAccount.UserAccountDirectory;
 import Business.UserAccount.UserAccount;
-import UserInterface.AdminRole.AdminLeftJPanel;
-import UserInterface.AdminRole.AdminWorkAreaJPanel;
+import UserInterface.FundRaisingAdminRole.AdminLeftJPanel;
+import UserInterface.FundRaisingAdminRole.AdminWorkAreaJPanel;
 import UserInterface.BankRole.BankDashBoardJPanel;
 import UserInterface.BankRole.BankLeftJPanel;
 import UserInterface.UserRole.UserHomeJPanel;
@@ -145,7 +145,7 @@ public class UserLogin extends javax.swing.JPanel {
         boolean flag = false;
         UserAccount  userAccount = userAccountDirectory.authenticateUser(userName, password);
         if (userAccount != null) {
-            if(userAccount.getRole().getClass().equals(AdminRole.class)){
+            if(userAccount.getRole().getClass().equals(FundRaisingAdmin.class)){
             CardLayout leftLayout = (CardLayout) leftContainer.getLayout();
             leftContainer.add("AdminLeftJPanel", new AdminLeftJPanel(leftContainer, rightContainer, userAccountDirectory, enterprise, eventdirectory));
             leftLayout.next(leftContainer);
