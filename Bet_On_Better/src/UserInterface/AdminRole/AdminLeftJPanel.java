@@ -99,12 +99,16 @@ public class AdminLeftJPanel extends javax.swing.JPanel {
 
     private void btnHomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHomeActionPerformed
         // TODO add your handling code here:
-        
+        CardLayout rightLayout = (CardLayout) rightContainer.getLayout();
+        rightContainer.add("AdminWorkAreaJPanel", new AdminWorkAreaJPanel(rightContainer, enterprise, eventdirectory));
+        rightLayout.next(rightContainer);
     }//GEN-LAST:event_btnHomeActionPerformed
 
     private void btnPendingApprovalsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPendingApprovalsActionPerformed
         // TODO add your handling code here:
-        
+        CardLayout rightLayout = (CardLayout) rightContainer.getLayout();
+        rightContainer.add("AdminPendingApprovalJPanel", new AdminPendingApprovalJPanel());
+        rightLayout.next(rightContainer);
     }//GEN-LAST:event_btnPendingApprovalsActionPerformed
 
     private void btnLogOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogOutActionPerformed
