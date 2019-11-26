@@ -5,6 +5,7 @@
  */
 package UserInterface.FundRaisingAdminRole;
 
+import Business.Employee.EmployeeAccountDirectory;
 import Business.Enterprise.Enterprise;
 import Business.FundRaiserEvents.EventDirectory;
 import Business.UserAccount.UserAccountDirectory;
@@ -24,18 +25,19 @@ public class AdminLeftJPanel extends javax.swing.JPanel {
     private UserAccountDirectory userAccountDirectory; 
     private Enterprise enterprise; 
     private EventDirectory eventdirectory;
-    
+    private EmployeeAccountDirectory employeeAccountDirectory;
     /**
      * Creates new form AdminLeftJPanel
      */
     public AdminLeftJPanel(JPanel leftContainer, JPanel rightContainer, UserAccountDirectory userAccountDirectory,
-            Enterprise enterprise, EventDirectory eventdirectory) {
+            Enterprise enterprise, EventDirectory eventdirectory,EmployeeAccountDirectory employeeAccountDirectory) {
         initComponents();
         this.leftContainer = leftContainer;
         this.rightContainer= rightContainer;
         this.userAccountDirectory = userAccountDirectory;
         this.enterprise = enterprise;
         this.eventdirectory = eventdirectory;
+        this.employeeAccountDirectory = employeeAccountDirectory;
     }
 
     /**
@@ -51,6 +53,7 @@ public class AdminLeftJPanel extends javax.swing.JPanel {
         btnPendingApprovals = new javax.swing.JButton();
         btnWithdrawalReq = new javax.swing.JButton();
         btnLogOut = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
         btnHome.setText("Home");
         btnHome.addActionListener(new java.awt.event.ActionListener() {
@@ -75,6 +78,13 @@ public class AdminLeftJPanel extends javax.swing.JPanel {
             }
         });
 
+        jButton1.setText("Create New Employee");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -82,24 +92,29 @@ public class AdminLeftJPanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnWithdrawalReq)
+                    .addComponent(btnLogOut, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnHome, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnPendingApprovals, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnHome, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnLogOut, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(11, 11, 11))
+                    .addComponent(btnWithdrawalReq, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jButton1)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(130, 130, 130)
+                .addGap(76, 76, 76)
                 .addComponent(btnHome)
-                .addGap(53, 53, 53)
+                .addGap(59, 59, 59)
                 .addComponent(btnPendingApprovals)
-                .addGap(44, 44, 44)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 64, Short.MAX_VALUE)
                 .addComponent(btnWithdrawalReq)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 53, Short.MAX_VALUE)
+                .addGap(58, 58, 58)
+                .addComponent(jButton1)
+                .addGap(52, 52, 52)
                 .addComponent(btnLogOut)
-                .addGap(130, 130, 130))
+                .addGap(78, 78, 78))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -120,7 +135,7 @@ public class AdminLeftJPanel extends javax.swing.JPanel {
     private void btnLogOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogOutActionPerformed
         leftContainer.remove(this);
         CardLayout leftCardLayout = (CardLayout) leftContainer.getLayout();
-        leftContainer.add("UserLogin", new UserLogin(leftContainer, rightContainer, userAccountDirectory, enterprise, eventdirectory));
+        leftContainer.add("UserLogin", new UserLogin(leftContainer, rightContainer, userAccountDirectory, enterprise, eventdirectory, employeeAccountDirectory));
         leftCardLayout.next(leftContainer);
         Component [] components = rightContainer.getComponents();
         for(Component c : components){
@@ -128,11 +143,19 @@ public class AdminLeftJPanel extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_btnLogOutActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+     rightContainer.remove(this);
+        CardLayout rightLayout = (CardLayout) rightContainer.getLayout();
+        rightContainer.add("AdminCreateEmployeesJPanel", new AdminCreateEmployeesJPanel(rightContainer,leftContainer,employeeAccountDirectory));
+        rightLayout.next(rightContainer);   // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnHome;
     private javax.swing.JButton btnLogOut;
     private javax.swing.JButton btnPendingApprovals;
     private javax.swing.JButton btnWithdrawalReq;
+    private javax.swing.JButton jButton1;
     // End of variables declaration//GEN-END:variables
 }

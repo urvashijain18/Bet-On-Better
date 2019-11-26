@@ -20,7 +20,7 @@ import javax.swing.JPanel;
 public abstract class Role {
     public enum RoleType{
         Admin("Admin"), User("User"), BankEmployee("Bank Employee"), 
-        AdvertisingEmployee("Advertising Employee");
+        AdvertisingEmployee("Advertising Employee"), FundRaisingEmployee("Fund Raising Employee"), InitiativesEmployee("Initiatives Employee");
         
         private String value;
         private RoleType(String value){

@@ -5,6 +5,7 @@
  */
 package UserInterface;
 
+import Business.Employee.EmployeeAccountDirectory;
 import Business.Enterprise.AdvertisingEnterprise;
 import Business.Enterprise.BankEnterprise;
 import Business.Enterprise.Enterprise;
@@ -30,15 +31,17 @@ public class CreateNewUser extends javax.swing.JPanel {
     private JPanel leftContainer;
     private JPanel rightContainer;
     private UserAccountDirectory userAccountDirectory;
+    private EmployeeAccountDirectory employeeAccountDirectory;
     
     /**
      * Creates new form CreateNewUser
      */
-    public CreateNewUser(JPanel leftContainer, JPanel rightContainer, UserAccountDirectory userAccountDirectory) {
+    public CreateNewUser(JPanel leftContainer, JPanel rightContainer, UserAccountDirectory userAccountDirectory,EmployeeAccountDirectory employeeAccountDirectory) {
         initComponents();
         this.leftContainer = leftContainer;
         this.rightContainer = rightContainer;
         this.userAccountDirectory = userAccountDirectory;
+        this.employeeAccountDirectory = employeeAccountDirectory;
     }
 
     /**
@@ -257,7 +260,7 @@ public class CreateNewUser extends javax.swing.JPanel {
             enterprise = new AdvertisingEnterprise(enterpriseDropDown.getSelectedItem().toString());
         }
         
-        UserLogin userLoginJPanel = new UserLogin(leftContainer, rightContainer, userAccountDirectory, enterprise, new EventDirectory());
+        UserLogin userLoginJPanel = new UserLogin(leftContainer, rightContainer, userAccountDirectory, enterprise, new EventDirectory(), employeeAccountDirectory);
         leftContainer.add("UserLoginJPanel", userLoginJPanel);
         leftLayout.next(leftContainer);
     }//GEN-LAST:event_btnCreateActionPerformed

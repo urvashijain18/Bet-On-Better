@@ -5,6 +5,7 @@
  */
 package UserInterface;
 
+import Business.Employee.EmployeeAccountDirectory;
 import Business.Enterprise.Enterprise;
 import Business.FundRaiserEvents.EventDirectory;
 import Business.UserAccount.UserAccountDirectory;
@@ -18,6 +19,7 @@ public class MainFrame extends javax.swing.JFrame {
     private UserAccountDirectory userAccountDirectory;
     private Enterprise enterprise;
     private EventDirectory eventdirectory;
+    private EmployeeAccountDirectory employeeAccountDirectory;
     /**
      * Creates new form MainFrame
      */
@@ -26,8 +28,9 @@ public class MainFrame extends javax.swing.JFrame {
         initComponents();
         this.userAccountDirectory = new UserAccountDirectory();
         this.eventdirectory = new EventDirectory();
+        this.employeeAccountDirectory = employeeAccountDirectory;
         CardLayout leftLayout = (CardLayout) leftContainer.getLayout();
-        UserLogin userLogin = new UserLogin(leftContainer, rightContainer, userAccountDirectory, enterprise, eventdirectory);
+        UserLogin userLogin = new UserLogin(leftContainer, rightContainer, userAccountDirectory, enterprise, eventdirectory, employeeAccountDirectory);
         leftContainer.add("UserLogin" , userLogin);
         leftLayout.next(leftContainer);
     }
