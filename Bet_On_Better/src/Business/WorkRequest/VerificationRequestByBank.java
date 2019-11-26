@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Business.WorkQueue;
+package Business.WorkRequest;
 
 import java.util.Date;
 
@@ -11,7 +11,7 @@ import java.util.Date;
  *
  * @author Urvashi
  */
-public class VerificationRequest extends WorkRequest{
+public class VerificationRequestByBank extends WorkRequest{
     private int requestId;
     private Date verificationDate;
     private String status;
