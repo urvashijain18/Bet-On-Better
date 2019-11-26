@@ -5,6 +5,7 @@
  */
 package Business.BankFunctions;
 
+import Business.WorkQueue.FundAllocationRequest;
 import java.util.ArrayList;
 
 /**
