@@ -5,17 +5,34 @@
  */
 package UserInterface.UserRole;
 
+import Business.Enterprise.Enterprise;
+import Business.FundRaiserEvents.EventDirectory;
+import Business.UserAccount.UserAccountDirectory;
+import javax.swing.JPanel;
+
 /**
  *
  * @author MMI
  */
 public class DonateJPanel extends javax.swing.JPanel {
-
+private JPanel leftContainer;
+    private JPanel rightContainer;
+    private UserAccountDirectory userAccountDirectory; 
+    private Enterprise enterprise; 
+    private EventDirectory eventdirectory;
+    
     /**
      * Creates new form DonateJPanel
      */
-    public DonateJPanel() {
+    
+
+    DonateJPanel(JPanel leftContainer, JPanel rightContainer, UserAccountDirectory userAccountDirectory, Enterprise enterprise, EventDirectory eventdirectory) {
         initComponents();
+         this.leftContainer = leftContainer;
+        this.rightContainer = rightContainer;
+        this.enterprise = enterprise;
+        this.userAccountDirectory = userAccountDirectory;
+        this.eventdirectory = eventdirectory;
     }
 
     /**
