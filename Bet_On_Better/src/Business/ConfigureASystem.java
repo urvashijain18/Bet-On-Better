@@ -7,7 +7,7 @@ package Business;
 
 import Business.Network.Network;
 import Business.Enterprise.*;
-import Business.Role.AdminRole;
+import Business.Role.FundRaisingAdmin;
 import Business.UserAccount.UserAccount;
 
 /**
@@ -23,8 +23,8 @@ public class ConfigureASystem {
         //initialize some organizations
         //have some employees 
         //create user account
-        AdminRole adminRole = new AdminRole();
-        UserAccount ua = system.getUserAccountDirectory().createUserAccount("admin", "admin", new AdminRole());
+        FundRaisingAdmin adminRole = new FundRaisingAdmin();
+        UserAccount ua = system.getUserAccountDirectory().createUserAccount("admin", "admin", new FundRaisingAdmin());
         
         return system;
     }

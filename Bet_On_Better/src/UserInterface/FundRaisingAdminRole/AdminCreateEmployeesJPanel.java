@@ -3,18 +3,18 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package UserInterface.AdminRole;
+package UserInterface.FundRaisingAdminRole;
 
 /**
  *
- * @author Urvashi
+ * @author devma
  */
-public class AdminPendingApprovalJPanel extends javax.swing.JPanel {
+public class AdminCreateEmployeesJPanel extends javax.swing.JPanel {
 
     /**
-     * Creates new form AdminPendingApprovalJPanel
+     * Creates new form AdminCreateEmployeesJPanel
      */
-    public AdminPendingApprovalJPanel() {
+    public AdminCreateEmployeesJPanel() {
         initComponents();
     }
 
@@ -31,11 +31,11 @@ public class AdminPendingApprovalJPanel extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 670, Short.MAX_VALUE)
+            .addGap(0, 400, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 430, Short.MAX_VALUE)
+            .addGap(0, 300, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
