@@ -3,36 +3,26 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Business.BankFunctions;
+package Business.WorkQueue;
 
-import Business.Role.UserRole;
 import java.util.Date;
 
 /**
  *
  * @author Urvashi
  */
-public class VerificationRequest {
+public class VerificationRequest extends WorkRequest{
     private int requestId;
-    private Date requestDate;
     private Date verificationDate;
-    private UserRole user;
     private String status;
-
+    private String reason;
+    
     public int getRequestId() {
         return requestId;
     }
 
     public void setRequestId(int requestId) {
         this.requestId = requestId;
-    }
-
-    public Date getRequestDate() {
-        return requestDate;
-    }
-
-    public void setRequestDate(Date requestDate) {
-        this.requestDate = requestDate;
     }
 
     public Date getVerificationDate() {
@@ -43,19 +33,19 @@ public class VerificationRequest {
         this.verificationDate = verificationDate;
     }
 
-    public UserRole getUser() {
-        return user;
-    }
-
-    public void setUser(UserRole user) {
-        this.user = user;
-    }
-
     public String getStatus() {
         return status;
     }
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public String getReason() {
+        return reason;
+    }
+
+    public void setReason(String reason) {
+        this.reason = reason;
     }
 }

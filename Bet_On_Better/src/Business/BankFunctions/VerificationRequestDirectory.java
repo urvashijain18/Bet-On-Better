@@ -5,6 +5,7 @@
  */
 package Business.BankFunctions;
 
+import Business.WorkQueue.VerificationRequest;
 import java.util.ArrayList;
 
 /**

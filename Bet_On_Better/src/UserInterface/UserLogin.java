@@ -5,7 +5,21 @@
  */
 package UserInterface;
 
+import Business.Enterprise.Enterprise;
+import Business.FundRaiserEvents.EventDirectory;
+import Business.Role.AdminRole;
+import Business.Role.BankEmployee;
+import Business.Role.UserRole;
 import Business.UserAccount.UserAccountDirectory;
+import Business.UserAccount.UserAccount;
+import UserInterface.AdminRole.AdminLeftJPanel;
+import UserInterface.AdminRole.AdminWorkAreaJPanel;
+import UserInterface.BankRole.BankDashBoardJPanel;
+import UserInterface.BankRole.BankLeftJPanel;
+import UserInterface.UserRole.UserHomeJPanel;
+import UserInterface.UserRole.UserWorkAreaJPanel;
+import java.awt.CardLayout;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 /**
@@ -16,17 +30,42 @@ public class UserLogin extends javax.swing.JPanel {
     private JPanel leftContainer;
     private JPanel rightContainer;
     private UserAccountDirectory userAccountDirectory;
+    private Enterprise enterprise;
+    private EventDirectory eventdirectory;
     /**
      * Creates new form UserLogin
      */
     
-    public UserLogin(JPanel leftContainer, JPanel rightContainer, UserAccountDirectory userAccountDirectory) {
+    public UserLogin(JPanel leftContainer, JPanel rightContainer, UserAccountDirectory userAccountDirectory, 
+            Enterprise enterprise, EventDirectory eventdirectory) {
         initComponents();
-        this.leftContainer= leftContainer;
-        this.rightContainer=rightContainer;
-        this.userAccountDirectory=userAccountDirectory;
+        this.leftContainer = leftContainer;
+        this.rightContainer = rightContainer;
+        this.userAccountDirectory = userAccountDirectory;
+        //this.enterprise = enterprise;
+        this.eventdirectory = eventdirectory;
     }
-
+    
+    public void setLoginFieldEnabled(){
+    txtUserName.setEnabled(true);
+    txtPassword.setEnabled(true);
+    btnLogin.setEnabled(true);
+    btnNewUSer.setEnabled(true);
+    }
+    
+    public void setLoginFieldDisabled(){
+        btnLogin.setEnabled(false);
+        btnNewUSer.setEnabled(false);
+        txtUserName.setEnabled(false);
+        txtPassword.setEnabled(false);
+    }
+    
+    private void refreshLeftContainer(){
+        leftContainer.remove(this);
+        CardLayout layout= (CardLayout) leftContainer.getLayout();
+        layout.previous(leftContainer);
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -100,45 +139,52 @@ public class UserLogin extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
-        // TODO
         String userName = txtUserName.getText();
         char[] passwordCharArray = txtPassword.getPassword();
         String password = String.valueOf(passwordCharArray);
         boolean flag = false;
-        //TravelAgent admin ;
-        //Airliner airliner;
-//        admin = travelAgentDirectory.authenticateAdminUser(userName, password);
-//        airliner = airlinerDirectory.authenticateAirlinerUser(userName, password);
-//        if (admin != null) {
-//            CardLayout layout = (CardLayout) leftContainer.getLayout();
-//            AccountWorkAreaJPanel accountWorkAreaJPanel = new AccountWorkAreaJPanel(leftContainer, rightContainer, airlinerDirectory, travelAgentDirectory, admin);
-//            leftContainer.add("AccountWorkAreaJPanel", accountWorkAreaJPanel);
-//            layout.next(leftContainer);
-//            flag = true;
-//        }else if (airliner != null) {
-//            CardLayout layout = (CardLayout) leftContainer.getLayout();
-//            AirlinerWorkAreaJPanel airlinerWorkAreaJPanel = new AirlinerWorkAreaJPanel(leftContainer, rightContainer, airlinerDirectory, travelAgentDirectory, airliner);
-//            leftContainer.add("AirlinerWorkAreaJPanel", airlinerWorkAreaJPanel);
-//            layout.next(leftContainer);
-//            flag = true;
-//        }
-//        if(!flag){
-//            JOptionPane.showMessageDialog(null, "Invalid UserName/Password");
-//            return;
-//        }
-//        btnLogin.setEnabled(false);
-//        btnNewUSer.setEnabled(false);
-//        txtUserName.setEnabled(false);
-//        txtPassword.setEnabled(false);
+        UserAccount  userAccount = userAccountDirectory.authenticateUser(userName, password);
+        if (userAccount != null) {
+            if(userAccount.getRole().getClass().equals(AdminRole.class)){
+            CardLayout leftLayout = (CardLayout) leftContainer.getLayout();
+            leftContainer.add("AdminLeftJPanel", new AdminLeftJPanel());
+            leftLayout.next(leftContainer);
+            CardLayout rightLayout = (CardLayout) rightContainer.getLayout();
+            rightContainer.add("AdminWorkAreaJPanel", new AdminWorkAreaJPanel(rightContainer, enterprise, eventdirectory));
+            rightLayout.next(rightContainer);
+            }
+            else if(userAccount.getRole().getClass().equals(UserRole.class)) {
+            CardLayout leftLayout = (CardLayout) leftContainer.getLayout();
+            leftContainer.add("UserWorkAreaJPanel", new UserWorkAreaJPanel());
+            leftLayout.next(leftContainer);
+            CardLayout rightLayout = (CardLayout) rightContainer.getLayout();
+            rightContainer.add("UserHomeJPanel", new UserHomeJPanel());
+            rightLayout.next(rightContainer);
+            }
+            else if(userAccount.getRole().getClass().equals(BankEmployee.class)){
+            CardLayout leftLayout = (CardLayout) leftContainer.getLayout();
+            leftContainer.add("BankLeftJPanel", new BankLeftJPanel());
+            leftLayout.next(leftContainer);
+            CardLayout rightLayout = (CardLayout) rightContainer.getLayout();
+            rightContainer.add("BankDashBoardJPanel", new BankDashBoardJPanel());
+            rightLayout.next(rightContainer);
+            }
+            flag = true; 
+        }
+        if(!flag){
+            JOptionPane.showMessageDialog(null, "Invalid UserName/Password");
+            return;
+        }
+        setLoginFieldDisabled();
     }//GEN-LAST:event_btnLoginActionPerformed
 
     private void btnNewUSerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNewUSerActionPerformed
         // TODO add your handling code here:
-//        CardLayout layout = (CardLayout) rightContainer.getLayout();
-//        CreateUserAccount createUserAccount = new CreateUserAccount(leftContainer, rightContainer);
-//        rightContainer.add("CreateUserAccount", createUserAccount);
-//        layout.next(rightContainer);
-//        refreshLeftContainer();
+        CardLayout layout = (CardLayout) rightContainer.getLayout();
+        CreateNewUser createNewUser = new CreateNewUser(leftContainer, rightContainer, userAccountDirectory);
+        rightContainer.add("CreateNewUser", createNewUser);
+        layout.next(rightContainer);
+        refreshLeftContainer();
     }//GEN-LAST:event_btnNewUSerActionPerformed
 
 

@@ -13,6 +13,7 @@ import Business.WorkQueue.WorkQueue;
  * @author devma
  */
 public class UserAccount {
+    private String name;
     private String username;
     private String password;
     private Role role;
@@ -53,5 +54,13 @@ public class UserAccount {
     @Override
     public String toString() {
         return username;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }

@@ -5,6 +5,8 @@
  */
 package UserInterface;
 
+import Business.Enterprise.Enterprise;
+import Business.FundRaiserEvents.EventDirectory;
 import Business.UserAccount.UserAccountDirectory;
 import java.awt.CardLayout;
 
@@ -14,14 +16,17 @@ import java.awt.CardLayout;
  */
 public class MainJFrame extends javax.swing.JFrame {
     private UserAccountDirectory userAccountDirectory;
+    private Enterprise enterprise;
+    private EventDirectory eventdirectory;
     /**
      * Creates new form MainJFrameApp
      */
     public MainJFrame() {
         initComponents();
         this.userAccountDirectory = new UserAccountDirectory();
+        this.eventdirectory = new EventDirectory();
         CardLayout leftLayout = (CardLayout) leftContainer.getLayout();
-        UserLogin userLogin = new UserLogin(leftContainer, rightContainer, userAccountDirectory);
+        UserLogin userLogin = new UserLogin(leftContainer, rightContainer, userAccountDirectory, enterprise, eventdirectory);
         leftContainer.add("UserLogin" , userLogin);
         leftLayout.next(leftContainer);
     }
@@ -51,11 +56,13 @@ public class MainJFrame extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jSplitPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 689, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jSplitPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 589, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jSplitPane1, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addComponent(jSplitPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 444, Short.MAX_VALUE)
         );
 
         pack();

@@ -3,20 +3,17 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Business.BankFunctions;
+package Business.WorkQueue;
 
-import Business.Role.UserRole;
 import java.util.Date;
 
 /**
  *
  * @author Urvashi
  */
-public class FundAllocationRequest {
+public class FundAllocationRequest extends WorkRequest{
     private int requestId;
     private Date transferDate;
-    private Date requestDate;
-    private UserRole user;
     private String transferStatus;
     private double requestedAmount;
     private double allocatedAmount;
@@ -35,22 +32,6 @@ public class FundAllocationRequest {
 
     public void setTransferDate(Date transferDate) {
         this.transferDate = transferDate;
-    }
-
-    public Date getRequestDate() {
-        return requestDate;
-    }
-
-    public void setRequestDate(Date requestDate) {
-        this.requestDate = requestDate;
-    }
-
-    public UserRole getUser() {
-        return user;
-    }
-
-    public void setUser(UserRole user) {
-        this.user = user;
     }
 
     public String getTransferStatus() {
