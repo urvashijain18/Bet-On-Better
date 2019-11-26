@@ -17,7 +17,6 @@ import javax.swing.JPanel;
 public class DonateJPanel extends javax.swing.JPanel {
 private JPanel leftContainer;
     private JPanel rightContainer;
-    private UserAccountDirectory userAccountDirectory; 
     private Enterprise enterprise; 
     private EventDirectory eventdirectory;
     
@@ -26,12 +25,11 @@ private JPanel leftContainer;
      */
     
 
-    DonateJPanel(JPanel leftContainer, JPanel rightContainer, UserAccountDirectory userAccountDirectory, Enterprise enterprise, EventDirectory eventdirectory) {
+    DonateJPanel(JPanel leftContainer, JPanel rightContainer, Enterprise enterprise, EventDirectory eventdirectory) {
         initComponents();
-         this.leftContainer = leftContainer;
+        this.leftContainer = leftContainer;
         this.rightContainer = rightContainer;
         this.enterprise = enterprise;
-        this.userAccountDirectory = userAccountDirectory;
         this.eventdirectory = eventdirectory;
     }
 

@@ -5,17 +5,36 @@
  */
 package UserInterface.Event;
 
+import Business.Enterprise.Enterprise;
+import Business.FundRaiserEvents.EventDirectory;
+import Business.UserAccount.UserAccountDirectory;
+import javax.swing.JPanel;
+
 /**
  *
  * @author @author Urvashi
  */
 public class CreateEventJPanel extends javax.swing.JPanel {
 
+   private JPanel leftContainer;
+   private JPanel rightContainer;
+   private UserAccountDirectory userAccountDirectory;
+   private Enterprise enterprise;
+   private EventDirectory eventdirectory;
     /**
      * Creates new form CreateEventJPanel
      */
-    public CreateEventJPanel() {
-        initComponents();
+    
+  
+    
+
+    public CreateEventJPanel(JPanel leftContainer, JPanel rightContainer, UserAccountDirectory userAccountDirectory, Enterprise enterprise, EventDirectory eventdirectory) {
+              initComponents();
+              this.leftContainer =leftContainer;
+               this.rightContainer = rightContainer;
+               this.userAccountDirectory = userAccountDirectory;
+               this.enterprise = enterprise;
+               this.eventdirectory = eventdirectory;
     }
 
     /**

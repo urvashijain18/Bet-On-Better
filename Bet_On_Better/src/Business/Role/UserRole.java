@@ -10,6 +10,7 @@ import Business.Enterprise.Enterprise;
 import Business.FundRaiserEvents.EventDirectory;
 import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
+import UserInterface.UserRole.UserHomeJPanel;
 import UserInterface.UserRole.UserWorkAreaJPanel;
 import javax.swing.JPanel;
 
@@ -21,6 +22,6 @@ public class UserRole extends Role{
     @Override
     public JPanel createWorkArea(JPanel container, UserAccount account, 
             Organization organization, Enterprise enterprise, EcoSystem business, EventDirectory eventdirectory) {
-        return new UserWorkAreaJPanel();
+        return new UserHomeJPanel(container, container, enterprise, eventdirectory);
     }
 }

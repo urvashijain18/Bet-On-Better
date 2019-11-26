@@ -109,7 +109,7 @@ public class UserWorkAreaJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
         rightContainer.remove(this);
         CardLayout rightCardLayout = (CardLayout) rightContainer.getLayout();
-        rightContainer.add("UserWorkAreaJPanel", new UserWorkAreaJPanel(leftContainer, rightContainer, userAccountDirectory, enterprise, eventdirectory));
+        rightContainer.add("UserHomeJPanel", new UserHomeJPanel(leftContainer, rightContainer,  enterprise, eventdirectory));
         rightCardLayout.next(rightContainer);
         Component [] components = rightContainer.getComponents();
         for(Component c : components){

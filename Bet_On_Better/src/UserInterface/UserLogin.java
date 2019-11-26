@@ -158,7 +158,7 @@ public class UserLogin extends javax.swing.JPanel {
             leftContainer.add("UserWorkAreaJPanel", new UserWorkAreaJPanel(leftContainer, rightContainer, userAccountDirectory, enterprise, eventdirectory));
             leftLayout.next(leftContainer);
             CardLayout rightLayout = (CardLayout) rightContainer.getLayout();
-            rightContainer.add("UserHomeJPanel", new UserHomeJPanel(leftContainer, rightContainer, userAccountDirectory, enterprise, eventdirectory));
+            rightContainer.add("UserHomeJPanel", new UserHomeJPanel(leftContainer, rightContainer, enterprise, eventdirectory));
             rightLayout.next(rightContainer);
             }
             else if(userAccount.getRole().getClass().equals(BankEmployee.class)){
