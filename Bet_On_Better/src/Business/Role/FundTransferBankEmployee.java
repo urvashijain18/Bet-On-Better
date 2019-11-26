@@ -10,17 +10,17 @@ import Business.Enterprise.Enterprise;
 import Business.FundRaiserEvents.EventDirectory;
 import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
-import UserInterface.AdvertisingRole.AdvertisingWorkAreaJPanel;
+import UserInterface.BankRole.BankDashBoardJPanel;
 import javax.swing.JPanel;
 
 /**
  *
- * @author Urvashi
+ * @author devma
  */
-public class AdvertisingEmployee extends Role{
+public class FundTransferBankEmployee extends Role{
     @Override
     public JPanel createWorkArea(JPanel container, UserAccount account, 
             Organization organization, Enterprise enterprise, EcoSystem business, EventDirectory eventdirectory) {
-        return new AdvertisingWorkAreaJPanel();
+        return new BankDashBoardJPanel();
     }
 }

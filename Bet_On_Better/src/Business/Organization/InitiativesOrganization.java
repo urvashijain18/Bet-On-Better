@@ -11,17 +11,18 @@ import java.util.ArrayList;
 
 /**
  *
- * @author devma
+ * @author MMI
  */
-public class HealthOrganization extends Organization{
-    public HealthOrganization() {
-        super(Organization.Type.Animals.getValue());
-    }
-    
-    @Override
+public class InitiativesOrganization extends Organization {
+  public  InitiativesOrganization(){
+      super(Organization.Type.Initiatives.getValue());
+  }  
+
+  @Override
     public ArrayList<Role> getSupportedRole() {
         ArrayList<Role> roles = new ArrayList();
         roles.add(new FundRaisingAdmin());
         return roles;
     }
+   
 }

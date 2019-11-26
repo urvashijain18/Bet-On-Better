@@ -5,7 +5,7 @@
  */
 package Business.Organization;
 
-import Business.Role.BankEmployee;
+import Business.Role.FundTransferBankEmployee;
 import Business.Role.Role;
 import java.util.ArrayList;
 
@@ -21,7 +21,7 @@ public class AccountVerificationOrganization extends Organization{
     @Override
     public ArrayList<Role> getSupportedRole() {
         ArrayList<Role> roles = new ArrayList();
-        roles.add(new BankEmployee());
+        roles.add(new FundTransferBankEmployee());
         return roles;
     }
 }
