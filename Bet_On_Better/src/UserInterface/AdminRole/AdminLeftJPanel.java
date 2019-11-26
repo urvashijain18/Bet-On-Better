@@ -5,6 +5,9 @@
  */
 package UserInterface.AdminRole;
 
+import Business.Enterprise.Enterprise;
+import Business.FundRaiserEvents.EventDirectory;
+import Business.UserAccount.UserAccountDirectory;
 import UserInterface.UserLogin;
 import java.awt.CardLayout;
 import java.awt.Component;
@@ -18,6 +21,9 @@ public class AdminLeftJPanel extends javax.swing.JPanel {
 
     private JPanel leftContainer;
     private JPanel rightContainer;
+    private UserAccountDirectory userAccountDirectory; 
+    private Enterprise enterprise; 
+    private EventDirectory eventdirectory;
     
     /**
      * Creates new form AdminLeftJPanel
