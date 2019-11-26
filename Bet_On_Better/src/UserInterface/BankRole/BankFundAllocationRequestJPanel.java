@@ -32,6 +32,7 @@ public class BankFundAllocationRequestJPanel extends javax.swing.JPanel {
         tblFundAllocationRecords = new javax.swing.JTable();
         btnActionTaken = new javax.swing.JButton();
 
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel1.setText("FUND ALLOCATION REQUESTS ");
 
         tblFundAllocationRecords.setModel(new javax.swing.table.DefaultTableModel(
@@ -44,6 +45,7 @@ public class BankFundAllocationRequestJPanel extends javax.swing.JPanel {
         ));
         jScrollPane1.setViewportView(tblFundAllocationRecords);
 
+        btnActionTaken.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         btnActionTaken.setText("Take Action");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);

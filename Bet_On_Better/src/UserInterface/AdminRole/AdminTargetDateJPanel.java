@@ -19,26 +19,31 @@ import java.util.Date;
  * @author devma
  */
 public class AdminTargetDateJPanel extends javax.swing.JPanel {
+
     private JPanel leftContainer;
     private JPanel rightContainer;
     private EventDirectory eventdirectory;
+
     /**
      * Creates new form AdminTargetDateJPanel
+     *
+     * @param rightContainer
+     * @param eventdirectory
      */
     public AdminTargetDateJPanel(JPanel rightContainer, EventDirectory eventdirectory) {
         initComponents();
-        populateDateTable();
         this.rightContainer = rightContainer;
         this.eventdirectory = eventdirectory;
+        populateDateTable();
     }
-    
-    private void populateDateTable(){
+
+    private void populateDateTable() {
         DefaultTableModel dtm = (DefaultTableModel) tblTargetDateReached.getModel();
         dtm.setRowCount(0);
         Date currentDate = new Date();
-        for(Event event: eventdirectory.getEventDirectory()){
-            if((currentDate.equals(event.getTargetDate())) || (currentDate.after(event.getTargetDate()))){
-                Object[] row= new Object[9];
+        for (Event event : eventdirectory.getEventDirectory()) {
+            if ((currentDate.equals(event.getTargetDate())) || (currentDate.after(event.getTargetDate()))) {
+                Object[] row = new Object[9];
                 row[0] = event;
                 row[1] = event.getEventName();
                 row[2] = event.getDescription();
@@ -48,13 +53,12 @@ public class AdminTargetDateJPanel extends javax.swing.JPanel {
                 row[6] = event.getRaisedAmt();
                 row[7] = event.getCreateDate();
                 row[8] = event.getTargetDate();
-                
+
                 dtm.addRow(row);
-            } 
-           
+            }
+
         }
     }
-
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -138,26 +142,24 @@ public class AdminTargetDateJPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
-rightContainer.remove(this);
-        CardLayout leftLayout = (CardLayout) leftContainer.getLayout();
-        leftLayout.previous(leftContainer);        // TODO add your handling code here:
+        rightContainer.remove(this);
+        CardLayout leftLayout = (CardLayout) rightContainer.getLayout();
+        leftLayout.previous(rightContainer); 
     }//GEN-LAST:event_btnBackActionPerformed
 
     private void btnDeleteEventActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteEventActionPerformed
-int selectedRow = tblTargetDateReached.getSelectedRow();
-    if(selectedRow >=0)
-    {
-    int dialogButton = JOptionPane.YES_NO_OPTION;
-    int dialogResult = JOptionPane.showConfirmDialog(null, "Would you like to delete?", "Warning", dialogButton);
-    if(dialogResult == JOptionPane.YES_OPTION){
-    Event event = (Event) tblTargetDateReached.getValueAt(selectedRow, 0);
-    eventdirectory.deleteEvent(event);
-    populateDateTable();
-    }
-    }
-    else{
-    JOptionPane.showMessageDialog(null, "Please select a row from the table", "Warning", JOptionPane.WARNING_MESSAGE);
-    }          // TODO add your handling code here:
+        int selectedRow = tblTargetDateReached.getSelectedRow();
+        if (selectedRow >= 0) {
+            int dialogButton = JOptionPane.YES_NO_OPTION;
+            int dialogResult = JOptionPane.showConfirmDialog(null, "Would you like to delete?", "Warning", dialogButton);
+            if (dialogResult == JOptionPane.YES_OPTION) {
+                Event event = (Event) tblTargetDateReached.getValueAt(selectedRow, 0);
+                eventdirectory.deleteEvent(event);
+                populateDateTable();
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Please select a row from the table", "Warning", JOptionPane.WARNING_MESSAGE);
+        }
     }//GEN-LAST:event_btnDeleteEventActionPerformed
 
 

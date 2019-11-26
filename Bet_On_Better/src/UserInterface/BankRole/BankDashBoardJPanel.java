@@ -32,6 +32,11 @@ public class BankDashBoardJPanel extends javax.swing.JPanel {
         btnFundAllocationRequest = new javax.swing.JButton();
 
         btnVerifRequest.setText("Verification Request");
+        btnVerifRequest.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVerifRequestActionPerformed(evt);
+            }
+        });
 
         btnApprovedRequest.setText("Approved Request");
         btnApprovedRequest.addActionListener(new java.awt.event.ActionListener() {
@@ -49,13 +54,13 @@ public class BankDashBoardJPanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(75, 75, 75)
                 .addComponent(btnVerifRequest)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 263, Short.MAX_VALUE)
                 .addComponent(btnApprovedRequest)
                 .addGap(80, 80, 80))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(259, 259, 259)
                 .addComponent(btnFundAllocationRequest)
-                .addGap(144, 144, 144))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -64,15 +69,19 @@ public class BankDashBoardJPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnVerifRequest)
                     .addComponent(btnApprovedRequest))
-                .addGap(18, 18, 18)
+                .addGap(29, 29, 29)
                 .addComponent(btnFundAllocationRequest)
-                .addContainerGap(171, Short.MAX_VALUE))
+                .addContainerGap(290, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnApprovedRequestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnApprovedRequestActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnApprovedRequestActionPerformed
+
+    private void btnVerifRequestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerifRequestActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnVerifRequestActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -28,8 +28,14 @@ public class AdminLeftJPanel extends javax.swing.JPanel {
     /**
      * Creates new form AdminLeftJPanel
      */
-    public AdminLeftJPanel() {
+    public AdminLeftJPanel(JPanel leftContainer, JPanel rightContainer, UserAccountDirectory userAccountDirectory,
+            Enterprise enterprise, EventDirectory eventdirectory) {
         initComponents();
+        this.leftContainer = leftContainer;
+        this.rightContainer= rightContainer;
+        this.userAccountDirectory = userAccountDirectory;
+        this.enterprise = enterprise;
+        this.eventdirectory = eventdirectory;
     }
 
     /**
@@ -98,21 +104,20 @@ public class AdminLeftJPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnHomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHomeActionPerformed
-        // TODO add your handling code here:
+        rightContainer.remove(this);
         CardLayout rightLayout = (CardLayout) rightContainer.getLayout();
         rightContainer.add("AdminWorkAreaJPanel", new AdminWorkAreaJPanel(rightContainer, enterprise, eventdirectory));
         rightLayout.next(rightContainer);
     }//GEN-LAST:event_btnHomeActionPerformed
 
     private void btnPendingApprovalsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPendingApprovalsActionPerformed
-        // TODO add your handling code here:
+        rightContainer.remove(this);
         CardLayout rightLayout = (CardLayout) rightContainer.getLayout();
         rightContainer.add("AdminPendingApprovalJPanel", new AdminPendingApprovalJPanel());
         rightLayout.next(rightContainer);
     }//GEN-LAST:event_btnPendingApprovalsActionPerformed
 
     private void btnLogOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogOutActionPerformed
-        // TODO add your handling code here:
         leftContainer.remove(this);
         CardLayout leftCardLayout = (CardLayout) leftContainer.getLayout();
         leftContainer.add("UserLogin", new UserLogin(leftContainer, rightContainer, userAccountDirectory, enterprise, eventdirectory));

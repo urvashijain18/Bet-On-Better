@@ -147,7 +147,7 @@ public class UserLogin extends javax.swing.JPanel {
         if (userAccount != null) {
             if(userAccount.getRole().getClass().equals(AdminRole.class)){
             CardLayout leftLayout = (CardLayout) leftContainer.getLayout();
-            leftContainer.add("AdminLeftJPanel", new AdminLeftJPanel());
+            leftContainer.add("AdminLeftJPanel", new AdminLeftJPanel(leftContainer, rightContainer, userAccountDirectory, enterprise, eventdirectory));
             leftLayout.next(leftContainer);
             CardLayout rightLayout = (CardLayout) rightContainer.getLayout();
             rightContainer.add("AdminWorkAreaJPanel", new AdminWorkAreaJPanel(rightContainer, enterprise, eventdirectory));
@@ -179,7 +179,6 @@ public class UserLogin extends javax.swing.JPanel {
     }//GEN-LAST:event_btnLoginActionPerformed
 
     private void btnNewUSerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNewUSerActionPerformed
-        // TODO add your handling code here:
         CardLayout layout = (CardLayout) rightContainer.getLayout();
         CreateNewUser createNewUser = new CreateNewUser(leftContainer, rightContainer, userAccountDirectory);
         rightContainer.add("CreateNewUser", createNewUser);
