@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Business.BankFunctions;
+package Business.WorkQueue;
 
-import Business.WorkQueue.FundAllocationRequest;
+import Business.WorkRequest.FundAllocationRequest;
 import java.util.ArrayList;
 
 /**

@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Business.BankFunctions;
+package Business.WorkQueue;
 
-import Business.WorkQueue.VerificationRequest;
+import Business.WorkRequest.VerificationRequestByBank;
 import java.util.ArrayList;
 
 /**
@@ -13,17 +13,17 @@ import java.util.ArrayList;
  * @author Urvashi
  */
 public class VerificationRequestDirectory {
-    private ArrayList<VerificationRequest> verificationRequestList;
+    private ArrayList<VerificationRequestByBank> verificationRequestList;
    
     public VerificationRequestDirectory(){
         verificationRequestList = new ArrayList<>();
     }
     
-    public ArrayList<VerificationRequest> getEnterpriseList() {
+    public ArrayList<VerificationRequestByBank> getEnterpriseList() {
         return verificationRequestList;
     }
 
-    public void setEnterpriseList(ArrayList<VerificationRequest> verificationRequestList) {
+    public void setEnterpriseList(ArrayList<VerificationRequestByBank> verificationRequestList) {
         this.verificationRequestList = verificationRequestList;
     }
 }
