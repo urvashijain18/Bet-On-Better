@@ -5,6 +5,7 @@
  */
 package UserInterface.UserRole;
 
+import Business.Employee.EmployeeAccountDirectory;
 import Business.Enterprise.Enterprise;
 import Business.FundRaiserEvents.EventDirectory;
 import Business.UserAccount.UserAccountDirectory;
@@ -24,18 +25,19 @@ public class UserWorkAreaJPanel extends javax.swing.JPanel {
     private UserAccountDirectory userAccountDirectory; 
     private Enterprise enterprise; 
     private EventDirectory eventdirectory;
+    private EmployeeAccountDirectory employeeAccountDirectory;
         
     /**
      * Creates new form ReceiverWorkAreaJPanel
      */
-    public UserWorkAreaJPanel(JPanel leftContainer, JPanel rightContainer,UserAccountDirectory userAccountDirectory,Enterprise enterprise,EventDirectory eventdirectory) {
+    public UserWorkAreaJPanel(JPanel leftContainer, JPanel rightContainer,UserAccountDirectory userAccountDirectory,Enterprise enterprise,EventDirectory eventdirectory, EmployeeAccountDirectory employeeAccountDirectory) {
         initComponents();
         this.leftContainer = leftContainer;
         this.rightContainer = rightContainer;
         this.enterprise = enterprise;
         this.userAccountDirectory = userAccountDirectory;
         this.eventdirectory = eventdirectory;
-        
+        this.employeeAccountDirectory = employeeAccountDirectory;
     }
 
    
@@ -133,7 +135,7 @@ public class UserWorkAreaJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
         leftContainer.remove(this);
         CardLayout leftCardLayout = (CardLayout) leftContainer.getLayout();
-        leftContainer.add("UserLogin", new UserLogin(leftContainer, rightContainer, userAccountDirectory, enterprise, eventdirectory));
+        leftContainer.add("UserLogin", new UserLogin(leftContainer, rightContainer, userAccountDirectory, enterprise, eventdirectory, employeeAccountDirectory));
         leftCardLayout.next(leftContainer);
         Component [] components = rightContainer.getComponents();
         for(Component c : components){

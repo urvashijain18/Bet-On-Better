@@ -5,6 +5,7 @@
  */
 package UserInterface;
 
+import Business.Employee.EmployeeAccountDirectory;
 import Business.Enterprise.Enterprise;
 import Business.FundRaiserEvents.EventDirectory;
 import Business.Role.FundRaisingAdmin;
@@ -32,18 +33,20 @@ public class UserLogin extends javax.swing.JPanel {
     private UserAccountDirectory userAccountDirectory;
     private Enterprise enterprise;
     private EventDirectory eventdirectory;
+    private EmployeeAccountDirectory employeeAccountDirectory;
     /**
      * Creates new form UserLogin
      */
     
     public UserLogin(JPanel leftContainer, JPanel rightContainer, UserAccountDirectory userAccountDirectory, 
-            Enterprise enterprise, EventDirectory eventdirectory) {
+            Enterprise enterprise, EventDirectory eventdirectory, EmployeeAccountDirectory employeeAccountDirectory) {
         initComponents();
         this.leftContainer = leftContainer;
         this.rightContainer = rightContainer;
         this.userAccountDirectory = userAccountDirectory;
         //this.enterprise = enterprise;
         this.eventdirectory = eventdirectory;
+        this.employeeAccountDirectory = employeeAccountDirectory;
     }
     
     public void setLoginFieldEnabled(){
@@ -147,7 +150,7 @@ public class UserLogin extends javax.swing.JPanel {
         if (userAccount != null) {
             if(userAccount.getRole().getClass().equals(FundRaisingAdmin.class)){
             CardLayout leftLayout = (CardLayout) leftContainer.getLayout();
-            leftContainer.add("AdminLeftJPanel", new AdminLeftJPanel(leftContainer, rightContainer, userAccountDirectory, enterprise, eventdirectory));
+            leftContainer.add("AdminLeftJPanel", new AdminLeftJPanel(leftContainer, rightContainer, userAccountDirectory, enterprise, eventdirectory, employeeAccountDirectory));
             leftLayout.next(leftContainer);
             CardLayout rightLayout = (CardLayout) rightContainer.getLayout();
             rightContainer.add("AdminWorkAreaJPanel", new AdminWorkAreaJPanel(rightContainer, enterprise, eventdirectory));
@@ -155,7 +158,7 @@ public class UserLogin extends javax.swing.JPanel {
             }
             else if(userAccount.getRole().getClass().equals(UserRole.class)) {
             CardLayout leftLayout = (CardLayout) leftContainer.getLayout();
-            leftContainer.add("UserWorkAreaJPanel", new UserWorkAreaJPanel(leftContainer, rightContainer, userAccountDirectory, enterprise, eventdirectory));
+            leftContainer.add("UserWorkAreaJPanel", new UserWorkAreaJPanel(leftContainer, rightContainer, userAccountDirectory, enterprise, eventdirectory, employeeAccountDirectory));
             leftLayout.next(leftContainer);
             CardLayout rightLayout = (CardLayout) rightContainer.getLayout();
             rightContainer.add("UserHomeJPanel", new UserHomeJPanel(leftContainer, rightContainer, enterprise, eventdirectory));
@@ -180,7 +183,7 @@ public class UserLogin extends javax.swing.JPanel {
 
     private void btnNewUSerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNewUSerActionPerformed
         CardLayout layout = (CardLayout) rightContainer.getLayout();
-        CreateNewUser createNewUser = new CreateNewUser(leftContainer, rightContainer, userAccountDirectory);
+        CreateNewUser createNewUser = new CreateNewUser(leftContainer, rightContainer, userAccountDirectory, employeeAccountDirectory);
         rightContainer.add("CreateNewUser", createNewUser);
         layout.next(rightContainer);
         refreshLeftContainer();
