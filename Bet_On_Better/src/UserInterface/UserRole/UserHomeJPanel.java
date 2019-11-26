@@ -5,17 +5,35 @@
  */
 package UserInterface.UserRole;
 
+import Business.Enterprise.Enterprise;
+import Business.FundRaiserEvents.EventDirectory;
+import Business.UserAccount.UserAccountDirectory;
+import UserInterface.UserLogin;
+import java.awt.CardLayout;
+import java.awt.Component;
+import javax.swing.JPanel;
+
 /**
  *
  * @author MMI
  */
 public class UserHomeJPanel extends javax.swing.JPanel {
-
+  private JPanel leftContainer;
+    private JPanel rightContainer;
+    private UserAccountDirectory userAccountDirectory; 
+    private Enterprise enterprise; 
+    private EventDirectory eventdirectory;
+        
     /**
      * Creates new form UserHomeJPanel
      */
-    public UserHomeJPanel() {
+    public UserHomeJPanel(JPanel leftContainer, JPanel rightContainer,UserAccountDirectory userAccountDirectory,Enterprise enterprise,EventDirectory eventdirectory) {
         initComponents();
+         this.leftContainer = leftContainer;
+        this.rightContainer = rightContainer;
+        this.enterprise = enterprise;
+        this.userAccountDirectory = userAccountDirectory;
+        this.eventdirectory = eventdirectory;
     }
 
     /**
@@ -71,6 +89,11 @@ public class UserHomeJPanel extends javax.swing.JPanel {
         btnDetails.setText("Details");
 
         btnDonate.setText("Donate");
+        btnDonate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDonateActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -138,6 +161,18 @@ public class UserHomeJPanel extends javax.swing.JPanel {
                 .addContainerGap(114, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnDonateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDonateActionPerformed
+        // TODO add your handling code here:
+        rightContainer.remove(this);
+        CardLayout rightCardLayout = (CardLayout) rightContainer.getLayout();
+        rightContainer.add("DonateJPanel", new DonateJPanel(leftContainer, rightContainer, userAccountDirectory, enterprise, eventdirectory));
+        rightCardLayout.next(rightContainer);
+        Component [] components = rightContainer.getComponents();
+        for(Component c : components){
+        
+        }
+    }//GEN-LAST:event_btnDonateActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

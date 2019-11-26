@@ -5,17 +5,35 @@
  */
 package UserInterface.UserRole;
 
+import Business.Enterprise.Enterprise;
+import Business.FundRaiserEvents.EventDirectory;
+import Business.UserAccount.UserAccountDirectory;
+import UserInterface.Event.CreateEventJPanel;
+import UserInterface.UserLogin;
+import java.awt.CardLayout;
+import java.awt.Component;
+import javax.swing.JPanel;
+
 /**
  *
  * @author MMI
  */
 public class UserDashboardJPanel extends javax.swing.JPanel {
-
+private JPanel leftContainer;
+    private JPanel rightContainer;
+    private UserAccountDirectory userAccountDirectory; 
+    private Enterprise enterprise; 
+    private EventDirectory eventdirectory;
     /**
      * Creates new form Dashboard
      */
-    public UserDashboardJPanel() {
+    public UserDashboardJPanel(JPanel leftContainer, JPanel rightContainer,UserAccountDirectory userAccountDirectory,Enterprise enterprise,EventDirectory eventdirectory) {
         initComponents();
+         this.leftContainer = leftContainer;
+        this.rightContainer = rightContainer;
+        this.enterprise = enterprise;
+        this.userAccountDirectory = userAccountDirectory;
+        this.eventdirectory = eventdirectory;
     }
 
     /**
@@ -37,6 +55,7 @@ public class UserDashboardJPanel extends javax.swing.JPanel {
         btnEdit = new javax.swing.JButton();
         btnNewInitiative = new javax.swing.JButton();
         btnCreateEvent = new javax.swing.JButton();
+        btnBack = new javax.swing.JButton();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -74,6 +93,18 @@ public class UserDashboardJPanel extends javax.swing.JPanel {
         btnNewInitiative.setText("Raise a New Initiative");
 
         btnCreateEvent.setText("Create an Event");
+        btnCreateEvent.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCreateEventActionPerformed(evt);
+            }
+        });
+
+        btnBack.setText("<< Back");
+        btnBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBackActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -96,8 +127,10 @@ public class UserDashboardJPanel extends javax.swing.JPanel {
                             .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnNewInitiative)
+                        .addComponent(btnBack)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnNewInitiative)
+                        .addGap(128, 128, 128)
                         .addComponent(btnCreateEvent)
                         .addGap(21, 21, 21))))
         );
@@ -125,13 +158,35 @@ public class UserDashboardJPanel extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 70, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnNewInitiative)
-                    .addComponent(btnCreateEvent))
+                    .addComponent(btnCreateEvent)
+                    .addComponent(btnBack))
                 .addGap(37, 37, 37))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnCreateEventActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateEventActionPerformed
+        // TODO add your handling code here:
+        rightContainer.remove(this);
+        CardLayout rightCardLayout = (CardLayout) rightContainer.getLayout();
+        rightContainer.add("CreateEventJPanel", new CreateEventJPanel(leftContainer, rightContainer, userAccountDirectory, enterprise, eventdirectory));
+        rightCardLayout.next(rightContainer);
+        Component [] components = rightContainer.getComponents();
+        for(Component c : components){
+             
+        }
+        
+    }//GEN-LAST:event_btnCreateEventActionPerformed
+
+    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
+        // TODO add your handling code here:
+        rightContainer.remove(this);
+        CardLayout leftLayout = (CardLayout) leftContainer.getLayout();
+        leftLayout.previous(leftContainer); 
+    }//GEN-LAST:event_btnBackActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnBack;
     private javax.swing.JButton btnCreateEvent;
     private javax.swing.JButton btnDetails;
     private javax.swing.JButton btnEdit;
