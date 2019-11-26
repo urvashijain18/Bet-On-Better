@@ -8,7 +8,7 @@ package UserInterface;
 import Business.Enterprise.Enterprise;
 import Business.FundRaiserEvents.EventDirectory;
 import Business.Role.FundRaisingAdmin;
-import Business.Role.BankEmployee;
+import Business.Role.FundTransferBankEmployee;
 import Business.Role.UserRole;
 import Business.UserAccount.UserAccountDirectory;
 import Business.UserAccount.UserAccount;
@@ -161,7 +161,7 @@ public class UserLogin extends javax.swing.JPanel {
             rightContainer.add("UserHomeJPanel", new UserHomeJPanel(leftContainer, rightContainer, enterprise, eventdirectory));
             rightLayout.next(rightContainer);
             }
-            else if(userAccount.getRole().getClass().equals(BankEmployee.class)){
+            else if(userAccount.getRole().getClass().equals(FundTransferBankEmployee.class)){
             CardLayout leftLayout = (CardLayout) leftContainer.getLayout();
             leftContainer.add("BankLeftJPanel", new BankLeftJPanel());
             leftLayout.next(leftContainer);

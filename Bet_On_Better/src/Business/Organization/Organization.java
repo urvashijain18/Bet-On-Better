@@ -23,10 +23,8 @@ public abstract class Organization {
     private static int counter=0;
     
     public enum Type{
-        AccVerif("Account Verification Organization"), Animals("Animals Organization"), 
-        Education("Education Organization"), Email("Email Organization"), Facebook("Facebook Organization"),
-        FoodAndHunger("Food Organization"), FundRaisingEvents("Fund Raising Events Organization"),
-        FundTransfer("Fund Transfer Organization"), Health("Health Organization");
+        AccVerif("Account Verification Organization"), Email("Email Organization"), Facebook("Facebook Organization"),
+        FundRaisingEvents("Fund Raising Events Organization"),FundTransfer("Fund Transfer Organization"), Initiatives ("Initiatives Organization");
         
         private String value;
         private Type(String value) {

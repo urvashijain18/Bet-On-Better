@@ -5,7 +5,7 @@
  */
 package Business.Organization;
 
-import Business.Role.AdvertisingEmployee;
+import Business.Role.FacebookAdvertisingEmployee;
 import Business.Role.Role;
 import java.util.ArrayList;
 
@@ -22,7 +22,7 @@ public class EmailOrganization extends Organization{
     @Override
     public ArrayList<Role> getSupportedRole() {
         ArrayList<Role> roles = new ArrayList();
-        roles.add(new AdvertisingEmployee());
+        roles.add(new FacebookAdvertisingEmployee());
         return roles;
     }
 }
