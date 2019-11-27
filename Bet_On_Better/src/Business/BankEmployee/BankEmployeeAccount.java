@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Business.Employee;
+package Business.BankEmployee;
 
 import Business.Role.Role;
 import Business.WorkQueue.WorkQueue;
@@ -12,14 +12,14 @@ import Business.WorkQueue.WorkQueue;
  *
  * @author devma
  */
-public class EmployeeAccount {
+public class BankEmployeeAccount {
   private String name;
     private String username;
     private String password;
     private Role role;
     private WorkQueue workQueue;
 
-    public EmployeeAccount() {
+    public BankEmployeeAccount() {
         workQueue = new WorkQueue();
     }
     
@@ -63,4 +63,5 @@ public class EmployeeAccount {
     public void setName(String name) {
         this.name = name;
     }  
+  
 }

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Business.Employee;
+package Business.FundRaisingEmployee;
 
 import Business.Role.Role;
 import Business.UserAccount.UserAccount;
@@ -13,27 +13,27 @@ import java.util.ArrayList;
  *
  * @author devma
  */
-public class EmployeeAccountDirectory {
-    private ArrayList<EmployeeAccount> employeeAccountList;
+public class FundRaisingEmployeeAccountDirectory {
+    private ArrayList<FundRaisingEmployeeAccount> employeeAccountList;
 
-    public EmployeeAccountDirectory() {
+    public FundRaisingEmployeeAccountDirectory() {
         employeeAccountList = new ArrayList();
     }
 
-    public ArrayList<EmployeeAccount> getEmployeeAccountList() {
+    public ArrayList<FundRaisingEmployeeAccount> getEmployeeAccountList() {
         return employeeAccountList;
     }
     
-    public EmployeeAccount authenticateEmployee(String username, String password){
-        for (EmployeeAccount ea : employeeAccountList)
+    public FundRaisingEmployeeAccount authenticateEmployee(String username, String password){
+        for (FundRaisingEmployeeAccount ea : employeeAccountList)
             if (ea.getUsername().equals(username) && ea.getPassword().equals(password)){
                 return ea;
             }
         return null;
     }
     
-    public EmployeeAccount createEmployeeAccount(String username, String password, Role role){
-        EmployeeAccount employeeAccount = new EmployeeAccount();
+    public FundRaisingEmployeeAccount createEmployeeAccount(String username, String password, Role role){
+        FundRaisingEmployeeAccount employeeAccount = new FundRaisingEmployeeAccount();
         employeeAccount.setUsername(username);
         employeeAccount.setPassword(password);
         employeeAccount.setRole(role);
@@ -42,7 +42,7 @@ public class EmployeeAccountDirectory {
     }
     
     public boolean checkIfUsernameIsUnique(String username){
-        for (EmployeeAccount ea : employeeAccountList){
+        for (FundRaisingEmployeeAccount ea : employeeAccountList){
             if (ea.getUsername().equals(username))
                 return false;
         }

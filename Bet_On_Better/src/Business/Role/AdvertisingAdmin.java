@@ -5,10 +5,24 @@
  */
 package Business.Role;
 
+import Business.EcoSystem;
+import Business.Enterprise.Enterprise;
+import Business.FundRaiserEvents.EventDirectory;
+import Business.Organization.Organization;
+import Business.UserAccount.UserAccount;
+import UserInterface.AdvertisingAdminRole.AdminAdvertisingWorkAreaJPanel;
+import javax.swing.JPanel;
+
 /**
  *
  * @author devma
  */
-public class AdvertisingAdmin {
-    
+
+     public class AdvertisingAdmin extends Role{
+    @Override
+    public JPanel createWorkArea(JPanel container, UserAccount account, 
+            Organization organization, Enterprise enterprise, EcoSystem business, EventDirectory eventdirectory) {
+        return new AdminAdvertisingWorkAreaJPanel(container, enterprise, eventdirectory);
+    }
 }
+

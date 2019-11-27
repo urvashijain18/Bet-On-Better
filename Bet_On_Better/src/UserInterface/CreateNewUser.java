@@ -5,7 +5,9 @@
  */
 package UserInterface;
 
-import Business.Employee.EmployeeAccountDirectory;
+import Business.AdvertisingEmployee.AdvertisingEmployeeAccountDirectory;
+import Business.BankEmployee.BankEmployeeAccountDirectory;
+import Business.FundRaisingEmployee.FundRaisingEmployeeAccountDirectory;
 import Business.Enterprise.AdvertisingEnterprise;
 import Business.Enterprise.BankEnterprise;
 import Business.Enterprise.Enterprise;
@@ -31,17 +33,23 @@ public class CreateNewUser extends javax.swing.JPanel {
     private JPanel leftContainer;
     private JPanel rightContainer;
     private UserAccountDirectory userAccountDirectory;
-    private EmployeeAccountDirectory employeeAccountDirectory;
+    private FundRaisingEmployeeAccountDirectory fundraisingemployeeAccountDirectory;
+    private AdvertisingEmployeeAccountDirectory advertisingemployeeAccountDirectory;
+    private BankEmployeeAccountDirectory bankemployeeAccountDirectory;
     
     /**
      * Creates new form CreateNewUser
      */
-    public CreateNewUser(JPanel leftContainer, JPanel rightContainer, UserAccountDirectory userAccountDirectory,EmployeeAccountDirectory employeeAccountDirectory) {
+    public CreateNewUser(JPanel leftContainer, JPanel rightContainer, UserAccountDirectory userAccountDirectory,FundRaisingEmployeeAccountDirectory fundraisingemployeeAccountDirectory, AdvertisingEmployeeAccountDirectory advertisingemployeeAccountDirectory,
+            BankEmployeeAccountDirectory bankemployeeAccountDirectory) {
         initComponents();
         this.leftContainer = leftContainer;
         this.rightContainer = rightContainer;
         this.userAccountDirectory = userAccountDirectory;
-        this.employeeAccountDirectory = employeeAccountDirectory;
+        this.fundraisingemployeeAccountDirectory = fundraisingemployeeAccountDirectory;
+        this.advertisingemployeeAccountDirectory = advertisingemployeeAccountDirectory;
+        this.bankemployeeAccountDirectory = bankemployeeAccountDirectory;
+        
     }
 
     /**
@@ -260,7 +268,7 @@ public class CreateNewUser extends javax.swing.JPanel {
             enterprise = new AdvertisingEnterprise(enterpriseDropDown.getSelectedItem().toString());
         }
         
-        UserLogin userLoginJPanel = new UserLogin(leftContainer, rightContainer, userAccountDirectory, enterprise, new EventDirectory(), employeeAccountDirectory);
+        UserLogin userLoginJPanel = new UserLogin(leftContainer, rightContainer, userAccountDirectory, enterprise, new EventDirectory(), fundraisingemployeeAccountDirectory,advertisingemployeeAccountDirectory,bankemployeeAccountDirectory );
         leftContainer.add("UserLoginJPanel", userLoginJPanel);
         leftLayout.next(leftContainer);
     }//GEN-LAST:event_btnCreateActionPerformed
