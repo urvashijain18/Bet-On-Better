@@ -5,12 +5,20 @@
  */
 package UserInterface.BankRole;
 
+import Business.Enterprise.Enterprise;
+import Business.FundRaiserEvents.EventDirectory;
+import Business.UserAccount.UserAccountDirectory;
+import javax.swing.JPanel;
+
 /**
  *
  * @author Urvashi
  */
 public class BankFundAllocationRequestJPanel extends javax.swing.JPanel {
-
+    private JPanel rightContainer;
+    private UserAccountDirectory userAccountDirectory; 
+    private Enterprise enterprise; 
+    private EventDirectory eventdirectory;
     /**
      * Creates new form BankFundAllocationRequestJPanel
      */

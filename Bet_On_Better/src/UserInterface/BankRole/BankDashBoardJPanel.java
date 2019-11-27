@@ -5,17 +5,29 @@
  */
 package UserInterface.BankRole;
 
+import Business.Enterprise.Enterprise;
+import Business.FundRaiserEvents.EventDirectory;
+import java.awt.CardLayout;
+import javax.swing.JPanel;
+
 /**
  *
  * @author @author Urvashi
  */
 public class BankDashBoardJPanel extends javax.swing.JPanel {
 
+    private JPanel rightContainer;
+    private Enterprise enterprise;
+    private EventDirectory eventdirectory;
+
     /**
      * Creates new form BankDashBoard
      */
-    public BankDashBoardJPanel() {
+    public BankDashBoardJPanel(JPanel rightContainer, Enterprise enterprise, EventDirectory eventdirectory) {
         initComponents();
+        this.rightContainer = rightContainer;
+        this.enterprise = enterprise;
+        this.eventdirectory = eventdirectory;
     }
 
     /**
@@ -76,11 +88,15 @@ public class BankDashBoardJPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnApprovedRequestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnApprovedRequestActionPerformed
-        // TODO add your handling code here:
+        CardLayout rightLayout = (CardLayout) rightContainer.getLayout();
+        rightContainer.add("BankFundAllocationRequestJPanel", new BankFundAllocationRequestJPanel());
+        rightLayout.next(rightContainer);
     }//GEN-LAST:event_btnApprovedRequestActionPerformed
 
     private void btnVerifRequestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerifRequestActionPerformed
-        // TODO add your handling code here:
+        CardLayout rightLayout = (CardLayout) rightContainer.getLayout();
+        rightContainer.add("VerificationRequestJPanel", new VerificationRequestJPanel());
+        rightLayout.next(rightContainer);
     }//GEN-LAST:event_btnVerifRequestActionPerformed
 
 

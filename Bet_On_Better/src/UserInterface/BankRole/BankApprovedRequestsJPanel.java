@@ -5,17 +5,35 @@
  */
 package UserInterface.BankRole;
 
+import Business.Enterprise.Enterprise;
+import Business.FundRaiserEvents.Event;
+import Business.FundRaiserEvents.EventDirectory;
+import Business.UserAccount.UserAccountDirectory;
+import java.awt.CardLayout;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+
 /**
  *
- * @author @author Urvashi
+ * @author Urvashi
  */
 public class BankApprovedRequestsJPanel extends javax.swing.JPanel {
+
+    private JPanel rightContainer;
+    private UserAccountDirectory userAccountDirectory;
+    private Enterprise enterprise;
+    private EventDirectory eventdirectory;
 
     /**
      * Creates new form ApprovedRequestsJPanel
      */
-    public BankApprovedRequestsJPanel() {
+    public BankApprovedRequestsJPanel(JPanel rightContainer, UserAccountDirectory userAccountDirectory,
+            Enterprise enterprise, EventDirectory eventdirectory) {
         initComponents();
+        this.rightContainer = rightContainer;
+        this.userAccountDirectory = userAccountDirectory;
+        this.enterprise = enterprise;
+        this.eventdirectory = eventdirectory;
     }
 
     /**
@@ -63,8 +81,18 @@ public class BankApprovedRequestsJPanel extends javax.swing.JPanel {
         jScrollPane2.setViewportView(tblVerifRecords);
 
         btnVerifDtls.setText("View Details");
+        btnVerifDtls.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVerifDtlsActionPerformed(evt);
+            }
+        });
 
         btnFundTransferDtls.setText("View Details");
+        btnFundTransferDtls.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnFundTransferDtlsActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -100,6 +128,32 @@ public class BankApprovedRequestsJPanel extends javax.swing.JPanel {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnVerifDtlsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerifDtlsActionPerformed
+        int selectedRow = tblVerifRecords.getSelectedRow();
+        if (selectedRow < 0) {
+            JOptionPane.showMessageDialog(null, "Please select a row from the table", "Warning", JOptionPane.WARNING_MESSAGE);
+        } else {
+            Event event = (Event) tblVerifRecords.getValueAt(selectedRow, 0);
+            ApprovedVerifRequestDetails detailsPanel = new ApprovedVerifRequestDetails(rightContainer, userAccountDirectory, enterprise, eventdirectory);
+            rightContainer.add("ApprovedVerifRequestDetails", detailsPanel);
+            CardLayout layout = (CardLayout) rightContainer.getLayout();
+            layout.next(rightContainer);
+        }
+    }//GEN-LAST:event_btnVerifDtlsActionPerformed
+
+    private void btnFundTransferDtlsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFundTransferDtlsActionPerformed
+        int selectedRow = tblFundAllocationRecords.getSelectedRow();
+        if (selectedRow < 0) {
+            JOptionPane.showMessageDialog(null, "Please select a row from the table", "Warning", JOptionPane.WARNING_MESSAGE);
+        } else {
+            Event event = (Event) tblFundAllocationRecords.getValueAt(selectedRow, 0);
+            FundAllocationRequestDetails allocationRequestDetails = new FundAllocationRequestDetails(rightContainer, userAccountDirectory, enterprise, eventdirectory);
+            rightContainer.add("FundAllocationRequestDetails", allocationRequestDetails);
+            CardLayout layout = (CardLayout) rightContainer.getLayout();
+            layout.next(rightContainer);
+        }
+    }//GEN-LAST:event_btnFundTransferDtlsActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
