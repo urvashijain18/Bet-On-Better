@@ -21,6 +21,6 @@ public class FundTransferBankEmployee extends Role{
     @Override
     public JPanel createWorkArea(JPanel container, UserAccount account, 
             Organization organization, Enterprise enterprise, EcoSystem business, EventDirectory eventdirectory) {
-        return new BankDashBoardJPanel();
+        return new BankDashBoardJPanel(container, enterprise, eventdirectory);
     }
 }

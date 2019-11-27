@@ -166,10 +166,10 @@ public class UserLogin extends javax.swing.JPanel {
             }
             else if(userAccount.getRole().getClass().equals(FundTransferBankEmployee.class)){
             CardLayout leftLayout = (CardLayout) leftContainer.getLayout();
-            leftContainer.add("BankLeftJPanel", new BankLeftJPanel());
+            leftContainer.add("BankLeftJPanel", new BankLeftJPanel(leftContainer, rightContainer, userAccountDirectory, enterprise, eventdirectory, employeeAccountDirectory));
             leftLayout.next(leftContainer);
             CardLayout rightLayout = (CardLayout) rightContainer.getLayout();
-            rightContainer.add("BankDashBoardJPanel", new BankDashBoardJPanel());
+            rightContainer.add("BankDashBoardJPanel", new BankDashBoardJPanel(rightContainer, enterprise, eventdirectory));
             rightLayout.next(rightContainer);
             }
             flag = true; 
