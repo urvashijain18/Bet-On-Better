@@ -3,16 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package UserInterface.FundRaisingAdminRole;
+package UserInterface.BankAdminRole;
 
+import Business.BankEmployee.BankEmployeeAccountDirectory;
 import Business.FundRaisingEmployee.FundRaisingEmployeeAccountDirectory;
-import Business.Enterprise.Enterprise;
-import Business.FundRaiserEvents.EventDirectory;
-import Business.Role.FundRaisingEmployee;
-import Business.Role.InitiativesEmployee;
+import Business.Role.AccVerificationBankEmployee;
+import Business.Role.FundTransferBankEmployee;
 import Business.Role.Role;
-import Business.UserAccount.UserAccountDirectory;
-import UserInterface.UserLogin;
 import java.awt.CardLayout;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -23,18 +20,18 @@ import javax.swing.JPanel;
  *
  * @author devma
  */
-public class AdminCreateEmployeesJPanel extends javax.swing.JPanel {
+public class AdminCreateBankEmployeesJPanel extends javax.swing.JPanel {
 private JPanel rightContainer;
 private JPanel leftContainer;
-private FundRaisingEmployeeAccountDirectory employeeAccountDirectory;
+private BankEmployeeAccountDirectory bankemployeeAccountDirectory;
     /**
-     * Creates new form AdminCreateEmployeesJPanel
+     * Creates new form AdminCreateBankEmployeesJPanel
      */
-    public AdminCreateEmployeesJPanel(JPanel rightContainer, JPanel leftContainer, FundRaisingEmployeeAccountDirectory employeeAccountDirectory) {
+    public AdminCreateBankEmployeesJPanel(JPanel rightContainer,JPanel leftContainer,BankEmployeeAccountDirectory bankemployeeAccountDirectory) {
         initComponents();
         this.rightContainer = rightContainer;
         this.leftContainer = leftContainer;
-        this.employeeAccountDirectory = employeeAccountDirectory;
+        this.bankemployeeAccountDirectory = bankemployeeAccountDirectory;
     }
 
     /**
@@ -51,15 +48,15 @@ private FundRaisingEmployeeAccountDirectory employeeAccountDirectory;
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         txtName = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
         txtUserName = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         passwordField = new javax.swing.JPasswordField();
-        jLabel5 = new javax.swing.JLabel();
         confirmPasswordField = new javax.swing.JPasswordField();
+        jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        btnFundRaisingEmployee = new javax.swing.JRadioButton();
-        btnInitiativeEmployee = new javax.swing.JRadioButton();
+        btnAccVerificationEmployee = new javax.swing.JRadioButton();
+        btnFundTransferEmployee = new javax.swing.JRadioButton();
         btnCreate = new javax.swing.JButton();
 
         btnBack.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
@@ -88,11 +85,11 @@ private FundRaisingEmployeeAccountDirectory employeeAccountDirectory;
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel6.setText("Role : ");
 
-        btnGrp.add(btnFundRaisingEmployee);
-        btnFundRaisingEmployee.setText("Fund Raising Employee");
+        btnGrp.add(btnAccVerificationEmployee);
+        btnAccVerificationEmployee.setText("Account Verification Employee");
 
-        btnGrp.add(btnInitiativeEmployee);
-        btnInitiativeEmployee.setText("Initiative Employee");
+        btnGrp.add(btnFundTransferEmployee);
+        btnFundTransferEmployee.setText("Fund Transfer Employee");
 
         btnCreate.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         btnCreate.setText("Create");
@@ -119,9 +116,9 @@ private FundRaisingEmployeeAccountDirectory employeeAccountDirectory;
                     .addComponent(txtUserName)
                     .addComponent(txtName)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnFundRaisingEmployee)
+                        .addComponent(btnAccVerificationEmployee)
                         .addGap(18, 18, 18)
-                        .addComponent(btnInitiativeEmployee))
+                        .addComponent(btnFundTransferEmployee))
                     .addComponent(passwordField)
                     .addComponent(confirmPasswordField))
                 .addGap(144, 144, 144))
@@ -166,11 +163,11 @@ private FundRaisingEmployeeAccountDirectory employeeAccountDirectory;
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
-                    .addComponent(btnFundRaisingEmployee)
-                    .addComponent(btnInitiativeEmployee))
+                    .addComponent(btnAccVerificationEmployee)
+                    .addComponent(btnFundTransferEmployee))
                 .addGap(37, 37, 37)
                 .addComponent(btnCreate)
-                .addContainerGap(60, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -223,17 +220,16 @@ private FundRaisingEmployeeAccountDirectory employeeAccountDirectory;
 
         Role role = null;
 
-        if (btnFundRaisingEmployee.isSelected()) {
-            role = new FundRaisingEmployee();
-        }else if (btnInitiativeEmployee.isSelected()) {
-            role = new InitiativesEmployee();
+        if (btnAccVerificationEmployee.isSelected()) {
+            role = new AccVerificationBankEmployee();
+        }else if (btnFundTransferEmployee.isSelected()) {
+            role = new FundTransferBankEmployee();
         }
 
-        employeeAccountDirectory.createEmployeeAccount(username, pwd, role);
+        bankemployeeAccountDirectory.createEmployeeAccount(username, pwd, role);
 
         JOptionPane.showMessageDialog(null, "Account Created Successfully");
-        
-    }//GEN-LAST:event_btnCreateActionPerformed
+ }                                         
 
     
     private boolean usernamePatternCorrect() {
@@ -248,14 +244,15 @@ private FundRaisingEmployeeAccountDirectory employeeAccountDirectory;
         Matcher m = p.matcher(passwordField.getText());
         boolean b = m.matches();
         return b;
-    }
+    }//GEN-LAST:event_btnCreateActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JRadioButton btnAccVerificationEmployee;
     private javax.swing.JButton btnBack;
     private javax.swing.JButton btnCreate;
-    private javax.swing.JRadioButton btnFundRaisingEmployee;
+    private javax.swing.JRadioButton btnFundTransferEmployee;
     private javax.swing.ButtonGroup btnGrp;
-    private javax.swing.JRadioButton btnInitiativeEmployee;
     private javax.swing.JPasswordField confirmPasswordField;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

@@ -5,7 +5,9 @@
  */
 package UserInterface.BankRole;
 
-import Business.Employee.EmployeeAccountDirectory;
+import Business.AdvertisingEmployee.AdvertisingEmployeeAccountDirectory;
+import Business.BankEmployee.BankEmployeeAccountDirectory;
+import Business.FundRaisingEmployee.FundRaisingEmployeeAccountDirectory;
 import Business.Enterprise.Enterprise;
 import Business.FundRaiserEvents.EventDirectory;
 import Business.UserAccount.UserAccountDirectory;
@@ -24,20 +26,25 @@ public class BankLeftJPanel extends javax.swing.JPanel {
     private UserAccountDirectory userAccountDirectory;
     private Enterprise enterprise;
     private EventDirectory eventdirectory;
-    private EmployeeAccountDirectory employeeAccountDirectory;
+    private BankEmployeeAccountDirectory bankemployeeAccountDirectory;
+    private FundRaisingEmployeeAccountDirectory fundraisingemployeeAccountDirectory;
+    private AdvertisingEmployeeAccountDirectory advertisingemployeeAccountDirectory;
 
     /**
      * Creates new form BankLeftJPanel
      */
     public BankLeftJPanel(JPanel leftContainer, JPanel rightContainer, UserAccountDirectory userAccountDirectory,
-            Enterprise enterprise, EventDirectory eventdirectory, EmployeeAccountDirectory employeeAccountDirectory) {
+            Enterprise enterprise, EventDirectory eventdirectory, BankEmployeeAccountDirectory bankemployeeAccountDirectory,            
+            FundRaisingEmployeeAccountDirectory fundraisingemployeeAccountDirectory, AdvertisingEmployeeAccountDirectory advertisingemployeeAccountDirectory) {
         initComponents();
         this.leftContainer = leftContainer;
         this.rightContainer = rightContainer;
         this.userAccountDirectory = userAccountDirectory;
         this.enterprise = enterprise;
         this.eventdirectory = eventdirectory;
-        this.employeeAccountDirectory = employeeAccountDirectory;
+        this.bankemployeeAccountDirectory = bankemployeeAccountDirectory;
+        this.advertisingemployeeAccountDirectory = advertisingemployeeAccountDirectory;
+        this.fundraisingemployeeAccountDirectory = fundraisingemployeeAccountDirectory;
     }
 
     /**
@@ -96,7 +103,7 @@ public class BankLeftJPanel extends javax.swing.JPanel {
 
     private void btnLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogoutActionPerformed
         CardLayout leftCardLayout = (CardLayout) leftContainer.getLayout();
-        leftContainer.add("UserLogin", new UserLogin(leftContainer, rightContainer, userAccountDirectory, enterprise, eventdirectory, employeeAccountDirectory));
+        leftContainer.add("UserLogin", new UserLogin(leftContainer, rightContainer, userAccountDirectory, enterprise, eventdirectory,  fundraisingemployeeAccountDirectory,  advertisingemployeeAccountDirectory,  bankemployeeAccountDirectory));
         leftCardLayout.next(leftContainer);
         rightContainer.removeAll();        
     }//GEN-LAST:event_btnLogoutActionPerformed
