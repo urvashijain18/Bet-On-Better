@@ -58,6 +58,11 @@ public class BankDashBoardJPanel extends javax.swing.JPanel {
         });
 
         btnFundAllocationRequest.setText("Fund Allocation Request");
+        btnFundAllocationRequest.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnFundAllocationRequestActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -89,7 +94,7 @@ public class BankDashBoardJPanel extends javax.swing.JPanel {
 
     private void btnApprovedRequestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnApprovedRequestActionPerformed
         CardLayout rightLayout = (CardLayout) rightContainer.getLayout();
-        rightContainer.add("BankFundAllocationRequestJPanel", new BankFundAllocationRequestJPanel());
+        rightContainer.add("BankApprovedRequestsJPanel", new BankApprovedRequestsJPanel(rightContainer, enterprise, eventdirectory));
         rightLayout.next(rightContainer);
     }//GEN-LAST:event_btnApprovedRequestActionPerformed
 
@@ -98,6 +103,12 @@ public class BankDashBoardJPanel extends javax.swing.JPanel {
         rightContainer.add("VerificationRequestJPanel", new VerificationRequestJPanel());
         rightLayout.next(rightContainer);
     }//GEN-LAST:event_btnVerifRequestActionPerformed
+
+    private void btnFundAllocationRequestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFundAllocationRequestActionPerformed
+        CardLayout rightLayout = (CardLayout) rightContainer.getLayout();
+        rightContainer.add("BankFundAllocationRequestJPanel", new BankFundAllocationRequestJPanel());
+        rightLayout.next(rightContainer);
+    }//GEN-LAST:event_btnFundAllocationRequestActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
