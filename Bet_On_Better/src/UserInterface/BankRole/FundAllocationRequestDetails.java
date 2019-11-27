@@ -16,19 +16,16 @@ import javax.swing.JPanel;
  */
 public class FundAllocationRequestDetails extends javax.swing.JPanel {
     
-    private JPanel rightContainer;
-    private UserAccountDirectory userAccountDirectory; 
+    private JPanel rightContainer; 
     private Enterprise enterprise; 
     private EventDirectory eventdirectory;
     
     /**
      * Creates new form FundAllocationRequestDetails
      */
-    public FundAllocationRequestDetails(JPanel rightContainer, UserAccountDirectory userAccountDirectory,
-            Enterprise enterprise, EventDirectory eventdirectory) {
+    public FundAllocationRequestDetails(JPanel rightContainer, Enterprise enterprise, EventDirectory eventdirectory) {
         initComponents();
         this.rightContainer= rightContainer;
-        this.userAccountDirectory = userAccountDirectory;
         this.enterprise = enterprise;
         this.eventdirectory = eventdirectory;
     }
