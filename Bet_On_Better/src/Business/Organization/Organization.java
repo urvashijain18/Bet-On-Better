@@ -17,6 +17,7 @@ import java.util.ArrayList;
 public abstract class Organization {
     private String name;
     private WorkQueue workQueue;
+    private Type organizationType;
     //private EmployeeDirectory employeeDirectory;
     private UserAccountDirectory userAccountDirectory;
     private int organizationID;
@@ -33,6 +34,10 @@ public abstract class Organization {
         public String getValue() {
             return value;
         }
+        @Override
+        public String toString(){
+        return value;
+    }
     }
 
     public Organization(String name) {
@@ -48,6 +53,14 @@ public abstract class Organization {
     
     public UserAccountDirectory getUserAccountDirectory() {
         return userAccountDirectory;
+    }
+
+    public Type getOrganizationType() {
+        return organizationType;
+    }
+
+    public void setOrganizationType(Type organizationType) {
+        this.organizationType = organizationType;
     }
 
     public int getOrganizationID() {
