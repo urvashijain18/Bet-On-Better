@@ -29,13 +29,13 @@ public class MainFrame extends javax.swing.JFrame {
      */
     public MainFrame() {
         initComponents();
-        initComponents();
         this.userAccountDirectory = new UserAccountDirectory();
         this.eventdirectory = new EventDirectory();
         this.fundraisingemployeeAccountDirectory = fundraisingemployeeAccountDirectory;
         this.bankemployeeAccountDirectory = bankemployeeAccountDirectory;
         CardLayout leftLayout = (CardLayout) leftContainer.getLayout();
         UserLogin userLogin = new UserLogin(leftContainer, rightContainer, userAccountDirectory, enterprise, eventdirectory, fundraisingemployeeAccountDirectory, advertisingemployeeAccountDirectory, bankemployeeAccountDirectory);
+        leftContainer.add("UserLogin", userLogin);
         leftLayout.next(leftContainer);
     }
 
