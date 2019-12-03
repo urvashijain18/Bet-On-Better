@@ -22,7 +22,7 @@ public class OrganizationDirectory {
         return organizationList;
     }
     
-    public Organization createOrganization(Organization.Type type){
+    public Organization createOrganization(String name,Organization.Type type){
         Organization organization = null;
         if (type.getValue().equals(Organization.Type.AccVerif.getValue())){
             organization = new AccountVerificationOrganization();
