@@ -5,12 +5,18 @@
  */
 package Business.Role;
 
+import Business.AdvertisingEmployee.AdvertisingEmployeeAccountDirectory;
+import Business.BankEmployee.BankEmployeeAccountDirectory;
+import Business.DB4OUtil.DB4OUtil;
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
 import Business.FundRaiserEvents.EventDirectory;
+import Business.FundRaisingEmployee.FundRaisingEmployeeAccountDirectory;
 import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
-import UserInterface.AdvertisingAdminRole.AdminAdvertisingWorkAreaJPanel;
+import Business.UserAccount.UserAccountDirectory;
+import UserInterface.AdvertisingRole.AdvertisingLeftPanel;
+import UserInterface.AdvertisingRole.AdvertisingWorkAreaJPanel;
 import javax.swing.JPanel;
 
 /**
@@ -18,11 +24,21 @@ import javax.swing.JPanel;
  * @author devma
  */
 
-     public class AdvertisingAdmin extends Role{
+    public class AdvertisingAdmin extends Role{
+
     @Override
-    public JPanel createWorkArea(JPanel container, UserAccount account, 
-            Organization organization, Enterprise enterprise, EcoSystem business, EventDirectory eventdirectory) {
-        return new AdminAdvertisingWorkAreaJPanel(container, enterprise, eventdirectory);
+    public JPanel createRightWorkArea(JPanel userProcessContainer, UserAccount account, Organization organization, Enterprise enterprise, EcoSystem business, EventDirectory eventdirectory) {
+      return new AdvertisingWorkAreaJPanel();
+    }
+
+    @Override
+    public JPanel createLeftWorkArea(JPanel leftContainer, JPanel rightContainer, 
+            UserAccountDirectory userAccountDirectory, EventDirectory eventdirectory, 
+            BankEmployeeAccountDirectory bankemployeeAccountDirectory, 
+            FundRaisingEmployeeAccountDirectory fundraisingemployeeAccountDirectory, 
+            AdvertisingEmployeeAccountDirectory advertisingemployeeAccountDirectory, 
+            EcoSystem business, DB4OUtil dB4OUtil, Enterprise enterprise) {
+        return new AdvertisingLeftPanel();
     }
 }
 

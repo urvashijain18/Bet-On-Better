@@ -14,7 +14,7 @@ import javax.swing.JPanel;
  * @author MMI
  */
 public class DonateJPanel extends javax.swing.JPanel {
-    private JPanel leftContainer;
+
     private JPanel rightContainer;
     private EventDirectory eventdirectory;
     
@@ -23,9 +23,8 @@ public class DonateJPanel extends javax.swing.JPanel {
      */
     
 
-    DonateJPanel(JPanel leftContainer, JPanel rightContainer, EventDirectory eventdirectory) {
+    DonateJPanel(JPanel rightContainer, EventDirectory eventdirectory) {
         initComponents();
-        this.leftContainer = leftContainer;
         this.rightContainer = rightContainer;
         this.eventdirectory = eventdirectory;
     }

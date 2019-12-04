@@ -6,8 +6,7 @@
 package Business;
 
 import Business.Network.Network;
-import Business.Enterprise.*;
-import Business.Role.FundRaisingAdmin;
+import Business.Role.*;
 import Business.UserAccount.UserAccount;
 
 /**
@@ -23,9 +22,11 @@ public class ConfigureASystem {
         //initialize some organizations
         //have some employees 
         //create user account
-        FundRaisingAdmin adminRole = new FundRaisingAdmin();
-        UserAccount ua = system.getUserAccountDirectory().createUserAccount("admin", "admin", new FundRaisingAdmin());
-        
+        for(UserAccount u: system.getUserAccountDirectory().getUserAccountList()){
+        System.out.println(u);
+        }
+        UserAccount ua = system.getUserAccountDirectory().createUserAccount("networkAdmin", "networkAdmin", new NetworkAdmin());
+
         return system;
     }
 }

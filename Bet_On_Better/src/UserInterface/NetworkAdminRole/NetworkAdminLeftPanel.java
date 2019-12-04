@@ -5,17 +5,50 @@
  */
 package UserInterface.NetworkAdminRole;
 
+import Business.AdvertisingEmployee.AdvertisingEmployeeAccountDirectory;
+import Business.BankEmployee.BankEmployeeAccountDirectory;
+import Business.DB4OUtil.DB4OUtil;
+import Business.EcoSystem;
+import Business.Enterprise.Enterprise;
+import Business.FundRaiserEvents.EventDirectory;
+import Business.FundRaisingEmployee.FundRaisingEmployeeAccountDirectory;
+import Business.UserAccount.UserAccountDirectory;
+import UserInterface.AdvertisingAdminRole.AdminAdvertisingWorkAreaJPanel;
+import UserInterface.UserLogin;
+import java.awt.CardLayout;
+import javax.swing.JPanel;
+
 /**
  *
  * @author Urvashi
  */
 public class NetworkAdminLeftPanel extends javax.swing.JPanel {
-
+    private JPanel leftContainer;
+    private JPanel rightContainer;
+    private UserAccountDirectory userAccountDirectory; 
+    private EventDirectory eventdirectory;
+    private AdvertisingEmployeeAccountDirectory advertisingemployeeAccountDirectory;
+    private BankEmployeeAccountDirectory bankemployeeAccountDirectory;
+    private FundRaisingEmployeeAccountDirectory fundraisingemployeeAccountDirectory;
+    private EcoSystem system;
+    private DB4OUtil dB4OUtil;
     /**
      * Creates new form NetworkAdminLeftPanel
      */
-    public NetworkAdminLeftPanel() {
+    public NetworkAdminLeftPanel(JPanel leftContainer, JPanel rightContainer, UserAccountDirectory userAccountDirectory,
+            EventDirectory eventdirectory,AdvertisingEmployeeAccountDirectory advertisingemployeeAccountDirectory,
+            BankEmployeeAccountDirectory bankemployeeAccountDirectory, FundRaisingEmployeeAccountDirectory fundraisingemployeeAccountDirectory, 
+            EcoSystem system, DB4OUtil dB4OUtil) {
         initComponents();
+        this.leftContainer = leftContainer;
+        this.rightContainer= rightContainer;
+        this.userAccountDirectory = userAccountDirectory;
+        this.eventdirectory = eventdirectory;
+        this.advertisingemployeeAccountDirectory = advertisingemployeeAccountDirectory;
+        this.bankemployeeAccountDirectory = bankemployeeAccountDirectory;
+        this.fundraisingemployeeAccountDirectory = fundraisingemployeeAccountDirectory;
+        this.system = system;
+        this.dB4OUtil = dB4OUtil;
     }
 
     /**
@@ -27,21 +60,38 @@ public class NetworkAdminLeftPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
+        btnManageNetwork = new javax.swing.JButton();
+        btnLogout = new javax.swing.JButton();
+        btnManageEnterprise = new javax.swing.JButton();
+        btnManageEnterpriseAdmin = new javax.swing.JButton();
 
-        jButton1.setText("Manage Network");
+        btnManageNetwork.setText("Manage Network");
+        btnManageNetwork.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnManageNetworkActionPerformed(evt);
+            }
+        });
 
-        jButton2.setText("Logout");
+        btnLogout.setText("Logout");
+        btnLogout.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLogoutActionPerformed(evt);
+            }
+        });
 
-        jButton3.setText("Manage Enterprise");
+        btnManageEnterprise.setText("Manage Enterprise");
+        btnManageEnterprise.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnManageEnterpriseActionPerformed(evt);
+            }
+        });
 
-        jButton4.setText("Manage Enterprise Admin");
-
-        jButton5.setText("Manage Organization");
+        btnManageEnterpriseAdmin.setText("Manage Enterprise Admin");
+        btnManageEnterpriseAdmin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnManageEnterpriseAdminActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -50,36 +100,64 @@ public class NetworkAdminLeftPanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton1)
-                    .addComponent(jButton3)
-                    .addComponent(jButton4)
-                    .addComponent(jButton2)
-                    .addComponent(jButton5))
+                    .addComponent(btnManageNetwork)
+                    .addComponent(btnManageEnterprise)
+                    .addComponent(btnManageEnterpriseAdmin)
+                    .addComponent(btnLogout))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(59, 59, 59)
-                .addComponent(jButton1)
+                .addComponent(btnManageNetwork)
                 .addGap(40, 40, 40)
-                .addComponent(jButton3)
+                .addComponent(btnManageEnterprise)
                 .addGap(40, 40, 40)
-                .addComponent(jButton4)
-                .addGap(40, 40, 40)
-                .addComponent(jButton5)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 129, Short.MAX_VALUE)
-                .addComponent(jButton2)
+                .addComponent(btnManageEnterpriseAdmin)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 192, Short.MAX_VALUE)
+                .addComponent(btnLogout)
                 .addGap(59, 59, 59))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnManageEnterpriseAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageEnterpriseAdminActionPerformed
+        rightContainer.remove(this);
+        CardLayout rightLayout = (CardLayout) rightContainer.getLayout();
+        rightContainer.add("ManageEnterpriseAdminJPanel", new ManageEnterpriseAdminJPanel(rightContainer, system));
+        rightLayout.next(rightContainer);
+    }//GEN-LAST:event_btnManageEnterpriseAdminActionPerformed
+
+    private void btnManageNetworkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageNetworkActionPerformed
+        rightContainer.remove(this);
+        CardLayout rightLayout = (CardLayout) rightContainer.getLayout();
+        rightContainer.add("ManageNetworkJPanel", new ManageNetworkJPanel(rightContainer, system));
+        rightLayout.next(rightContainer);
+    }//GEN-LAST:event_btnManageNetworkActionPerformed
+
+    private void btnManageEnterpriseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageEnterpriseActionPerformed
+        rightContainer.remove(this);
+        CardLayout rightLayout = (CardLayout) rightContainer.getLayout();
+        rightContainer.add("ManageEnterpriseJPanel", new ManageEnterpriseJPanel(rightContainer, system));
+        rightLayout.next(rightContainer);
+    }//GEN-LAST:event_btnManageEnterpriseActionPerformed
+
+    private void btnLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogoutActionPerformed
+        leftContainer.remove(this);
+        CardLayout leftCardLayout = (CardLayout) leftContainer.getLayout();
+        leftContainer.add("UserLogin", new UserLogin(leftContainer, rightContainer, userAccountDirectory, 
+                eventdirectory,  fundraisingemployeeAccountDirectory,  advertisingemployeeAccountDirectory,  
+                bankemployeeAccountDirectory, system, dB4OUtil));
+        leftCardLayout.next(leftContainer);
+        rightContainer.removeAll();
+        dB4OUtil.storeSystem(system);
+    }//GEN-LAST:event_btnLogoutActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
+    private javax.swing.JButton btnLogout;
+    private javax.swing.JButton btnManageEnterprise;
+    private javax.swing.JButton btnManageEnterpriseAdmin;
+    private javax.swing.JButton btnManageNetwork;
     // End of variables declaration//GEN-END:variables
 }

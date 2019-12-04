@@ -9,20 +9,13 @@ import Business.AdvertisingEmployee.AdvertisingEmployeeAccountDirectory;
 import Business.BankEmployee.BankEmployeeAccountDirectory;
 import Business.DB4OUtil.DB4OUtil;
 import Business.EcoSystem;
-import Business.FundRaisingEmployee.FundRaisingEmployeeAccountDirectory;
 import Business.Enterprise.Enterprise;
+import Business.FundRaisingEmployee.FundRaisingEmployeeAccountDirectory;
 import Business.FundRaiserEvents.EventDirectory;
-import Business.Role.FundRaisingAdmin;
-import Business.Role.FundTransferBankEmployee;
-import Business.Role.UserRole;
+import Business.Network.Network;
+import Business.Organization.Organization;
 import Business.UserAccount.UserAccountDirectory;
 import Business.UserAccount.UserAccount;
-import UserInterface.FundRaisingAdminRole.AdminLeftJPanel;
-import UserInterface.FundRaisingAdminRole.AdminWorkAreaJPanel;
-import UserInterface.BankRole.BankDashBoardJPanel;
-import UserInterface.BankRole.BankLeftJPanel;
-import UserInterface.UserRole.UserHomeJPanel;
-import UserInterface.UserRole.UserWorkAreaJPanel;
 import java.awt.CardLayout;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -35,7 +28,6 @@ public class UserLogin extends javax.swing.JPanel {
     private JPanel leftContainer;
     private JPanel rightContainer;
     private UserAccountDirectory userAccountDirectory;
-    private Enterprise enterprise;
     private EventDirectory eventdirectory;
     private FundRaisingEmployeeAccountDirectory fundraisingemployeeAccountDirectory;
     private AdvertisingEmployeeAccountDirectory advertisingemployeeAccountDirectory;
@@ -159,42 +151,52 @@ public class UserLogin extends javax.swing.JPanel {
         char[] passwordCharArray = txtPassword.getPassword();
         String password = String.valueOf(passwordCharArray);
         boolean flag = false;
-        UserAccount  userAccount = userAccountDirectory.authenticateUser(userName, password);
-        if (userAccount != null) {
-            if(userAccount.getRole().getClass().equals(FundRaisingAdmin.class)){
-            CardLayout leftLayout = (CardLayout) leftContainer.getLayout();
-            leftContainer.add("AdminLeftJPanel", new AdminLeftJPanel(leftContainer, rightContainer, userAccountDirectory, 
-                    eventdirectory, bankemployeeAccountDirectory, fundraisingemployeeAccountDirectory, 
-                    advertisingemployeeAccountDirectory, system, dB4OUtil));
-            leftLayout.next(leftContainer);
-            CardLayout rightLayout = (CardLayout) rightContainer.getLayout();
-            rightContainer.add("AdminWorkAreaJPanel", new AdminWorkAreaJPanel(rightContainer, eventdirectory));
-            rightLayout.next(rightContainer);
+        UserAccount  userAccount = system.getUserAccountDirectory().authenticateUser(userName, password);
+        Enterprise inEnterprise = null;
+        Organization inOrganization = null;
+        if(userAccount==null){
+            for(Network network:system.getNetworkList()){
+                for(Enterprise enterprise:network.getEnterpriseDirectory().getEnterpriseList()){
+                    userAccount=enterprise.getUserAccountDirectory().authenticateUser(userName, password);
+                    if(userAccount==null){
+                       for(Organization organization:enterprise.getOrganizationDirectory().getOrganizationList()){
+                           userAccount=organization.getUserAccountDirectory().authenticateUser(userName, password);
+                           if(userAccount!=null){
+                               inEnterprise=enterprise;
+                               inOrganization=organization;
+                               break;
+                           }
+                       } 
+                    }
+                    else{
+                       inEnterprise=enterprise;
+                       break;
+                    }
+                    if(inOrganization!=null){
+                        break;
+                    }  
+                }
+                if(inEnterprise!=null){
+                    break;
+                }
             }
-            else if(userAccount.getRole().getClass().equals(UserRole.class)) {
-            CardLayout leftLayout = (CardLayout) leftContainer.getLayout();
-            leftContainer.add("UserWorkAreaJPanel", new UserWorkAreaJPanel(leftContainer, rightContainer, 
-                    userAccountDirectory, eventdirectory, bankemployeeAccountDirectory, fundraisingemployeeAccountDirectory, 
-                    advertisingemployeeAccountDirectory, system, dB4OUtil));
-            leftLayout.next(leftContainer);
-            CardLayout rightLayout = (CardLayout) rightContainer.getLayout();
-            rightContainer.add("UserHomeJPanel", new UserHomeJPanel(leftContainer, rightContainer, eventdirectory));
-            rightLayout.next(rightContainer);
-            }
-            else if(userAccount.getRole().getClass().equals(FundTransferBankEmployee.class)){
-            CardLayout leftLayout = (CardLayout) leftContainer.getLayout();
-            leftContainer.add("BankLeftJPanel", new BankLeftJPanel(leftContainer, rightContainer, userAccountDirectory, eventdirectory, 
-                    bankemployeeAccountDirectory, fundraisingemployeeAccountDirectory, advertisingemployeeAccountDirectory, system, dB4OUtil));
-            leftLayout.next(leftContainer);
-            CardLayout rightLayout = (CardLayout) rightContainer.getLayout();
-            rightContainer.add("BankDashBoardJPanel", new BankDashBoardJPanel(rightContainer, eventdirectory));
-            rightLayout.next(rightContainer);
-            }
-            flag = true; 
+           // flag = true;
         }
-        if(!flag){
+
+        if(userAccount==null){
             JOptionPane.showMessageDialog(null, "Invalid UserName/Password");
             return;
+        }else{
+            CardLayout rightLayout = (CardLayout)rightContainer.getLayout();
+            rightContainer.add("workArea",userAccount.getRole().createRightWorkArea(leftContainer, 
+                    userAccount, inOrganization, inEnterprise, system, eventdirectory));
+            rightLayout.next(rightContainer);
+            CardLayout leftLayout = (CardLayout)leftContainer.getLayout();
+            leftContainer.add("workArea",userAccount.getRole().createLeftWorkArea(leftContainer, rightContainer, 
+                    userAccountDirectory, eventdirectory, bankemployeeAccountDirectory, 
+                    fundraisingemployeeAccountDirectory, advertisingemployeeAccountDirectory, system, dB4OUtil, 
+                    inEnterprise));
+            leftLayout.next(leftContainer);
         }
         setLoginFieldDisabled();
     }//GEN-LAST:event_btnLoginActionPerformed
