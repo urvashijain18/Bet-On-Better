@@ -21,11 +21,10 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
     /**
      * Creates new form AdminWorkAreaJPanel
      */
-    private JPanel leftContainer;
     private JPanel rightContainer;
     private EventDirectory eventdirectory;
     
-    public AdminWorkAreaJPanel(JPanel rightContainer, Enterprise enterprise, EventDirectory eventdirectory) {
+    public AdminWorkAreaJPanel(JPanel rightContainer, EventDirectory eventdirectory) {
         initComponents();
         this.eventdirectory = eventdirectory;
         this.rightContainer = rightContainer;

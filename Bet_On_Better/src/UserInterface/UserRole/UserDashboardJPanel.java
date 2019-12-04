@@ -19,19 +19,18 @@ import javax.swing.JPanel;
  * @author MMI
  */
 public class UserDashboardJPanel extends javax.swing.JPanel {
-private JPanel leftContainer;
+    private JPanel leftContainer;
     private JPanel rightContainer;
-    private UserAccountDirectory userAccountDirectory; 
-    private Enterprise enterprise; 
+    private UserAccountDirectory userAccountDirectory;
     private EventDirectory eventdirectory;
     /**
      * Creates new form Dashboard
      */
-    public UserDashboardJPanel(JPanel leftContainer, JPanel rightContainer,UserAccountDirectory userAccountDirectory,Enterprise enterprise,EventDirectory eventdirectory) {
+    public UserDashboardJPanel(JPanel leftContainer, JPanel rightContainer,
+            UserAccountDirectory userAccountDirectory, EventDirectory eventdirectory) {
         initComponents();
-         this.leftContainer = leftContainer;
+        this.leftContainer = leftContainer;
         this.rightContainer = rightContainer;
-        this.enterprise = enterprise;
         this.userAccountDirectory = userAccountDirectory;
         this.eventdirectory = eventdirectory;
     }
@@ -168,13 +167,9 @@ private JPanel leftContainer;
         // TODO add your handling code here:
         rightContainer.remove(this);
         CardLayout rightCardLayout = (CardLayout) rightContainer.getLayout();
-        rightContainer.add("CreateEventJPanel", new CreateEventJPanel(leftContainer, rightContainer, userAccountDirectory, enterprise, eventdirectory));
-        rightCardLayout.next(rightContainer);
-        Component [] components = rightContainer.getComponents();
-        for(Component c : components){
-             
-        }
-        
+        rightContainer.add("CreateEventJPanel", new CreateEventJPanel(leftContainer, rightContainer, 
+                userAccountDirectory, eventdirectory));
+        rightCardLayout.next(rightContainer);        
     }//GEN-LAST:event_btnCreateEventActionPerformed
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed

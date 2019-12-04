@@ -7,7 +7,6 @@ package UserInterface.UserRole;
 
 import Business.Enterprise.Enterprise;
 import Business.FundRaiserEvents.EventDirectory;
-import Business.UserAccount.UserAccountDirectory;
 import javax.swing.JPanel;
 
 /**
@@ -15,9 +14,8 @@ import javax.swing.JPanel;
  * @author MMI
  */
 public class DonateJPanel extends javax.swing.JPanel {
-private JPanel leftContainer;
+    private JPanel leftContainer;
     private JPanel rightContainer;
-    private Enterprise enterprise; 
     private EventDirectory eventdirectory;
     
     /**
@@ -25,11 +23,10 @@ private JPanel leftContainer;
      */
     
 
-    DonateJPanel(JPanel leftContainer, JPanel rightContainer, Enterprise enterprise, EventDirectory eventdirectory) {
+    DonateJPanel(JPanel leftContainer, JPanel rightContainer, EventDirectory eventdirectory) {
         initComponents();
         this.leftContainer = leftContainer;
         this.rightContainer = rightContainer;
-        this.enterprise = enterprise;
         this.eventdirectory = eventdirectory;
     }
 

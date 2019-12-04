@@ -17,16 +17,14 @@ import javax.swing.JPanel;
 public class ApprovedVerifRequestDetails extends javax.swing.JPanel {
 
     private JPanel rightContainer; 
-    private Enterprise enterprise; 
     private EventDirectory eventdirectory;
     
     /**
      * Creates new form ApprovedVerifRequestDetails
      */
-    public ApprovedVerifRequestDetails(JPanel rightContainer, Enterprise enterprise, EventDirectory eventdirectory) {
+    public ApprovedVerifRequestDetails(JPanel rightContainer, EventDirectory eventdirectory) {
         initComponents();
         this.rightContainer= rightContainer;
-        this.enterprise = enterprise;
         this.eventdirectory = eventdirectory;
     }
 

@@ -19,7 +19,6 @@ public class CreateEventJPanel extends javax.swing.JPanel {
    private JPanel leftContainer;
    private JPanel rightContainer;
    private UserAccountDirectory userAccountDirectory;
-   private Enterprise enterprise;
    private EventDirectory eventdirectory;
     /**
      * Creates new form CreateEventJPanel
@@ -28,12 +27,11 @@ public class CreateEventJPanel extends javax.swing.JPanel {
   
     
 
-    public CreateEventJPanel(JPanel leftContainer, JPanel rightContainer, UserAccountDirectory userAccountDirectory, Enterprise enterprise, EventDirectory eventdirectory) {
+    public CreateEventJPanel(JPanel leftContainer, JPanel rightContainer, UserAccountDirectory userAccountDirectory, EventDirectory eventdirectory) {
               initComponents();
               this.leftContainer =leftContainer;
                this.rightContainer = rightContainer;
                this.userAccountDirectory = userAccountDirectory;
-               this.enterprise = enterprise;
                this.eventdirectory = eventdirectory;
     }
 

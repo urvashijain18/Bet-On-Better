@@ -20,17 +20,15 @@ import javax.swing.JPanel;
 public class UserHomeJPanel extends javax.swing.JPanel {
   private JPanel leftContainer;
     private JPanel rightContainer;
-    private Enterprise enterprise; 
     private EventDirectory eventdirectory;
         
     /**
      * Creates new form UserHomeJPanel
      */
-    public UserHomeJPanel(JPanel leftContainer, JPanel rightContainer, Enterprise enterprise,EventDirectory eventdirectory) {
+    public UserHomeJPanel(JPanel leftContainer, JPanel rightContainer, EventDirectory eventdirectory) {
         initComponents();
          this.leftContainer = leftContainer;
         this.rightContainer = rightContainer;
-        this.enterprise = enterprise;
         this.eventdirectory = eventdirectory;
     }
 
@@ -164,10 +162,8 @@ public class UserHomeJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
         rightContainer.remove(this);
         CardLayout rightCardLayout = (CardLayout) rightContainer.getLayout();
-        rightContainer.add("DonateJPanel", new DonateJPanel(leftContainer, rightContainer, enterprise, eventdirectory));
+        rightContainer.add("DonateJPanel", new DonateJPanel(leftContainer, rightContainer, eventdirectory));
         rightCardLayout.next(rightContainer);
-       
-        
     }//GEN-LAST:event_btnDonateActionPerformed
 
 
