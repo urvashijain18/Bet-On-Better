@@ -7,6 +7,8 @@ package UserInterface.BankAdminRole;
 
 import Business.AdvertisingEmployee.AdvertisingEmployeeAccountDirectory;
 import Business.BankEmployee.BankEmployeeAccountDirectory;
+import Business.DB4OUtil.DB4OUtil;
+import Business.EcoSystem;
 import Business.FundRaisingEmployee.FundRaisingEmployeeAccountDirectory;
 import Business.Enterprise.Enterprise;
 import Business.FundRaiserEvents.EventDirectory;
@@ -21,19 +23,27 @@ import javax.swing.JPanel;
  * @author devma
  */
 public class AdminBankLeftJPanel extends javax.swing.JPanel {
-private JPanel rightContainer;
-private Enterprise enterprise;
-private EventDirectory eventdirectory;
-private JPanel leftContainer;
-private BankEmployeeAccountDirectory bankemployeeAccountDirectory;
-private UserAccountDirectory userAccountDirectory;
-private AdvertisingEmployeeAccountDirectory advertisingemployeeAccountDirectory;
-private FundRaisingEmployeeAccountDirectory fundraisingemployeeAccountDirectory;
+
+    private JPanel rightContainer;
+    private Enterprise enterprise;
+    private EventDirectory eventdirectory;
+    private JPanel leftContainer;
+    private BankEmployeeAccountDirectory bankemployeeAccountDirectory;
+    private UserAccountDirectory userAccountDirectory;
+    private AdvertisingEmployeeAccountDirectory advertisingemployeeAccountDirectory;
+    private FundRaisingEmployeeAccountDirectory fundraisingemployeeAccountDirectory;
+    private EcoSystem system;
+    private DB4OUtil dB4OUtil;
+
     /**
      * Creates new form AdminBankLeftJPanel
      */
-    public AdminBankLeftJPanel(JPanel rightContainer, Enterprise enterprise, EventDirectory eventdirectory, JPanel leftContainer, UserAccountDirectory userAccountDirectory,
-            BankEmployeeAccountDirectory bankemployeeAccountDirectory, AdvertisingEmployeeAccountDirectory advertisingemployeeAccountDirectory, FundRaisingEmployeeAccountDirectory fundraisingemployeeAccountDirectory) {
+    public AdminBankLeftJPanel(JPanel rightContainer, Enterprise enterprise, EventDirectory eventdirectory, 
+            JPanel leftContainer, UserAccountDirectory userAccountDirectory,
+            BankEmployeeAccountDirectory bankemployeeAccountDirectory, 
+            AdvertisingEmployeeAccountDirectory advertisingemployeeAccountDirectory, 
+            FundRaisingEmployeeAccountDirectory fundraisingemployeeAccountDirectory, EcoSystem system,
+            DB4OUtil dB4OUtil) {
         initComponents();
         this.rightContainer = rightContainer;
         this.enterprise = enterprise;
@@ -41,6 +51,8 @@ private FundRaisingEmployeeAccountDirectory fundraisingemployeeAccountDirectory;
         this.leftContainer = leftContainer;
         this.bankemployeeAccountDirectory = bankemployeeAccountDirectory;
         this.userAccountDirectory = userAccountDirectory;
+        this.system = system;
+        this.dB4OUtil = dB4OUtil;
     }
 
     /**
@@ -113,19 +125,17 @@ private FundRaisingEmployeeAccountDirectory fundraisingemployeeAccountDirectory;
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         rightContainer.remove(this);
         CardLayout rightLayout = (CardLayout) rightContainer.getLayout();
-        rightContainer.add("AdminCreateBankEmployeesJPanel", new AdminCreateBankEmployeesJPanel(rightContainer,leftContainer,bankemployeeAccountDirectory));
+        rightContainer.add("AdminCreateBankEmployeesJPanel", new AdminCreateBankEmployeesJPanel(rightContainer, leftContainer, bankemployeeAccountDirectory));
         rightLayout.next(rightContainer);   // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void btnLogOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogOutActionPerformed
         leftContainer.remove(this);
         CardLayout leftCardLayout = (CardLayout) leftContainer.getLayout();
-        leftContainer.add("UserLogin", new UserLogin(leftContainer, rightContainer, userAccountDirectory, enterprise, eventdirectory,  fundraisingemployeeAccountDirectory,  advertisingemployeeAccountDirectory,  bankemployeeAccountDirectory));
+        leftContainer.add("UserLogin", new UserLogin(leftContainer, rightContainer, userAccountDirectory, eventdirectory, 
+        fundraisingemployeeAccountDirectory, advertisingemployeeAccountDirectory, bankemployeeAccountDirectory, system, dB4OUtil));
         leftCardLayout.next(leftContainer);
-        Component [] components = rightContainer.getComponents();
-        for(Component c : components){
-            rightContainer.remove(c);
-        }
+        rightContainer.removeAll();
     }//GEN-LAST:event_btnLogOutActionPerformed
 
 

@@ -7,6 +7,8 @@ package UserInterface.UserRole;
 
 import Business.AdvertisingEmployee.AdvertisingEmployeeAccountDirectory;
 import Business.BankEmployee.BankEmployeeAccountDirectory;
+import Business.DB4OUtil.DB4OUtil;
+import Business.EcoSystem;
 import Business.FundRaisingEmployee.FundRaisingEmployeeAccountDirectory;
 import Business.Enterprise.Enterprise;
 import Business.FundRaiserEvents.EventDirectory;
@@ -22,29 +24,34 @@ import javax.swing.JPanel;
  */
 public class UserWorkAreaJPanel extends javax.swing.JPanel {
 
-     private JPanel leftContainer;
+    private JPanel leftContainer;
     private JPanel rightContainer;
     private UserAccountDirectory userAccountDirectory; 
-    private Enterprise enterprise; 
     private EventDirectory eventdirectory;
     private BankEmployeeAccountDirectory bankemployeeAccountDirectory;
     private FundRaisingEmployeeAccountDirectory fundraisingemployeeAccountDirectory;
     private AdvertisingEmployeeAccountDirectory advertisingemployeeAccountDirectory;
+    private EcoSystem system;
+    private DB4OUtil dB4OUtil;
         
     /**
      * Creates new form ReceiverWorkAreaJPanel
      */
-    public UserWorkAreaJPanel(JPanel leftContainer, JPanel rightContainer,UserAccountDirectory userAccountDirectory,Enterprise enterprise,EventDirectory eventdirectory, BankEmployeeAccountDirectory bankemployeeAccountDirectory,            
-            FundRaisingEmployeeAccountDirectory fundraisingemployeeAccountDirectory, AdvertisingEmployeeAccountDirectory advertisingemployeeAccountDirectory) {
+    public UserWorkAreaJPanel(JPanel leftContainer, JPanel rightContainer,UserAccountDirectory userAccountDirectory,
+            EventDirectory eventdirectory, BankEmployeeAccountDirectory bankemployeeAccountDirectory,            
+            FundRaisingEmployeeAccountDirectory fundraisingemployeeAccountDirectory, 
+            AdvertisingEmployeeAccountDirectory advertisingemployeeAccountDirectory, EcoSystem system,
+            DB4OUtil dB4OUtil) {
         initComponents();
         this.leftContainer = leftContainer;
         this.rightContainer = rightContainer;
-        this.enterprise = enterprise;
         this.userAccountDirectory = userAccountDirectory;
         this.eventdirectory = eventdirectory;
         this.bankemployeeAccountDirectory = bankemployeeAccountDirectory;
         this.advertisingemployeeAccountDirectory = advertisingemployeeAccountDirectory;
         this.fundraisingemployeeAccountDirectory = fundraisingemployeeAccountDirectory;
+        this.system = system;
+        this.dB4OUtil = dB4OUtil;
     }
 
    
@@ -118,36 +125,26 @@ public class UserWorkAreaJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
         rightContainer.remove(this);
         CardLayout rightCardLayout = (CardLayout) rightContainer.getLayout();
-        rightContainer.add("UserHomeJPanel", new UserHomeJPanel(leftContainer, rightContainer,  enterprise, eventdirectory));
-        rightCardLayout.next(rightContainer);
-        Component [] components = rightContainer.getComponents();
-        for(Component c : components){
-             
-        }
-        
+        rightContainer.add("UserHomeJPanel", new UserHomeJPanel(leftContainer, rightContainer, eventdirectory));
+        rightCardLayout.next(rightContainer);        
     }//GEN-LAST:event_btnHomeActionPerformed
 
     private void btnDashboardActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDashboardActionPerformed
         rightContainer.remove(this);
         CardLayout rightCardLayout = (CardLayout) rightContainer.getLayout();
-        rightContainer.add("UserDashboardJPanel", new UserDashboardJPanel(leftContainer, rightContainer, userAccountDirectory, enterprise, eventdirectory));
+        rightContainer.add("UserDashboardJPanel", new UserDashboardJPanel(leftContainer, rightContainer, 
+                userAccountDirectory, eventdirectory));
         rightCardLayout.next(rightContainer);
-        Component [] components = rightContainer.getComponents();
-        for(Component c : components){
-//              
-        }
     }//GEN-LAST:event_btnDashboardActionPerformed
 
     private void btnLogOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogOutActionPerformed
-        // TODO add your handling code here:
         leftContainer.remove(this);
         CardLayout leftCardLayout = (CardLayout) leftContainer.getLayout();
-        leftContainer.add("UserLogin", new UserLogin(leftContainer, rightContainer, userAccountDirectory, enterprise, eventdirectory,  fundraisingemployeeAccountDirectory,  advertisingemployeeAccountDirectory,  bankemployeeAccountDirectory));
+        leftContainer.add("UserLogin", new UserLogin(leftContainer, rightContainer, 
+                userAccountDirectory, eventdirectory, fundraisingemployeeAccountDirectory, 
+                advertisingemployeeAccountDirectory, bankemployeeAccountDirectory, system, dB4OUtil));
         leftCardLayout.next(leftContainer);
-        Component [] components = rightContainer.getComponents();
-        for(Component c : components){
-        rightContainer.remove(c);        
-        }
+        rightContainer.removeAll(); 
     }//GEN-LAST:event_btnLogOutActionPerformed
 
 

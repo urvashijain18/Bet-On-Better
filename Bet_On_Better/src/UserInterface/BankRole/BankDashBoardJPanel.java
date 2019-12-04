@@ -17,16 +17,14 @@ import javax.swing.JPanel;
 public class BankDashBoardJPanel extends javax.swing.JPanel {
 
     private JPanel rightContainer;
-    private Enterprise enterprise;
     private EventDirectory eventdirectory;
 
     /**
      * Creates new form BankDashBoard
      */
-    public BankDashBoardJPanel(JPanel rightContainer, Enterprise enterprise, EventDirectory eventdirectory) {
+    public BankDashBoardJPanel(JPanel rightContainer, EventDirectory eventdirectory) {
         initComponents();
         this.rightContainer = rightContainer;
-        this.enterprise = enterprise;
         this.eventdirectory = eventdirectory;
     }
 
@@ -94,7 +92,7 @@ public class BankDashBoardJPanel extends javax.swing.JPanel {
 
     private void btnApprovedRequestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnApprovedRequestActionPerformed
         CardLayout rightLayout = (CardLayout) rightContainer.getLayout();
-        rightContainer.add("BankApprovedRequestsJPanel", new BankApprovedRequestsJPanel(rightContainer, enterprise, eventdirectory));
+        rightContainer.add("BankApprovedRequestsJPanel", new BankApprovedRequestsJPanel(rightContainer, eventdirectory));
         rightLayout.next(rightContainer);
     }//GEN-LAST:event_btnApprovedRequestActionPerformed
 

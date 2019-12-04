@@ -7,13 +7,14 @@ package UserInterface.AdvertisingAdminRole;
 
 import Business.AdvertisingEmployee.AdvertisingEmployeeAccountDirectory;
 import Business.BankEmployee.BankEmployeeAccountDirectory;
+import Business.DB4OUtil.DB4OUtil;
+import Business.EcoSystem;
 import Business.FundRaisingEmployee.FundRaisingEmployeeAccountDirectory;
 import Business.Enterprise.Enterprise;
 import Business.FundRaiserEvents.EventDirectory;
 import Business.UserAccount.UserAccountDirectory;
 import UserInterface.UserLogin;
 import java.awt.CardLayout;
-import java.awt.Component;
 import javax.swing.JPanel;
 
 /**
@@ -29,13 +30,16 @@ private JPanel leftContainer;
     private AdvertisingEmployeeAccountDirectory advertisingemployeeAccountDirectory;
     private BankEmployeeAccountDirectory bankemployeeAccountDirectory;
     private FundRaisingEmployeeAccountDirectory fundraisingemployeeAccountDirectory;
+    private EcoSystem system;
+    private DB4OUtil dB4OUtil;
 
     /**
      * Creates new form AdminAdvertisingLeftJPanel
      */
     public AdminAdvertisingLeftJPanel(JPanel leftContainer, JPanel rightContainer, UserAccountDirectory userAccountDirectory,
             Enterprise enterprise, EventDirectory eventdirectory,AdvertisingEmployeeAccountDirectory advertisingemployeeAccountDirectory,
-            BankEmployeeAccountDirectory bankemployeeAccountDirectory, FundRaisingEmployeeAccountDirectory fundraisingemployeeAccountDirectory) {
+            BankEmployeeAccountDirectory bankemployeeAccountDirectory, FundRaisingEmployeeAccountDirectory fundraisingemployeeAccountDirectory, 
+            EcoSystem system, DB4OUtil dB4OUtil) {
         initComponents();
         this.leftContainer = leftContainer;
         this.rightContainer= rightContainer;
@@ -45,6 +49,8 @@ private JPanel leftContainer;
         this.advertisingemployeeAccountDirectory = advertisingemployeeAccountDirectory;
         this.bankemployeeAccountDirectory = bankemployeeAccountDirectory;
         this.fundraisingemployeeAccountDirectory = fundraisingemployeeAccountDirectory;
+        this.system = system;
+        this.dB4OUtil = dB4OUtil;
     }
 
     /**
@@ -124,12 +130,11 @@ private JPanel leftContainer;
     private void btnLogOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogOutActionPerformed
         leftContainer.remove(this);
         CardLayout leftCardLayout = (CardLayout) leftContainer.getLayout();
-        leftContainer.add("UserLogin", new UserLogin(leftContainer, rightContainer, userAccountDirectory, enterprise, eventdirectory,  fundraisingemployeeAccountDirectory,  advertisingemployeeAccountDirectory,  bankemployeeAccountDirectory));
+        leftContainer.add("UserLogin", new UserLogin(leftContainer, rightContainer, userAccountDirectory, 
+                eventdirectory, fundraisingemployeeAccountDirectory, advertisingemployeeAccountDirectory, 
+                bankemployeeAccountDirectory, system, dB4OUtil));
         leftCardLayout.next(leftContainer);
-        Component [] components = rightContainer.getComponents();
-        for(Component c : components){
-            rightContainer.remove(c);
-        }
+        rightContainer.removeAll();
     }//GEN-LAST:event_btnLogOutActionPerformed
 
 

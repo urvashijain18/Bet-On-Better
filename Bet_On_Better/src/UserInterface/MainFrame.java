@@ -7,6 +7,8 @@ package UserInterface;
 
 import Business.AdvertisingEmployee.AdvertisingEmployeeAccountDirectory;
 import Business.BankEmployee.BankEmployeeAccountDirectory;
+import Business.DB4OUtil.DB4OUtil;
+import Business.EcoSystem;
 import Business.FundRaisingEmployee.FundRaisingEmployeeAccountDirectory;
 import Business.Enterprise.Enterprise;
 import Business.FundRaiserEvents.EventDirectory;
@@ -24,17 +26,23 @@ public class MainFrame extends javax.swing.JFrame {
     private FundRaisingEmployeeAccountDirectory fundraisingemployeeAccountDirectory;
     private AdvertisingEmployeeAccountDirectory advertisingemployeeAccountDirectory;
     private BankEmployeeAccountDirectory bankemployeeAccountDirectory;
+    private EcoSystem system;
+    private DB4OUtil dB4OUtil = DB4OUtil.getInstance();
     /**
      * Creates new form MainFrame
      */
     public MainFrame() {
         initComponents();
+        this.system = dB4OUtil.retrieveSystem();
+        this.setSize(1680, 1050);
         this.userAccountDirectory = new UserAccountDirectory();
         this.eventdirectory = new EventDirectory();
-        this.fundraisingemployeeAccountDirectory = fundraisingemployeeAccountDirectory;
-        this.bankemployeeAccountDirectory = bankemployeeAccountDirectory;
+        this.fundraisingemployeeAccountDirectory = new FundRaisingEmployeeAccountDirectory();
+        this.bankemployeeAccountDirectory = new BankEmployeeAccountDirectory();
         CardLayout leftLayout = (CardLayout) leftContainer.getLayout();
-        UserLogin userLogin = new UserLogin(leftContainer, rightContainer, userAccountDirectory, enterprise, eventdirectory, fundraisingemployeeAccountDirectory, advertisingemployeeAccountDirectory, bankemployeeAccountDirectory);
+        UserLogin userLogin = new UserLogin(leftContainer, rightContainer, userAccountDirectory, eventdirectory, 
+                fundraisingemployeeAccountDirectory, advertisingemployeeAccountDirectory, bankemployeeAccountDirectory,
+                system, dB4OUtil);
         leftContainer.add("UserLogin", userLogin);
         leftLayout.next(leftContainer);
     }

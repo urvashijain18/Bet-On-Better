@@ -5,9 +5,7 @@
  */
 package UserInterface.BankRole;
 
-import Business.Enterprise.Enterprise;
 import Business.FundRaiserEvents.EventDirectory;
-import Business.UserAccount.UserAccountDirectory;
 import javax.swing.JPanel;
 
 /**
@@ -17,16 +15,14 @@ import javax.swing.JPanel;
 public class FundAllocationRequestDetails extends javax.swing.JPanel {
     
     private JPanel rightContainer; 
-    private Enterprise enterprise; 
     private EventDirectory eventdirectory;
     
     /**
      * Creates new form FundAllocationRequestDetails
      */
-    public FundAllocationRequestDetails(JPanel rightContainer, Enterprise enterprise, EventDirectory eventdirectory) {
+    public FundAllocationRequestDetails(JPanel rightContainer, EventDirectory eventdirectory) {
         initComponents();
         this.rightContainer= rightContainer;
-        this.enterprise = enterprise;
         this.eventdirectory = eventdirectory;
     }
 

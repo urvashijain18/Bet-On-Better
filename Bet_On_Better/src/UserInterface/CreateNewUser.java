@@ -7,6 +7,8 @@ package UserInterface;
 
 import Business.AdvertisingEmployee.AdvertisingEmployeeAccountDirectory;
 import Business.BankEmployee.BankEmployeeAccountDirectory;
+import Business.DB4OUtil.DB4OUtil;
+import Business.EcoSystem;
 import Business.FundRaisingEmployee.FundRaisingEmployeeAccountDirectory;
 import Business.Enterprise.AdvertisingEnterprise;
 import Business.Enterprise.BankEnterprise;
@@ -36,12 +38,15 @@ public class CreateNewUser extends javax.swing.JPanel {
     private FundRaisingEmployeeAccountDirectory fundraisingemployeeAccountDirectory;
     private AdvertisingEmployeeAccountDirectory advertisingemployeeAccountDirectory;
     private BankEmployeeAccountDirectory bankemployeeAccountDirectory;
+    private EcoSystem system;
+    private DB4OUtil dB4OUtil;
     
     /**
      * Creates new form CreateNewUser
      */
     public CreateNewUser(JPanel leftContainer, JPanel rightContainer, UserAccountDirectory userAccountDirectory,FundRaisingEmployeeAccountDirectory fundraisingemployeeAccountDirectory, AdvertisingEmployeeAccountDirectory advertisingemployeeAccountDirectory,
-            BankEmployeeAccountDirectory bankemployeeAccountDirectory) {
+            BankEmployeeAccountDirectory bankemployeeAccountDirectory, EcoSystem system,
+            DB4OUtil dB4OUtil) {
         initComponents();
         this.leftContainer = leftContainer;
         this.rightContainer = rightContainer;
@@ -49,7 +54,8 @@ public class CreateNewUser extends javax.swing.JPanel {
         this.fundraisingemployeeAccountDirectory = fundraisingemployeeAccountDirectory;
         this.advertisingemployeeAccountDirectory = advertisingemployeeAccountDirectory;
         this.bankemployeeAccountDirectory = bankemployeeAccountDirectory;
-        
+        this.system = system;
+        this.dB4OUtil = dB4OUtil;
     }
 
     /**
@@ -68,16 +74,11 @@ public class CreateNewUser extends javax.swing.JPanel {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        btnAdmin = new javax.swing.JRadioButton();
-        btnUser = new javax.swing.JRadioButton();
         txtUserName = new javax.swing.JTextField();
         txtName = new javax.swing.JTextField();
         btnCreate = new javax.swing.JButton();
         passwordField = new javax.swing.JPasswordField();
         confirmPasswordField = new javax.swing.JPasswordField();
-        enterpriseDropDown = new javax.swing.JComboBox<>();
-        jLabel7 = new javax.swing.JLabel();
 
         btnBack.setText("<< Back");
         btnBack.addActionListener(new java.awt.event.ActionListener() {
@@ -101,30 +102,12 @@ public class CreateNewUser extends javax.swing.JPanel {
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel5.setText("Confirm Password : ");
 
-        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel6.setText("Role : ");
-
-        btnGrp.add(btnAdmin);
-        btnAdmin.setText("Admin");
-
-        btnGrp.add(btnUser);
-        btnUser.setText("User");
-
         btnCreate.setText("Create");
         btnCreate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCreateActionPerformed(evt);
             }
         });
-
-        enterpriseDropDown.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "FundRaiser", "Bank", "Advertising" }));
-        enterpriseDropDown.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                enterpriseDropDownActionPerformed(evt);
-            }
-        });
-
-        jLabel7.setText("Enterprise:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -141,24 +124,16 @@ public class CreateNewUser extends javax.swing.JPanel {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING))
+                    .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addGap(52, 52, 52)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(enterpriseDropDown, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(txtUserName)
-                        .addComponent(txtName)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(btnAdmin)
-                            .addGap(18, 18, 18)
-                            .addComponent(btnUser))
-                        .addComponent(passwordField)
-                        .addComponent(confirmPasswordField, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(txtUserName)
+                    .addComponent(txtName)
+                    .addComponent(passwordField)
+                    .addComponent(confirmPasswordField, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(144, 144, 144))
         );
         layout.setVerticalGroup(
@@ -184,16 +159,7 @@ public class CreateNewUser extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(confirmPasswordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(btnAdmin)
-                    .addComponent(btnUser))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(enterpriseDropDown, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel7))
-                .addGap(48, 48, 48)
+                .addGap(127, 127, 127)
                 .addComponent(btnCreate)
                 .addContainerGap(54, Short.MAX_VALUE))
         );
@@ -241,34 +207,20 @@ public class CreateNewUser extends javax.swing.JPanel {
             return;
         }
 
-        if (btnGrp.getSelection() == null) {
-            JOptionPane.showMessageDialog(null, "Please select a role");
-            return;
-        }
+//        if (btnGrp.getSelection() == null) {
+//            JOptionPane.showMessageDialog(null, "Please select a role");
+//            return;
+//        }
 
-        Role role = null;
-        
-        if (btnAdmin.isSelected()) {
-            role = new FundRaisingAdmin();
-        }else if (btnUser.isSelected()) {
-            role = new UserRole();
-        }
-        
+        Role role = new UserRole();
         userAccountDirectory.createUserAccount(username, pwd, role);
 
         JOptionPane.showMessageDialog(null, "Account Created Successfully");
         rightContainer.remove(this);
-        CardLayout leftLayout = (CardLayout) leftContainer.getLayout();
-        Enterprise enterprise = null;
-        if(enterpriseDropDown.getSelectedItem().equals("FundRaiser")){
-            enterprise = new FundRaisingEnterprise(enterpriseDropDown.getSelectedItem().toString());
-        }else if(enterpriseDropDown.getSelectedItem().equals("Bank")){
-            enterprise = new BankEnterprise(enterpriseDropDown.getSelectedItem().toString());
-        }else if(enterpriseDropDown.getSelectedItem().equals("Advertising")){
-            enterprise = new AdvertisingEnterprise(enterpriseDropDown.getSelectedItem().toString());
-        }
-        
-        UserLogin userLoginJPanel = new UserLogin(leftContainer, rightContainer, userAccountDirectory, enterprise, new EventDirectory(), fundraisingemployeeAccountDirectory,advertisingemployeeAccountDirectory,bankemployeeAccountDirectory );
+        CardLayout leftLayout = (CardLayout) leftContainer.getLayout();        
+        UserLogin userLoginJPanel = new UserLogin(leftContainer, rightContainer, userAccountDirectory, new EventDirectory(), 
+                fundraisingemployeeAccountDirectory,advertisingemployeeAccountDirectory,bankemployeeAccountDirectory, 
+                system, dB4OUtil);
         leftContainer.add("UserLoginJPanel", userLoginJPanel);
         leftLayout.next(leftContainer);
     }//GEN-LAST:event_btnCreateActionPerformed
@@ -281,32 +233,23 @@ public class CreateNewUser extends javax.swing.JPanel {
     }
 
     private boolean userpasswordPatternCorrect() {
-        Pattern p = Pattern.compile("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[&#$])[A-Za-z\\d&#$]{6,}$");
+        Pattern p = Pattern.compile("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@&#$])[A-Za-z\\d&#$]{6,}$");
         Matcher m = p.matcher(passwordField.getText());
         boolean b = m.matches();
         return b;
     }
     
-    private void enterpriseDropDownActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enterpriseDropDownActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_enterpriseDropDownActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JRadioButton btnAdmin;
     private javax.swing.JButton btnBack;
     private javax.swing.JButton btnCreate;
     private javax.swing.ButtonGroup btnGrp;
-    private javax.swing.JRadioButton btnUser;
     private javax.swing.JPasswordField confirmPasswordField;
-    private javax.swing.JComboBox<String> enterpriseDropDown;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JPasswordField passwordField;
     private javax.swing.JTextField txtName;
     private javax.swing.JTextField txtUserName;

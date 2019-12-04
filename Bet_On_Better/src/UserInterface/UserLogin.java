@@ -7,6 +7,8 @@ package UserInterface;
 
 import Business.AdvertisingEmployee.AdvertisingEmployeeAccountDirectory;
 import Business.BankEmployee.BankEmployeeAccountDirectory;
+import Business.DB4OUtil.DB4OUtil;
+import Business.EcoSystem;
 import Business.FundRaisingEmployee.FundRaisingEmployeeAccountDirectory;
 import Business.Enterprise.Enterprise;
 import Business.FundRaiserEvents.EventDirectory;
@@ -38,21 +40,26 @@ public class UserLogin extends javax.swing.JPanel {
     private FundRaisingEmployeeAccountDirectory fundraisingemployeeAccountDirectory;
     private AdvertisingEmployeeAccountDirectory advertisingemployeeAccountDirectory;
     private BankEmployeeAccountDirectory bankemployeeAccountDirectory;
+    private EcoSystem system;
+    private DB4OUtil dB4OUtil;
     /**
      * Creates new form UserLogin    /**
      * Creates new form UserLogin
      */
     
     public UserLogin(JPanel leftContainer, JPanel rightContainer, UserAccountDirectory userAccountDirectory, 
-            Enterprise enterprise, EventDirectory eventdirectory, FundRaisingEmployeeAccountDirectory fundraisingemployeeAccountDirectory, AdvertisingEmployeeAccountDirectory advertisingemployeeAccountDirectory, BankEmployeeAccountDirectory bankemployeeAccountDirectory) {
+            EventDirectory eventdirectory, FundRaisingEmployeeAccountDirectory fundraisingemployeeAccountDirectory, 
+            AdvertisingEmployeeAccountDirectory advertisingemployeeAccountDirectory, 
+            BankEmployeeAccountDirectory bankemployeeAccountDirectory, EcoSystem system, DB4OUtil dB4OUtil) {
         initComponents();
         this.leftContainer = leftContainer;
         this.rightContainer = rightContainer;
         this.userAccountDirectory = userAccountDirectory;
-        //this.enterprise = enterprise;
         this.eventdirectory = eventdirectory;
         this.fundraisingemployeeAccountDirectory = fundraisingemployeeAccountDirectory;
         this.bankemployeeAccountDirectory = bankemployeeAccountDirectory;
+        this.system = system;
+        this.dB4OUtil = dB4OUtil;
     }
     
     public void setLoginFieldEnabled(){
@@ -156,31 +163,31 @@ public class UserLogin extends javax.swing.JPanel {
         if (userAccount != null) {
             if(userAccount.getRole().getClass().equals(FundRaisingAdmin.class)){
             CardLayout leftLayout = (CardLayout) leftContainer.getLayout();
-            leftContainer.add("AdminLeftJPanel", new AdminLeftJPanel( leftContainer,  rightContainer,  userAccountDirectory,
-             enterprise,  eventdirectory, bankemployeeAccountDirectory,            
-             fundraisingemployeeAccountDirectory,  advertisingemployeeAccountDirectory));
+            leftContainer.add("AdminLeftJPanel", new AdminLeftJPanel(leftContainer, rightContainer, userAccountDirectory, 
+                    eventdirectory, bankemployeeAccountDirectory, fundraisingemployeeAccountDirectory, 
+                    advertisingemployeeAccountDirectory, system, dB4OUtil));
             leftLayout.next(leftContainer);
             CardLayout rightLayout = (CardLayout) rightContainer.getLayout();
-            rightContainer.add("AdminWorkAreaJPanel", new AdminWorkAreaJPanel(rightContainer, enterprise, eventdirectory));
+            rightContainer.add("AdminWorkAreaJPanel", new AdminWorkAreaJPanel(rightContainer, eventdirectory));
             rightLayout.next(rightContainer);
             }
             else if(userAccount.getRole().getClass().equals(UserRole.class)) {
             CardLayout leftLayout = (CardLayout) leftContainer.getLayout();
-            leftContainer.add("UserWorkAreaJPanel", new UserWorkAreaJPanel( leftContainer,  rightContainer, userAccountDirectory, enterprise, eventdirectory,  bankemployeeAccountDirectory,            
-             fundraisingemployeeAccountDirectory,  advertisingemployeeAccountDirectory));
+            leftContainer.add("UserWorkAreaJPanel", new UserWorkAreaJPanel(leftContainer, rightContainer, 
+                    userAccountDirectory, eventdirectory, bankemployeeAccountDirectory, fundraisingemployeeAccountDirectory, 
+                    advertisingemployeeAccountDirectory, system, dB4OUtil));
             leftLayout.next(leftContainer);
             CardLayout rightLayout = (CardLayout) rightContainer.getLayout();
-            rightContainer.add("UserHomeJPanel", new UserHomeJPanel(leftContainer, rightContainer, enterprise, eventdirectory));
+            rightContainer.add("UserHomeJPanel", new UserHomeJPanel(leftContainer, rightContainer, eventdirectory));
             rightLayout.next(rightContainer);
             }
             else if(userAccount.getRole().getClass().equals(FundTransferBankEmployee.class)){
             CardLayout leftLayout = (CardLayout) leftContainer.getLayout();
-            leftContainer.add("BankLeftJPanel", new BankLeftJPanel( leftContainer,  rightContainer,  userAccountDirectory,
-             enterprise,  eventdirectory,  bankemployeeAccountDirectory,            
-             fundraisingemployeeAccountDirectory,  advertisingemployeeAccountDirectory));
+            leftContainer.add("BankLeftJPanel", new BankLeftJPanel(leftContainer, rightContainer, userAccountDirectory, eventdirectory, 
+                    bankemployeeAccountDirectory, fundraisingemployeeAccountDirectory, advertisingemployeeAccountDirectory, system, dB4OUtil));
             leftLayout.next(leftContainer);
             CardLayout rightLayout = (CardLayout) rightContainer.getLayout();
-            rightContainer.add("BankDashBoardJPanel", new BankDashBoardJPanel(rightContainer, enterprise, eventdirectory));
+            rightContainer.add("BankDashBoardJPanel", new BankDashBoardJPanel(rightContainer, eventdirectory));
             rightLayout.next(rightContainer);
             }
             flag = true; 
@@ -194,7 +201,9 @@ public class UserLogin extends javax.swing.JPanel {
 
     private void btnNewUSerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNewUSerActionPerformed
         CardLayout layout = (CardLayout) rightContainer.getLayout();
-        CreateNewUser createNewUser = new CreateNewUser(leftContainer, rightContainer, userAccountDirectory, fundraisingemployeeAccountDirectory, advertisingemployeeAccountDirectory, bankemployeeAccountDirectory);
+        CreateNewUser createNewUser = new CreateNewUser(leftContainer, rightContainer, userAccountDirectory, 
+                fundraisingemployeeAccountDirectory, advertisingemployeeAccountDirectory, bankemployeeAccountDirectory, 
+                system, dB4OUtil);
         rightContainer.add("CreateNewUser", createNewUser);
         layout.next(rightContainer);
         refreshLeftContainer();

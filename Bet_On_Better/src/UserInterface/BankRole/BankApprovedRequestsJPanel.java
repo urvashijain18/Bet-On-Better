@@ -20,16 +20,14 @@ import javax.swing.JPanel;
 public class BankApprovedRequestsJPanel extends javax.swing.JPanel {
 
     private JPanel rightContainer;
-    private Enterprise enterprise;
     private EventDirectory eventdirectory;
 
     /**
      * Creates new form ApprovedRequestsJPanel
      */
-    public BankApprovedRequestsJPanel(JPanel rightContainer, Enterprise enterprise, EventDirectory eventdirectory) {
+    public BankApprovedRequestsJPanel(JPanel rightContainer, EventDirectory eventdirectory) {
         initComponents();
         this.rightContainer = rightContainer;
-        this.enterprise = enterprise;
         this.eventdirectory = eventdirectory;
     }
 
@@ -132,7 +130,7 @@ public class BankApprovedRequestsJPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "Please select a row from the table", "Warning", JOptionPane.WARNING_MESSAGE);
         } else {
             Event event = (Event) tblVerifRecords.getValueAt(selectedRow, 0);
-            ApprovedVerifRequestDetails detailsPanel = new ApprovedVerifRequestDetails(rightContainer, enterprise, eventdirectory);
+            ApprovedVerifRequestDetails detailsPanel = new ApprovedVerifRequestDetails(rightContainer, eventdirectory);
             rightContainer.add("ApprovedVerifRequestDetails", detailsPanel);
             CardLayout layout = (CardLayout) rightContainer.getLayout();
             layout.next(rightContainer);
@@ -145,7 +143,7 @@ public class BankApprovedRequestsJPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "Please select a row from the table", "Warning", JOptionPane.WARNING_MESSAGE);
         } else {
             Event event = (Event) tblFundAllocationRecords.getValueAt(selectedRow, 0);
-            FundAllocationRequestDetails allocationRequestDetails = new FundAllocationRequestDetails(rightContainer, enterprise, eventdirectory);
+            FundAllocationRequestDetails allocationRequestDetails = new FundAllocationRequestDetails(rightContainer, eventdirectory);
             rightContainer.add("FundAllocationRequestDetails", allocationRequestDetails);
             CardLayout layout = (CardLayout) rightContainer.getLayout();
             layout.next(rightContainer);
