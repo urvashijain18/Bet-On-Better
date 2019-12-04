@@ -5,12 +5,16 @@
  */
 package Business.Role;
 
+import Business.AdvertisingEmployee.AdvertisingEmployeeAccountDirectory;
+import Business.BankEmployee.BankEmployeeAccountDirectory;
+import Business.DB4OUtil.DB4OUtil;
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
 import Business.FundRaiserEvents.EventDirectory;
-import Business.Organization.InitiativesOrganization;
+import Business.FundRaisingEmployee.FundRaisingEmployeeAccountDirectory;
 import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
+import Business.UserAccount.UserAccountDirectory;
 import javax.swing.JPanel;
 
 /**
@@ -37,11 +41,17 @@ public abstract class Role {
         }
     }
     
-    public abstract JPanel createWorkArea(JPanel userProcessContainer, 
+    public abstract JPanel createRightWorkArea(JPanel userProcessContainer, 
             UserAccount account, 
             Organization organization, 
             Enterprise enterprise, 
             EcoSystem business, EventDirectory eventdirectory);
+    
+    public abstract JPanel createLeftWorkArea(JPanel leftContainer, JPanel rightContainer, UserAccountDirectory userAccountDirectory, 
+                EventDirectory eventdirectory, BankEmployeeAccountDirectory bankemployeeAccountDirectory, 
+                FundRaisingEmployeeAccountDirectory fundraisingemployeeAccountDirectory, 
+                AdvertisingEmployeeAccountDirectory advertisingemployeeAccountDirectory, EcoSystem business, 
+                DB4OUtil dB4OUtil, Enterprise enterprise);
 
     @Override
     public String toString() {

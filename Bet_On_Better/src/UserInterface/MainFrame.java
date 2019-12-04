@@ -35,7 +35,7 @@ public class MainFrame extends javax.swing.JFrame {
         initComponents();
         this.system = dB4OUtil.retrieveSystem();
         this.setSize(1680, 1050);
-        this.userAccountDirectory = new UserAccountDirectory();
+        this.userAccountDirectory = system.getUserAccountDirectory();
         this.eventdirectory = new EventDirectory();
         this.fundraisingemployeeAccountDirectory = new FundRaisingEmployeeAccountDirectory();
         this.bankemployeeAccountDirectory = new BankEmployeeAccountDirectory();

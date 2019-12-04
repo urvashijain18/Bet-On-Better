@@ -22,7 +22,7 @@ import javax.swing.JPanel;
  * @author devma
  */
 public class AdminAdvertisingLeftJPanel extends javax.swing.JPanel {
-private JPanel leftContainer;
+    private JPanel leftContainer;
     private JPanel rightContainer;
     private UserAccountDirectory userAccountDirectory; 
     private Enterprise enterprise; 
