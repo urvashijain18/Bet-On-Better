@@ -6,6 +6,7 @@
 package Business.Organization;
 
 import Business.Employee.EmployeeDirectory;
+import Business.EndUser.EndUserDirectory;
 import Business.Role.Role;
 import Business.UserAccount.UserAccountDirectory;
 import Business.WorkQueue.WorkQueue;
@@ -21,6 +22,7 @@ public abstract class Organization {
     private Type organizationType;
     private EmployeeDirectory employeeDirectory;
     private UserAccountDirectory userAccountDirectory;
+    private EndUserDirectory endUserDirectory;
     private int organizationID;
     private static int counter=0;
     

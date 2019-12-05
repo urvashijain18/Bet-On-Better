@@ -5,6 +5,7 @@
  */
 package UserInterface;
 
+import Business.EndUser.AccountDetails;
 import UserInterface.UserRole.CreateNewUser;
 import Business.AdvertisingEmployee.AdvertisingEmployeeAccountDirectory;
 import Business.BankEmployee.BankEmployeeAccountDirectory;
@@ -35,6 +36,8 @@ public class UserLogin extends javax.swing.JPanel {
     private BankEmployeeAccountDirectory bankemployeeAccountDirectory;
     private EcoSystem system;
     private DB4OUtil dB4OUtil;
+    //Enterprise enterprise;
+    //private AccountDetails accdetails;
     /**
      * Creates new form UserLogin    /**
      * Creates new form UserLogin
@@ -157,7 +160,7 @@ public class UserLogin extends javax.swing.JPanel {
         Organization inOrganization = null;
         if(userAccount==null){
             for(Network network:system.getNetworkList()){
-                for(Enterprise enterprise:network.getEnterpriseDirectory().getEnterpriseList()){
+                for(Enterprise enterprise : network.getEnterpriseDirectory().getEnterpriseList()){
                     userAccount=enterprise.getUserAccountDirectory().authenticateUser(userName, password);
                     if(userAccount==null){
                        for(Organization organization:enterprise.getOrganizationDirectory().getOrganizationList()){

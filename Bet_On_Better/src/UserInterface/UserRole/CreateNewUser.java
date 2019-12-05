@@ -5,22 +5,19 @@
  */
 package UserInterface.UserRole;
 
+import Business.EndUser.AccountDetails;
 import Business.AdvertisingEmployee.AdvertisingEmployeeAccountDirectory;
 import Business.BankEmployee.BankEmployeeAccountDirectory;
 import Business.DB4OUtil.DB4OUtil;
 import Business.EcoSystem;
+import Business.EndUser.EndUser;
 import Business.FundRaisingEmployee.FundRaisingEmployeeAccountDirectory;
-import Business.Enterprise.AdvertisingEnterprise;
-import Business.Enterprise.BankEnterprise;
 import Business.Enterprise.Enterprise;
-import Business.Enterprise.FundRaisingEnterprise;
 import Business.FundRaiserEvents.EventDirectory;
-import Business.Role.FundRaisingAdmin;
+import Business.Network.Network;
 import Business.Role.Role;
 import Business.Role.UserRole;
-import Business.UserAccount.UserAccount;
 import Business.UserAccount.UserAccountDirectory;
-import UserInterface.FundRaisingAdminRole.AdminTargetDateJPanel;
 import UserInterface.UserLogin;
 import java.awt.CardLayout;
 import java.util.regex.Matcher;
@@ -42,11 +39,14 @@ public class CreateNewUser extends javax.swing.JPanel {
     private BankEmployeeAccountDirectory bankemployeeAccountDirectory;
     private EcoSystem system;
     private DB4OUtil dB4OUtil;
-    
+    //private Enterprise enterprise;
+    EndUser user = new EndUser();
+    //private AccountDetails accdetails;
+
     /**
      * Creates new form CreateNewUser
      */
-    public CreateNewUser(JPanel leftContainer, JPanel rightContainer, UserAccountDirectory userAccountDirectory,FundRaisingEmployeeAccountDirectory fundraisingemployeeAccountDirectory, AdvertisingEmployeeAccountDirectory advertisingemployeeAccountDirectory,
+    public CreateNewUser(JPanel leftContainer, JPanel rightContainer, UserAccountDirectory userAccountDirectory, FundRaisingEmployeeAccountDirectory fundraisingemployeeAccountDirectory, AdvertisingEmployeeAccountDirectory advertisingemployeeAccountDirectory,
             BankEmployeeAccountDirectory bankemployeeAccountDirectory, EcoSystem system,
             DB4OUtil dB4OUtil) {
         initComponents();
@@ -58,6 +58,7 @@ public class CreateNewUser extends javax.swing.JPanel {
         this.bankemployeeAccountDirectory = bankemployeeAccountDirectory;
         this.system = system;
         this.dB4OUtil = dB4OUtil;
+        populateComboBox();
     }
 
     /**
@@ -81,7 +82,8 @@ public class CreateNewUser extends javax.swing.JPanel {
         btnCreate = new javax.swing.JButton();
         passwordField = new javax.swing.JPasswordField();
         confirmPasswordField = new javax.swing.JPasswordField();
-        jButton1 = new javax.swing.JButton();
+        networkcomboBox = new javax.swing.JComboBox();
+        jLabel6 = new javax.swing.JLabel();
 
         btnBack.setText("<< Back");
         btnBack.addActionListener(new java.awt.event.ActionListener() {
@@ -112,12 +114,9 @@ public class CreateNewUser extends javax.swing.JPanel {
             }
         });
 
-        jButton1.setText("Bank Account Details");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
+        networkcomboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        jLabel6.setText("Location : ");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -128,28 +127,31 @@ public class CreateNewUser extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(36, 36, 36)
                         .addComponent(btnBack)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addGap(263, 263, 263))
-                            .addGroup(layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 110, Short.MAX_VALUE)
                                 .addComponent(btnCreate)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jButton1))))
+                                .addGap(242, 242, 242))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(100, 100, 100)
+                                .addComponent(jLabel1)
+                                .addGap(0, 0, Short.MAX_VALUE))))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING))
+                            .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING))
                         .addGap(52, 52, 52)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtUserName)
-                            .addComponent(txtName)
-                            .addComponent(passwordField)
-                            .addComponent(confirmPasswordField, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(networkcomboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(txtUserName)
+                                .addComponent(txtName)
+                                .addComponent(passwordField)
+                                .addComponent(confirmPasswordField, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addGap(144, 144, 144))
         );
         layout.setVerticalGroup(
@@ -175,11 +177,13 @@ public class CreateNewUser extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(confirmPasswordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(127, 127, 127)
+                .addGap(34, 34, 34)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnCreate)
-                    .addComponent(jButton1))
-                .addContainerGap(54, Short.MAX_VALUE))
+                    .addComponent(networkcomboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel6))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 64, Short.MAX_VALUE)
+                .addComponent(btnCreate)
+                .addGap(63, 63, 63))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -229,26 +233,27 @@ public class CreateNewUser extends javax.swing.JPanel {
 //            JOptionPane.showMessageDialog(null, "Please select a role");
 //            return;
 //        }
-
         Role role = new UserRole();
-        userAccountDirectory.createUserAccount(username, pwd, role);
+        Network network = (Network) networkcomboBox.getSelectedItem();
+        for(Network net : system.getNetworkList()){
+            if(net.equals(network)){
+                for(Enterprise enterprise : network.getEnterpriseDirectory().getEnterpriseList()){
+                    enterprise.getUserAccountDirectory().createUserAccount(username, pwd, role);
+                }
+            }
+        }
+        
 
         JOptionPane.showMessageDialog(null, "Account Created Successfully");
         rightContainer.remove(this);
-        CardLayout leftLayout = (CardLayout) leftContainer.getLayout();        
-        UserLogin userLoginJPanel = new UserLogin(leftContainer, rightContainer, userAccountDirectory, new EventDirectory(), 
-                fundraisingemployeeAccountDirectory,advertisingemployeeAccountDirectory,bankemployeeAccountDirectory, 
+        CardLayout leftLayout = (CardLayout) leftContainer.getLayout();
+        UserLogin userLoginJPanel = new UserLogin(leftContainer, rightContainer, userAccountDirectory, new EventDirectory(),
+                fundraisingemployeeAccountDirectory, advertisingemployeeAccountDirectory, bankemployeeAccountDirectory,
                 system, dB4OUtil);
         leftContainer.add("UserLoginJPanel", userLoginJPanel);
         leftLayout.next(leftContainer);
+        dB4OUtil.storeSystem(system);
     }//GEN-LAST:event_btnCreateActionPerformed
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-BankAccountDetailsJPanel panel = new BankAccountDetailsJPanel(rightContainer);
-      rightContainer.add("BankAccountDetailsJPanel", panel);
-      CardLayout layout = (CardLayout) rightContainer.getLayout();
-      layout.next(rightContainer);        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
 
     private boolean usernamePatternCorrect() {
         Pattern p = Pattern.compile("^[a-zA-Z0-9]+$");
@@ -264,18 +269,26 @@ BankAccountDetailsJPanel panel = new BankAccountDetailsJPanel(rightContainer);
         return b;
     }
     
+    private void populateComboBox(){
+        networkcomboBox.removeAllItems();
+        for (Network network : system.getNetworkList()){
+            networkcomboBox.addItem(network);
+        }
+    }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBack;
     private javax.swing.JButton btnCreate;
     private javax.swing.ButtonGroup btnGrp;
     private javax.swing.JPasswordField confirmPasswordField;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JComboBox networkcomboBox;
     private javax.swing.JPasswordField passwordField;
     private javax.swing.JTextField txtName;
     private javax.swing.JTextField txtUserName;
