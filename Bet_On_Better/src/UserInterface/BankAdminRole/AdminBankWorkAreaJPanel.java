@@ -5,26 +5,50 @@
  */
 package UserInterface.BankAdminRole;
 
+import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
 import Business.FundRaiserEvents.EventDirectory;
+import Business.Network.Network;
+import Business.Organization.Organization;
+import Business.UserAccount.UserAccount;
 import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author devma
  */
 public class AdminBankWorkAreaJPanel extends javax.swing.JPanel {
-private JPanel rightContainer;
-private Enterprise enterprise;
-private EventDirectory eventdirectory;
+
+    private JPanel rightContainer;
+    private EcoSystem system;
+
     /**
      * Creates new form AdminBankWorkAreaJPanel
      */
-    public AdminBankWorkAreaJPanel(JPanel rightContainer,Enterprise enterprise,EventDirectory eventdirectory) {
+    public AdminBankWorkAreaJPanel(JPanel rightContainer, EcoSystem system) {
         initComponents();
         this.rightContainer = rightContainer;
-        this.enterprise = enterprise;
-        this.eventdirectory = eventdirectory;
+        this.system = system;
+        populateTable();
+    }
+
+    private void populateTable() {
+        DefaultTableModel model = (DefaultTableModel) tblExistingEmployee.getModel();
+        model.setRowCount(0);
+        for (Network network : system.getNetworkList()) {
+            for (Enterprise enterprise : network.getEnterpriseDirectory().getEnterpriseList()) {
+                for (Organization organization : enterprise.getOrganizationDirectory().getOrganizationList()) {
+                    for (UserAccount userAccount : organization.getUserAccountDirectory().getUserAccountList()) {
+                        Object[] row = new Object[3];
+                        row[0] = userAccount.getName();
+                        row[1] = organization.getName();
+                        row[2] = userAccount.getUsername();
+                        model.addRow(row);
+                    }
+                }
+            }
+        }
     }
 
     /**
@@ -36,19 +60,68 @@ private EventDirectory eventdirectory;
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel1 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tblExistingEmployee = new javax.swing.JTable();
+        btnDelete = new javax.swing.JButton();
+        btnView = new javax.swing.JButton();
+
+        jLabel1.setText("Hi Admin!");
+
+        tblExistingEmployee.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Employee Name", "Organization", "UserName"
+            }
+        ));
+        jScrollPane1.setViewportView(tblExistingEmployee);
+
+        btnDelete.setText("Delete");
+
+        btnView.setText("View");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(166, 166, 166)
+                        .addComponent(jLabel1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addComponent(btnDelete)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnView))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 363, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(27, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(25, 25, 25)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(31, 31, 31)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnDelete)
+                    .addComponent(btnView))
+                .addContainerGap(131, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnDelete;
+    private javax.swing.JButton btnView;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable tblExistingEmployee;
     // End of variables declaration//GEN-END:variables
 }

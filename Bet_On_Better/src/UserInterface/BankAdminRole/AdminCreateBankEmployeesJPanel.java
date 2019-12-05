@@ -6,10 +6,19 @@
 package UserInterface.BankAdminRole;
 
 import Business.BankEmployee.BankEmployeeAccountDirectory;
+import Business.EcoSystem;
+import Business.Enterprise.BankEnterprise;
+import Business.Enterprise.Enterprise;
+import Business.FundRaiserEvents.EventDirectory;
 import Business.FundRaisingEmployee.FundRaisingEmployeeAccountDirectory;
+import Business.Organization.AccountVerificationOrganization;
+import Business.Organization.FundTransferOrganization;
+import Business.Organization.Organization;
 import Business.Role.AccVerificationBankEmployee;
 import Business.Role.FundTransferBankEmployee;
 import Business.Role.Role;
+import UserInterface.FundRaisingAdminRole.AdminWorkAreaJPanel;
+import UserInterface.UserLogin;
 import java.awt.CardLayout;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -24,14 +33,19 @@ public class AdminCreateBankEmployeesJPanel extends javax.swing.JPanel {
 private JPanel rightContainer;
 private JPanel leftContainer;
 private BankEmployeeAccountDirectory bankemployeeAccountDirectory;
+private Enterprise enterprise;
+private EcoSystem system;
     /**
      * Creates new form AdminCreateBankEmployeesJPanel
      */
-    public AdminCreateBankEmployeesJPanel(JPanel rightContainer,JPanel leftContainer,BankEmployeeAccountDirectory bankemployeeAccountDirectory) {
+    public AdminCreateBankEmployeesJPanel(JPanel rightContainer,JPanel leftContainer,
+            BankEmployeeAccountDirectory bankemployeeAccountDirectory, Enterprise enterprise, EcoSystem system) {
         initComponents();
         this.rightContainer = rightContainer;
         this.leftContainer = leftContainer;
         this.bankemployeeAccountDirectory = bankemployeeAccountDirectory;
+        this.enterprise = enterprise;
+        this.system = system;
     }
 
     /**
@@ -172,7 +186,6 @@ private BankEmployeeAccountDirectory bankemployeeAccountDirectory;
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
-        // TODO add your handling code here:
         rightContainer.remove(this);
         CardLayout leftLayout = (CardLayout) rightContainer.getLayout();
         leftLayout.previous(rightContainer);
@@ -217,18 +230,25 @@ private BankEmployeeAccountDirectory bankemployeeAccountDirectory;
             JOptionPane.showMessageDialog(null, "Please select a role");
             return;
         }
-
+        
         Role role = null;
-
+        Organization organization = null;
         if (btnAccVerificationEmployee.isSelected()) {
             role = new AccVerificationBankEmployee();
+            organization = new AccountVerificationOrganization();
         }else if (btnFundTransferEmployee.isSelected()) {
             role = new FundTransferBankEmployee();
+            organization = new FundTransferOrganization();
         }
 
+        if(organization!=null){
+        organization.getUserAccountDirectory().createUserAccount(username, pwd, role);
+        }
         bankemployeeAccountDirectory.createEmployeeAccount(username, pwd, role);
-
         JOptionPane.showMessageDialog(null, "Account Created Successfully");
+        CardLayout rightLayout = (CardLayout) rightContainer.getLayout();        
+        rightContainer.add("AdminWorkAreaJPanel", new AdminBankWorkAreaJPanel(rightContainer, system));
+        rightLayout.next(rightContainer);
  }                                         
 
     
