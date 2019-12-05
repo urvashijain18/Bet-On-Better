@@ -11,7 +11,7 @@ import java.util.Date;
  *
  * @author Urvashi
  */
-public class VerificationRequestByBank extends WorkRequest{
+public class VerificationRequest extends WorkRequest{
     private int requestId;
     private Date verificationDate;
     private String status;
