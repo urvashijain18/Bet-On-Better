@@ -14,6 +14,7 @@ import Business.Role.FundRaisingAdmin;
 import Business.Role.Role;
 import Business.UserAccount.UserAccount;
 import java.awt.CardLayout;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 
@@ -40,7 +41,6 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
     }
     private void populateTable() {
         DefaultTableModel model = (DefaultTableModel) enterpriseJTable.getModel();
-
         model.setRowCount(0);
         for (Network network : system.getNetworkList()) {
             for (Enterprise enterprise : network.getEnterpriseDirectory().getEnterpriseList()) {
@@ -67,11 +67,9 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
     
     private void populateEnterpriseComboBox(Network network){
         enterpriseJComboBox.removeAllItems();
-        
         for (Enterprise enterprise : network.getEnterpriseDirectory().getEnterpriseList()){
             enterpriseJComboBox.addItem(enterprise);
         }
-        
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -99,10 +97,7 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
 
         enterpriseJTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+
             },
             new String [] {
                 "Enterprise Name", "Network", "Username"
@@ -232,26 +227,39 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void networkJComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_networkJComboBoxActionPerformed
-
         Network network = (Network) networkJComboBox.getSelectedItem();
         if (network != null){
             populateEnterpriseComboBox(network);
         }
-
     }//GEN-LAST:event_networkJComboBoxActionPerformed
 
     private void backJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backJButtonActionPerformed
-         rightContainer.remove(this);
-        CardLayout leftLayout = (CardLayout) rightContainer.getLayout();
-        leftLayout.previous(rightContainer);
+        rightContainer.remove(this);
+        CardLayout rightLayout = (CardLayout) rightContainer.getLayout();
+        rightLayout.previous(rightContainer);
     }//GEN-LAST:event_backJButtonActionPerformed
 
     private void submitJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitJButtonActionPerformed
-
+        if(enterpriseJComboBox.getSelectedItem().equals("--Select--")){
+            JOptionPane.showMessageDialog(null, "Please select a Enterprise Type");
+            return;
+        }
         Enterprise enterprise = (Enterprise) enterpriseJComboBox.getSelectedItem();
         Role role = null;
+        if(usernameJTextField.getText().equals("")){
+            JOptionPane.showMessageDialog(null, "Please enter username");
+            return;
+        }
         String username = usernameJTextField.getText();
+        if(passwordJPasswordField.getText().equals("")){
+            JOptionPane.showMessageDialog(null, "Please enter password");
+            return;
+        }
         String password = String.valueOf(passwordJPasswordField.getPassword());
+        if(nameJTextField.getText().equals("")){
+            JOptionPane.showMessageDialog(null, "Please enter name");
+            return;
+        }
         String name = nameJTextField.getText();
         if(enterprise.getEnterpriseType().equals(Enterprise.EnterpriseType.Bank)){
             role = new BankAdmin();
@@ -260,11 +268,12 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
         }else if(enterprise.getEnterpriseType().equals(Enterprise.EnterpriseType.Advertising)){
             role = new AdvertisingAdmin();
         }
-        //Employee employee = enterprise.getEmployeeDirectory().createEmployee(name);
-
-        UserAccount account = enterprise.getUserAccountDirectory().createUserAccount(username, password, role);
+        enterprise.getUserAccountDirectory().createUserAccount(username, password, role);
+        JOptionPane.showMessageDialog(null, "Admin Account Created Successfully");
+        usernameJTextField.setText("");
+        passwordJPasswordField.setText("");
+        nameJTextField.setText("");
         populateTable();
-
     }//GEN-LAST:event_submitJButtonActionPerformed
 
     private void enterpriseJComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enterpriseJComboBoxActionPerformed

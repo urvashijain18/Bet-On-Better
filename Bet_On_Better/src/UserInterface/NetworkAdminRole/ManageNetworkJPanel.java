@@ -8,6 +8,7 @@ package UserInterface.NetworkAdminRole;
 import Business.EcoSystem;
 import Business.Network.Network;
 import java.awt.CardLayout;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 
@@ -62,10 +63,7 @@ public class ManageNetworkJPanel extends javax.swing.JPanel {
 
         networkJTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null},
-                {null},
-                {null},
-                {null}
+
             },
             new String [] {
                 "Name"
@@ -143,12 +141,11 @@ public class ManageNetworkJPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void submitJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitJButtonActionPerformed
-
         String name = nameJTextField.getText();
-
         Network network = system.createAndAddNetwork();
         network.setName(name);
-
+        JOptionPane.showMessageDialog(null, "Network Created Successfully");
+        nameJTextField.setText("");
         populateNetworkTable();
     }//GEN-LAST:event_submitJButtonActionPerformed
 

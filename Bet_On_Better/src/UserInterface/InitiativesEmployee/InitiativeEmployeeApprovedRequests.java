@@ -12,14 +12,14 @@ import javax.swing.JPanel;
  *
  * @author MMI
  */
-public class FundraisingEmployeeApprovedRequests extends javax.swing.JPanel {
+public class InitiativeEmployeeApprovedRequests extends javax.swing.JPanel {
 
     /**
      * Creates new form FundraisingEmployeeApprovedRequests
      */
    
 
-    FundraisingEmployeeApprovedRequests(JPanel rightContainer, EventDirectory eventdirectory) {
+    InitiativeEmployeeApprovedRequests(JPanel rightContainer, EventDirectory eventdirectory) {
         initComponents();
     }
         

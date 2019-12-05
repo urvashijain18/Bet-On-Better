@@ -19,7 +19,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class ManageEnterpriseJPanel extends javax.swing.JPanel {
 
-   private JPanel rightContainer;
+    private JPanel rightContainer;
     private EcoSystem system;
 
     /**
@@ -53,17 +53,15 @@ public class ManageEnterpriseJPanel extends javax.swing.JPanel {
     private void populateComboBox() {
         networkJComboBox.removeAllItems();
         enterpriseTypeJComboBox.removeAllItems();
-
+        networkJComboBox.addItem(new String("--Select--"));
         for (Network network : system.getNetworkList()) {
             networkJComboBox.addItem(network);
         }
-
+        enterpriseTypeJComboBox.addItem(new String("--Select--"));
         for (Enterprise.EnterpriseType type : Enterprise.EnterpriseType.values()) {
             enterpriseTypeJComboBox.addItem(type);
         }
-
     }
-
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -87,10 +85,7 @@ public class ManageEnterpriseJPanel extends javax.swing.JPanel {
 
         enterpriseJTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+
             },
             new String [] {
                 "Enterprise Name", "Network", "Type"
@@ -184,25 +179,35 @@ public class ManageEnterpriseJPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void backJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backJButtonActionPerformed
-          rightContainer.remove(this);
+        rightContainer.remove(this);
         CardLayout leftLayout = (CardLayout) rightContainer.getLayout();
         leftLayout.previous(rightContainer);
     }//GEN-LAST:event_backJButtonActionPerformed
 
     private void submitJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitJButtonActionPerformed
-
+        if(networkJComboBox.getSelectedItem().equals("--Select--")){
+            JOptionPane.showMessageDialog(null, "Please select a Network");
+            return;
+        }
         Network network = (Network) networkJComboBox.getSelectedItem();
+        if(enterpriseTypeJComboBox.getSelectedItem().equals("--Select--")){
+            JOptionPane.showMessageDialog(null, "Please select a Enterprise Type");
+            return;
+        }
         Enterprise.EnterpriseType type = (Enterprise.EnterpriseType) enterpriseTypeJComboBox.getSelectedItem();
-
         if (network == null || type == null) {
             JOptionPane.showMessageDialog(null, "Invalid Input!");
             return;
         }
-
+        if(nameJTextField.getText().equals("")){
+            JOptionPane.showMessageDialog(null, "Please enter name");
+            return;
+        }
         String name = nameJTextField.getText();
-
         Enterprise enterprise = network.getEnterpriseDirectory().createAndAddEnterprise(name, type);
-
+        JOptionPane.showMessageDialog(null, "Enterprise Created Successfully");
+        populateComboBox();
+        nameJTextField.setText("");
         populateTable();
     }//GEN-LAST:event_submitJButtonActionPerformed
 
