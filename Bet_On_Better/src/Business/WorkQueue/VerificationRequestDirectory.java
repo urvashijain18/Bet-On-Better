@@ -5,7 +5,7 @@
  */
 package Business.WorkQueue;
 
-import Business.WorkRequest.VerificationRequestByBank;
+import Business.WorkRequest.VerificationRequest;
 import java.util.ArrayList;
 
 /**
@@ -13,17 +13,17 @@ import java.util.ArrayList;
  * @author Urvashi
  */
 public class VerificationRequestDirectory {
-    private ArrayList<VerificationRequestByBank> verificationRequestList;
+    private ArrayList<VerificationRequest> verificationRequestList;
    
     public VerificationRequestDirectory(){
         verificationRequestList = new ArrayList<>();
     }
     
-    public ArrayList<VerificationRequestByBank> getEnterpriseList() {
+    public ArrayList<VerificationRequest> getEnterpriseList() {
         return verificationRequestList;
     }
 
-    public void setEnterpriseList(ArrayList<VerificationRequestByBank> verificationRequestList) {
+    public void setEnterpriseList(ArrayList<VerificationRequest> verificationRequestList) {
         this.verificationRequestList = verificationRequestList;
     }
 }

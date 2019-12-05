@@ -8,6 +8,8 @@ package UserInterface.Event;
 import Business.Enterprise.Enterprise;
 import Business.FundRaiserEvents.EventDirectory;
 import Business.UserAccount.UserAccountDirectory;
+import Business.WorkRequest.VerificationRequest;
+import Business.WorkRequest.WorkRequest;
 import javax.swing.JPanel;
 
 /**
@@ -75,6 +77,11 @@ public class CreateEventJPanel extends javax.swing.JPanel {
         });
 
         btnCreate.setText("Create");
+        btnCreate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCreateActionPerformed(evt);
+            }
+        });
 
         btnBack.setText("<< Back");
 
@@ -144,6 +151,20 @@ public class CreateEventJPanel extends javax.swing.JPanel {
     private void txtDescActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDescActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtDescActionPerformed
+
+    private void btnCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateActionPerformed
+        String eventName = txtEventName.getText();
+
+        String requestAmount = txtReqAmt.getText();
+
+        String targetDate = txtTargetDate.getText();
+
+        String Description = txtDesc.getText();
+
+        WorkRequest workrequest = new VerificationRequest();
+      
+                // TODO add your handling code here:
+    }//GEN-LAST:event_btnCreateActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
