@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package UserInterface.FundraisingEmployee;
+package UserInterface.InitiativesEmployee;
 
 import Business.FundRaiserEvents.EventDirectory;
 import javax.swing.JPanel;
@@ -12,14 +12,14 @@ import javax.swing.JPanel;
  *
  * @author MMI
  */
-public class FundraisingEmployeeApprovedRequests extends javax.swing.JPanel {
+public class InitiativesEmployeePendingRequests extends javax.swing.JPanel {
 
     /**
-     * Creates new form FundraisingEmployeeApprovedRequests
+     * Creates new form FundraisingEmployeeLeftJPanel
      */
    
 
-    FundraisingEmployeeApprovedRequests(JPanel rightContainer, EventDirectory eventdirectory) {
+    InitiativesEmployeePendingRequests(JPanel rightContainer, EventDirectory eventdirectory) {
         initComponents();
     }
         
@@ -48,7 +48,7 @@ public class FundraisingEmployeeApprovedRequests extends javax.swing.JPanel {
         jScrollPane1.setViewportView(tblLiveEvents);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel1.setText("Approved Requests");
+        jLabel1.setText("Pending Requests");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -70,7 +70,7 @@ public class FundraisingEmployeeApprovedRequests extends javax.swing.JPanel {
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(157, Short.MAX_VALUE))
+                .addContainerGap(241, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
