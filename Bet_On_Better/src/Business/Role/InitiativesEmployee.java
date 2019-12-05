@@ -15,6 +15,7 @@ import Business.FundRaisingEmployee.FundRaisingEmployeeAccountDirectory;
 import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
 import Business.UserAccount.UserAccountDirectory;
+import UserInterface.FundRaisingAdminRole.AdminLeftJPanel;
 import javax.swing.JPanel;
 
 /**
@@ -30,7 +31,8 @@ public class InitiativesEmployee extends Role{
 
     @Override
     public JPanel createLeftWorkArea(JPanel leftContainer, JPanel rightContainer, UserAccountDirectory userAccountDirectory, EventDirectory eventdirectory, BankEmployeeAccountDirectory bankemployeeAccountDirectory, FundRaisingEmployeeAccountDirectory fundraisingemployeeAccountDirectory, AdvertisingEmployeeAccountDirectory advertisingemployeeAccountDirectory, EcoSystem business, DB4OUtil dB4OUtil, Enterprise enterprise) {
-        return new JPanel();
+          return new AdminLeftJPanel(leftContainer, rightContainer, userAccountDirectory, eventdirectory, bankemployeeAccountDirectory, fundraisingemployeeAccountDirectory, advertisingemployeeAccountDirectory, business, dB4OUtil,enterprise);
+    
     }
     
     }

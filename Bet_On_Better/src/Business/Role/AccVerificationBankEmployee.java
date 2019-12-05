@@ -41,7 +41,7 @@ import javax.swing.JPanel;
                 DB4OUtil dB4OUtil, Enterprise enterprise) {
         return new AdminLeftJPanel(leftContainer, leftContainer, userAccountDirectory, 
                 eventdirectory, bankemployeeAccountDirectory, fundraisingemployeeAccountDirectory, 
-                advertisingemployeeAccountDirectory, business, dB4OUtil);
+                advertisingemployeeAccountDirectory, business, dB4OUtil,enterprise);
     }
 }
     
