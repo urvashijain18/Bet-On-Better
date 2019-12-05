@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package UserInterface.FundraisingEmployee;
+package UserInterface.InitiativesEmployee;
 
 import Business.AdvertisingEmployee.AdvertisingEmployeeAccountDirectory;
 import Business.BankEmployee.BankEmployeeAccountDirectory;
@@ -22,7 +22,7 @@ import javax.swing.JPanel;
  *
  * @author MMI
  */
-public class FundraisingEmployeeLeftJPanel extends javax.swing.JPanel {
+public class InitiativesEmployeeLeftJPanel extends javax.swing.JPanel {
 
     private JPanel leftContainer;
     private JPanel rightContainer;
@@ -37,7 +37,7 @@ public class FundraisingEmployeeLeftJPanel extends javax.swing.JPanel {
     /**
      * Creates new form FundraisingEmployeeRightJPanel
      */
-//    public FundraisingEmployeeLeftJPanel(JPanel leftContainer, JPanel rightContainer,UserAccountDirectory userAccountDirectory,
+//    public InitiativesEmployeeLeftJPanel(JPanel leftContainer, JPanel rightContainer,UserAccountDirectory userAccountDirectory,
 //            EventDirectory eventdirectory, BankEmployeeAccountDirectory bankemployeeAccountDirectory,            
 //            FundRaisingEmployeeAccountDirectory fundraisingemployeeAccountDirectory, 
 //            AdvertisingEmployeeAccountDirectory advertisingemployeeAccountDirectory, EcoSystem system,
@@ -54,7 +54,7 @@ public class FundraisingEmployeeLeftJPanel extends javax.swing.JPanel {
 //        this.dB4OUtil = dB4OUtil;
 //    }
 
-    public FundraisingEmployeeLeftJPanel(JPanel leftContainer, JPanel rightContainer, UserAccountDirectory userAccountDirectory, EventDirectory eventdirectory, BankEmployeeAccountDirectory bankemployeeAccountDirectory, FundRaisingEmployeeAccountDirectory fundraisingemployeeAccountDirectory, AdvertisingEmployeeAccountDirectory advertisingemployeeAccountDirectory, EcoSystem business, DB4OUtil dB4OUtil, Enterprise enterprise) {
+    public InitiativesEmployeeLeftJPanel(JPanel leftContainer, JPanel rightContainer, UserAccountDirectory userAccountDirectory, EventDirectory eventdirectory, BankEmployeeAccountDirectory bankemployeeAccountDirectory, FundRaisingEmployeeAccountDirectory fundraisingemployeeAccountDirectory, AdvertisingEmployeeAccountDirectory advertisingemployeeAccountDirectory, EcoSystem business, DB4OUtil dB4OUtil, Enterprise enterprise) {
          initComponents();
         this.leftContainer = leftContainer;
         this.rightContainer = rightContainer;
@@ -155,7 +155,7 @@ public class FundraisingEmployeeLeftJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
         rightContainer.remove(this);
         CardLayout rightCardLayout = (CardLayout) rightContainer.getLayout();
-        rightContainer.add("FundrasingEmployeeHomePanel", new FundrasingEmployeeHomePanel(rightContainer, eventdirectory));
+        rightContainer.add("FundrasingEmployeeHomePanel", new InitiativesEmployeeHomePanel(rightContainer, eventdirectory));
         rightCardLayout.next(rightContainer);    
     }//GEN-LAST:event_btnHomeActionPerformed
 
@@ -163,7 +163,7 @@ public class FundraisingEmployeeLeftJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
         rightContainer.remove(this);
         CardLayout rightCardLayout = (CardLayout) rightContainer.getLayout();
-        rightContainer.add("FundraisingEmployeePendingRequests", new FundraisingEmployeePendingRequests(rightContainer, eventdirectory));
+        rightContainer.add("FundraisingEmployeePendingRequests", new InitiativesEmployeePendingRequests(rightContainer, eventdirectory));
         rightCardLayout.next(rightContainer);  
     }//GEN-LAST:event_btnPendingRequestsActionPerformed
 
@@ -180,7 +180,7 @@ public class FundraisingEmployeeLeftJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
         rightContainer.remove(this);
         CardLayout rightCardLayout = (CardLayout) rightContainer.getLayout();
-        rightContainer.add("FundraisingEmployeeCreateNewWorkRequest", new FundraisingEmployeeCreateNewWorkRequest(rightContainer, eventdirectory));
+        rightContainer.add("FundraisingEmployeeCreateNewWorkRequest", new InitiativesEmployeeCreateNewWorkRequest(rightContainer, eventdirectory));
         rightCardLayout.next(rightContainer); 
         
     }//GEN-LAST:event_btnNewRequestActionPerformed
