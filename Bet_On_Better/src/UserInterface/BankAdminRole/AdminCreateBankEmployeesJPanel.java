@@ -232,18 +232,14 @@ private EcoSystem system;
         }
         
         Role role = null;
-        Organization organization = null;
         if (btnAccVerificationEmployee.isSelected()) {
             role = new AccVerificationBankEmployee();
-            organization = new AccountVerificationOrganization();
         }else if (btnFundTransferEmployee.isSelected()) {
             role = new FundTransferBankEmployee();
-            organization = new FundTransferOrganization();
         }
-
-        if(organization!=null){
-        organization.getUserAccountDirectory().createUserAccount(username, pwd, role);
-        }
+        system.getEmployeeDirectory().createEmployee(txtName.getText());
+        enterprise.getUserAccountDirectory().createUserAccount(username, pwd, role);
+        
         bankemployeeAccountDirectory.createEmployeeAccount(username, pwd, role);
         JOptionPane.showMessageDialog(null, "Account Created Successfully");
         CardLayout rightLayout = (CardLayout) rightContainer.getLayout();        
