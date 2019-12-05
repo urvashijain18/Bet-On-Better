@@ -17,6 +17,8 @@ import Business.UserAccount.UserAccount;
 import Business.UserAccount.UserAccountDirectory;
 import UserInterface.FundRaisingAdminRole.AdminLeftJPanel;
 import UserInterface.FundRaisingAdminRole.AdminWorkAreaJPanel;
+import UserInterface.FundraisingEmployee.FundraisingEmployeeLeftJPanel;
+import UserInterface.FundraisingEmployee.FundrasingEmployeeHomePanel;
 import javax.swing.JPanel;
 
 /**
@@ -27,12 +29,13 @@ public class FundRaisingEmployee extends Role {
 
     @Override
     public JPanel createRightWorkArea(JPanel userProcessContainer, UserAccount account, Organization organization, Enterprise enterprise, EcoSystem business, EventDirectory eventdirectory) {
-        return new AdminWorkAreaJPanel(userProcessContainer, eventdirectory);
+        return new JPanel();
     }
+    
 
     @Override
     public JPanel createLeftWorkArea(JPanel leftContainer, JPanel rightContainer, UserAccountDirectory userAccountDirectory, EventDirectory eventdirectory, BankEmployeeAccountDirectory bankemployeeAccountDirectory, FundRaisingEmployeeAccountDirectory fundraisingemployeeAccountDirectory, AdvertisingEmployeeAccountDirectory advertisingemployeeAccountDirectory, EcoSystem business, DB4OUtil dB4OUtil, Enterprise enterprise) {
-        return new AdminLeftJPanel(leftContainer, rightContainer, userAccountDirectory, eventdirectory, bankemployeeAccountDirectory, fundraisingemployeeAccountDirectory, advertisingemployeeAccountDirectory, business, dB4OUtil);
+        return new FundraisingEmployeeLeftJPanel(leftContainer, rightContainer, userAccountDirectory, eventdirectory, bankemployeeAccountDirectory, fundraisingemployeeAccountDirectory, advertisingemployeeAccountDirectory, business, dB4OUtil,enterprise);
     }
 
 }

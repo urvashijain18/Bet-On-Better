@@ -27,14 +27,17 @@ public class AdminCreateEmployeesJPanel extends javax.swing.JPanel {
 private JPanel rightContainer;
 private JPanel leftContainer;
 private FundRaisingEmployeeAccountDirectory employeeAccountDirectory;
+private Enterprise enterprise;
+
     /**
      * Creates new form AdminCreateEmployeesJPanel
      */
-    public AdminCreateEmployeesJPanel(JPanel rightContainer, JPanel leftContainer, FundRaisingEmployeeAccountDirectory employeeAccountDirectory) {
+    public AdminCreateEmployeesJPanel(JPanel rightContainer, JPanel leftContainer, FundRaisingEmployeeAccountDirectory employeeAccountDirectory,Enterprise enterprise) {
         initComponents();
         this.rightContainer = rightContainer;
         this.leftContainer = leftContainer;
         this.employeeAccountDirectory = employeeAccountDirectory;
+        this.enterprise = enterprise;
     }
 
     /**
@@ -228,7 +231,7 @@ private FundRaisingEmployeeAccountDirectory employeeAccountDirectory;
         }else if (btnInitiativeEmployee.isSelected()) {
             role = new InitiativesEmployee();
         }
-
+        enterprise.getUserAccountDirectory().createUserAccount(username, pwd, role);
         employeeAccountDirectory.createEmployeeAccount(username, pwd, role);
 
         JOptionPane.showMessageDialog(null, "Account Created Successfully");

@@ -32,6 +32,7 @@ public class AdminLeftJPanel extends javax.swing.JPanel {
     private AdvertisingEmployeeAccountDirectory advertisingemployeeAccountDirectory;
     private EcoSystem system;
     private DB4OUtil dB4OUtil;
+    private Enterprise enterprise;
     /**
      * Creates new form AdminLeftJPanel
      */
@@ -39,7 +40,7 @@ public class AdminLeftJPanel extends javax.swing.JPanel {
             EventDirectory eventdirectory,BankEmployeeAccountDirectory bankemployeeAccountDirectory,            
             FundRaisingEmployeeAccountDirectory fundraisingemployeeAccountDirectory, 
             AdvertisingEmployeeAccountDirectory advertisingemployeeAccountDirectory,
-            EcoSystem system, DB4OUtil dB4OUtil) {
+            EcoSystem system, DB4OUtil dB4OUtil,Enterprise enterprise) {
         initComponents();
         this.leftContainer = leftContainer;
         this.rightContainer= rightContainer;
@@ -48,6 +49,7 @@ public class AdminLeftJPanel extends javax.swing.JPanel {
         this.bankemployeeAccountDirectory = bankemployeeAccountDirectory;
         this.advertisingemployeeAccountDirectory = advertisingemployeeAccountDirectory;
         this.fundraisingemployeeAccountDirectory = fundraisingemployeeAccountDirectory;
+        this.enterprise = enterprise;
         this.system = system;
         this.dB4OUtil = dB4OUtil;
     }
@@ -74,7 +76,7 @@ public class AdminLeftJPanel extends javax.swing.JPanel {
             }
         });
 
-        btnPendingApprovals.setText("Pending Approvals");
+        btnPendingApprovals.setText("Pending Request");
         btnPendingApprovals.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnPendingApprovalsActionPerformed(evt);
@@ -161,7 +163,7 @@ public class AdminLeftJPanel extends javax.swing.JPanel {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
      rightContainer.remove(this);
         CardLayout rightLayout = (CardLayout) rightContainer.getLayout();
-        rightContainer.add("AdminCreateEmployeesJPanel", new AdminCreateEmployeesJPanel(rightContainer,leftContainer,fundraisingemployeeAccountDirectory));
+        rightContainer.add("AdminCreateEmployeesJPanel", new AdminCreateEmployeesJPanel(rightContainer,leftContainer,fundraisingemployeeAccountDirectory,enterprise));
         rightLayout.next(rightContainer);   // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
