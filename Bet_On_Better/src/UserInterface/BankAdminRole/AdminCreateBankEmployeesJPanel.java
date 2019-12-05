@@ -237,7 +237,6 @@ private EcoSystem system;
         }else if (btnFundTransferEmployee.isSelected()) {
             role = new FundTransferBankEmployee();
         }
-        system.getEmployeeDirectory().createEmployee(txtName.getText());
         enterprise.getUserAccountDirectory().createUserAccount(username, pwd, role);
         
         bankemployeeAccountDirectory.createEmployeeAccount(username, pwd, role);
