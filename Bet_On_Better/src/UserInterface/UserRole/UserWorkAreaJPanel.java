@@ -144,7 +144,8 @@ public class UserWorkAreaJPanel extends javax.swing.JPanel {
                 userAccountDirectory, eventdirectory, fundraisingemployeeAccountDirectory, 
                 advertisingemployeeAccountDirectory, bankemployeeAccountDirectory, system, dB4OUtil));
         leftCardLayout.next(leftContainer);
-        rightContainer.removeAll(); 
+        rightContainer.removeAll();
+        dB4OUtil.storeSystem(system);
     }//GEN-LAST:event_btnLogOutActionPerformed
 
 
