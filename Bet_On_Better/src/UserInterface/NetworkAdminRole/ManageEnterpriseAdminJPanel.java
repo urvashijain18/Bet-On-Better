@@ -253,11 +253,11 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
         String username = usernameJTextField.getText();
         String password = String.valueOf(passwordJPasswordField.getPassword());
         String name = nameJTextField.getText();
-        if(enterprise.getEnterpriseType().equals("Bank")){
+        if(enterprise.getEnterpriseType().equals(Enterprise.EnterpriseType.Bank)){
             role = new BankAdmin();
-        }else if(enterprise.getEnterpriseType().equals("FundRaiser")){
+        }else if(enterprise.getEnterpriseType().equals(Enterprise.EnterpriseType.FundRaiser)){
             role = new FundRaisingAdmin();
-        }else if(enterprise.getEnterpriseType().equals("Advertising")){
+        }else if(enterprise.getEnterpriseType().equals(Enterprise.EnterpriseType.Advertising)){
             role = new AdvertisingAdmin();
         }
         //Employee employee = enterprise.getEmployeeDirectory().createEmployee(name);
