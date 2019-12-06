@@ -26,7 +26,6 @@ public class BankAccountDetailsJPanel extends javax.swing.JPanel {
 
     private JPanel rightContainer;
     private Enterprise enterprise;
-    private EndUser user;
     private UserAccount useraccount;
     private EventDirectory eventdirectory;
     private EcoSystem system;
@@ -34,11 +33,10 @@ public class BankAccountDetailsJPanel extends javax.swing.JPanel {
     /**
      * Creates new form BankAccountDetailsJPanel
      */
-    public BankAccountDetailsJPanel(JPanel rightContainer, Enterprise enterprise, EndUser user, UserAccount useraccount, EventDirectory eventdirectory, EcoSystem system) {
+    public BankAccountDetailsJPanel(JPanel rightContainer, Enterprise enterprise,UserAccount useraccount, EventDirectory eventdirectory, EcoSystem system) {
         initComponents();
         this.rightContainer = rightContainer;
         this.enterprise = enterprise;
-        this.user = user;
         this.useraccount = useraccount;
         this.eventdirectory = eventdirectory;
         this.system = system;

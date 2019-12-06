@@ -20,6 +20,15 @@ public class Event {
     Date targetDate;
     String description;
     String raisedBy;
+    String status;
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
 
     public String getEventName() {
         return eventName;

@@ -67,7 +67,8 @@ public class AdminLeftJPanel extends javax.swing.JPanel {
         btnPendingApprovals = new javax.swing.JButton();
         btnWithdrawalReq = new javax.swing.JButton();
         btnLogOut = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        btnCreateOrganization = new javax.swing.JButton();
+        btnNewEmployee = new javax.swing.JButton();
 
         btnHome.setText("Home");
         btnHome.addActionListener(new java.awt.event.ActionListener() {
@@ -92,10 +93,17 @@ public class AdminLeftJPanel extends javax.swing.JPanel {
             }
         });
 
-        jButton1.setText("Create New Employee");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnCreateOrganization.setText("Create New Organization");
+        btnCreateOrganization.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnCreateOrganizationActionPerformed(evt);
+            }
+        });
+
+        btnNewEmployee.setText("Create New Employee");
+        btnNewEmployee.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNewEmployeeActionPerformed(evt);
             }
         });
 
@@ -110,9 +118,11 @@ public class AdminLeftJPanel extends javax.swing.JPanel {
                     .addComponent(btnHome, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnPendingApprovals, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnWithdrawalReq, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jButton1)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnCreateOrganization)
+                            .addComponent(btnNewEmployee))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -124,9 +134,11 @@ public class AdminLeftJPanel extends javax.swing.JPanel {
                 .addComponent(btnPendingApprovals)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 64, Short.MAX_VALUE)
                 .addComponent(btnWithdrawalReq)
-                .addGap(58, 58, 58)
-                .addComponent(jButton1)
-                .addGap(52, 52, 52)
+                .addGap(18, 18, 18)
+                .addComponent(btnCreateOrganization)
+                .addGap(18, 18, 18)
+                .addComponent(btnNewEmployee)
+                .addGap(51, 51, 51)
                 .addComponent(btnLogOut)
                 .addGap(78, 78, 78))
         );
@@ -160,19 +172,27 @@ public class AdminLeftJPanel extends javax.swing.JPanel {
         dB4OUtil.storeSystem(system);
     }//GEN-LAST:event_btnLogOutActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-     rightContainer.remove(this);
+    private void btnCreateOrganizationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateOrganizationActionPerformed
+      rightContainer.remove(this);
+        CardLayout rightLayout = (CardLayout) rightContainer.getLayout();
+        rightContainer.add("CreateOrganization", new CreateOrganization(rightContainer, enterprise.getOrganizationDirectory()));
+        rightLayout.next(rightContainer); 
+    }//GEN-LAST:event_btnCreateOrganizationActionPerformed
+
+    private void btnNewEmployeeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNewEmployeeActionPerformed
+       rightContainer.remove(this);
         CardLayout rightLayout = (CardLayout) rightContainer.getLayout();
         rightContainer.add("AdminCreateEmployeesJPanel", new AdminCreateEmployeesJPanel(rightContainer,leftContainer,fundraisingemployeeAccountDirectory,enterprise));
-        rightLayout.next(rightContainer);   // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+        rightLayout.next(rightContainer); 
+    }//GEN-LAST:event_btnNewEmployeeActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnCreateOrganization;
     private javax.swing.JButton btnHome;
     private javax.swing.JButton btnLogOut;
+    private javax.swing.JButton btnNewEmployee;
     private javax.swing.JButton btnPendingApprovals;
     private javax.swing.JButton btnWithdrawalReq;
-    private javax.swing.JButton jButton1;
     // End of variables declaration//GEN-END:variables
 }

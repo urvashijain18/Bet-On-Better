@@ -5,19 +5,57 @@
  */
 package UserInterface.BankRole;
 
+import Business.EcoSystem;
+import Business.Enterprise.Enterprise;
+import Business.Network.Network;
+import Business.Organization.Organization;
+import Business.UserAccount.UserAccount;
+import Business.WorkRequest.VerificationRequest;
+import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author @author Urvashi
  */
 public class VerificationRequestJPanel extends javax.swing.JPanel {
-
+    private JPanel rightContainer;
+    private UserAccount userAccount;
+    private EcoSystem system;
+    
     /**
      * Creates new form VerificationRequestJPanel
      */
-    public VerificationRequestJPanel() {
+    public VerificationRequestJPanel(JPanel rightContainer, UserAccount userAccount, EcoSystem system) {
         initComponents();
+        this.rightContainer = rightContainer;
+        this.system = system;
     }
 
+    private void populateTable() {
+        DefaultTableModel model = (DefaultTableModel) tblVerifRecords.getModel();
+        model.setRowCount(0);
+        for (Network network : system.getNetworkList()) {
+            for (Enterprise enterprise : network.getEnterpriseDirectory().getEnterpriseList()) {
+                for (Organization organization : enterprise.getOrganizationDirectory().getOrganizationList()) {
+                    if (organization.getOrganizationType().equals(Organization.Type.FundRaisingEvents)) {
+                        for (int i = 0; i < organization.getWorkQueue().getWorkRequestList().size(); i++) {
+                            VerificationRequest request = (VerificationRequest) organization.getWorkQueue().getWorkRequestList().get(i);
+                            Object[] row = new Object[7];
+                            row[0] = request.getRequestId();
+                            row[1] = request.getUser().getName();
+                            row[2] = request.getEvent().getStatus();
+                            row[3] = request.getUser().getAccountDetails().getAccountNumber();
+                            row[4] = request.getUser().getAccountDetails().getBankName();
+                            row[5] = request.getUser().getAccountDetails().getRoutingNumber();
+                            row[6] = request.getUser().getAccountDetails().getSWIFTCode();
+                            model.addRow(row);
+                        }
+                    }
+                }
+            }
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -43,7 +81,7 @@ public class VerificationRequestJPanel extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Request Number", "User", "Requested Date", "Approved Date", "Status"
+                "Request Number", "User", "Status", "Accuont Number", "Bank Name", "Routing Number", "Swift Code"
             }
         ));
         jScrollPane2.setViewportView(tblVerifRecords);
@@ -55,31 +93,26 @@ public class VerificationRequestJPanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(276, 276, 276)
-                        .addComponent(btnActionTaken))
+                        .addGap(56, 56, 56)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 787, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(256, 256, 256)
-                        .addComponent(jLabel1)))
-                .addContainerGap(272, Short.MAX_VALUE))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(18, 18, 18)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 631, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(21, Short.MAX_VALUE)))
+                        .addGap(373, 373, 373)
+                        .addComponent(jLabel1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(397, 397, 397)
+                        .addComponent(btnActionTaken)))
+                .addContainerGap(57, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(38, 38, 38)
+                .addGap(51, 51, 51)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 213, Short.MAX_VALUE)
+                .addGap(59, 59, 59)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(87, 87, 87)
                 .addComponent(btnActionTaken)
-                .addGap(142, 142, 142))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(102, 102, 102)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(214, Short.MAX_VALUE)))
+                .addContainerGap(152, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 

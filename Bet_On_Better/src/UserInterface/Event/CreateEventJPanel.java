@@ -8,15 +8,20 @@ package UserInterface.Event;
 import Business.EcoSystem;
 import Business.EndUser.EndUser;
 import Business.Enterprise.Enterprise;
+import Business.FundRaiserEvents.Event;
 import Business.FundRaiserEvents.EventDirectory;
+import Business.Network.Network;
+import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
 import Business.UserAccount.UserAccountDirectory;
 import Business.WorkRequest.VerificationRequest;
 import Business.WorkRequest.WorkRequest;
 import UserInterface.FundRaisingAdminRole.AdminTargetDateJPanel;
 import UserInterface.UserRole.BankAccountDetailsJPanel;
+import UserInterface.UserRole.UserHomeJPanel;
 import java.awt.CardLayout;
 import java.util.Date;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 /**
@@ -71,7 +76,6 @@ public class CreateEventJPanel extends javax.swing.JPanel {
         btnCreate = new javax.swing.JButton();
         btnBack = new javax.swing.JButton();
         btnCancel = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
         jDateChooser1 = new com.toedter.calendar.JDateChooser();
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -102,13 +106,6 @@ public class CreateEventJPanel extends javax.swing.JPanel {
 
         btnCancel.setText("Cancel");
 
-        jButton1.setText("Account Details");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -118,9 +115,7 @@ public class CreateEventJPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btnCancel)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 79, Short.MAX_VALUE)
-                        .addComponent(jButton1)
-                        .addGap(72, 72, 72)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnCreate))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -171,8 +166,7 @@ public class CreateEventJPanel extends javax.swing.JPanel {
                         .addGap(128, 128, 128)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnCreate)
-                            .addComponent(btnCancel)
-                            .addComponent(jButton1)))
+                            .addComponent(btnCancel)))
                     .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(140, Short.MAX_VALUE))
         );
@@ -186,32 +180,48 @@ public class CreateEventJPanel extends javax.swing.JPanel {
         String eventName = txtEventName.getText();
         String category = " ";
         Double requestAmount = (Double.parseDouble(txtReqAmt.getText()));
-//          jDateChooser1.setMinSelectableDate(new Date());
         Date targetDate = jDateChooser1.getDate();
-
-        String Description = txtDesc.getText();
-        
-        eventdirectory.createEvent(category,new Date(), Description, eventName, useraccount, requestAmount,  targetDate);
-
-        WorkRequest workrequest = new VerificationRequest();
-        
+        String Description = txtDesc.getText();  
+        Event event = new Event();
+        event.setCategory(category);
+        event.setCreateDate(new Date());
+        event.setDescription(Description);
+        event.setEventName(eventName);
+        event.setRaisedAmt(0.00);
+        event.setRaisedBy(useraccount.getUsername());
+        event.setRequestAmt(requestAmount);
+        event.setTargetDate(targetDate);
+        //eventdirectory.createEvent(category,new Date(), Description, eventName, useraccount, requestAmount,  targetDate);
+        VerificationRequest workRequest = new VerificationRequest();
+        workRequest.setSender(useraccount);
+        workRequest.setEvent(event);
+        useraccount.getWorkQueue().getWorkRequestList().add(workRequest);
+        for(Network network : system.getNetworkList()){
+            for(Enterprise enterprise : network.getEnterpriseDirectory().getEnterpriseList()){
+                for(Organization organization : enterprise.getOrganizationDirectory().getOrganizationList()){
+                   // if(organization.getUserAccountDirectory().getUserAccountList().equals(userAccountDirectory)){
+                    for(UserAccount useracc : organization.getUserAccountDirectory().getUserAccountList()){
+                        if(useracc.getUsername().equals(useraccount.getUsername())){
+                        organization.getWorkQueue().getWorkRequestList().add(workRequest);
+                    }
+                }
+            }
+        }
+        }
+        JOptionPane.showMessageDialog(null, "Event created and is pending for approval.");
+       rightContainer.remove(this);
+        CardLayout rightCardLayout = (CardLayout) rightContainer.getLayout();
+        rightContainer.add("UserHomeJPanel", new UserHomeJPanel(rightContainer, eventdirectory, useraccount));
+        rightCardLayout.next(rightContainer);
       
                 // TODO add your handling code here:
     }//GEN-LAST:event_btnCreateActionPerformed
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        BankAccountDetailsJPanel panel = new BankAccountDetailsJPanel( rightContainer,  enterprise,  user, useraccount, eventdirectory, system);
-      rightContainer.add("BankAccountDetailsJPanel", panel);
-      CardLayout layout = (CardLayout) rightContainer.getLayout();
-      layout.next(rightContainer);        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBack;
     private javax.swing.JButton btnCancel;
     private javax.swing.JButton btnCreate;
-    private javax.swing.JButton jButton1;
     private com.toedter.calendar.JDateChooser jDateChooser1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

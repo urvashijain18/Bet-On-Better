@@ -12,6 +12,7 @@ import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
 import Business.FundRaisingEmployee.FundRaisingEmployeeAccountDirectory;
 import Business.FundRaiserEvents.EventDirectory;
+import Business.UserAccount.UserAccount;
 import Business.UserAccount.UserAccountDirectory;
 import UserInterface.UserLogin;
 import java.awt.CardLayout;
@@ -22,21 +23,21 @@ import javax.swing.JPanel;
  * @author MMI
  */
 public class FundraisingEventEmployeeLeftJPanel extends javax.swing.JPanel {
+
     private JPanel leftContainer;
     private JPanel rightContainer;
-    private UserAccountDirectory userAccountDirectory; 
+    private UserAccountDirectory userAccountDirectory;
     private EventDirectory eventdirectory;
     private BankEmployeeAccountDirectory bankemployeeAccountDirectory;
     private FundRaisingEmployeeAccountDirectory fundraisingemployeeAccountDirectory;
     private AdvertisingEmployeeAccountDirectory advertisingemployeeAccountDirectory;
     private EcoSystem system;
     private DB4OUtil dB4OUtil;
-    
+    private UserAccount useraccount;
 
     /**
      * Creates new form FundraisingEventEmployeeLeftJPanel
      */
-  
     public FundraisingEventEmployeeLeftJPanel(JPanel leftContainer, JPanel rightContainer, UserAccountDirectory userAccountDirectory, EventDirectory eventdirectory, BankEmployeeAccountDirectory bankemployeeAccountDirectory, FundRaisingEmployeeAccountDirectory fundraisingemployeeAccountDirectory, AdvertisingEmployeeAccountDirectory advertisingemployeeAccountDirectory, EcoSystem business, DB4OUtil dB4OUtil, Enterprise enterprise) {
         initComponents();
     }
@@ -123,7 +124,7 @@ public class FundraisingEventEmployeeLeftJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
         rightContainer.remove(this);
         CardLayout rightCardLayout = (CardLayout) rightContainer.getLayout();
-        rightContainer.add("FundraisingEventsPendingRequests", new FundraisingEventsPendingRequests(rightContainer, eventdirectory));
+        rightContainer.add("FundraisingEventsPendingRequests", new FundraisingEventsPendingRequests(rightContainer, eventdirectory, system, useraccount));
         rightCardLayout.next(rightContainer);
     }//GEN-LAST:event_btnPendingRequestsActionPerformed
 
@@ -138,14 +139,17 @@ public class FundraisingEventEmployeeLeftJPanel extends javax.swing.JPanel {
 
     private void btnLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogoutActionPerformed
         // TODO add your handling code here:
-        leftContainer.remove(this);
         CardLayout leftCardLayout = (CardLayout) leftContainer.getLayout();
+        CardLayout rightCardLayout = (CardLayout) rightContainer.getLayout();
         leftContainer.add("UserLogin", new UserLogin(leftContainer, rightContainer,
-            userAccountDirectory, eventdirectory, fundraisingemployeeAccountDirectory,
-            advertisingemployeeAccountDirectory, bankemployeeAccountDirectory, system, dB4OUtil));
-    leftCardLayout.next(leftContainer);
-    rightContainer.removeAll();
-    dB4OUtil.storeSystem(system);
+                userAccountDirectory, eventdirectory, fundraisingemployeeAccountDirectory,
+                advertisingemployeeAccountDirectory, bankemployeeAccountDirectory, system, dB4OUtil));
+        leftCardLayout.next(leftContainer);
+        rightContainer.removeAll();
+        JPanel blank = new JPanel();
+        rightContainer.add("blank", blank);
+        rightCardLayout.next(rightContainer);
+        dB4OUtil.storeSystem(system);
     }//GEN-LAST:event_btnLogoutActionPerformed
 
 

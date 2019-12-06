@@ -36,14 +36,14 @@ public class EventDirectory {
     }
     public Event createEvent(String category, Date createDate, String description, String name, UserAccount raisedBy, Double requestAmount, Date targetDate){
         Event event = new Event();
-        event.setCategory(name);
-        event.setCreateDate(null);
-        event.setDescription(name);
+        event.setCategory(category);
+        event.setCreateDate(createDate);
+        event.setDescription(description);
         event.setEventName(name);
-        event.setRaisedAmt(Double.NaN);
-        event.setRaisedBy(name);
-        event.setRequestAmt(Double.NaN);
-        event.setTargetDate(null);
+        event.setRaisedAmt(0.00);
+        event.setRaisedBy(raisedBy.getUsername());
+        event.setRequestAmt(requestAmount);
+        event.setTargetDate(targetDate);
         eventList.add(event);
         return event;
     }

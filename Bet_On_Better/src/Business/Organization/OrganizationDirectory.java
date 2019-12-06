@@ -26,21 +26,27 @@ public class OrganizationDirectory {
         Organization organization = null;
         if (type.getValue().equals(Organization.Type.AccVerif.getValue())){
             organization = new AccountVerificationOrganization();
+            organization.setOrganizationType(type);
             organizationList.add(organization);
         }else if (type.getValue().equals(Organization.Type.Email.getValue())){
             organization = new EmailOrganization();
+            organization.setOrganizationType(type);
             organizationList.add(organization);
         }else if (type.getValue().equals(Organization.Type.Facebook.getValue())){
             organization = new FacebookOrganization();
+            organization.setOrganizationType(type);
             organizationList.add(organization);
          }else if (type.getValue().equals(Organization.Type.FundRaisingEvents.getValue())){
             organization = new FundRaisingEventsOrganization();
+            organization.setOrganizationType(type);
             organizationList.add(organization);
         }else if (type.getValue().equals(Organization.Type.FundTransfer.getValue())){
             organization = new FundTransferOrganization();
+            organization.setOrganizationType(type);
             organizationList.add(organization);
         }else if (type.getValue().equals(Organization.Type.Initiatives.getValue())){
             organization = new InitiativesOrganization();
+            organization.setOrganizationType(type);
             organizationList.add(organization);
         }
         return organization;
