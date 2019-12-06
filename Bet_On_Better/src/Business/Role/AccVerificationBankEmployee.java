@@ -32,7 +32,7 @@ import javax.swing.JPanel;
     @Override
     public JPanel createRightWorkArea(JPanel container, UserAccount account, 
             Organization organization, Enterprise enterprise, EcoSystem business, EventDirectory eventdirectory) {
-        return new BankDashBoardJPanel(container, eventdirectory, account, business);
+        return new BankDashBoardJPanel(container, eventdirectory, account, business, enterprise);
     }
     
     @Override
@@ -42,7 +42,7 @@ import javax.swing.JPanel;
                 AdvertisingEmployeeAccountDirectory advertisingemployeeAccountDirectory, EcoSystem business, 
                 DB4OUtil dB4OUtil, Enterprise enterprise, UserAccount account) {
         return new BankLeftJPanel(leftContainer, rightContainer, userAccountDirectory, eventdirectory, bankemployeeAccountDirectory, 
-                fundraisingemployeeAccountDirectory, advertisingemployeeAccountDirectory, business, dB4OUtil);
+                fundraisingemployeeAccountDirectory, advertisingemployeeAccountDirectory, business, dB4OUtil, enterprise, account);
         
     }
 }

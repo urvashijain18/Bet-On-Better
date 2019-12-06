@@ -68,4 +68,9 @@ public class VerificationRequest extends WorkRequest{
     public void setUser(UserAccount user) {
         this.user = user;
     }
+    
+    @Override
+    public String toString(){
+        return String.valueOf(this.requestId);
+    }
 }

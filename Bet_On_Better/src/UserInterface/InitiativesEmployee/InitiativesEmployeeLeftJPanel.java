@@ -12,6 +12,7 @@ import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
 import Business.FundRaisingEmployee.FundRaisingEmployeeAccountDirectory;
 import Business.FundRaiserEvents.EventDirectory;
+import Business.UserAccount.UserAccount;
 import Business.UserAccount.UserAccountDirectory;
 import UserInterface.UserLogin;
 import java.awt.CardLayout;
@@ -33,28 +34,19 @@ public class InitiativesEmployeeLeftJPanel extends javax.swing.JPanel {
     private AdvertisingEmployeeAccountDirectory advertisingemployeeAccountDirectory;
     private EcoSystem system;
     private DB4OUtil dB4OUtil;
+    private UserAccount userAccount;
+    private Enterprise enterprise;
     
     /**
      * Creates new form FundraisingEmployeeRightJPanel
      */
-//    public InitiativesEmployeeLeftJPanel(JPanel leftContainer, JPanel rightContainer,UserAccountDirectory userAccountDirectory,
-//            EventDirectory eventdirectory, BankEmployeeAccountDirectory bankemployeeAccountDirectory,            
-//            FundRaisingEmployeeAccountDirectory fundraisingemployeeAccountDirectory, 
-//            AdvertisingEmployeeAccountDirectory advertisingemployeeAccountDirectory, EcoSystem system,
-//            DB4OUtil dB4OUtil) {
-//        initComponents();
-//        this.leftContainer = leftContainer;
-//        this.rightContainer = rightContainer;
-//        this.userAccountDirectory = userAccountDirectory;
-//        this.eventdirectory = eventdirectory;
-//        this.bankemployeeAccountDirectory = bankemployeeAccountDirectory;
-//        this.advertisingemployeeAccountDirectory = advertisingemployeeAccountDirectory;
-//        this.fundraisingemployeeAccountDirectory = fundraisingemployeeAccountDirectory;
-//        this.system = system;
-//        this.dB4OUtil = dB4OUtil;
-//    }
 
-    public InitiativesEmployeeLeftJPanel(JPanel leftContainer, JPanel rightContainer, UserAccountDirectory userAccountDirectory, EventDirectory eventdirectory, BankEmployeeAccountDirectory bankemployeeAccountDirectory, FundRaisingEmployeeAccountDirectory fundraisingemployeeAccountDirectory, AdvertisingEmployeeAccountDirectory advertisingemployeeAccountDirectory, EcoSystem business, DB4OUtil dB4OUtil, Enterprise enterprise) {
+    public InitiativesEmployeeLeftJPanel(JPanel leftContainer, JPanel rightContainer, 
+            UserAccountDirectory userAccountDirectory, EventDirectory eventdirectory, 
+            BankEmployeeAccountDirectory bankemployeeAccountDirectory, 
+            FundRaisingEmployeeAccountDirectory fundraisingemployeeAccountDirectory, 
+            AdvertisingEmployeeAccountDirectory advertisingemployeeAccountDirectory, 
+            EcoSystem business, DB4OUtil dB4OUtil, Enterprise enterprise, UserAccount userAccount) {
          initComponents();
         this.leftContainer = leftContainer;
         this.rightContainer = rightContainer;
@@ -63,12 +55,10 @@ public class InitiativesEmployeeLeftJPanel extends javax.swing.JPanel {
         this.bankemployeeAccountDirectory = bankemployeeAccountDirectory;
         this.advertisingemployeeAccountDirectory = advertisingemployeeAccountDirectory;
         this.fundraisingemployeeAccountDirectory = fundraisingemployeeAccountDirectory;
-     
+        this.userAccount = userAccount;
         this.dB4OUtil = dB4OUtil;
+        this.enterprise = enterprise;
     }
-        
-
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -152,18 +142,16 @@ public class InitiativesEmployeeLeftJPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnHomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHomeActionPerformed
-        // TODO add your handling code here:
         rightContainer.remove(this);
         CardLayout rightCardLayout = (CardLayout) rightContainer.getLayout();
-        rightContainer.add("FundrasingEmployeeHomePanel", new InitiativesEmployeeHomePanel(rightContainer, eventdirectory));
+        rightContainer.add("InitiativesEmployeeHomePanel", new InitiativesEmployeeHomePanel(rightContainer, eventdirectory));
         rightCardLayout.next(rightContainer);    
     }//GEN-LAST:event_btnHomeActionPerformed
 
     private void btnPendingRequestsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPendingRequestsActionPerformed
-        // TODO add your handling code here:
         rightContainer.remove(this);
         CardLayout rightCardLayout = (CardLayout) rightContainer.getLayout();
-        rightContainer.add("FundraisingEmployeePendingRequests", new InitiativesEmployeePendingRequests(rightContainer, eventdirectory));
+        rightContainer.add("InitiativesEmployeePendingRequests", new InitiativesEmployeePendingRequests(rightContainer, enterprise, userAccount));
         rightCardLayout.next(rightContainer);  
     }//GEN-LAST:event_btnPendingRequestsActionPerformed
 
@@ -171,7 +159,7 @@ public class InitiativesEmployeeLeftJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
         rightContainer.remove(this);
         CardLayout rightCardLayout = (CardLayout) rightContainer.getLayout();
-        rightContainer.add("FundraisingEmployeeApprovedRequests", new InitiativeEmployeeApprovedRequests(rightContainer, eventdirectory));
+        rightContainer.add("InitiativeEmployeeApprovedRequests", new InitiativeEmployeeApprovedRequests(rightContainer, eventdirectory));
         rightCardLayout.next(rightContainer); 
         
     }//GEN-LAST:event_btnApprovedRequestsActionPerformed

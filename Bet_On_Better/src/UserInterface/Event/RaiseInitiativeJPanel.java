@@ -6,16 +6,18 @@
 package UserInterface.Event;
 
 import Business.EcoSystem;
-import Business.EndUser.EndUser;
 import Business.Enterprise.Enterprise;
+import Business.FundRaiserEvents.Event;
 import Business.FundRaiserEvents.EventDirectory;
+import Business.Network.Network;
+import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
 import Business.WorkRequest.VerificationRequest;
-import Business.WorkRequest.WorkRequest;
 import UserInterface.UserRole.BankAccountDetailsJPanel;
+import UserInterface.UserRole.UserHomeJPanel;
 import java.awt.CardLayout;
-import static java.time.Clock.system;
 import java.util.Date;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 /**
@@ -23,21 +25,31 @@ import javax.swing.JPanel;
  * @author Urvashi
  */
 public class RaiseInitiativeJPanel extends javax.swing.JPanel {
-private JPanel rightContainer;
-private Enterprise enterprise;
-private EventDirectory eventdirectory;
-   private UserAccount useraccount;
-   private EcoSystem system;
+
+    private JPanel rightContainer;
+    private Enterprise enterprise;
+    private EventDirectory eventdirectory;
+    private UserAccount useraccount;
+
     /**
      * Creates new form RaiseInitiativeJPanel
      */
-    public RaiseInitiativeJPanel(JPanel rightContainer,Enterprise enterprise, UserAccount useraccount, EventDirectory eventdirectory,EcoSystem system) {
+    public RaiseInitiativeJPanel(JPanel rightContainer, Enterprise enterprise, UserAccount useraccount, EventDirectory eventdirectory, EcoSystem system) {
         initComponents();
         this.rightContainer = rightContainer;
         this.enterprise = enterprise;
         this.eventdirectory = eventdirectory;
-               this.useraccount = useraccount;
-               this.system = system;
+        this.useraccount = useraccount;
+        populateCategoryComboBox();
+    }
+
+    private void populateCategoryComboBox() {
+        categoryComboBox.removeAllItems();
+        categoryComboBox.addItem(new String("--Select--"));
+        categoryComboBox.addItem(new String("Animal"));
+        categoryComboBox.addItem(new String("Education"));
+        categoryComboBox.addItem(new String("Food and Hunger"));
+        categoryComboBox.addItem(new String("Health"));
     }
 
     /**
@@ -62,7 +74,7 @@ private EventDirectory eventdirectory;
         jLabel6 = new javax.swing.JLabel();
         categoryComboBox = new javax.swing.JComboBox();
         jDateChooser1 = new com.toedter.calendar.JDateChooser();
-        jButton1 = new javax.swing.JButton();
+        btnAccDetails = new javax.swing.JButton();
 
         jLabel2.setText("Event Name");
 
@@ -89,10 +101,10 @@ private EventDirectory eventdirectory;
 
         categoryComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        jButton1.setText("Account Details");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnAccDetails.setText("Account Details");
+        btnAccDetails.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnAccDetailsActionPerformed(evt);
             }
         });
 
@@ -126,7 +138,7 @@ private EventDirectory eventdirectory;
                                             .addComponent(txtReqAmt, javax.swing.GroupLayout.DEFAULT_SIZE, 221, Short.MAX_VALUE)
                                             .addComponent(categoryComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                         .addComponent(jDateChooser1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(jButton1))
+                                    .addComponent(btnAccDetails))
                                 .addGap(93, 93, 93))))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btnBack)
@@ -162,7 +174,7 @@ private EventDirectory eventdirectory;
                         .addGap(85, 85, 85)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnCancel)
-                            .addComponent(jButton1)))
+                            .addComponent(btnAccDetails)))
                     .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(106, Short.MAX_VALUE))
         );
@@ -172,19 +184,47 @@ private EventDirectory eventdirectory;
         // TODO add your handling code here:
     }//GEN-LAST:event_txtDescActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        BankAccountDetailsJPanel panel = new BankAccountDetailsJPanel( rightContainer,  enterprise, useraccount, eventdirectory, system);
+    private void btnAccDetailsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAccDetailsActionPerformed
+        String eventName = txtEventName.getText();
+        String category = (String) categoryComboBox.getSelectedItem();
+        Double requestAmount = (Double.parseDouble(txtReqAmt.getText()));
+        Date targetDate = jDateChooser1.getDate();
+        String Description = txtDesc.getText();
+        Event event = new Event();
+        event.setCategory(category);
+        event.setCreateDate(new Date());
+        event.setDescription(Description);
+        event.setEventName(eventName);
+        event.setRaisedAmt(0.00);
+        event.setRaisedBy(useraccount.getUsername());
+        event.setRequestAmt(requestAmount);
+        event.setTargetDate(targetDate);
+        event.setStatus("Pending");
+        //eventdirectory.createEvent(category,new Date(), Description, eventName, useraccount, requestAmount,  targetDate);
+        VerificationRequest workRequest = new VerificationRequest();
+        workRequest.setSender(useraccount);
+        workRequest.setEvent(event);
+        useraccount.getWorkQueue().getWorkRequestList().add(workRequest);
+        for (Organization organization : enterprise.getOrganizationDirectory().getOrganizationList()) {
+            for (UserAccount useracc : organization.getUserAccountDirectory().getUserAccountList()) {
+                if (useracc.getUsername().equals(useraccount.getUsername())) {
+                    organization.getWorkQueue().getWorkRequestList().add(workRequest);
+                }
+            }
+        }
+        rightContainer.remove(this);
+        BankAccountDetailsJPanel panel = new BankAccountDetailsJPanel(rightContainer, enterprise, useraccount, eventdirectory);
         rightContainer.add("BankAccountDetailsJPanel", panel);
         CardLayout layout = (CardLayout) rightContainer.getLayout();
-        layout.next(rightContainer);        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+        layout.next(rightContainer);
+    }//GEN-LAST:event_btnAccDetailsActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAccDetails;
     private javax.swing.JButton btnBack;
     private javax.swing.JButton btnCancel;
     private javax.swing.JComboBox categoryComboBox;
-    private javax.swing.JButton jButton1;
     private com.toedter.calendar.JDateChooser jDateChooser1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

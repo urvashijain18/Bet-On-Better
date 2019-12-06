@@ -43,29 +43,29 @@ public class FundraisingEventsPendingRequests extends javax.swing.JPanel {
     }
 
     private void populateTable() {
-        DefaultTableModel model = (DefaultTableModel) tblPendingRequest.getModel();
-        model.setRowCount(0);
-        for (Network network : system.getNetworkList()) {
-            for (Enterprise enterprise : network.getEnterpriseDirectory().getEnterpriseList()) {
-                for (Organization organization : enterprise.getOrganizationDirectory().getOrganizationList()) {
-                    if (organization.getOrganizationType().equals(Organization.Type.FundRaisingEvents)) {
-                        for (int i = 0; i < organization.getWorkQueue().getWorkRequestList().size(); i++) {
-                            VerificationRequest request = (VerificationRequest) organization.getWorkQueue().getWorkRequestList().get(i);
-                            Object[] row = new Object[7];
-                            row[0] = request.getRequestId();
-                            row[1] = request.getEvent().getEventName();
-                            row[2] = request.getEvent().getDescription();
-                            row[3] = request.getEvent().getRaisedBy();
-                            row[4] = request.getEvent().getCreateDate();
-                            row[5] = network.getName();
-                            row[6] = request.getEvent().getStatus();
-
-                            model.addRow(row);
-                        }
-                    }
-                }
-            }
-        }
+//        DefaultTableModel model = (DefaultTableModel) tblPendingRequest.getModel();
+//        model.setRowCount(0);
+//        for (Network network : system.getNetworkList()) {
+//            for (Enterprise enterprise : network.getEnterpriseDirectory().getEnterpriseList()) {
+//                for (Organization organization : enterprise.getOrganizationDirectory().getOrganizationList()) {
+//                    if (organization.getOrganizationType().equals(Organization.Type.FundRaisingEvents)) {
+//                        for (int i = 0; i < organization.getWorkQueue().getWorkRequestList().size(); i++) {
+//                            VerificationRequest request = (VerificationRequest) organization.getWorkQueue().getWorkRequestList().get(i);
+//                            Object[] row = new Object[7];
+//                            row[0] = request;
+//                            row[1] = request.getEvent().getEventName();
+//                            row[2] = request.getEvent().getDescription();
+//                            row[3] = request.getEvent().getRaisedBy();
+//                            row[4] = request.getEvent().getCreateDate();
+//                            row[5] = network.getName();
+//                            row[6] = request.getEvent().getStatus();
+//
+//                            model.addRow(row);
+//                        }
+//                    }
+//                }
+//            }
+//        }
     }
 
     /**
@@ -154,29 +154,29 @@ public class FundraisingEventsPendingRequests extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAssignActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAssignActionPerformed
-        int selectedRow = tblPendingRequest.getSelectedRow();
-        if (selectedRow < 0) {
-            JOptionPane.showMessageDialog(null, "Please select a row from the table", "Warning", JOptionPane.WARNING_MESSAGE);
-        } else {
-            WorkRequest workrequest = (WorkRequest) tblPendingRequest.getValueAt(selectedRow, 0);
-            workrequest.setReceiver(useraccount);
-            JOptionPane.showMessageDialog(null, "Request Assigned");
-            btnAssign.setEnabled(false);
-        }
+//        int selectedRow = tblPendingRequest.getSelectedRow();
+//        if (selectedRow < 0) {
+//            JOptionPane.showMessageDialog(null, "Please select a row from the table", "Warning", JOptionPane.WARNING_MESSAGE);
+//        } else {
+//            WorkRequest workrequest = (WorkRequest) tblPendingRequest.getValueAt(selectedRow, 0);
+//            workrequest.setReceiver(useraccount);
+//            JOptionPane.showMessageDialog(null, "Request Assigned");
+//            btnAssign.setEnabled(false);
+//        }
     }//GEN-LAST:event_btnAssignActionPerformed
 
     private void btnUserVerifReqActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUserVerifReqActionPerformed
-        int selectedRow = tblPendingRequest.getSelectedRow();
-        if (selectedRow < 0) {
-            JOptionPane.showMessageDialog(null, "Please select a row from the table", "Warning", JOptionPane.WARNING_MESSAGE);
-        } else {
-            WorkRequest workRequest = (WorkRequest) tblPendingRequest.getValueAt(selectedRow, 0);
-            workRequest.setSender(useraccount);
-            VerificationRequestJPanel verificationRequestJPanel = new VerificationRequestJPanel(rightContainer, useraccount, system);
-            rightContainer.add("VerificationRequestJPanel", verificationRequestJPanel);
-            CardLayout layout = (CardLayout) rightContainer.getLayout();
-            layout.next(rightContainer);
-        }   
+//        int selectedRow = tblPendingRequest.getSelectedRow();
+//        if (selectedRow < 0) {
+//            JOptionPane.showMessageDialog(null, "Please select a row from the table", "Warning", JOptionPane.WARNING_MESSAGE);
+//        } else {
+//            WorkRequest workRequest = (WorkRequest) tblPendingRequest.getValueAt(selectedRow, 0);
+//            workRequest.setSender(useraccount);
+//           // VerificationRequestJPanel verificationRequestJPanel = new VerificationRequestJPanel(rightContainer, useraccount, system);
+//         //   rightContainer.add("VerificationRequestJPanel", verificationRequestJPanel);
+//            CardLayout layout = (CardLayout) rightContainer.getLayout();
+//            layout.next(rightContainer);
+//        }   
     }//GEN-LAST:event_btnUserVerifReqActionPerformed
 
 
