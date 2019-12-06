@@ -17,13 +17,14 @@ import Business.UserAccount.UserAccount;
 import Business.UserAccount.UserAccountDirectory;
 import UserInterface.FundRaisingAdminRole.AdminLeftJPanel;
 import UserInterface.FundraisingEventEmployee.FundraisingEventEmployeeLeftJPanel;
+import UserInterface.InitiativesEmployee.InitiativesEmployeeLeftJPanel;
 import javax.swing.JPanel;
 
 /**
  *
  * @author MMI
  */
-public class InitiativesEmployee extends Role{
+public class InitiativesEmployee extends Role {
 
     @Override
     public JPanel createRightWorkArea(JPanel userProcessContainer, UserAccount account, Organization organization, Enterprise enterprise, EcoSystem business, EventDirectory eventdirectory) {
@@ -32,12 +33,14 @@ public class InitiativesEmployee extends Role{
 
     @Override
     public JPanel createLeftWorkArea(JPanel leftContainer, JPanel rightContainer, UserAccountDirectory userAccountDirectory,
-            EventDirectory eventdirectory, BankEmployeeAccountDirectory bankemployeeAccountDirectory, 
-            FundRaisingEmployeeAccountDirectory fundraisingemployeeAccountDirectory, 
-            AdvertisingEmployeeAccountDirectory advertisingemployeeAccountDirectory, 
+            EventDirectory eventdirectory, BankEmployeeAccountDirectory bankemployeeAccountDirectory,
+            FundRaisingEmployeeAccountDirectory fundraisingemployeeAccountDirectory,
+            AdvertisingEmployeeAccountDirectory advertisingemployeeAccountDirectory,
             EcoSystem business, DB4OUtil dB4OUtil, Enterprise enterprise, UserAccount account) {
-          return new FundraisingEventEmployeeLeftJPanel(leftContainer, rightContainer, userAccountDirectory, eventdirectory, bankemployeeAccountDirectory, fundraisingemployeeAccountDirectory, advertisingemployeeAccountDirectory, business, dB4OUtil,enterprise);
-    
+        return new InitiativesEmployeeLeftJPanel(leftContainer, rightContainer, userAccountDirectory, eventdirectory,
+                bankemployeeAccountDirectory, fundraisingemployeeAccountDirectory, advertisingemployeeAccountDirectory,
+                business, dB4OUtil, enterprise, account);
+
     }
-    
-    }
+
+}

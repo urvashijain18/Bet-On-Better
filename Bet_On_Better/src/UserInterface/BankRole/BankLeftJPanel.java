@@ -9,8 +9,10 @@ import Business.AdvertisingEmployee.AdvertisingEmployeeAccountDirectory;
 import Business.BankEmployee.BankEmployeeAccountDirectory;
 import Business.DB4OUtil.DB4OUtil;
 import Business.EcoSystem;
+import Business.Enterprise.Enterprise;
 import Business.FundRaisingEmployee.FundRaisingEmployeeAccountDirectory;
 import Business.FundRaiserEvents.EventDirectory;
+import Business.UserAccount.UserAccount;
 import Business.UserAccount.UserAccountDirectory;
 import UserInterface.UserLogin;
 import java.awt.CardLayout;
@@ -31,6 +33,8 @@ public class BankLeftJPanel extends javax.swing.JPanel {
     private AdvertisingEmployeeAccountDirectory advertisingemployeeAccountDirectory;
     private EcoSystem system;
     private DB4OUtil dB4OUtil;
+    private Enterprise enterprise;
+    private UserAccount userAccount;
 
     /**
      * Creates new form BankLeftJPanel
@@ -39,7 +43,7 @@ public class BankLeftJPanel extends javax.swing.JPanel {
             EventDirectory eventdirectory, BankEmployeeAccountDirectory bankemployeeAccountDirectory,            
             FundRaisingEmployeeAccountDirectory fundraisingemployeeAccountDirectory, 
             AdvertisingEmployeeAccountDirectory advertisingemployeeAccountDirectory,
-            EcoSystem system, DB4OUtil dB4OUtil) {
+            EcoSystem system, DB4OUtil dB4OUtil, Enterprise enterprise, UserAccount userAccount) {
         initComponents();
         this.leftContainer = leftContainer;
         this.rightContainer = rightContainer;
@@ -50,6 +54,8 @@ public class BankLeftJPanel extends javax.swing.JPanel {
         this.fundraisingemployeeAccountDirectory = fundraisingemployeeAccountDirectory;
         this.system = system;
         this.dB4OUtil = dB4OUtil;
+        this.enterprise = enterprise;
+        this.userAccount = userAccount;
     }
 
     /**
@@ -102,7 +108,7 @@ public class BankLeftJPanel extends javax.swing.JPanel {
 
     private void btnDashboardActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDashboardActionPerformed
         CardLayout rightLayout = (CardLayout) rightContainer.getLayout();
-        rightContainer.add("BankDashBoardJPanel", new BankDashBoardJPanel(rightContainer, eventdirectory, null, system));
+        rightContainer.add("BankDashBoardJPanel", new BankDashBoardJPanel(rightContainer, eventdirectory, userAccount, system, enterprise));
         rightLayout.next(rightContainer);
     }//GEN-LAST:event_btnDashboardActionPerformed
 

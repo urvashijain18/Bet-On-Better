@@ -38,9 +38,9 @@
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
                       <Component id="btnBack" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="32767" attributes="0"/>
+                      <EmptySpace min="-2" pref="153" max="-2" attributes="0"/>
                       <Component id="btnNewInitiative" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="128" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                       <Component id="btnCreateEvent" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
                   </Group>
@@ -231,6 +231,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Raise a New Initiative"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnNewInitiativeActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnCreateEvent">
       <Properties>

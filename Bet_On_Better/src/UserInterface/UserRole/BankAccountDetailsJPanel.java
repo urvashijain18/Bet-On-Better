@@ -7,10 +7,10 @@ package UserInterface.UserRole;
 
 import Business.EcoSystem;
 import Business.EndUser.AccountDetails;
-import Business.EndUser.EndUser;
 import Business.Enterprise.Enterprise;
 import Business.FundRaiserEvents.EventDirectory;
 import Business.Network.Network;
+import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
 import Business.WorkRequest.VerificationRequest;
 import Business.WorkRequest.WorkRequest;
@@ -28,18 +28,18 @@ public class BankAccountDetailsJPanel extends javax.swing.JPanel {
     private Enterprise enterprise;
     private UserAccount useraccount;
     private EventDirectory eventdirectory;
-    private EcoSystem system;
+    // private EcoSystem system;
 
     /**
      * Creates new form BankAccountDetailsJPanel
      */
-    public BankAccountDetailsJPanel(JPanel rightContainer, Enterprise enterprise,UserAccount useraccount, EventDirectory eventdirectory, EcoSystem system) {
+    public BankAccountDetailsJPanel(JPanel rightContainer, Enterprise enterprise, UserAccount useraccount, EventDirectory eventdirectory) {
         initComponents();
         this.rightContainer = rightContainer;
         this.enterprise = enterprise;
         this.useraccount = useraccount;
         this.eventdirectory = eventdirectory;
-        this.system = system;
+        // this.system = system;
     }
 
     /**
@@ -165,29 +165,36 @@ public class BankAccountDetailsJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_txtRoutingNumberActionPerformed
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
-        for (Network network : system.getNetworkList()) {
-            for (Enterprise enterprise : network.getEnterpriseDirectory().getEnterpriseList()) {
-                for (UserAccount account : enterprise.getUserAccountDirectory().getUserAccountList()) {
-                    if (account.equals(useraccount)) {
-                        AccountDetails accountDetails = new AccountDetails();
-                        accountDetails.setBankName(txtBankName.getText());
-                        accountDetails.setName(txtName.getText());
-                        accountDetails.setAccountNumber(Integer.parseInt(txtAccountNumber.getText()));
-                        accountDetails.setRoutingNumber(Integer.parseInt(txtRoutingNumber.getText()));
-                        accountDetails.setSWIFTCode(Integer.parseInt(txtSwiftCode.getText()));
-                        accountDetails.setBankAddress(txtBankAddress.getText());
-                        account.setAccountDetails(accountDetails);
-                    }
+        for (Organization organization : enterprise.getOrganizationDirectory().getOrganizationList()) {
+            for (UserAccount account : organization.getUserAccountDirectory().getUserAccountList()) {
+                if (account.getUsername().equals(useraccount.getUsername())) {
+                    AccountDetails accountDetails = new AccountDetails();
+                    accountDetails.setBankName(txtBankName.getText());
+                    accountDetails.setName(txtName.getText());
+                    accountDetails.setAccountNumber(Integer.parseInt(txtAccountNumber.getText()));
+                    accountDetails.setRoutingNumber(Integer.parseInt(txtRoutingNumber.getText()));
+                    accountDetails.setSWIFTCode(Integer.parseInt(txtSwiftCode.getText()));
+                    accountDetails.setBankAddress(txtBankAddress.getText());
+                    account.setAccountDetails(accountDetails);
                 }
             }
         }
-
         btnSave.setEnabled(true);
-        JOptionPane.showMessageDialog(null, "Details successfully saved.");
-        WorkRequest workRequest = new VerificationRequest();
+        VerificationRequest workRequest = new VerificationRequest();
         workRequest.setSender(useraccount);
         useraccount.getWorkQueue().getWorkRequestList().add(workRequest);
-
+        for (Organization organization : enterprise.getOrganizationDirectory().getOrganizationList()) {
+            for (UserAccount useracc : organization.getUserAccountDirectory().getUserAccountList()) {
+                if (useracc.getUsername().equals(useraccount.getUsername())) {
+                    organization.getWorkQueue().getWorkRequestList().add(workRequest);
+                }
+            }
+        }
+        JOptionPane.showMessageDialog(null, "New Initiave created successfully.");
+        rightContainer.remove(this);
+        CardLayout rightCardLayout = (CardLayout) rightContainer.getLayout();
+        rightContainer.add("UserHomeJPanel", new UserHomeJPanel(rightContainer, eventdirectory, useraccount));
+        rightCardLayout.next(rightContainer);
     }//GEN-LAST:event_btnSaveActionPerformed
 
 

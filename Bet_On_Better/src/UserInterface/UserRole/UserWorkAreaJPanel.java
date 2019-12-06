@@ -16,7 +16,6 @@ import Business.UserAccount.UserAccount;
 import Business.UserAccount.UserAccountDirectory;
 import UserInterface.UserLogin;
 import java.awt.CardLayout;
-import java.awt.Component;
 import javax.swing.JPanel;
 
 /**
@@ -35,6 +34,7 @@ public class UserWorkAreaJPanel extends javax.swing.JPanel {
     private EcoSystem system;
     private DB4OUtil dB4OUtil;
     private UserAccount useraccount;
+    private Enterprise enterprise;
         
     /**
      * Creates new form ReceiverWorkAreaJPanel
@@ -43,7 +43,7 @@ public class UserWorkAreaJPanel extends javax.swing.JPanel {
             EventDirectory eventdirectory, BankEmployeeAccountDirectory bankemployeeAccountDirectory,            
             FundRaisingEmployeeAccountDirectory fundraisingemployeeAccountDirectory, 
             AdvertisingEmployeeAccountDirectory advertisingemployeeAccountDirectory, EcoSystem system,
-            DB4OUtil dB4OUtil,UserAccount useraccount) {
+            DB4OUtil dB4OUtil,UserAccount useraccount, Enterprise enterprise) {
         initComponents();
         this.leftContainer = leftContainer;
         this.rightContainer = rightContainer;
@@ -55,6 +55,7 @@ public class UserWorkAreaJPanel extends javax.swing.JPanel {
         this.system = system;
         this.dB4OUtil = dB4OUtil;
         this.useraccount = useraccount;
+        this.enterprise = enterprise;
     }
 
    
@@ -136,7 +137,7 @@ public class UserWorkAreaJPanel extends javax.swing.JPanel {
         rightContainer.remove(this);
         CardLayout rightCardLayout = (CardLayout) rightContainer.getLayout();
         rightContainer.add("UserDashboardJPanel", new UserDashboardJPanel(leftContainer, rightContainer, 
-                userAccountDirectory, eventdirectory, useraccount, system));
+                userAccountDirectory, eventdirectory, useraccount, system, enterprise));
         rightCardLayout.next(rightContainer);
     }//GEN-LAST:event_btnDashboardActionPerformed
 

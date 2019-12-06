@@ -22,15 +22,17 @@ public class BankDashBoardJPanel extends javax.swing.JPanel {
     private EventDirectory eventdirectory;
     private UserAccount userAccount;
     private EcoSystem system;
+    private Enterprise enterprise;
 
     /**
      * Creates new form BankDashBoard
      */
-    public BankDashBoardJPanel(JPanel rightContainer, EventDirectory eventdirectory, UserAccount userAccount, EcoSystem system) {
+    public BankDashBoardJPanel(JPanel rightContainer, EventDirectory eventdirectory, UserAccount userAccount, EcoSystem system, Enterprise enterprise) {
         initComponents();
         this.rightContainer = rightContainer;
         this.eventdirectory = eventdirectory;
         this.system=system;
+        this.enterprise = enterprise;
         this.userAccount = userAccount;
     }
 
@@ -104,7 +106,7 @@ public class BankDashBoardJPanel extends javax.swing.JPanel {
 
     private void btnVerifRequestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerifRequestActionPerformed
         CardLayout rightLayout = (CardLayout) rightContainer.getLayout();
-        rightContainer.add("VerificationRequestJPanel", new VerificationRequestJPanel(rightContainer, userAccount, system));
+        rightContainer.add("VerificationRequestJPanel", new VerificationRequestJPanel(rightContainer, userAccount, enterprise));
         rightLayout.next(rightContainer);
     }//GEN-LAST:event_btnVerifRequestActionPerformed
 

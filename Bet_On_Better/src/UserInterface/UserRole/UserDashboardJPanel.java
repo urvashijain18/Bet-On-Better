@@ -11,6 +11,7 @@ import Business.FundRaiserEvents.EventDirectory;
 import Business.UserAccount.UserAccount;
 import Business.UserAccount.UserAccountDirectory;
 import UserInterface.Event.CreateEventJPanel;
+import UserInterface.Event.RaiseInitiativeJPanel;
 import UserInterface.UserLogin;
 import java.awt.CardLayout;
 import java.awt.Component;
@@ -27,12 +28,14 @@ public class UserDashboardJPanel extends javax.swing.JPanel {
     private EventDirectory eventdirectory;
     private UserAccount useraccount;
     private EcoSystem system;
+    private Enterprise enterprise;
     
     /**
      * Creates new form Dashboard
      */
     public UserDashboardJPanel(JPanel leftContainer, JPanel rightContainer,
-            UserAccountDirectory userAccountDirectory, EventDirectory eventdirectory, UserAccount useraccount, EcoSystem system) {
+            UserAccountDirectory userAccountDirectory, EventDirectory eventdirectory, UserAccount useraccount, 
+            EcoSystem system, Enterprise enterprise) {
         initComponents();
         this.leftContainer = leftContainer;
         this.rightContainer = rightContainer;
@@ -40,6 +43,7 @@ public class UserDashboardJPanel extends javax.swing.JPanel {
         this.eventdirectory = eventdirectory;
         this.useraccount = useraccount;
         this.system = system;
+        this.enterprise = enterprise;
     }
 
     /**
@@ -97,6 +101,11 @@ public class UserDashboardJPanel extends javax.swing.JPanel {
         btnEdit.setText("Edit");
 
         btnNewInitiative.setText("Raise a New Initiative");
+        btnNewInitiative.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNewInitiativeActionPerformed(evt);
+            }
+        });
 
         btnCreateEvent.setText("Create an Event");
         btnCreateEvent.addActionListener(new java.awt.event.ActionListener() {
@@ -134,9 +143,9 @@ public class UserDashboardJPanel extends javax.swing.JPanel {
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btnBack)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(153, 153, 153)
                         .addComponent(btnNewInitiative)
-                        .addGap(128, 128, 128)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnCreateEvent)
                         .addGap(21, 21, 21))))
         );
@@ -180,11 +189,17 @@ public class UserDashboardJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_btnCreateEventActionPerformed
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
-        // TODO add your handling code here:
         rightContainer.remove(this);
-        CardLayout leftLayout = (CardLayout) leftContainer.getLayout();
-        leftLayout.previous(leftContainer); 
+        CardLayout rightLayout = (CardLayout) rightContainer.getLayout();
+        rightLayout.previous(rightContainer); 
     }//GEN-LAST:event_btnBackActionPerformed
+
+    private void btnNewInitiativeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNewInitiativeActionPerformed
+        rightContainer.remove(this);
+        CardLayout rightLayout = (CardLayout) rightContainer.getLayout();
+        rightContainer.add("RaiseInitiativeJPanel", new RaiseInitiativeJPanel(rightContainer, enterprise, useraccount, eventdirectory, system));
+        rightLayout.next(rightContainer);
+    }//GEN-LAST:event_btnNewInitiativeActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
