@@ -36,7 +36,8 @@ public class FundraisingEventEmployeeLeftJPanel extends javax.swing.JPanel {
     /**
      * Creates new form FundraisingEventEmployeeLeftJPanel
      */
-    public FundraisingEventEmployeeLeftJPanel() {
+  
+    public FundraisingEventEmployeeLeftJPanel(JPanel leftContainer, JPanel rightContainer, UserAccountDirectory userAccountDirectory, EventDirectory eventdirectory, BankEmployeeAccountDirectory bankemployeeAccountDirectory, FundRaisingEmployeeAccountDirectory fundraisingemployeeAccountDirectory, AdvertisingEmployeeAccountDirectory advertisingemployeeAccountDirectory, EcoSystem business, DB4OUtil dB4OUtil, Enterprise enterprise) {
         initComponents();
     }
 

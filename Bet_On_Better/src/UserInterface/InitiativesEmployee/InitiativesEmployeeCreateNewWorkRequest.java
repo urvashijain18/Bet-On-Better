@@ -6,6 +6,7 @@
 package UserInterface.InitiativesEmployee;
 
 import Business.FundRaiserEvents.EventDirectory;
+import java.util.Date;
 import javax.swing.JPanel;
 
 /**
@@ -37,9 +38,9 @@ public class InitiativesEmployeeCreateNewWorkRequest extends javax.swing.JPanel 
         txtTittle = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        txtDeadline = new javax.swing.JTextField();
         txtDescription = new javax.swing.JTextField();
         btnCreate = new javax.swing.JButton();
+        jDateChooser1 = new com.toedter.calendar.JDateChooser();
 
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel1.setText("Tittle :");
@@ -79,7 +80,7 @@ public class InitiativesEmployeeCreateNewWorkRequest extends javax.swing.JPanel 
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(txtTittle)
                             .addComponent(txtDescription, javax.swing.GroupLayout.DEFAULT_SIZE, 113, Short.MAX_VALUE)
-                            .addComponent(txtDeadline)))
+                            .addComponent(jDateChooser1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(214, 214, 214)
                         .addComponent(btnCreate)))
@@ -99,12 +100,12 @@ public class InitiativesEmployeeCreateNewWorkRequest extends javax.swing.JPanel 
                     .addComponent(jLabel3)
                     .addComponent(txtDescription, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel4)
-                    .addComponent(txtDeadline, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(52, 52, 52)
+                    .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(49, 49, 49)
                 .addComponent(btnCreate)
-                .addContainerGap(86, Short.MAX_VALUE))
+                .addContainerGap(89, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -112,6 +113,7 @@ public class InitiativesEmployeeCreateNewWorkRequest extends javax.swing.JPanel 
         // TODO add your handling code here:
         String title = txtTittle.getText();
         String description = txtDescription.getText();
+        Date date = jDateChooser1.getDate();
         
         
     }//GEN-LAST:event_btnCreateActionPerformed
@@ -119,11 +121,11 @@ public class InitiativesEmployeeCreateNewWorkRequest extends javax.swing.JPanel 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCreate;
+    private com.toedter.calendar.JDateChooser jDateChooser1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JTextField txtDeadline;
     private javax.swing.JTextField txtDescription;
     private javax.swing.JTextField txtTittle;
     // End of variables declaration//GEN-END:variables

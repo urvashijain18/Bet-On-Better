@@ -16,6 +16,7 @@ import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
 import Business.UserAccount.UserAccountDirectory;
 import UserInterface.FundRaisingAdminRole.AdminLeftJPanel;
+import UserInterface.FundraisingEventEmployee.FundraisingEventEmployeeLeftJPanel;
 import javax.swing.JPanel;
 
 /**
@@ -35,7 +36,7 @@ public class InitiativesEmployee extends Role{
             FundRaisingEmployeeAccountDirectory fundraisingemployeeAccountDirectory, 
             AdvertisingEmployeeAccountDirectory advertisingemployeeAccountDirectory, 
             EcoSystem business, DB4OUtil dB4OUtil, Enterprise enterprise, UserAccount account) {
-          return new AdminLeftJPanel(leftContainer, rightContainer, userAccountDirectory, eventdirectory, bankemployeeAccountDirectory, fundraisingemployeeAccountDirectory, advertisingemployeeAccountDirectory, business, dB4OUtil,enterprise);
+          return new FundraisingEventEmployeeLeftJPanel(leftContainer, rightContainer, userAccountDirectory, eventdirectory, bankemployeeAccountDirectory, fundraisingemployeeAccountDirectory, advertisingemployeeAccountDirectory, business, dB4OUtil,enterprise);
     
     }
     
