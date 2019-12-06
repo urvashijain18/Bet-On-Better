@@ -5,10 +5,68 @@
  */
 package Business.WorkRequest;
 
+import java.util.Date;
+
 /**
  *
  * @author MMI
  */
-public class CreateEventByOrganizationEmployee {
+public class CreateEventByOrganizationEmployee extends WorkRequest {
+     private int requestID;
+    private String title;
+    private String description;
+    private String location;
+    private Date deadline;
+    private Date eventDate;
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
+    public Date getEventDate() {
+        return eventDate;
+    }
+
+    public void setEventDate(Date eventDate) {
+        this.eventDate = eventDate;
+    }
+    
+
+    public int getRequestID() {
+        return requestID;
+    }
+
+    public void setRequestID(int requestID) {
+        this.requestID = requestID;
+    }
+
+    public Date getDeadline() {
+        return deadline;
+    }
+
+    public void setDeadline(Date deadline) {
+        this.deadline = deadline;
+    }
+    
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
     
 }

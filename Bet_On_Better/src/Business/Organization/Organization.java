@@ -9,6 +9,7 @@ import Business.Employee.EmployeeDirectory;
 import Business.EndUser.EndUserDirectory;
 import Business.Role.Role;
 import Business.UserAccount.UserAccountDirectory;
+import Business.WorkQueue.CreateEventByOrganizationEmployeeDirectory;
 import Business.WorkQueue.WorkQueue;
 import java.util.ArrayList;
 
@@ -19,12 +20,29 @@ import java.util.ArrayList;
 public abstract class Organization {
     private String name;
     private WorkQueue workQueue;
+    private CreateEventByOrganizationEmployeeDirectory createEventByOrganizationEmployeeDirectory;
     private Type organizationType;
     private EmployeeDirectory employeeDirectory;
     private UserAccountDirectory userAccountDirectory;
     private EndUserDirectory endUserDirectory;
     private int organizationID;
     private static int counter=0;
+
+    public CreateEventByOrganizationEmployeeDirectory getCreateEventByOrganizationEmployeeDirectory() {
+        return createEventByOrganizationEmployeeDirectory;
+    }
+
+    public void setCreateEventByOrganizationEmployeeDirectory(CreateEventByOrganizationEmployeeDirectory createEventByOrganizationEmployeeDirectory) {
+        this.createEventByOrganizationEmployeeDirectory = createEventByOrganizationEmployeeDirectory;
+    }
+
+    public EndUserDirectory getEndUserDirectory() {
+        return endUserDirectory;
+    }
+
+    public void setEndUserDirectory(EndUserDirectory endUserDirectory) {
+        this.endUserDirectory = endUserDirectory;
+    }
     
     public enum Type{
         AccVerif("Account Verification Organization"), Email("Email Organization"), Facebook("Facebook Organization"),

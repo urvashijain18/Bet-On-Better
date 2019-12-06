@@ -18,6 +18,7 @@ public class UserAccount {
     private String username;
     private String password;
     private Role role;
+    private String category;
     private WorkQueue workQueue;
     private AccountDetails accountDetails;
 
@@ -71,6 +72,15 @@ public class UserAccount {
     }
 
     public void setName(String name) {
-        this.name = name;
+        this.name = name;       
     }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
+    
 }

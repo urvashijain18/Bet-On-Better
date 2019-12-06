@@ -14,6 +14,7 @@ import Business.FundRaisingEmployee.FundRaisingEmployeeAccountDirectory;
 import Business.FundRaiserEvents.EventDirectory;
 import Business.UserAccount.UserAccount;
 import Business.UserAccount.UserAccountDirectory;
+import Business.WorkQueue.CreateEventByOrganizationEmployeeDirectory;
 import UserInterface.UserLogin;
 import java.awt.CardLayout;
 import javax.swing.JPanel;
@@ -36,28 +37,25 @@ public class InitiativesEmployeeLeftJPanel extends javax.swing.JPanel {
     private DB4OUtil dB4OUtil;
     private UserAccount userAccount;
     private Enterprise enterprise;
+     private CreateEventByOrganizationEmployeeDirectory createEventByOrganizationEmployeeDirectory;
     
     /**
      * Creates new form FundraisingEmployeeRightJPanel
      */
 
-    public InitiativesEmployeeLeftJPanel(JPanel leftContainer, JPanel rightContainer, 
-            UserAccountDirectory userAccountDirectory, EventDirectory eventdirectory, 
-            BankEmployeeAccountDirectory bankemployeeAccountDirectory, 
-            FundRaisingEmployeeAccountDirectory fundraisingemployeeAccountDirectory, 
-            AdvertisingEmployeeAccountDirectory advertisingemployeeAccountDirectory, 
-            EcoSystem business, DB4OUtil dB4OUtil, Enterprise enterprise, UserAccount userAccount) {
+    public InitiativesEmployeeLeftJPanel(JPanel leftContainer, JPanel rightContainer, UserAccountDirectory userAccountDirectory, EventDirectory eventdirectory, BankEmployeeAccountDirectory bankemployeeAccountDirectory, FundRaisingEmployeeAccountDirectory fundraisingemployeeAccountDirectory, AdvertisingEmployeeAccountDirectory advertisingemployeeAccountDirectory, EcoSystem business, DB4OUtil dB4OUtil, Enterprise enterprise ) {
          initComponents();
-        this.leftContainer = leftContainer;
+       this.leftContainer = leftContainer;
         this.rightContainer = rightContainer;
         this.userAccountDirectory = userAccountDirectory;
         this.eventdirectory = eventdirectory;
         this.bankemployeeAccountDirectory = bankemployeeAccountDirectory;
         this.advertisingemployeeAccountDirectory = advertisingemployeeAccountDirectory;
         this.fundraisingemployeeAccountDirectory = fundraisingemployeeAccountDirectory;
-        this.userAccount = userAccount;
+        this.createEventByOrganizationEmployeeDirectory =  new CreateEventByOrganizationEmployeeDirectory();
         this.dB4OUtil = dB4OUtil;
-        this.enterprise = enterprise;
+        this.enterprise = this.enterprise;
+        this.system = system;
     }
 
     /**
@@ -168,8 +166,8 @@ public class InitiativesEmployeeLeftJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
         rightContainer.remove(this);
         CardLayout rightCardLayout = (CardLayout) rightContainer.getLayout();
-        rightContainer.add("FundraisingEmployeeCreateNewWorkRequest", new InitiativesEmployeeCreateNewWorkRequest(rightContainer, eventdirectory));
-        rightCardLayout.next(rightContainer); 
+        rightContainer.add("Test", new Test(rightContainer,eventdirectory,createEventByOrganizationEmployeeDirectory,enterprise));
+         rightCardLayout.next(rightContainer);
         
     }//GEN-LAST:event_btnNewRequestActionPerformed
 

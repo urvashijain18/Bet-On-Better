@@ -34,12 +34,22 @@ public class FundraisingEventEmployeeLeftJPanel extends javax.swing.JPanel {
     private EcoSystem system;
     private DB4OUtil dB4OUtil;
     private UserAccount useraccount;
+     private Enterprise enterprise;
 
     /**
      * Creates new form FundraisingEventEmployeeLeftJPanel
      */
     public FundraisingEventEmployeeLeftJPanel(JPanel leftContainer, JPanel rightContainer, UserAccountDirectory userAccountDirectory, EventDirectory eventdirectory, BankEmployeeAccountDirectory bankemployeeAccountDirectory, FundRaisingEmployeeAccountDirectory fundraisingemployeeAccountDirectory, AdvertisingEmployeeAccountDirectory advertisingemployeeAccountDirectory, EcoSystem business, DB4OUtil dB4OUtil, Enterprise enterprise) {
         initComponents();
+        this.leftContainer = leftContainer;
+        this.rightContainer = rightContainer;
+        this.userAccountDirectory = userAccountDirectory;
+        this.eventdirectory = eventdirectory;
+        this. bankemployeeAccountDirectory = bankemployeeAccountDirectory;
+        this.advertisingemployeeAccountDirectory = advertisingemployeeAccountDirectory;
+        this.fundraisingemployeeAccountDirectory = fundraisingemployeeAccountDirectory;
+        this.enterprise = enterprise;
+        this.dB4OUtil = dB4OUtil; 
     }
 
     /**
@@ -122,9 +132,9 @@ public class FundraisingEventEmployeeLeftJPanel extends javax.swing.JPanel {
 
     private void btnPendingRequestsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPendingRequestsActionPerformed
         // TODO add your handling code here:
-        rightContainer.remove(this);
+         rightContainer.remove(this);
         CardLayout rightCardLayout = (CardLayout) rightContainer.getLayout();
-        rightContainer.add("FundraisingEventsPendingRequests", new FundraisingEventsPendingRequests(rightContainer, eventdirectory, system, useraccount));
+        rightContainer.add("FundraisingEventsPendingRequests", new FundraisingEventsPendingRequests(rightContainer, eventdirectory,enterprise));
         rightCardLayout.next(rightContainer);
     }//GEN-LAST:event_btnPendingRequestsActionPerformed
 
