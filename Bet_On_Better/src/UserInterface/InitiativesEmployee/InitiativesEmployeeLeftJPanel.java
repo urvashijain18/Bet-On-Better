@@ -54,8 +54,8 @@ public class InitiativesEmployeeLeftJPanel extends javax.swing.JPanel {
         this.fundraisingemployeeAccountDirectory = fundraisingemployeeAccountDirectory;
         this.createEventByOrganizationEmployeeDirectory =  new CreateEventByOrganizationEmployeeDirectory();
         this.dB4OUtil = dB4OUtil;
-        this.enterprise = this.enterprise;
-        this.system = system;
+        this.enterprise = enterprise;
+        this.system = business;
     }
 
     /**

@@ -13,9 +13,12 @@ import Business.Organization.Organization;
 import Business.Role.FundRaisingEmployee;
 import Business.Role.InitiativesEmployee;
 import Business.Role.Role;
+import Business.UserAccount.UserAccount;
 import Business.UserAccount.UserAccountDirectory;
 import UserInterface.UserLogin;
 import java.awt.CardLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -26,7 +29,7 @@ import javax.swing.JPanel;
  *
  * @author devma
  */
-public class AdminCreateEmployeesJPanel extends javax.swing.JPanel {
+public class AdminCreateEmployeesJPanel extends javax.swing.JPanel implements ActionListener{
 private JPanel rightContainer;
 private JPanel leftContainer;
 private FundRaisingEmployeeAccountDirectory employeeAccountDirectory;
@@ -42,19 +45,28 @@ private Enterprise enterprise;
         this.employeeAccountDirectory = employeeAccountDirectory;
         this.enterprise = enterprise;
         populateComboBox();
+        lblCategory.setVisible(false);
+        categoryComboBox.setVisible(false);
+        OrganizationComboBox.addActionListener(this);
     }
     
     private void populateComboBox() {
         OrganizationComboBox.removeAllItems();
-        RoleComboBox.removeAllItems();
-        OrganizationComboBox.addItem(new String("--Select--"));
+        //OrganizationComboBox.addItem(new String("--Select--"));
         for (Organization organization : enterprise.getOrganizationDirectory().getOrganizationList()) {
             OrganizationComboBox.addItem(organization);
         }
-        RoleComboBox.addItem(new String("--Select--"));
-        for (Role.RoleType type : Role.RoleType.values()) {
-            RoleComboBox.addItem(type);
-        }
+       
+    }
+    
+    private void populateCategoryComboBox() {
+        categoryComboBox.removeAllItems();
+        categoryComboBox.addItem(new String("--Select--"));
+        categoryComboBox.addItem(new String("Animal"));
+        categoryComboBox.addItem(new String("Education"));
+        categoryComboBox.addItem(new String("Food and Hunger"));
+        categoryComboBox.addItem(new String("Health"));
+       
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -76,11 +88,11 @@ private Enterprise enterprise;
         passwordField = new javax.swing.JPasswordField();
         jLabel5 = new javax.swing.JLabel();
         confirmPasswordField = new javax.swing.JPasswordField();
-        jLabel6 = new javax.swing.JLabel();
         btnCreate = new javax.swing.JButton();
         OrganizationComboBox = new javax.swing.JComboBox();
         jLabel7 = new javax.swing.JLabel();
-        RoleComboBox = new javax.swing.JComboBox();
+        lblCategory = new javax.swing.JLabel();
+        categoryComboBox = new javax.swing.JComboBox<>();
 
         btnBack.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         btnBack.setText("<< Back");
@@ -105,9 +117,6 @@ private Enterprise enterprise;
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel5.setText("Confirm Password : ");
 
-        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel6.setText("Role : ");
-
         btnCreate.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         btnCreate.setText("Create");
         btnCreate.addActionListener(new java.awt.event.ActionListener() {
@@ -117,10 +126,18 @@ private Enterprise enterprise;
         });
 
         OrganizationComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        OrganizationComboBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                OrganizationComboBoxActionPerformed(evt);
+            }
+        });
 
-        jLabel7.setText("Organization Type: ");
+        jLabel7.setText("Organization Name: ");
 
-        RoleComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        lblCategory.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblCategory.setText("Category :");
+
+        categoryComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -138,14 +155,17 @@ private Enterprise enterprise;
                         .addComponent(btnCreate)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(lblCategory, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING))))
                 .addGap(52, 52, 52)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(OrganizationComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -154,7 +174,7 @@ private Enterprise enterprise;
                         .addComponent(txtName)
                         .addComponent(passwordField)
                         .addComponent(confirmPasswordField))
-                    .addComponent(RoleComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(categoryComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(144, 144, 144))
         );
         layout.setVerticalGroup(
@@ -187,11 +207,11 @@ private Enterprise enterprise;
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
                     .addComponent(OrganizationComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(RoleComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
+                    .addComponent(lblCategory)
+                    .addComponent(categoryComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
                 .addComponent(btnCreate)
                 .addGap(35, 35, 35))
         );
@@ -240,20 +260,40 @@ private Enterprise enterprise;
         }
 
         Role role = null;
-
-        if (RoleComboBox.getSelectedItem().equals(Role.RoleType.FundRaisingEmployee)) {
-            role = new FundRaisingEmployee();
-        }else if (RoleComboBox.getSelectedItem().equals(Role.RoleType.InitiativesEmployee)) {
+        Organization organization = (Organization) OrganizationComboBox.getSelectedItem();
+        if(organization.getOrganizationType().equals(Organization.Type.Initiatives)){
             role = new InitiativesEmployee();
+        }else if(organization.getOrganizationType().equals(Organization.Type.FundRaisingEvents)){
+            role = new FundRaisingEmployee();
         }
         
-        Organization organization = (Organization)OrganizationComboBox.getSelectedItem();
-        organization.getUserAccountDirectory().createUserAccount(username, pwd, role);
+        UserAccount userAccount = organization.getUserAccountDirectory().createUserAccount(username, pwd, role);
+        String category = (String)categoryComboBox.getSelectedItem();
+        if (category != null){
+        userAccount.setCategory(category);
+        }
+        
         employeeAccountDirectory.createEmployeeAccount(username, pwd, role);
 
         JOptionPane.showMessageDialog(null, "Account Created Successfully");
         
     }//GEN-LAST:event_btnCreateActionPerformed
+
+    private void OrganizationComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OrganizationComboBoxActionPerformed
+//         TODO add your handling code here:
+        Organization organization = (Organization) OrganizationComboBox.getSelectedItem();
+        if(organization!=null){
+        if(organization.getOrganizationType().equals(Organization.Type.Initiatives)){
+           lblCategory.setVisible(true);
+           categoryComboBox.setVisible(true);
+         populateCategoryComboBox();
+        }
+        else {
+            lblCategory.setVisible(false);
+            categoryComboBox.setVisible(false);
+        }
+        }
+    }//GEN-LAST:event_OrganizationComboBoxActionPerformed
 
     
     private boolean usernamePatternCorrect() {
@@ -272,20 +312,25 @@ private Enterprise enterprise;
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox OrganizationComboBox;
-    private javax.swing.JComboBox RoleComboBox;
     private javax.swing.JButton btnBack;
     private javax.swing.JButton btnCreate;
     private javax.swing.ButtonGroup btnGrp;
+    private javax.swing.JComboBox<String> categoryComboBox;
     private javax.swing.JPasswordField confirmPasswordField;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel lblCategory;
     private javax.swing.JPasswordField passwordField;
     private javax.swing.JTextField txtName;
     private javax.swing.JTextField txtUserName;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void actionPerformed(ActionEvent ae) {
+        OrganizationComboBoxActionPerformed(ae);
+    }
 }

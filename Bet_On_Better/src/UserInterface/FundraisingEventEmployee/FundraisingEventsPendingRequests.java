@@ -29,43 +29,41 @@ import javax.swing.table.DefaultTableModel;
  */
 public class FundraisingEventsPendingRequests extends javax.swing.JPanel {
 
-  private JPanel rightContainer;
-       private EcoSystem system;
-       private EventDirectory eventDirectory;
-       private CreateEventByOrganizationEmployeeDirectory createEventByOrganizationEmployeeDirectory;
-       private Enterprise enterprise;
-    
+    private JPanel rightContainer;
+    private EcoSystem system;
+    private EventDirectory eventDirectory;
+    private CreateEventByOrganizationEmployeeDirectory createEventByOrganizationEmployeeDirectory;
+    private Enterprise enterprise;
 
     /**
      * Creates new form FundraisingEventsPendingRequests
      */
-    public FundraisingEventsPendingRequests(JPanel rightContainer, EventDirectory eventdirectory,Enterprise enterprise) {
-         initComponents();
-         this.enterprise = enterprise;
-         this.rightContainer = rightContainer;
-         this.eventDirectory = eventdirectory;       
-         this.createEventByOrganizationEmployeeDirectory = enterprise.getCreateEventByOrganizationEmployeeDirectory();
-            
-       
-           populateTable();
+    public FundraisingEventsPendingRequests(JPanel rightContainer, EventDirectory eventdirectory, Enterprise enterprise) {
+        initComponents();
+        this.enterprise = enterprise;
+        this.rightContainer = rightContainer;
+        this.eventDirectory = eventdirectory;
+        this.createEventByOrganizationEmployeeDirectory = enterprise.getCreateEventByOrganizationEmployeeDirectory();
+
+        populateTable();
     }
 
     private void populateTable() {
-      DefaultTableModel model = (DefaultTableModel) tblPendingRequest.getModel();
-        model.setRowCount(0);        
-        for(CreateEventByOrganizationEmployee cs : createEventByOrganizationEmployeeDirectory.getCreateEventByOrganizationEmployeeList()){
-                     
-                    Object[] row = new Object[7];
-                    row[0] = cs.getRequestID();
-                    row[1] = cs.getTitle();
-                    row[2] = cs.getDescription();
-                    row[3] = cs.getSender();
-                    row[4] = cs.getDeadline();
-                    row[5] = cs.getLocation();
-                    row[6] = ' ';
-                    
-                    model.addRow(row);
-    }
+        DefaultTableModel model = (DefaultTableModel) tblPendingRequest.getModel();
+        model.setRowCount(0);
+        for (CreateEventByOrganizationEmployee cs : createEventByOrganizationEmployeeDirectory.getCreateEventByOrganizationEmployeeList()) {
+
+            Object[] row = new Object[7];
+            row[0] = cs.getRequestID();
+            row[1] = cs.getTitle();
+            row[2] = cs.getDescription();
+            row[3] = cs.getSender();
+            row[4] = cs.getDeadline();
+            row[5] = cs.getLocation();
+            row[6] = ' ';
+
+            model.addRow(row);
+        }
     }
 
     /**

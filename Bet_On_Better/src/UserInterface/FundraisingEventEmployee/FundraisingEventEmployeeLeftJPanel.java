@@ -22,7 +22,7 @@ import javax.swing.JPanel;
  *
  * @author MMI
  */
-public class FundraisingEventEmployeeLeftJPanel extends javax.swing.JPanel {
+public class FundraisingEventEmployeeLeftJPanel extends javax.swing.JPanel  {
 
     private JPanel leftContainer;
     private JPanel rightContainer;
@@ -39,17 +39,22 @@ public class FundraisingEventEmployeeLeftJPanel extends javax.swing.JPanel {
     /**
      * Creates new form FundraisingEventEmployeeLeftJPanel
      */
-    public FundraisingEventEmployeeLeftJPanel(JPanel leftContainer, JPanel rightContainer, UserAccountDirectory userAccountDirectory, EventDirectory eventdirectory, BankEmployeeAccountDirectory bankemployeeAccountDirectory, FundRaisingEmployeeAccountDirectory fundraisingemployeeAccountDirectory, AdvertisingEmployeeAccountDirectory advertisingemployeeAccountDirectory, EcoSystem business, DB4OUtil dB4OUtil, Enterprise enterprise) {
+    public FundraisingEventEmployeeLeftJPanel(JPanel leftContainer, JPanel rightContainer, 
+            UserAccountDirectory userAccountDirectory, EventDirectory eventdirectory, 
+            BankEmployeeAccountDirectory bankemployeeAccountDirectory, 
+            FundRaisingEmployeeAccountDirectory fundraisingemployeeAccountDirectory, 
+            AdvertisingEmployeeAccountDirectory advertisingemployeeAccountDirectory, EcoSystem business, DB4OUtil dB4OUtil, Enterprise enterprise) {
         initComponents();
         this.leftContainer = leftContainer;
         this.rightContainer = rightContainer;
         this.userAccountDirectory = userAccountDirectory;
         this.eventdirectory = eventdirectory;
-        this. bankemployeeAccountDirectory = bankemployeeAccountDirectory;
+        this.bankemployeeAccountDirectory = bankemployeeAccountDirectory;
         this.advertisingemployeeAccountDirectory = advertisingemployeeAccountDirectory;
         this.fundraisingemployeeAccountDirectory = fundraisingemployeeAccountDirectory;
         this.enterprise = enterprise;
         this.dB4OUtil = dB4OUtil; 
+        this.system = business;
     }
 
     /**
