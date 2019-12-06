@@ -5,6 +5,7 @@
  */
 package Business.WorkRequest;
 
+import Business.UserAccount.UserAccount;
 import java.util.Date;
 
 /**
@@ -16,6 +17,7 @@ public class VerificationRequest extends WorkRequest{
     private Date verificationDate;
     private String status;
     private String reason;
+    private UserAccount user;
     
     public int getRequestId() {
         return requestId;
@@ -47,5 +49,13 @@ public class VerificationRequest extends WorkRequest{
 
     public void setReason(String reason) {
         this.reason = reason;
+    }
+
+    public UserAccount getUser() {
+        return user;
+    }
+
+    public void setUser(UserAccount user) {
+        this.user = user;
     }
 }
