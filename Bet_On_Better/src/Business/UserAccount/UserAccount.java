@@ -5,6 +5,7 @@
  */
 package Business.UserAccount;
 
+import Business.EndUser.AccountDetails;
 import Business.Role.Role;
 import Business.WorkQueue.WorkQueue;
 
@@ -18,6 +19,15 @@ public class UserAccount {
     private String password;
     private Role role;
     private WorkQueue workQueue;
+    private AccountDetails accountDetails;
+
+    public AccountDetails getAccountDetails() {
+        return accountDetails;
+    }
+
+    public void setAccountDetails(AccountDetails accountDetails) {
+        this.accountDetails = accountDetails;
+    }
 
     public UserAccount() {
         workQueue = new WorkQueue();

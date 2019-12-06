@@ -5,11 +5,18 @@
  */
 package UserInterface.Event;
 
+import Business.EcoSystem;
+import Business.EndUser.EndUser;
 import Business.Enterprise.Enterprise;
 import Business.FundRaiserEvents.EventDirectory;
+import Business.UserAccount.UserAccount;
 import Business.UserAccount.UserAccountDirectory;
 import Business.WorkRequest.VerificationRequest;
 import Business.WorkRequest.WorkRequest;
+import UserInterface.FundRaisingAdminRole.AdminTargetDateJPanel;
+import UserInterface.UserRole.BankAccountDetailsJPanel;
+import java.awt.CardLayout;
+import java.util.Date;
 import javax.swing.JPanel;
 
 /**
@@ -22,6 +29,10 @@ public class CreateEventJPanel extends javax.swing.JPanel {
    private JPanel rightContainer;
    private UserAccountDirectory userAccountDirectory;
    private EventDirectory eventdirectory;
+   private Enterprise enterprise;
+   private EndUser user;
+   private UserAccount useraccount;
+   private EcoSystem system;
     /**
      * Creates new form CreateEventJPanel
      */
@@ -29,12 +40,15 @@ public class CreateEventJPanel extends javax.swing.JPanel {
   
     
 
-    public CreateEventJPanel(JPanel leftContainer, JPanel rightContainer, UserAccountDirectory userAccountDirectory, EventDirectory eventdirectory) {
+    public CreateEventJPanel(JPanel leftContainer, JPanel rightContainer, UserAccountDirectory userAccountDirectory, EventDirectory eventdirectory, 
+            UserAccount useraccount, EcoSystem system) {
               initComponents();
               this.leftContainer =leftContainer;
                this.rightContainer = rightContainer;
                this.userAccountDirectory = userAccountDirectory;
                this.eventdirectory = eventdirectory;
+               this.useraccount = useraccount;
+               this.system = system;
     }
 
     /**
@@ -58,6 +72,7 @@ public class CreateEventJPanel extends javax.swing.JPanel {
         btnCreate = new javax.swing.JButton();
         btnBack = new javax.swing.JButton();
         btnCancel = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel1.setText("CREATE NEW FUND RAISER EVENT");
@@ -87,22 +102,25 @@ public class CreateEventJPanel extends javax.swing.JPanel {
 
         btnCancel.setText("Cancel");
 
+        jButton1.setText("Account Details");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(215, 215, 215)
-                .addComponent(jLabel1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(110, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnBack)
-                        .addGap(93, 93, 93)
                         .addComponent(btnCancel)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton1)
+                        .addGap(72, 72, 72)
                         .addComponent(btnCreate))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -117,11 +135,22 @@ public class CreateEventJPanel extends javax.swing.JPanel {
                             .addComponent(txtTargetDate, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtReqAmt, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(191, 191, 191))
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(215, 215, 215)
+                        .addComponent(jLabel1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(btnBack)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(47, 47, 47)
+                .addGap(18, 18, 18)
+                .addComponent(btnBack)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel1)
                 .addGap(43, 43, 43)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -142,8 +171,8 @@ public class CreateEventJPanel extends javax.swing.JPanel {
                 .addGap(128, 128, 128)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnCreate)
-                    .addComponent(btnBack)
-                    .addComponent(btnCancel))
+                    .addComponent(btnCancel)
+                    .addComponent(jButton1))
                 .addContainerGap(140, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -154,23 +183,34 @@ public class CreateEventJPanel extends javax.swing.JPanel {
 
     private void btnCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateActionPerformed
         String eventName = txtEventName.getText();
+        String category = " ";
+        Double requestAmount = (Double.parseDouble(txtReqAmt.getText()));
 
-        String requestAmount = txtReqAmt.getText();
-
-        String targetDate = txtTargetDate.getText();
+        Date targetDate = new Date(txtTargetDate.getText());
 
         String Description = txtDesc.getText();
+        
+        eventdirectory.createEvent(category,new Date(), Description, eventName, useraccount, requestAmount,  targetDate);
 
         WorkRequest workrequest = new VerificationRequest();
+        
       
                 // TODO add your handling code here:
     }//GEN-LAST:event_btnCreateActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        BankAccountDetailsJPanel panel = new BankAccountDetailsJPanel( rightContainer,  enterprise,  user, useraccount, eventdirectory, system);
+      rightContainer.add("BankAccountDetailsJPanel", panel);
+      CardLayout layout = (CardLayout) rightContainer.getLayout();
+      layout.next(rightContainer);        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBack;
     private javax.swing.JButton btnCancel;
     private javax.swing.JButton btnCreate;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

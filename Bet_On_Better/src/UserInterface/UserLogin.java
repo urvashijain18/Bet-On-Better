@@ -199,7 +199,7 @@ public class UserLogin extends javax.swing.JPanel {
             leftContainer.add("workArea",userAccount.getRole().createLeftWorkArea(leftContainer, rightContainer, 
                     userAccountDirectory, eventdirectory, bankemployeeAccountDirectory, 
                     fundraisingemployeeAccountDirectory, advertisingemployeeAccountDirectory, system, dB4OUtil, 
-                    inEnterprise));
+                    inEnterprise, userAccount));
             leftLayout.next(leftContainer);
         }
         setLoginFieldDisabled();

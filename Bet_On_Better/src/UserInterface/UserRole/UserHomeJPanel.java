@@ -7,6 +7,7 @@ package UserInterface.UserRole;
 
 import Business.Enterprise.Enterprise;
 import Business.FundRaiserEvents.EventDirectory;
+import Business.UserAccount.UserAccount;
 import Business.UserAccount.UserAccountDirectory;
 import UserInterface.UserLogin;
 import java.awt.CardLayout;
@@ -21,14 +22,16 @@ public class UserHomeJPanel extends javax.swing.JPanel {
 
     private JPanel rightContainer;
     private EventDirectory eventdirectory;
+    private UserAccount useraccount;
         
     /**
      * Creates new form UserHomeJPanel
      */
-    public UserHomeJPanel( JPanel rightContainer, EventDirectory eventdirectory) {
+    public UserHomeJPanel( JPanel rightContainer, EventDirectory eventdirectory, UserAccount useraccount) {
         initComponents();
         this.rightContainer = rightContainer;
         this.eventdirectory = eventdirectory;
+        this.useraccount = useraccount;
     }
 
     /**

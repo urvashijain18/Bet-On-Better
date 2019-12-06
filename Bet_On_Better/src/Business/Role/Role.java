@@ -51,7 +51,7 @@ public abstract class Role {
                 EventDirectory eventdirectory, BankEmployeeAccountDirectory bankemployeeAccountDirectory, 
                 FundRaisingEmployeeAccountDirectory fundraisingemployeeAccountDirectory, 
                 AdvertisingEmployeeAccountDirectory advertisingemployeeAccountDirectory, EcoSystem business, 
-                DB4OUtil dB4OUtil, Enterprise enterprise);
+                DB4OUtil dB4OUtil, Enterprise enterprise, UserAccount account);
 
     @Override
     public String toString() {
