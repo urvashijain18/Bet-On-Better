@@ -15,9 +15,8 @@ import Business.FundRaisingEmployee.FundRaisingEmployeeAccountDirectory;
 import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
 import Business.UserAccount.UserAccountDirectory;
-import UserInterface.FundRaisingAdminRole.AdminLeftJPanel;
-import UserInterface.FundRaisingAdminRole.AdminWorkAreaJPanel;
-import UserInterface.InitiativesEmployee.InitiativesEmployeeLeftJPanel;
+import UserInterface.FundraisingEventEmployee.FundraisingEventEmployeeLeftJPanel;
+import UserInterface.FundraisingEventEmployee.FundraisingEventsPendingRequests;
 import javax.swing.JPanel;
 
 /**
@@ -28,13 +27,15 @@ public class FundRaisingEmployee extends Role {
 
     @Override
     public JPanel createRightWorkArea(JPanel userProcessContainer, UserAccount account, Organization organization, Enterprise enterprise, EcoSystem business, EventDirectory eventdirectory) {
-        return new JPanel();
+        return new FundraisingEventsPendingRequests(userProcessContainer, eventdirectory, business, account);
     }
     
 
     @Override
-    public JPanel createLeftWorkArea(JPanel leftContainer, JPanel rightContainer, UserAccountDirectory userAccountDirectory, EventDirectory eventdirectory, BankEmployeeAccountDirectory bankemployeeAccountDirectory, FundRaisingEmployeeAccountDirectory fundraisingemployeeAccountDirectory, AdvertisingEmployeeAccountDirectory advertisingemployeeAccountDirectory, EcoSystem business, DB4OUtil dB4OUtil, Enterprise enterprise, UserAccount account) {
-        return new InitiativesEmployeeLeftJPanel(leftContainer, rightContainer, userAccountDirectory, eventdirectory, bankemployeeAccountDirectory, fundraisingemployeeAccountDirectory, advertisingemployeeAccountDirectory, business, dB4OUtil, enterprise);
+    public JPanel createLeftWorkArea(JPanel leftContainer, JPanel rightContainer, UserAccountDirectory userAccountDirectory, 
+            EventDirectory eventdirectory, BankEmployeeAccountDirectory bankemployeeAccountDirectory, FundRaisingEmployeeAccountDirectory fundraisingemployeeAccountDirectory, AdvertisingEmployeeAccountDirectory advertisingemployeeAccountDirectory, EcoSystem business, DB4OUtil dB4OUtil, Enterprise enterprise, UserAccount account) {
+        return new FundraisingEventEmployeeLeftJPanel(leftContainer, rightContainer, userAccountDirectory, eventdirectory, bankemployeeAccountDirectory, 
+                fundraisingemployeeAccountDirectory, advertisingemployeeAccountDirectory, business, dB4OUtil, enterprise);
     }
 
 }

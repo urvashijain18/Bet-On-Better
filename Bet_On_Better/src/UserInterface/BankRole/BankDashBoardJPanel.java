@@ -5,8 +5,10 @@
  */
 package UserInterface.BankRole;
 
+import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
 import Business.FundRaiserEvents.EventDirectory;
+import Business.UserAccount.UserAccount;
 import java.awt.CardLayout;
 import javax.swing.JPanel;
 
@@ -18,14 +20,18 @@ public class BankDashBoardJPanel extends javax.swing.JPanel {
 
     private JPanel rightContainer;
     private EventDirectory eventdirectory;
+    private UserAccount userAccount;
+    private EcoSystem system;
 
     /**
      * Creates new form BankDashBoard
      */
-    public BankDashBoardJPanel(JPanel rightContainer, EventDirectory eventdirectory) {
+    public BankDashBoardJPanel(JPanel rightContainer, EventDirectory eventdirectory, UserAccount userAccount, EcoSystem system) {
         initComponents();
         this.rightContainer = rightContainer;
         this.eventdirectory = eventdirectory;
+        this.system=system;
+        this.userAccount = userAccount;
     }
 
     /**
@@ -98,7 +104,7 @@ public class BankDashBoardJPanel extends javax.swing.JPanel {
 
     private void btnVerifRequestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerifRequestActionPerformed
         CardLayout rightLayout = (CardLayout) rightContainer.getLayout();
-        rightContainer.add("VerificationRequestJPanel", new VerificationRequestJPanel());
+        rightContainer.add("VerificationRequestJPanel", new VerificationRequestJPanel(rightContainer, userAccount, system));
         rightLayout.next(rightContainer);
     }//GEN-LAST:event_btnVerifRequestActionPerformed
 

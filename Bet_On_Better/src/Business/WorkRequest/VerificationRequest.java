@@ -5,6 +5,7 @@
  */
 package Business.WorkRequest;
 
+import Business.FundRaiserEvents.Event;
 import Business.UserAccount.UserAccount;
 import java.util.Date;
 
@@ -18,6 +19,15 @@ public class VerificationRequest extends WorkRequest{
     private String status;
     private String reason;
     private UserAccount user;
+    private Event event;
+
+    public Event getEvent() {
+        return event;
+    }
+
+    public void setEvent(Event event) {
+        this.event = event;
+    }
     
     public int getRequestId() {
         return requestId;

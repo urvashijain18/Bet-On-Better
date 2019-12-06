@@ -16,6 +16,8 @@ import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
 import Business.UserAccount.UserAccountDirectory;
 import UserInterface.AdvertisingAdminRole.AdminAdvertisingWorkAreaJPanel;
+import UserInterface.BankRole.BankDashBoardJPanel;
+import UserInterface.BankRole.BankLeftJPanel;
 import UserInterface.FundRaisingAdminRole.AdminLeftJPanel;
 import javax.swing.JPanel;
 
@@ -30,7 +32,7 @@ import javax.swing.JPanel;
     @Override
     public JPanel createRightWorkArea(JPanel container, UserAccount account, 
             Organization organization, Enterprise enterprise, EcoSystem business, EventDirectory eventdirectory) {
-        return new AdminAdvertisingWorkAreaJPanel(container, enterprise, eventdirectory);
+        return new BankDashBoardJPanel(container, eventdirectory, account, business);
     }
     
     @Override
@@ -39,9 +41,9 @@ import javax.swing.JPanel;
                 FundRaisingEmployeeAccountDirectory fundraisingemployeeAccountDirectory, 
                 AdvertisingEmployeeAccountDirectory advertisingemployeeAccountDirectory, EcoSystem business, 
                 DB4OUtil dB4OUtil, Enterprise enterprise, UserAccount account) {
-        return new AdminLeftJPanel(leftContainer, leftContainer, userAccountDirectory, 
-                eventdirectory, bankemployeeAccountDirectory, fundraisingemployeeAccountDirectory, 
-                advertisingemployeeAccountDirectory, business, dB4OUtil,enterprise);
+        return new BankLeftJPanel(leftContainer, rightContainer, userAccountDirectory, eventdirectory, bankemployeeAccountDirectory, 
+                fundraisingemployeeAccountDirectory, advertisingemployeeAccountDirectory, business, dB4OUtil);
+        
     }
 }
     

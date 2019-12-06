@@ -5,8 +5,21 @@
  */
 package UserInterface.FundraisingEventEmployee;
 
+import Business.EcoSystem;
+import Business.Enterprise.Enterprise;
 import Business.FundRaiserEvents.EventDirectory;
+import Business.Network.Network;
+import Business.Organization.Organization;
+import Business.UserAccount.UserAccount;
+import Business.WorkRequest.VerificationRequest;
+import Business.WorkRequest.WorkRequest;
+import UserInterface.BankRole.BankDashBoardJPanel;
+import UserInterface.BankRole.VerificationRequestJPanel;
+import java.awt.CardLayout;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -14,13 +27,45 @@ import javax.swing.JPanel;
  */
 public class FundraisingEventsPendingRequests extends javax.swing.JPanel {
 
+    private EcoSystem system;
+    private JPanel rightContainer;
+    private UserAccount useraccount;
+
     /**
      * Creates new form FundraisingEventsPendingRequests
      */
-   
+    public FundraisingEventsPendingRequests(JPanel rightContainer, EventDirectory eventdirectory, EcoSystem system, UserAccount useraccount) {
+        initComponents();
+        this.system = system;
+        this.rightContainer = rightContainer;
+        this.useraccount = useraccount;
+        populateTable();
+    }
 
-    FundraisingEventsPendingRequests(JPanel rightContainer, EventDirectory eventdirectory) {
-       initComponents(); 
+    private void populateTable() {
+        DefaultTableModel model = (DefaultTableModel) tblPendingRequest.getModel();
+        model.setRowCount(0);
+        for (Network network : system.getNetworkList()) {
+            for (Enterprise enterprise : network.getEnterpriseDirectory().getEnterpriseList()) {
+                for (Organization organization : enterprise.getOrganizationDirectory().getOrganizationList()) {
+                    if (organization.getOrganizationType().equals(Organization.Type.FundRaisingEvents)) {
+                        for (int i = 0; i < organization.getWorkQueue().getWorkRequestList().size(); i++) {
+                            VerificationRequest request = (VerificationRequest) organization.getWorkQueue().getWorkRequestList().get(i);
+                            Object[] row = new Object[7];
+                            row[0] = request.getRequestId();
+                            row[1] = request.getEvent().getEventName();
+                            row[2] = request.getEvent().getDescription();
+                            row[3] = request.getEvent().getRaisedBy();
+                            row[4] = request.getEvent().getCreateDate();
+                            row[5] = network.getName();
+                            row[6] = request.getEvent().getStatus();
+
+                            model.addRow(row);
+                        }
+                    }
+                }
+            }
+        }
     }
 
     /**
@@ -33,42 +78,65 @@ public class FundraisingEventsPendingRequests extends javax.swing.JPanel {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tblPendingRequest = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
+        btnUserVerifReq = new javax.swing.JButton();
+        btnAssign = new javax.swing.JButton();
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblPendingRequest.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Event Name", "Description", "Created By", "Targeted Amount", "Date of Event", "Location", "Status"
+                "Request ID", "Event Name", "Description", "Created By", "Date of Event", "Location", "Status"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false
+                true, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tblPendingRequest);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel1.setText("Pending Requests");
+
+        btnUserVerifReq.setText("UserAccount Verification");
+        btnUserVerifReq.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUserVerifReqActionPerformed(evt);
+            }
+        });
+
+        btnAssign.setText("Assign to me");
+        btnAssign.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAssignActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(38, 38, 38)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 662, Short.MAX_VALUE)
-                .addGap(102, 102, 102))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(353, 353, 353)
-                .addComponent(jLabel1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(353, 353, 353)
+                        .addComponent(jLabel1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(38, 38, 38)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 723, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(btnUserVerifReq)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnAssign)
+                                .addGap(4, 4, 4)))))
+                .addContainerGap(41, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -76,15 +144,47 @@ public class FundraisingEventsPendingRequests extends javax.swing.JPanel {
                 .addContainerGap(37, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(58, 58, 58))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(60, 60, 60)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnUserVerifReq)
+                    .addComponent(btnAssign))
+                .addGap(72, 72, 72))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnAssignActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAssignActionPerformed
+        int selectedRow = tblPendingRequest.getSelectedRow();
+        if (selectedRow < 0) {
+            JOptionPane.showMessageDialog(null, "Please select a row from the table", "Warning", JOptionPane.WARNING_MESSAGE);
+        } else {
+            WorkRequest workrequest = (WorkRequest) tblPendingRequest.getValueAt(selectedRow, 0);
+            workrequest.setReceiver(useraccount);
+            JOptionPane.showMessageDialog(null, "Request Assigned");
+            btnAssign.setEnabled(false);
+        }
+    }//GEN-LAST:event_btnAssignActionPerformed
+
+    private void btnUserVerifReqActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUserVerifReqActionPerformed
+        int selectedRow = tblPendingRequest.getSelectedRow();
+        if (selectedRow < 0) {
+            JOptionPane.showMessageDialog(null, "Please select a row from the table", "Warning", JOptionPane.WARNING_MESSAGE);
+        } else {
+            WorkRequest workRequest = (WorkRequest) tblPendingRequest.getValueAt(selectedRow, 0);
+            workRequest.setSender(useraccount);
+            VerificationRequestJPanel verificationRequestJPanel = new VerificationRequestJPanel(rightContainer, useraccount, system);
+            rightContainer.add("VerificationRequestJPanel", verificationRequestJPanel);
+            CardLayout layout = (CardLayout) rightContainer.getLayout();
+            layout.next(rightContainer);
+        }   
+    }//GEN-LAST:event_btnUserVerifReqActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAssign;
+    private javax.swing.JButton btnUserVerifReq;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable tblPendingRequest;
     // End of variables declaration//GEN-END:variables
 }

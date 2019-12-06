@@ -15,6 +15,7 @@ import Business.FundRaisingEmployee.FundRaisingEmployeeAccountDirectory;
 import Business.Enterprise.Enterprise;
 import Business.FundRaiserEvents.EventDirectory;
 import Business.Network.Network;
+import Business.Organization.Organization;
 import Business.Role.Role;
 import Business.Role.UserRole;
 import Business.UserAccount.UserAccountDirectory;
@@ -238,7 +239,9 @@ public class CreateNewUser extends javax.swing.JPanel {
         for(Network net : system.getNetworkList()){
             if(net.equals(network)){
                 for(Enterprise enterprise : network.getEnterpriseDirectory().getEnterpriseList()){
-                    enterprise.getUserAccountDirectory().createUserAccount(username, pwd, role);
+                    for(Organization organization : enterprise.getOrganizationDirectory().getOrganizationList()){
+                    organization.getUserAccountDirectory().createUserAccount(username, pwd, role);
+                    }
                 }
             }
         }
