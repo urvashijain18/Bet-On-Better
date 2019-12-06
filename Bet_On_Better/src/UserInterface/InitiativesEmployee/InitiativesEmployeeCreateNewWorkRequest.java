@@ -54,6 +54,11 @@ public class InitiativesEmployeeCreateNewWorkRequest extends javax.swing.JPanel 
         jLabel4.setText("Deadline :");
 
         btnCreate.setText("Create");
+        btnCreate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCreateActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -102,6 +107,14 @@ public class InitiativesEmployeeCreateNewWorkRequest extends javax.swing.JPanel 
                 .addContainerGap(86, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateActionPerformed
+        // TODO add your handling code here:
+        String title = txtTittle.getText();
+        String description = txtDescription.getText();
+        
+        
+    }//GEN-LAST:event_btnCreateActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
