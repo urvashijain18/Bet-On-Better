@@ -5,8 +5,10 @@
  */
 package UserInterface.UserRole;
 
+import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
 import Business.FundRaiserEvents.EventDirectory;
+import Business.UserAccount.UserAccount;
 import Business.UserAccount.UserAccountDirectory;
 import UserInterface.Event.CreateEventJPanel;
 import UserInterface.UserLogin;
@@ -23,16 +25,21 @@ public class UserDashboardJPanel extends javax.swing.JPanel {
     private JPanel rightContainer;
     private UserAccountDirectory userAccountDirectory;
     private EventDirectory eventdirectory;
+    private UserAccount useraccount;
+    private EcoSystem system;
+    
     /**
      * Creates new form Dashboard
      */
     public UserDashboardJPanel(JPanel leftContainer, JPanel rightContainer,
-            UserAccountDirectory userAccountDirectory, EventDirectory eventdirectory) {
+            UserAccountDirectory userAccountDirectory, EventDirectory eventdirectory, UserAccount useraccount, EcoSystem system) {
         initComponents();
         this.leftContainer = leftContainer;
         this.rightContainer = rightContainer;
         this.userAccountDirectory = userAccountDirectory;
         this.eventdirectory = eventdirectory;
+        this.useraccount = useraccount;
+        this.system = system;
     }
 
     /**
@@ -168,7 +175,7 @@ public class UserDashboardJPanel extends javax.swing.JPanel {
         rightContainer.remove(this);
         CardLayout rightCardLayout = (CardLayout) rightContainer.getLayout();
         rightContainer.add("CreateEventJPanel", new CreateEventJPanel(leftContainer, rightContainer, 
-                userAccountDirectory, eventdirectory));
+                userAccountDirectory, eventdirectory, useraccount, system));
         rightCardLayout.next(rightContainer);        
     }//GEN-LAST:event_btnCreateEventActionPerformed
 

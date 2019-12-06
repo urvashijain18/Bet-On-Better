@@ -38,7 +38,7 @@ import javax.swing.JPanel;
                 EventDirectory eventdirectory, BankEmployeeAccountDirectory bankemployeeAccountDirectory, 
                 FundRaisingEmployeeAccountDirectory fundraisingemployeeAccountDirectory, 
                 AdvertisingEmployeeAccountDirectory advertisingemployeeAccountDirectory, EcoSystem business, 
-                DB4OUtil dB4OUtil, Enterprise enterprise) {
+                DB4OUtil dB4OUtil, Enterprise enterprise, UserAccount account) {
         return new AdminLeftJPanel(leftContainer, leftContainer, userAccountDirectory, 
                 eventdirectory, bankemployeeAccountDirectory, fundraisingemployeeAccountDirectory, 
                 advertisingemployeeAccountDirectory, business, dB4OUtil,enterprise);

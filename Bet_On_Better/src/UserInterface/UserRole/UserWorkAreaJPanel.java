@@ -12,6 +12,7 @@ import Business.EcoSystem;
 import Business.FundRaisingEmployee.FundRaisingEmployeeAccountDirectory;
 import Business.Enterprise.Enterprise;
 import Business.FundRaiserEvents.EventDirectory;
+import Business.UserAccount.UserAccount;
 import Business.UserAccount.UserAccountDirectory;
 import UserInterface.UserLogin;
 import java.awt.CardLayout;
@@ -33,6 +34,7 @@ public class UserWorkAreaJPanel extends javax.swing.JPanel {
     private AdvertisingEmployeeAccountDirectory advertisingemployeeAccountDirectory;
     private EcoSystem system;
     private DB4OUtil dB4OUtil;
+    private UserAccount useraccount;
         
     /**
      * Creates new form ReceiverWorkAreaJPanel
@@ -41,7 +43,7 @@ public class UserWorkAreaJPanel extends javax.swing.JPanel {
             EventDirectory eventdirectory, BankEmployeeAccountDirectory bankemployeeAccountDirectory,            
             FundRaisingEmployeeAccountDirectory fundraisingemployeeAccountDirectory, 
             AdvertisingEmployeeAccountDirectory advertisingemployeeAccountDirectory, EcoSystem system,
-            DB4OUtil dB4OUtil) {
+            DB4OUtil dB4OUtil,UserAccount useraccount) {
         initComponents();
         this.leftContainer = leftContainer;
         this.rightContainer = rightContainer;
@@ -52,6 +54,7 @@ public class UserWorkAreaJPanel extends javax.swing.JPanel {
         this.fundraisingemployeeAccountDirectory = fundraisingemployeeAccountDirectory;
         this.system = system;
         this.dB4OUtil = dB4OUtil;
+        this.useraccount = useraccount;
     }
 
    
@@ -125,7 +128,7 @@ public class UserWorkAreaJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
         rightContainer.remove(this);
         CardLayout rightCardLayout = (CardLayout) rightContainer.getLayout();
-        rightContainer.add("UserHomeJPanel", new UserHomeJPanel(rightContainer, eventdirectory));
+        rightContainer.add("UserHomeJPanel", new UserHomeJPanel(rightContainer, eventdirectory, useraccount));
         rightCardLayout.next(rightContainer);        
     }//GEN-LAST:event_btnHomeActionPerformed
 
@@ -133,7 +136,7 @@ public class UserWorkAreaJPanel extends javax.swing.JPanel {
         rightContainer.remove(this);
         CardLayout rightCardLayout = (CardLayout) rightContainer.getLayout();
         rightContainer.add("UserDashboardJPanel", new UserDashboardJPanel(leftContainer, rightContainer, 
-                userAccountDirectory, eventdirectory));
+                userAccountDirectory, eventdirectory, useraccount, system));
         rightCardLayout.next(rightContainer);
     }//GEN-LAST:event_btnDashboardActionPerformed
 

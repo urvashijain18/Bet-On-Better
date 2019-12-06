@@ -5,9 +5,15 @@
  */
 package UserInterface.UserRole;
 
+import Business.EcoSystem;
 import Business.EndUser.AccountDetails;
 import Business.EndUser.EndUser;
 import Business.Enterprise.Enterprise;
+import Business.FundRaiserEvents.EventDirectory;
+import Business.Network.Network;
+import Business.UserAccount.UserAccount;
+import Business.WorkRequest.VerificationRequest;
+import Business.WorkRequest.WorkRequest;
 import java.awt.CardLayout;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -17,17 +23,25 @@ import javax.swing.JPanel;
  * @author devma
  */
 public class BankAccountDetailsJPanel extends javax.swing.JPanel {
-private JPanel rightContainer;
-private Enterprise enterprise;
-private EndUser user;
+
+    private JPanel rightContainer;
+    private Enterprise enterprise;
+    private EndUser user;
+    private UserAccount useraccount;
+    private EventDirectory eventdirectory;
+    private EcoSystem system;
+
     /**
      * Creates new form BankAccountDetailsJPanel
      */
-    public BankAccountDetailsJPanel(JPanel rightContainer, Enterprise enterprise, EndUser user) {
+    public BankAccountDetailsJPanel(JPanel rightContainer, Enterprise enterprise, EndUser user, UserAccount useraccount, EventDirectory eventdirectory, EcoSystem system) {
         initComponents();
         this.rightContainer = rightContainer;
         this.enterprise = enterprise;
         this.user = user;
+        this.useraccount = useraccount;
+        this.eventdirectory = eventdirectory;
+        this.system = system;
     }
 
     /**
@@ -72,7 +86,7 @@ private EndUser user;
             }
         });
 
-        btnSave.setText("Save");
+        btnSave.setText("Submit");
         btnSave.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSaveActionPerformed(evt);
@@ -153,16 +167,29 @@ private EndUser user;
     }//GEN-LAST:event_txtRoutingNumberActionPerformed
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
-        user.getAccountDetails().setBankName(txtBankName.getText());  
-        user.getAccountDetails().setName(txtName.getText());
-        user.getAccountDetails().setAccountNumber(Integer.parseInt(txtAccountNumber.getText()));
-        user.getAccountDetails().setRoutingNumber(Integer.parseInt(txtRoutingNumber.getText()));
-        user.getAccountDetails().setSWIFTCode(Integer.parseInt(txtSwiftCode.getText()));
-        user.getAccountDetails().setBankAddress(txtBankAddress.getText());
-        
+        for (Network network : system.getNetworkList()) {
+            for (Enterprise enterprise : network.getEnterpriseDirectory().getEnterpriseList()) {
+                for (UserAccount account : enterprise.getUserAccountDirectory().getUserAccountList()) {
+                    if (account.equals(useraccount)) {
+                        AccountDetails accountDetails = new AccountDetails();
+                        accountDetails.setBankName(txtBankName.getText());
+                        accountDetails.setName(txtName.getText());
+                        accountDetails.setAccountNumber(Integer.parseInt(txtAccountNumber.getText()));
+                        accountDetails.setRoutingNumber(Integer.parseInt(txtRoutingNumber.getText()));
+                        accountDetails.setSWIFTCode(Integer.parseInt(txtSwiftCode.getText()));
+                        accountDetails.setBankAddress(txtBankAddress.getText());
+                        account.setAccountDetails(accountDetails);
+                    }
+                }
+            }
+        }
+
         btnSave.setEnabled(true);
-        JOptionPane.showMessageDialog(null, "Details successfully saved.");// TODO add your handling code here:
-         
+        JOptionPane.showMessageDialog(null, "Details successfully saved.");
+        WorkRequest workRequest = new VerificationRequest();
+        workRequest.setSender(useraccount);
+        useraccount.getWorkQueue().getWorkRequestList().add(workRequest);
+
     }//GEN-LAST:event_btnSaveActionPerformed
 
 
