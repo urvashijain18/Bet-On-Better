@@ -11,6 +11,8 @@ import Business.FundRaiserEvents.EventDirectory;
 import Business.Network.Network;
 import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
+import Business.WorkQueue.CreateEventByOrganizationEmployeeDirectory;
+import Business.WorkRequest.CreateEventByOrganizationEmployee;
 import Business.WorkRequest.VerificationRequest;
 import Business.WorkRequest.WorkRequest;
 import UserInterface.BankRole.BankDashBoardJPanel;
@@ -27,45 +29,43 @@ import javax.swing.table.DefaultTableModel;
  */
 public class FundraisingEventsPendingRequests extends javax.swing.JPanel {
 
-    private EcoSystem system;
-    private JPanel rightContainer;
-    private UserAccount useraccount;
+  private JPanel rightContainer;
+       private EcoSystem system;
+       private EventDirectory eventDirectory;
+       private CreateEventByOrganizationEmployeeDirectory createEventByOrganizationEmployeeDirectory;
+       private Enterprise enterprise;
+    
 
     /**
      * Creates new form FundraisingEventsPendingRequests
      */
-    public FundraisingEventsPendingRequests(JPanel rightContainer, EventDirectory eventdirectory, EcoSystem system, UserAccount useraccount) {
-        initComponents();
-        this.system = system;
-        this.rightContainer = rightContainer;
-        this.useraccount = useraccount;
-        populateTable();
+    public FundraisingEventsPendingRequests(JPanel rightContainer, EventDirectory eventdirectory,Enterprise enterprise) {
+         initComponents();
+         this.enterprise = enterprise;
+         this.rightContainer = rightContainer;
+         this.eventDirectory = eventdirectory;       
+         this.createEventByOrganizationEmployeeDirectory = enterprise.getCreateEventByOrganizationEmployeeDirectory();
+            
+       
+           populateTable();
     }
 
     private void populateTable() {
-//        DefaultTableModel model = (DefaultTableModel) tblPendingRequest.getModel();
-//        model.setRowCount(0);
-//        for (Network network : system.getNetworkList()) {
-//            for (Enterprise enterprise : network.getEnterpriseDirectory().getEnterpriseList()) {
-//                for (Organization organization : enterprise.getOrganizationDirectory().getOrganizationList()) {
-//                    if (organization.getOrganizationType().equals(Organization.Type.FundRaisingEvents)) {
-//                        for (int i = 0; i < organization.getWorkQueue().getWorkRequestList().size(); i++) {
-//                            VerificationRequest request = (VerificationRequest) organization.getWorkQueue().getWorkRequestList().get(i);
-//                            Object[] row = new Object[7];
-//                            row[0] = request;
-//                            row[1] = request.getEvent().getEventName();
-//                            row[2] = request.getEvent().getDescription();
-//                            row[3] = request.getEvent().getRaisedBy();
-//                            row[4] = request.getEvent().getCreateDate();
-//                            row[5] = network.getName();
-//                            row[6] = request.getEvent().getStatus();
-//
-//                            model.addRow(row);
-//                        }
-//                    }
-//                }
-//            }
-//        }
+      DefaultTableModel model = (DefaultTableModel) tblPendingRequest.getModel();
+        model.setRowCount(0);        
+        for(CreateEventByOrganizationEmployee cs : createEventByOrganizationEmployeeDirectory.getCreateEventByOrganizationEmployeeList()){
+                     
+                    Object[] row = new Object[7];
+                    row[0] = cs.getRequestID();
+                    row[1] = cs.getTitle();
+                    row[2] = cs.getDescription();
+                    row[3] = cs.getSender();
+                    row[4] = cs.getDeadline();
+                    row[5] = cs.getLocation();
+                    row[6] = ' ';
+                    
+                    model.addRow(row);
+    }
     }
 
     /**
