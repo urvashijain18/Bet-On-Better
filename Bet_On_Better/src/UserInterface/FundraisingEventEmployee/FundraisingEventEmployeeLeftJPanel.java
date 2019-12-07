@@ -43,7 +43,7 @@ public class FundraisingEventEmployeeLeftJPanel extends javax.swing.JPanel  {
             UserAccountDirectory userAccountDirectory, EventDirectory eventdirectory, 
             BankEmployeeAccountDirectory bankemployeeAccountDirectory, 
             FundRaisingEmployeeAccountDirectory fundraisingemployeeAccountDirectory, 
-            AdvertisingEmployeeAccountDirectory advertisingemployeeAccountDirectory, EcoSystem business, DB4OUtil dB4OUtil, Enterprise enterprise) {
+            AdvertisingEmployeeAccountDirectory advertisingemployeeAccountDirectory, EcoSystem business, DB4OUtil dB4OUtil, Enterprise enterprise, UserAccount userAccount) {
         initComponents();
         this.leftContainer = leftContainer;
         this.rightContainer = rightContainer;
@@ -55,6 +55,7 @@ public class FundraisingEventEmployeeLeftJPanel extends javax.swing.JPanel  {
         this.enterprise = enterprise;
         this.dB4OUtil = dB4OUtil; 
         this.system = business;
+        this.useraccount = userAccount;
     }
 
     /**

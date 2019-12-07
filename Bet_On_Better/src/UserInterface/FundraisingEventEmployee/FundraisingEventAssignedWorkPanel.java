@@ -5,22 +5,12 @@
  */
 package UserInterface.FundraisingEventEmployee;
 
-import Business.WorkRequest.WorkRequest;
-import javax.swing.JPanel;
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
 import Business.FundRaiserEvents.EventDirectory;
-import Business.Network.Network;
-import Business.Organization.Organization;
-import Business.UserAccount.UserAccount;
+import Business.Role.Role;
 import Business.WorkQueue.CreateEventByOrganizationEmployeeDirectory;
 import Business.WorkRequest.CreateEventByOrganizationEmployee;
-import Business.WorkRequest.VerificationRequest;
-import Business.WorkRequest.WorkRequest;
-import UserInterface.BankRole.BankDashBoardJPanel;
-import UserInterface.BankRole.VerificationRequestJPanel;
-import java.awt.CardLayout;
-import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
@@ -54,6 +44,11 @@ public class FundraisingEventAssignedWorkPanel extends javax.swing.JPanel {
  
     populateTable();    
     
+    jLabel2.setVisible(false);
+    txtRequestAmt.setVisible(false);
+    btnSet.setVisible(false);
+           
+    
     }
 
     
@@ -76,7 +71,7 @@ public class FundraisingEventAssignedWorkPanel extends javax.swing.JPanel {
 
             model.addRow(row);
         }
-    }
+        }
     }
     
     /**
@@ -93,6 +88,9 @@ public class FundraisingEventAssignedWorkPanel extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         btnApprove = new javax.swing.JButton();
         btnReject = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        txtRequestAmt = new javax.swing.JTextField();
+        btnSet = new javax.swing.JButton();
 
         tblAssignedRequest.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -129,42 +127,63 @@ public class FundraisingEventAssignedWorkPanel extends javax.swing.JPanel {
             }
         });
 
+        jLabel2.setText("Request Amount :");
+
+        btnSet.setText("Set");
+        btnSet.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSetActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(331, 331, 331)
+                            .addComponent(jLabel1))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(194, 194, 194)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(jLabel2)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(txtRequestAmt, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(0, 0, Short.MAX_VALUE))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(btnApprove)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(btnReject)))))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(331, 331, 331)
-                        .addComponent(jLabel1))
+                        .addGap(263, 263, 263)
+                        .addComponent(btnSet))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(192, 192, 192)
-                        .addComponent(btnApprove)
-                        .addGap(175, 175, 175)
-                        .addComponent(btnReject)))
-                .addContainerGap(247, Short.MAX_VALUE))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addContainerGap()
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 730, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addContainerGap()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 730, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(34, 34, 34)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 234, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnApprove)
                     .addComponent(btnReject))
-                .addGap(93, 93, 93))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(61, 61, 61)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(162, Short.MAX_VALUE)))
+                .addGap(40, 40, 40)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(txtRequestAmt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnSet)
+                .addGap(15, 15, 15))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -175,14 +194,55 @@ public class FundraisingEventAssignedWorkPanel extends javax.swing.JPanel {
 
     private void btnApproveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnApproveActionPerformed
         // TODO add your handling code here:
+        int selectedRow = tblAssignedRequest.getSelectedRow();
+        Role role = null;
+        if (selectedRow < 0) {
+            JOptionPane.showMessageDialog(null, "Please select a row from the table", "Warning", JOptionPane.WARNING_MESSAGE);
+        } else {
+            CreateEventByOrganizationEmployee workrequest = (CreateEventByOrganizationEmployee) tblAssignedRequest.getValueAt(selectedRow, 0);
+            role = workrequest.getSender().getRole();
+        }
+        if (role.equals(Role.RoleType.User)){
+            // ADD this row in event directory
+            
+        } else{
+            
+        jLabel2.setVisible(true);
+        txtRequestAmt.setVisible(true);
+        btnSet.setVisible(true);
+            
+        
+              
+        }
+           
+//            
+//        rightContainer.remove(this);
+//        CardLayout rightCardLayout = (CardLayout) rightContainer.getLayout();
+//        rightContainer.add("FundraisingEventAssignedWorkPanel", new FundraisingEventAssignedWorkPanel(rightContainer, enterprise, userAccount));
+//        rightCardLayout.next(rightContainer);
+            
+        
+
     }//GEN-LAST:event_btnApproveActionPerformed
+
+    private void btnSetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSetActionPerformed
+        // TODO add your handling code here:
+        int selectedRow = tblAssignedRequest.getSelectedRow();
+        CreateEventByOrganizationEmployee workrequest = (CreateEventByOrganizationEmployee) tblAssignedRequest.getValueAt(selectedRow, 0);
+        workrequest.setSender(userAccount);
+        workrequest.setRequestedAtm(Integer.parseInt(txtRequestAmt.getText()));
+        
+    }//GEN-LAST:event_btnSetActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnApprove;
     private javax.swing.JButton btnReject;
+    private javax.swing.JButton btnSet;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tblAssignedRequest;
+    private javax.swing.JTextField txtRequestAmt;
     // End of variables declaration//GEN-END:variables
 }
