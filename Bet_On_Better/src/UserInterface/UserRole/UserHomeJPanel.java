@@ -5,14 +5,20 @@
  */
 package UserInterface.UserRole;
 
+import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
+import Business.FundRaiserEvents.Event;
 import Business.FundRaiserEvents.EventDirectory;
+import Business.Network.Network;
 import Business.UserAccount.UserAccount;
 import Business.UserAccount.UserAccountDirectory;
+import Business.WorkRequest.VerificationRequest;
 import UserInterface.UserLogin;
 import java.awt.CardLayout;
 import java.awt.Component;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -23,15 +29,45 @@ public class UserHomeJPanel extends javax.swing.JPanel {
     private JPanel rightContainer;
     private EventDirectory eventdirectory;
     private UserAccount useraccount;
-        
+    private EcoSystem system;
+
     /**
      * Creates new form UserHomeJPanel
      */
-    public UserHomeJPanel( JPanel rightContainer, EventDirectory eventdirectory, UserAccount useraccount) {
+    public UserHomeJPanel(JPanel rightContainer, EcoSystem system, UserAccount useraccount) {
         initComponents();
         this.rightContainer = rightContainer;
-        this.eventdirectory = eventdirectory;
+        this.system = system;
         this.useraccount = useraccount;
+        populateTable();
+    }
+
+    private void populateTable() {
+        DefaultTableModel dtm = (DefaultTableModel) tblEventsAvailable.getModel();
+        dtm.setRowCount(0);
+        for (Network network : system.getNetworkList()) {
+            for (Enterprise enterprise : network.getEnterpriseDirectory().getEnterpriseList()) {
+                eventdirectory = enterprise.getEventDirectory();
+                if (enterprise.getEnterpriseType().getValue().equals(Enterprise.EnterpriseType.FundRaiser.getValue())) {
+                    for (Event event : eventdirectory.getEventList()) {
+                        if (event.getStatus().equals("Verified")
+                                || event.getStatus().equals("Allocated")) {
+                            Object[] row = new Object[9];
+                            row[0] = event;
+                            row[1] = event.getEventName();
+                            row[2] = event.getDescription();
+                            row[3] = event.getCategory();
+                            row[4] = event.getRaisedBy();
+                            row[5] = event.getRequestAmt();
+                            row[6] = event.getRaisedAmt();
+                            row[7] = event.getCreateDate();
+                            row[8] = event.getTargetDate();
+                            dtm.addRow(row);
+                        }
+                    }
+                }
+            }
+        }
     }
 
     /**
@@ -53,7 +89,7 @@ public class UserHomeJPanel extends javax.swing.JPanel {
         txtBoxSearch = new javax.swing.JTextField();
         btnSearch = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tblEventsAvailable = new javax.swing.JTable();
         btnDetails = new javax.swing.JButton();
         btnDonate = new javax.swing.JButton();
 
@@ -74,7 +110,7 @@ public class UserHomeJPanel extends javax.swing.JPanel {
 
         btnSearch.setText("Search");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblEventsAvailable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -82,7 +118,7 @@ public class UserHomeJPanel extends javax.swing.JPanel {
                 "Funraiser Name", "Raised By", "Target Amount", "Raised Amount", "Target Date", "Raised Date"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tblEventsAvailable);
 
         btnDetails.setText("Details");
 
@@ -161,11 +197,16 @@ public class UserHomeJPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnDonateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDonateActionPerformed
-        // TODO add your handling code here:
-        rightContainer.remove(this);
-        CardLayout rightCardLayout = (CardLayout) rightContainer.getLayout();
-        rightContainer.add("DonateJPanel", new DonateJPanel(rightContainer, eventdirectory));
-        rightCardLayout.next(rightContainer);
+        int selectedRow = tblEventsAvailable.getSelectedRow();
+        if (selectedRow < 0) {
+            JOptionPane.showMessageDialog(null, "Please select a row from the table", "Warning", JOptionPane.WARNING_MESSAGE);
+        } else {
+            Event event = (Event) tblEventsAvailable.getValueAt(selectedRow, 0);
+            rightContainer.remove(this);
+            CardLayout rightCardLayout = (CardLayout) rightContainer.getLayout();
+            rightContainer.add("DonateJPanel", new DonateJPanel(rightContainer, event, useraccount, system));
+            rightCardLayout.next(rightContainer);
+        }
     }//GEN-LAST:event_btnDonateActionPerformed
 
 
@@ -181,7 +222,7 @@ public class UserHomeJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable tblEventsAvailable;
     private javax.swing.JTextField txtBoxSearch;
     // End of variables declaration//GEN-END:variables
 }

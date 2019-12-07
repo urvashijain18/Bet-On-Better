@@ -211,7 +211,7 @@ public class CreateEventJPanel extends javax.swing.JPanel {
         JOptionPane.showMessageDialog(null, "Event created and is pending for approval.");
        rightContainer.remove(this);
         CardLayout rightCardLayout = (CardLayout) rightContainer.getLayout();
-        rightContainer.add("UserHomeJPanel", new UserHomeJPanel(rightContainer, eventdirectory, useraccount));
+        rightContainer.add("UserHomeJPanel", new UserHomeJPanel(rightContainer, system, useraccount));
         rightCardLayout.next(rightContainer);
       
                 // TODO add your handling code here:

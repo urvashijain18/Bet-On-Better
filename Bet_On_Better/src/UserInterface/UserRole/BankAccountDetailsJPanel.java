@@ -9,11 +9,9 @@ import Business.EcoSystem;
 import Business.EndUser.AccountDetails;
 import Business.Enterprise.Enterprise;
 import Business.FundRaiserEvents.EventDirectory;
-import Business.Network.Network;
 import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
 import Business.WorkRequest.VerificationRequest;
-import Business.WorkRequest.WorkRequest;
 import java.awt.CardLayout;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -28,13 +26,20 @@ public class BankAccountDetailsJPanel extends javax.swing.JPanel {
     private Enterprise enterprise;
     private UserAccount useraccount;
     private EventDirectory eventdirectory;
-    // private EcoSystem system;
+     private EcoSystem system;
 
     /**
      * Creates new form BankAccountDetailsJPanel
+     * @param rightContainer
+     * @param enterprise
+     * @param useraccount
+     * @param eventdirectory
+     * @param system
      */
-    public BankAccountDetailsJPanel(JPanel rightContainer, Enterprise enterprise, UserAccount useraccount, EventDirectory eventdirectory) {
+    public BankAccountDetailsJPanel(JPanel rightContainer, Enterprise enterprise, UserAccount useraccount, 
+            EventDirectory eventdirectory, EcoSystem system) {
         initComponents();
+        this.system = system;
         this.rightContainer = rightContainer;
         this.enterprise = enterprise;
         this.useraccount = useraccount;
@@ -194,7 +199,7 @@ public class BankAccountDetailsJPanel extends javax.swing.JPanel {
         JOptionPane.showMessageDialog(null, "New Initiave created successfully.");
         rightContainer.remove(this);
         CardLayout rightCardLayout = (CardLayout) rightContainer.getLayout();
-        rightContainer.add("UserHomeJPanel", new UserHomeJPanel(rightContainer, eventdirectory, useraccount));
+        rightContainer.add("UserHomeJPanel", new UserHomeJPanel(rightContainer, system, useraccount));
         rightCardLayout.next(rightContainer);
     }//GEN-LAST:event_btnSaveActionPerformed
 

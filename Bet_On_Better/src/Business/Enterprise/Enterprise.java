@@ -5,6 +5,7 @@
  */
 package Business.Enterprise;
 
+import Business.EndUser.DonationDirectory;
 import Business.FundRaiserEvents.EventDirectory;
 import Business.Organization.Organization;
 import Business.Organization.OrganizationDirectory;
@@ -17,6 +18,7 @@ public abstract class Enterprise extends Organization{
     private EnterpriseType enterpriseType;
     private OrganizationDirectory organizationDirectory;
     private EventDirectory eventDirectory;
+    private DonationDirectory donationDirectory;
 
     public Enterprise(String name,EnterpriseType type){
         super(name);
@@ -60,5 +62,13 @@ public abstract class Enterprise extends Organization{
    
     public void setEventDirectory(EventDirectory eventDirectory) {
         this.eventDirectory = eventDirectory;
+    }
+
+    public DonationDirectory getDonationDirectory() {
+        return donationDirectory;
+    }
+
+    public void setDonationDirectory(DonationDirectory donationDirectory) {
+        this.donationDirectory = donationDirectory;
     }
 }

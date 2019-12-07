@@ -30,6 +30,7 @@ public class RaiseInitiativeJPanel extends javax.swing.JPanel {
     private Enterprise enterprise;
     private EventDirectory eventdirectory;
     private UserAccount useraccount;
+    private EcoSystem system;
 
     /**
      * Creates new form RaiseInitiativeJPanel
@@ -40,6 +41,7 @@ public class RaiseInitiativeJPanel extends javax.swing.JPanel {
         this.enterprise = enterprise;
         this.eventdirectory = eventdirectory;
         this.useraccount = useraccount;
+        this.system = system;
         populateCategoryComboBox();
     }
 
@@ -200,7 +202,6 @@ public class RaiseInitiativeJPanel extends javax.swing.JPanel {
         event.setRequestAmt(requestAmount);
         event.setTargetDate(targetDate);
         event.setStatus("Pending");
-        //eventdirectory.createEvent(category,new Date(), Description, eventName, useraccount, requestAmount,  targetDate);
         VerificationRequest workRequest = new VerificationRequest();
         workRequest.setSender(useraccount);
         workRequest.setEvent(event);
@@ -213,7 +214,7 @@ public class RaiseInitiativeJPanel extends javax.swing.JPanel {
             }
         }
         rightContainer.remove(this);
-        BankAccountDetailsJPanel panel = new BankAccountDetailsJPanel(rightContainer, enterprise, useraccount, eventdirectory);
+        BankAccountDetailsJPanel panel = new BankAccountDetailsJPanel(rightContainer, enterprise, useraccount, eventdirectory, system);
         rightContainer.add("BankAccountDetailsJPanel", panel);
         CardLayout layout = (CardLayout) rightContainer.getLayout();
         layout.next(rightContainer);
