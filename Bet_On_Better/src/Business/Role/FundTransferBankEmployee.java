@@ -29,7 +29,7 @@ public class FundTransferBankEmployee extends Role{
 
     @Override
     public JPanel createRightWorkArea(JPanel userProcessContainer, UserAccount account, Organization organization, Enterprise enterprise, EcoSystem business, EventDirectory eventdirectory) {
-       return new BankFundAllocationJPanel();
+       return new JPanel();
     }
 
     @Override
