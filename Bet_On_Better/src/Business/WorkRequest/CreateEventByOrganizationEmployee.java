@@ -21,6 +21,15 @@ public class CreateEventByOrganizationEmployee extends WorkRequest {
     private Date eventDate;
     private int requestedAtm;
     private UserAccount user;
+    private String Status;
+
+    public String getStatus() {
+        return Status;
+    }
+
+    public void setStatus(String Status) {
+        this.Status = Status;
+    }
 
     public UserAccount getUser() {
         return user;

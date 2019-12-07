@@ -5,25 +5,73 @@
  */
 package UserInterface.BankRole;
 
+import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
 import Business.FundRaiserEvents.EventDirectory;
+import Business.Network.Network;
+import Business.Role.FundRaisingEmployee;
+import Business.Role.Role;
+import Business.Role.UserRole;
+import Business.UserAccount.UserAccount;
 import Business.UserAccount.UserAccountDirectory;
+import Business.WorkRequest.CreateEventByOrganizationEmployee;
 import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author Urvashi
  */
 public class BankFundAllocationRequestJPanel extends javax.swing.JPanel {
+
     private JPanel rightContainer;
-    private UserAccountDirectory userAccountDirectory; 
-    private Enterprise enterprise; 
+    private UserAccountDirectory userAccountDirectory;
+    private Enterprise enterprise;
     private EventDirectory eventdirectory;
+    private UserAccount userAccount;
+    private EcoSystem system;
+
     /**
      * Creates new form BankFundAllocationRequestJPanel
      */
-    public BankFundAllocationRequestJPanel() {
+
+    BankFundAllocationRequestJPanel(JPanel rightContainer, UserAccount userAccount, EcoSystem system, Enterprise enterprise, EventDirectory eventdirectory) {
         initComponents();
+        this.rightContainer = rightContainer;
+        this.enterprise = enterprise;
+        this.userAccount = userAccount;
+        this.eventdirectory = eventdirectory;
+        this.system = system;
+
+        populateTable();
+
+    }
+
+    private void populateTable() {
+        DefaultTableModel model = (DefaultTableModel) tblFundAllocationRecords.getModel();
+        model.setRowCount(0);
+        for (Network network : system.getNetworkList()) {
+            for (Enterprise enterprise : network.getEnterpriseDirectory().getEnterpriseList()) {
+                if (enterprise.getCreateEventByOrganizationEmployeeDirectory() != null) {
+                    for (CreateEventByOrganizationEmployee cs : enterprise.getCreateEventByOrganizationEmployeeDirectory().getCreateEventByOrganizationEmployeeList()) {
+                        if (cs.getSender().getRole().getClass().equals(FundRaisingEmployee.class) || (cs.getSender().getRole().getClass().equals(UserRole.class))) {
+                            Object[] row = new Object[8];
+                            row[0] = cs;
+                            row[1] = cs.getSender();
+                            row[2] = cs.getSender().getRole();
+                            row[3] = cs.getSender().getCategory();
+                            row[4] = cs.getStatus();
+                            row[5] = ' ';
+                            row[6] = cs.getRequestedAtm();
+                            row[7] = ' ';
+
+                            model.addRow(row);
+                        }
+                    }
+                }
+            }
+        }
+
     }
 
     /**
@@ -41,7 +89,7 @@ public class BankFundAllocationRequestJPanel extends javax.swing.JPanel {
         tblFundAllocationRecords = new javax.swing.JTable();
         btnActionTaken = new javax.swing.JButton();
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel1.setText("FUND ALLOCATION REQUESTS ");
 
         tblFundAllocationRecords.setModel(new javax.swing.table.DefaultTableModel(
@@ -64,6 +112,11 @@ public class BankFundAllocationRequestJPanel extends javax.swing.JPanel {
 
         btnActionTaken.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         btnActionTaken.setText("Take Action");
+        btnActionTaken.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnActionTakenActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -75,7 +128,7 @@ public class BankFundAllocationRequestJPanel extends javax.swing.JPanel {
                         .addGap(26, 26, 26)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 885, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(349, 349, 349)
+                        .addGap(370, 370, 370)
                         .addComponent(jLabel1))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(395, 395, 395)
@@ -91,9 +144,13 @@ public class BankFundAllocationRequestJPanel extends javax.swing.JPanel {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btnActionTaken)
-                .addContainerGap(306, Short.MAX_VALUE))
+                .addContainerGap(303, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnActionTakenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActionTakenActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnActionTakenActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

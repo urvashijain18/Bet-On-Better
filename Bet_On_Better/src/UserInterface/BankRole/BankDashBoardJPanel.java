@@ -113,7 +113,7 @@ public class BankDashBoardJPanel extends javax.swing.JPanel {
 
     private void btnFundAllocationRequestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFundAllocationRequestActionPerformed
         CardLayout rightLayout = (CardLayout) rightContainer.getLayout();
-        rightContainer.add("BankFundAllocationRequestJPanel", new BankFundAllocationRequestJPanel());
+        rightContainer.add("BankFundAllocationRequestJPanel", new BankFundAllocationRequestJPanel(rightContainer, userAccount, system,enterprise,eventdirectory));
         rightLayout.next(rightContainer);
     }//GEN-LAST:event_btnFundAllocationRequestActionPerformed
 
