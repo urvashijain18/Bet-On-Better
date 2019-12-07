@@ -176,7 +176,7 @@ public class InitiativesEmployeeLeftJPanel extends javax.swing.JPanel {
 
     private void btnLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogoutActionPerformed
         // TODO add your handling code here:
-        leftContainer.remove(this);
+        leftContainer.removeAll();
         CardLayout leftCardLayout = (CardLayout) leftContainer.getLayout();
         CardLayout rightCardLayout = (CardLayout) rightContainer.getLayout();
         leftContainer.add("UserLogin", new UserLogin(leftContainer, rightContainer, 
@@ -184,8 +184,7 @@ public class InitiativesEmployeeLeftJPanel extends javax.swing.JPanel {
                 advertisingemployeeAccountDirectory, bankemployeeAccountDirectory, system, dB4OUtil));
         leftCardLayout.next(leftContainer);
         rightContainer.removeAll();
-        JPanel blank = new JPanel();
-        rightContainer.add("blank", blank);
+        rightContainer.add("blank", new JPanel());
         rightCardLayout.next(rightContainer);
         dB4OUtil.storeSystem(system);
     }//GEN-LAST:event_btnLogoutActionPerformed

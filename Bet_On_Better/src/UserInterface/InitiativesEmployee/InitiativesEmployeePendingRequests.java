@@ -152,7 +152,7 @@ public class InitiativesEmployeePendingRequests extends javax.swing.JPanel {
             VerificationRequest workRequest = (VerificationRequest) tblPendingRequest.getValueAt(selectedRow, 0);
             workRequest.setUser(workRequest.getSender());
             workRequest.setSender(useraccount);
-            workRequest.setStatus("Sent for verification");
+            workRequest.getEvent().setStatus("Sent for verification");
             populateTable();
 //            VerificationRequestJPanel verificationRequestJPanel = new VerificationRequestJPanel(rightContainer, useraccount, system);
 //            rightContainer.add("VerificationRequestJPanel", verificationRequestJPanel);
