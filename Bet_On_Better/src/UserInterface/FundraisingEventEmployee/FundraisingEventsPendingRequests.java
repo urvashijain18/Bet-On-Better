@@ -56,7 +56,7 @@ public class FundraisingEventsPendingRequests extends javax.swing.JPanel {
         DefaultTableModel model = (DefaultTableModel) tblPendingRequest.getModel();
         model.setRowCount(0);
         for (CreateEventByOrganizationEmployee cs : createEventByOrganizationEmployeeDirectory.getCreateEventByOrganizationEmployeeList()) {
-//            if (cs.getUser().getRole().getClass().equals(Role.RoleType.User.getClass()) || (cs.getUser().getRole().getClass().equals(Role.RoleType.InitiativesEmployee.getClass()))) {
+            if (cs.getSender().getRole().getClass().equals(Role.RoleType.User.getClass()) || (cs.getSender().getRole().getClass().equals(Role.RoleType.InitiativesEmployee.getClass()))) {
                 Object[] row = new Object[9];
                 row[0] = cs;
                 row[1] = cs.getTitle();
@@ -70,7 +70,7 @@ public class FundraisingEventsPendingRequests extends javax.swing.JPanel {
 
                 model.addRow(row);
             }
-//        }
+        }
     }
 
     /**
