@@ -149,6 +149,7 @@ private UserAccount userAccount;
         
         CreateEventByOrganizationEmployee createNewWorkRequest = createEventByOrganizationEmployeeDirectory.createNewWorkRequest(0, title, description, deadline,location, new Date());
         createNewWorkRequest.setSender(userAccount);
+        createNewWorkRequest.setUser(userAccount);
          enterprise.setCreateEventByOrganizationEmployeeDirectory(createEventByOrganizationEmployeeDirectory);
             
         

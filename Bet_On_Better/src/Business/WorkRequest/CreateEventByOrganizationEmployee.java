@@ -5,6 +5,7 @@
  */
 package Business.WorkRequest;
 
+import Business.UserAccount.UserAccount;
 import java.util.Date;
 
 /**
@@ -18,6 +19,28 @@ public class CreateEventByOrganizationEmployee extends WorkRequest {
     private String location;
     private Date deadline;
     private Date eventDate;
+    private int requestedAtm;
+    private UserAccount user;
+
+    public UserAccount getUser() {
+        return user;
+    }
+
+    public void setUser(UserAccount user) {
+        this.user = user;
+    }
+
+    
+    
+    
+
+    public int getRequestedAtm() {
+        return requestedAtm;
+    }
+
+    public void setRequestedAtm(int requestedAtm) {
+        this.requestedAtm = requestedAtm;
+    }
 
     public String getLocation() {
         return location;

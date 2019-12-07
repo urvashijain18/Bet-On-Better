@@ -3,17 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/devma/Desktop/AED%20Final%20Project/aum/Bet_On_Better/src/UserInterface/FundraisingEventEmployee/FundraisingEventsPendingRequests.java</file>
-            <file>file:/C:/Users/devma/Desktop/AED%20Final%20Project/aum/Bet_On_Better/src/UserInterface/Event/CreateEventJPanel.java</file>
-            <file>file:/C:/Users/devma/Desktop/AED%20Final%20Project/aum/Bet_On_Better/src/UserInterface/UserRole/CreateNewUser.java</file>
-            <file>file:/C:/Users/devma/Desktop/AED%20Final%20Project/aum/Bet_On_Better/src/Business/Role/Role.java</file>
-            <file>file:/C:/Users/devma/Desktop/AED%20Final%20Project/aum/Bet_On_Better/src/Business/Organization/OrganizationDirectory.java</file>
-            <file>file:/C:/Users/devma/Desktop/AED%20Final%20Project/aum/Bet_On_Better/src/Business/Role/FundRaisingAdmin.java</file>
-            <file>file:/C:/Users/devma/Desktop/AED%20Final%20Project/aum/Bet_On_Better/src/UserInterface/FundRaisingAdminRole/CreateOrganization.java</file>
-            <file>file:/C:/Users/devma/Desktop/AED%20Final%20Project/aum/Bet_On_Better/src/UserInterface/UserLogin.java</file>
-            <file>file:/C:/Users/devma/Desktop/AED%20Final%20Project/aum/Bet_On_Better/src/UserInterface/NetworkAdminRole/ManageEnterpriseJPanel.java</file>
-            <file>file:/C:/Users/devma/Desktop/AED%20Final%20Project/aum/Bet_On_Better/src/UserInterface/FundRaisingAdminRole/AdminCreateEmployeesJPanel.java</file>
-            <file>file:/C:/Users/devma/Desktop/AED%20Final%20Project/aum/Bet_On_Better/src/UserInterface/NetworkAdminRole/ManageEnterpriseAdminJPanel.java</file>
+            <file>file:/C:/Users/MMI/Desktop/AED_Group_Assignments/AED_final_project/aum/Bet_On_Better/src/UserInterface/FundraisingEventEmployee/FundraisingEventAssignedWorkPanel.java</file>
+            <file>file:/C:/Users/MMI/Desktop/AED_Group_Assignments/AED_final_project/aum/Bet_On_Better/src/Business/Role/Role.java</file>
+            <file>file:/C:/Users/MMI/Desktop/AED_Group_Assignments/AED_final_project/aum/Bet_On_Better/src/UserInterface/BankRole/BankFundAllocationRequestJPanel.java</file>
+            <file>file:/C:/Users/MMI/Desktop/AED_Group_Assignments/AED_final_project/aum/Bet_On_Better/src/UserInterface/FundraisingEventEmployee/FundraisingEventsPendingRequests.java</file>
+            <file>file:/C:/Users/MMI/Desktop/AED_Group_Assignments/AED_final_project/aum/Bet_On_Better/src/UserInterface/BankRole/BankFundAllocationJPanel.java</file>
         </group>
     </open-files>
 </project-private>
