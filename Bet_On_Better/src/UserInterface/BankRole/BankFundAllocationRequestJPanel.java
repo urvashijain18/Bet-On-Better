@@ -10,12 +10,11 @@ import Business.Enterprise.Enterprise;
 import Business.FundRaiserEvents.EventDirectory;
 import Business.Network.Network;
 import Business.Role.FundRaisingEmployee;
-import Business.Role.Role;
 import Business.Role.UserRole;
 import Business.UserAccount.UserAccount;
 import Business.UserAccount.UserAccountDirectory;
 import Business.WorkRequest.CreateEventByOrganizationEmployee;
-import UserInterface.FundraisingEventEmployee.FundraisingEventAssignedWorkPanel;
+import static com.sun.xml.internal.ws.policy.sourcemodel.wspolicy.XmlToken.All;
 import java.awt.CardLayout;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -37,7 +36,6 @@ public class BankFundAllocationRequestJPanel extends javax.swing.JPanel {
     /**
      * Creates new form BankFundAllocationRequestJPanel
      */
-
     BankFundAllocationRequestJPanel(JPanel rightContainer, UserAccount userAccount, EcoSystem system, Enterprise enterprise, EventDirectory eventdirectory) {
         initComponents();
         this.rightContainer = rightContainer;
@@ -58,15 +56,16 @@ public class BankFundAllocationRequestJPanel extends javax.swing.JPanel {
                 if (enterprise.getCreateEventByOrganizationEmployeeDirectory() != null) {
                     for (CreateEventByOrganizationEmployee cs : enterprise.getCreateEventByOrganizationEmployeeDirectory().getCreateEventByOrganizationEmployeeList()) {
                         if (cs.getSender().getRole().getClass().equals(FundRaisingEmployee.class) || (cs.getSender().getRole().getClass().equals(UserRole.class))) {
-                            Object[] row = new Object[8];
+                            Object[] row = new Object[9];
                             row[0] = cs;
                             row[1] = cs.getSender();
-                            row[2] = cs.getSender().getRole();
+                            row[2] = cs.getSender().getRole().toString();
                             row[3] = cs.getSender().getCategory();
                             row[4] = cs.getStatus();
-                            row[5] = ' ';
-                            row[6] = cs.getRequestedAtm();
-                            row[7] = ' ';
+                            row[5] = cs.getDeadline();
+                            row[6] = ' ';
+                            row[7] = cs.getRequestedAtm();
+                            row[8] = cs.getTargetAtm();
 
                             model.addRow(row);
                         }
@@ -153,20 +152,20 @@ public class BankFundAllocationRequestJPanel extends javax.swing.JPanel {
 
     private void btnActionTakenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActionTakenActionPerformed
         // TODO add your handling code here:
-         int selectedRow = tblFundAllocationRecords.getSelectedRow();
-          if (selectedRow < 0) {
+        int selectedRow = tblFundAllocationRecords.getSelectedRow();
+        if (selectedRow < 0) {
             JOptionPane.showMessageDialog(null, "Please select a row from the table", "Warning", JOptionPane.WARNING_MESSAGE);
-        } else{
-              CreateEventByOrganizationEmployee workrequest = (CreateEventByOrganizationEmployee) tblFundAllocationRecords.getValueAt(selectedRow, 0);
-               workrequest.setStatus("Approved By Bank Employee");
-               workrequest.setSender(userAccount);
-               JOptionPane.showConfirmDialog(null, "Request has been approved");
-               rightContainer.remove(this);
-        CardLayout rightCardLayout = (CardLayout) rightContainer.getLayout();
-        rightContainer.add("BankFundAllocationJPanel", new BankFundAllocationJPanel(rightContainer, workrequest, userAccount));
-        rightCardLayout.next(rightContainer);
-          }
-        
+        } else {
+            CreateEventByOrganizationEmployee workrequest = (CreateEventByOrganizationEmployee) tblFundAllocationRecords.getValueAt(selectedRow, 0);
+            workrequest.setStatus("Approved By Bank Employee");
+            
+            JOptionPane.showConfirmDialog(null, "Request has been approved");
+            rightContainer.removeAll();
+            CardLayout rightCardLayout = (CardLayout) rightContainer.getLayout();
+            rightContainer.add("BankFundAllocationJPanel", new BankFundAllocationJPanel(rightContainer, workrequest, userAccount));
+            rightCardLayout.next(rightContainer);
+        }
+
     }//GEN-LAST:event_btnActionTakenActionPerformed
 
 

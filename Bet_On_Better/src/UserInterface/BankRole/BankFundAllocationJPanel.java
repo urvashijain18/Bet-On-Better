@@ -8,7 +8,9 @@ package UserInterface.BankRole;
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
 import Business.FundRaiserEvents.EventDirectory;
+import Business.Role.FundRaisingEmployee;
 import Business.Role.Role;
+import static Business.Role.Role.RoleType.FundRaisingEmployee;
 import Business.UserAccount.UserAccount;
 import Business.UserAccount.UserAccountDirectory;
 import Business.WorkRequest.CreateEventByOrganizationEmployee;
@@ -41,11 +43,13 @@ public class BankFundAllocationJPanel extends javax.swing.JPanel {
        this.workRequest = workRequest;
        
        
-           if(workRequest.getUser().getRole().getClass().equals(Role.RoleType.FundRaisingEmployee)){
+           if(workRequest.getSender().getRole().getClass().equals(FundRaisingEmployee.class)){
                txtUserName.setText(workRequest.getSender().getUsername());
                txtRequestedAmt.setText(String.valueOf(workRequest.getRequestedAtm()));
                txtAccNum.setText("1234456");
-               
+               txtAccNum.setEditable(false);
+               txtRequestedAmt.setEditable(false);
+               txtUserName.setEditable(false);
            
        }
     
