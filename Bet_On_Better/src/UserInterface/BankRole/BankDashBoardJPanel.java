@@ -105,8 +105,9 @@ public class BankDashBoardJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_btnApprovedRequestActionPerformed
 
     private void btnVerifRequestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerifRequestActionPerformed
+        rightContainer.remove(this);
         CardLayout rightLayout = (CardLayout) rightContainer.getLayout();
-        rightContainer.add("VerificationRequestJPanel", new VerificationRequestJPanel(rightContainer, userAccount, enterprise));
+        rightContainer.add("VerificationRequestJPanel", new VerificationRequestJPanel(rightContainer, userAccount, system));
         rightLayout.next(rightContainer);
     }//GEN-LAST:event_btnVerifRequestActionPerformed
 

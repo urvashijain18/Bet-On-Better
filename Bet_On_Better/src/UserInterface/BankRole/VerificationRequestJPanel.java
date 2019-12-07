@@ -22,38 +22,41 @@ public class VerificationRequestJPanel extends javax.swing.JPanel {
 
     private JPanel rightContainer;
     private UserAccount userAccount;
-    private Enterprise enterprise;
+    private EcoSystem system;
 
     /**
      * Creates new form VerificationRequestJPanel
      */
-    public VerificationRequestJPanel(JPanel rightContainer, UserAccount userAccount, Enterprise enterprise) {
+    public VerificationRequestJPanel(JPanel rightContainer, UserAccount userAccount, EcoSystem system) {
         initComponents();
         this.rightContainer = rightContainer;
-        this.enterprise = enterprise;
+        this.system = system;
         populateTable();
     }
 
     private void populateTable() {
         DefaultTableModel model = (DefaultTableModel) tblVerifRecords.getModel();
         model.setRowCount(0);
-        for (Organization organization : enterprise.getOrganizationDirectory().getOrganizationList()) {
-            if (organization.getOrganizationType().equals(Organization.Type.FundRaisingEvents)) {
-                for (int i = 0; i < organization.getWorkQueue().getWorkRequestList().size(); i++) {
-                    VerificationRequest request = (VerificationRequest) organization.getWorkQueue().getWorkRequestList().get(i);
-                    Object[] row = new Object[7];
-                    row[0] = request;
-                    row[1] = request.getUser().getName();
-                    row[2] = request.getEvent().getStatus();
-                    row[3] = request.getUser().getAccountDetails().getAccountNumber();
-                    row[4] = request.getUser().getAccountDetails().getBankName();
-                    row[5] = request.getUser().getAccountDetails().getRoutingNumber();
-                    row[6] = request.getUser().getAccountDetails().getSWIFTCode();
-                    model.addRow(row);
+        for (Network network : system.getNetworkList()) {
+            for (Enterprise enterprise : network.getEnterpriseDirectory().getEnterpriseList()) {
+                for (Organization organization : enterprise.getOrganizationDirectory().getOrganizationList()) {
+                    if (organization.getOrganizationType().equals(Organization.Type.FundRaisingEvents)) {
+                        for (int i = 0; i < organization.getWorkQueue().getWorkRequestList().size(); i++) {
+                            VerificationRequest request = (VerificationRequest) organization.getWorkQueue().getWorkRequestList().get(i);
+                            Object[] row = new Object[7];
+                            row[0] = request;
+                            row[1] = request.getUser().getName();
+                            row[2] = request.getEvent().getStatus();
+                            row[3] = request.getUser().getAccountDetails().getAccountNumber();
+                            row[4] = request.getUser().getAccountDetails().getBankName();
+                            row[5] = request.getUser().getAccountDetails().getRoutingNumber();
+                            row[6] = request.getUser().getAccountDetails().getSWIFTCode();
+                            model.addRow(row);
+                        }
+                    }
                 }
             }
         }
-
     }
 
     /**
