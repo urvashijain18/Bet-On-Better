@@ -5,9 +5,7 @@
  */
 package UserInterface.BankRole;
 
-import Business.Enterprise.Enterprise;
-import Business.FundRaiserEvents.EventDirectory;
-import Business.UserAccount.UserAccountDirectory;
+import Business.WorkRequest.VerificationRequest;
 import javax.swing.JPanel;
 
 /**
@@ -17,15 +15,17 @@ import javax.swing.JPanel;
 public class ApprovedVerifRequestDetails extends javax.swing.JPanel {
 
     private JPanel rightContainer; 
-    private EventDirectory eventdirectory;
+    private VerificationRequest verificationRequest;
     
     /**
      * Creates new form ApprovedVerifRequestDetails
+     * @param rightContainer
+     * @param verificationRequest
      */
-    public ApprovedVerifRequestDetails(JPanel rightContainer, EventDirectory eventdirectory) {
+    public ApprovedVerifRequestDetails(JPanel rightContainer, VerificationRequest verificationRequest) {
         initComponents();
         this.rightContainer= rightContainer;
-        this.eventdirectory = eventdirectory;
+        this.verificationRequest = verificationRequest;
     }
 
     /**

@@ -108,14 +108,14 @@ public class BankLeftJPanel extends javax.swing.JPanel {
 
     private void btnDashboardActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDashboardActionPerformed
         CardLayout rightLayout = (CardLayout) rightContainer.getLayout();
-        rightContainer.add("BankDashBoardJPanel", new BankDashBoardJPanel(rightContainer, eventdirectory, userAccount, system, enterprise));
+        rightContainer.add("BankDashBoardJPanel", new BankDashBoardJPanel(rightContainer, userAccount, system, enterprise));
         rightLayout.next(rightContainer);
     }//GEN-LAST:event_btnDashboardActionPerformed
 
     private void btnLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogoutActionPerformed
         leftContainer.removeAll();
         CardLayout leftCardLayout = (CardLayout) leftContainer.getLayout();
-        CardLayout rightCardLayout = (CardLayout) leftContainer.getLayout();
+        CardLayout rightCardLayout = (CardLayout) rightContainer.getLayout();
         leftContainer.add("UserLogin", new UserLogin(leftContainer, rightContainer, userAccountDirectory, eventdirectory, 
                 fundraisingemployeeAccountDirectory, advertisingemployeeAccountDirectory, bankemployeeAccountDirectory, 
                 system, dB4OUtil));

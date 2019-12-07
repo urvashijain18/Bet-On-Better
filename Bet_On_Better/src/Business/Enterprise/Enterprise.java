@@ -21,7 +21,7 @@ public abstract class Enterprise extends Organization{
     public Enterprise(String name,EnterpriseType type){
         super(name);
         this.enterpriseType=type;
-        organizationDirectory=new OrganizationDirectory();
+        organizationDirectory = new OrganizationDirectory();
         eventDirectory = new EventDirectory();
     }
 

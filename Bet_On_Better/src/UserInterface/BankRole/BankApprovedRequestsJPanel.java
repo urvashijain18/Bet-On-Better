@@ -5,13 +5,19 @@
  */
 package UserInterface.BankRole;
 
+import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
 import Business.FundRaiserEvents.Event;
 import Business.FundRaiserEvents.EventDirectory;
+import Business.Network.Network;
+import Business.Organization.Organization;
 import Business.UserAccount.UserAccountDirectory;
+import Business.WorkRequest.CreateEventByOrganizationEmployee;
+import Business.WorkRequest.VerificationRequest;
 import java.awt.CardLayout;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -20,19 +26,43 @@ import javax.swing.JPanel;
 public class BankApprovedRequestsJPanel extends javax.swing.JPanel {
 
     private JPanel rightContainer;
-    private EventDirectory eventdirectory;
+    private EcoSystem system;
 
     /**
      * Creates new form ApprovedRequestsJPanel
      */
-    public BankApprovedRequestsJPanel(JPanel rightContainer, EventDirectory eventdirectory) {
+    public BankApprovedRequestsJPanel(JPanel rightContainer, EcoSystem system) {
         initComponents();
         this.rightContainer = rightContainer;
-        this.eventdirectory = eventdirectory;
+        this.system = system;
+        populateApprovedVerifRequestTable();
     }
     
-    private void populateApprovedRequestTable(){
-        
+    private void populateApprovedVerifRequestTable(){
+        DefaultTableModel model = (DefaultTableModel) tblVerifRecords.getModel();
+        model.setRowCount(0);
+        for (Network network : system.getNetworkList()) {
+            for (Enterprise enterprise : network.getEnterpriseDirectory().getEnterpriseList()) {
+                for (Organization organization : enterprise.getOrganizationDirectory().getOrganizationList()) {
+                    if (organization.getOrganizationType().equals(Organization.Type.Initiatives)) {
+                        for (int i = 0; i < organization.getWorkQueue().getWorkRequestList().size(); i++) {
+                            VerificationRequest request = (VerificationRequest) organization.getWorkQueue().getWorkRequestList().get(i);
+                            if(request.getEvent().getStatus().equalsIgnoreCase("Verified")){
+                            Object[] row = new Object[7];
+                            row[0] = request;
+                            row[1] = request.getUser().getName();
+                            row[2] = request.getEvent().getStatus();
+                            row[3] = request.getUser().getAccountDetails().getAccountNumber();
+                            row[4] = request.getUser().getAccountDetails().getBankName();
+                            row[5] = request.getUser().getAccountDetails().getRoutingNumber();
+                            row[6] = request.getUser().getAccountDetails().getSWIFTCode();
+                            model.addRow(row);
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
     
     /**
@@ -133,8 +163,8 @@ public class BankApprovedRequestsJPanel extends javax.swing.JPanel {
         if (selectedRow < 0) {
             JOptionPane.showMessageDialog(null, "Please select a row from the table", "Warning", JOptionPane.WARNING_MESSAGE);
         } else {
-            Event event = (Event) tblVerifRecords.getValueAt(selectedRow, 0);
-            ApprovedVerifRequestDetails detailsPanel = new ApprovedVerifRequestDetails(rightContainer, eventdirectory);
+            VerificationRequest verificationRequest = (VerificationRequest) tblVerifRecords.getValueAt(selectedRow, 0);
+            ApprovedVerifRequestDetails detailsPanel = new ApprovedVerifRequestDetails(rightContainer, verificationRequest);
             rightContainer.add("ApprovedVerifRequestDetails", detailsPanel);
             CardLayout layout = (CardLayout) rightContainer.getLayout();
             layout.next(rightContainer);
@@ -146,9 +176,9 @@ public class BankApprovedRequestsJPanel extends javax.swing.JPanel {
         if (selectedRow < 0) {
             JOptionPane.showMessageDialog(null, "Please select a row from the table", "Warning", JOptionPane.WARNING_MESSAGE);
         } else {
-            Event event = (Event) tblFundAllocationRecords.getValueAt(selectedRow, 0);
-            FundAllocationRequestDetails allocationRequestDetails = new FundAllocationRequestDetails(rightContainer, eventdirectory);
-            rightContainer.add("FundAllocationRequestDetails", allocationRequestDetails);
+            CreateEventByOrganizationEmployee createEventByOrganizationEmployee = (CreateEventByOrganizationEmployee) tblFundAllocationRecords.getValueAt(selectedRow, 0);
+//            FundAllocationRequestDetails allocationRequestDetails = new FundAllocationRequestDetails(rightContainer, createEventByOrganizationEmployee);
+//            rightContainer.add("FundAllocationRequestDetails", allocationRequestDetails);
             CardLayout layout = (CardLayout) rightContainer.getLayout();
             layout.next(rightContainer);
         }

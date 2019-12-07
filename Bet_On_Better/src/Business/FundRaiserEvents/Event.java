@@ -21,6 +21,7 @@ public class Event {
     String description;
     String raisedBy;
     String status;
+    String organizationType;
 
     public String getStatus() {
         return status;
@@ -92,6 +93,14 @@ public class Event {
 
     public void setRaisedBy(String raisedBy) {
         this.raisedBy = raisedBy;
+    }
+
+    public String getOrganizationType() {
+        return organizationType;
+    }
+
+    public void setOrganizationType(String organizationType) {
+        this.organizationType = organizationType;
     }
     
 }

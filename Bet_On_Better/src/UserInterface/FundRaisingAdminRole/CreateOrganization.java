@@ -40,8 +40,7 @@ public class CreateOrganization extends javax.swing.JPanel {
         for (Organization.Type type : Organization.Type.values()) {
             if (type.getValue().equals(Organization.Type.FundRaisingEvents.getValue())
                     || type.getValue().equals(Organization.Type.Initiatives.getValue())) {
-                organizationJComboBox.addItem(Organization.Type.FundRaisingEvents);
-                organizationJComboBox.addItem(Organization.Type.Initiatives);
+                organizationJComboBox.addItem(type);
             }
         }
     }
