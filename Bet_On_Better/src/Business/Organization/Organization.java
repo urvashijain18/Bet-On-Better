@@ -6,7 +6,6 @@
 package Business.Organization;
 
 import Business.Employee.EmployeeDirectory;
-import Business.EndUser.EndUserDirectory;
 import Business.Role.Role;
 import Business.UserAccount.UserAccountDirectory;
 import Business.WorkQueue.CreateEventByOrganizationEmployeeDirectory;
@@ -24,7 +23,6 @@ public abstract class Organization {
     private Type organizationType;
     private EmployeeDirectory employeeDirectory;
     private UserAccountDirectory userAccountDirectory;
-    private EndUserDirectory endUserDirectory;
     private int organizationID;
     private static int counter=0;
 
@@ -36,14 +34,6 @@ public abstract class Organization {
         this.createEventByOrganizationEmployeeDirectory = createEventByOrganizationEmployeeDirectory;
     }
 
-    public EndUserDirectory getEndUserDirectory() {
-        return endUserDirectory;
-    }
-
-    public void setEndUserDirectory(EndUserDirectory endUserDirectory) {
-        this.endUserDirectory = endUserDirectory;
-    }
-    
     public enum Type{
         AccVerif("Account Verification Organization"), Email("Email Organization"), Facebook("Facebook Organization"),
         FundRaisingEvents("Fund Raising Events Organization"),FundTransfer("Fund Transfer Organization"), Initiatives ("Initiatives Organization");

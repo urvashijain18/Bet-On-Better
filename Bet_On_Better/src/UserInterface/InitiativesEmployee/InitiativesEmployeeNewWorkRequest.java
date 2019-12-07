@@ -18,7 +18,7 @@ import Business.WorkRequest.CreateEventByOrganizationEmployee;
  *
  * @author MMI
  */
-public class Test extends javax.swing.JPanel {
+public class InitiativesEmployeeNewWorkRequest extends javax.swing.JPanel {
 private JPanel rightContainer;
 private EventDirectory eventdirectory;
 private CreateEventByOrganizationEmployeeDirectory createEventByOrganizationEmployeeDirectory;
@@ -28,7 +28,7 @@ private UserAccount userAccount;
     /**
      * Creates new form Test
      */
-    public Test(JPanel rightContainer, EventDirectory eventdirectory, CreateEventByOrganizationEmployeeDirectory createEventByOrganizationEmployeeDirectory,Enterprise enterprise, UserAccount userAccount ) {
+    public InitiativesEmployeeNewWorkRequest(JPanel rightContainer, EventDirectory eventdirectory, CreateEventByOrganizationEmployeeDirectory createEventByOrganizationEmployeeDirectory,Enterprise enterprise, UserAccount userAccount ) {
         initComponents();
         this.eventdirectory = eventdirectory;
         this.rightContainer = rightContainer;
