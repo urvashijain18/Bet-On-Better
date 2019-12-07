@@ -123,18 +123,17 @@ public class FundraisingEventsPendingRequests extends javax.swing.JPanel {
                         .addGap(353, 353, 353)
                         .addComponent(jLabel1))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(38, 38, 38)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 730, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(626, 626, 626)
-                                .addComponent(btnAssign)))))
-                .addContainerGap(34, Short.MAX_VALUE))
+                        .addGap(664, 664, 664)
+                        .addComponent(btnAssign))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(36, 36, 36)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 732, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(200, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(37, Short.MAX_VALUE)
+                .addContainerGap(43, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -154,10 +153,7 @@ public class FundraisingEventsPendingRequests extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "Request Assigned");
             btnAssign.setEnabled(false); 
             
-        rightContainer.remove(this);
-        CardLayout rightCardLayout = (CardLayout) rightContainer.getLayout();
-        rightContainer.add("FundraisingEventAssignedWorkPanel", new FundraisingEventAssignedWorkPanel(rightContainer, enterprise, userAccount));
-        rightCardLayout.next(rightContainer);
+        
             
         }
     }//GEN-LAST:event_btnAssignActionPerformed
