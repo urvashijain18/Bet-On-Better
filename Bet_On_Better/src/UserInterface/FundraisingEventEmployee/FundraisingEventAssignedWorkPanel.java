@@ -16,66 +16,61 @@ import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 import Business.UserAccount.UserAccount;
 
-
 /**
  *
  * @author MMI
  */
 public class FundraisingEventAssignedWorkPanel extends javax.swing.JPanel {
 
-     private JPanel rightContainer;
+    private JPanel rightContainer;
     private EcoSystem system;
     private EventDirectory eventDirectory;
     private CreateEventByOrganizationEmployeeDirectory createEventByOrganizationEmployeeDirectory;
     private Enterprise enterprise;
     private UserAccount userAccount;
+
     /**
      * Creates new form FundraisingEventAssignedWorkPanel
      */
-    
-
-  
 
     FundraisingEventAssignedWorkPanel(JPanel rightContainer, Enterprise enterprise, UserAccount userAccount) {
-    initComponents();   
-     this.rightContainer = rightContainer;
-     this.enterprise = enterprise;
-     this.userAccount = userAccount;
- 
-    populateTable();    
-    
-    jLabel2.setVisible(false);
-    txtRequestAmt.setVisible(false);
-    btnSet.setVisible(false);
-           
-    
+        initComponents();
+        this.rightContainer = rightContainer;
+        this.enterprise = enterprise;
+        this.userAccount = userAccount;
+
+        populateTable();
+
+        jLabel2.setVisible(false);
+        txtRequestAmt.setVisible(false);
+        btnSet.setVisible(false);
+
     }
 
-    
     private void populateTable() {
         DefaultTableModel model = (DefaultTableModel) tblAssignedRequest.getModel();
         model.setRowCount(0);
-       
-        for (CreateEventByOrganizationEmployee cs : enterprise.getCreateEventByOrganizationEmployeeDirectory().getCreateEventByOrganizationEmployeeList()) {
-            if(cs.getReceiver()!=null){
-            if(userAccount.getUsername().equals(cs.getReceiver().getUsername())){
-            Object[] row = new Object[9];
-            row[0] = cs;
-            row[1] = cs.getTitle();
-            row[2] = cs.getDescription();
-            row[3] = cs.getSender();
-            row[4] = cs.getSender().getRole();
-            row[5] = cs.getSender().getCategory();
-            row[6] = cs.getDeadline();
-            row[7] = cs.getLocation();
-            row[8] = ' ';
 
-            model.addRow(row);
-        }
+        for (CreateEventByOrganizationEmployee cs : enterprise.getCreateEventByOrganizationEmployeeDirectory().getCreateEventByOrganizationEmployeeList()) {
+            if (cs.getReceiver() != null) {
+                if (userAccount.getUsername().equals(cs.getReceiver().getUsername())) {
+                    Object[] row = new Object[9];
+                    row[0] = cs;
+                    row[1] = cs.getTitle();
+                    row[2] = cs.getDescription();
+                    row[3] = cs.getSender();
+                    row[4] = cs.getSender().getRole();
+                    row[5] = cs.getSender().getCategory();
+                    row[6] = cs.getDeadline();
+                    row[7] = cs.getLocation();
+                    row[8] = cs.getStatus();
+
+                    model.addRow(row);
+                }
             }
         }
     }
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -191,7 +186,7 @@ public class FundraisingEventAssignedWorkPanel extends javax.swing.JPanel {
 
     private void btnRejectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRejectActionPerformed
         // TODO add your handling code here:
-        
+
     }//GEN-LAST:event_btnRejectActionPerformed
 
     private void btnApproveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnApproveActionPerformed
@@ -204,31 +199,27 @@ public class FundraisingEventAssignedWorkPanel extends javax.swing.JPanel {
             CreateEventByOrganizationEmployee workrequest = (CreateEventByOrganizationEmployee) tblAssignedRequest.getValueAt(selectedRow, 0);
             role = workrequest.getSender().getRole();
         }
-        if (role.equals(Role.RoleType.User)){
+        if (role.equals(Role.RoleType.User)) {
             // ADD this row in event directory
-            
-        } else if (role.equals(Role.RoleType.InitiativesEmployee)){
-            
-        jLabel2.setVisible(true);
-        txtRequestAmt.setVisible(true);
-        btnSet.setVisible(true);
+
+        } else if (role.equals(Role.RoleType.InitiativesEmployee)) {
+
+            jLabel2.setVisible(true);
+            txtRequestAmt.setVisible(true);
+            btnSet.setVisible(true);
+        } else if (role.equals(Role.RoleType.BankEmployee)) {
+
+            CreateEventByOrganizationEmployee workrequest = (CreateEventByOrganizationEmployee) tblAssignedRequest.getValueAt(selectedRow, 0);
+            workrequest.setSender(userAccount);
+            workrequest.setStatus("Approved By Fundraising Employee");
+
         }
-        
-        else if (role.equals(Role.RoleType.BankEmployee)){
-                
-                }
-            
-        
-              
-        
-           
+
 //            
 //        rightContainer.remove(this);
 //        CardLayout rightCardLayout = (CardLayout) rightContainer.getLayout();
 //        rightContainer.add("FundraisingEventAssignedWorkPanel", new FundraisingEventAssignedWorkPanel(rightContainer, enterprise, userAccount));
 //        rightCardLayout.next(rightContainer);
-            
-        
 
     }//GEN-LAST:event_btnApproveActionPerformed
 
@@ -239,7 +230,7 @@ public class FundraisingEventAssignedWorkPanel extends javax.swing.JPanel {
         workrequest.setSender(userAccount);
         workrequest.setStatus("Approved By Fundraising Employee");
         workrequest.setRequestedAtm(Integer.parseInt(txtRequestAmt.getText()));
-        
+
     }//GEN-LAST:event_btnSetActionPerformed
 
 

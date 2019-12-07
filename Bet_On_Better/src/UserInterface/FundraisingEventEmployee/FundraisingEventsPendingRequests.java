@@ -36,7 +36,7 @@ public class FundraisingEventsPendingRequests extends javax.swing.JPanel {
     private EventDirectory eventDirectory;
     private CreateEventByOrganizationEmployeeDirectory createEventByOrganizationEmployeeDirectory;
     private Enterprise enterprise;
-    private UserAccount userAccount; 
+    private UserAccount userAccount;
 
     /**
      * Creates new form FundraisingEventsPendingRequests
@@ -56,20 +56,20 @@ public class FundraisingEventsPendingRequests extends javax.swing.JPanel {
         DefaultTableModel model = (DefaultTableModel) tblPendingRequest.getModel();
         model.setRowCount(0);
         for (CreateEventByOrganizationEmployee cs : createEventByOrganizationEmployeeDirectory.getCreateEventByOrganizationEmployeeList()) {
-            if(cs.getUser().getRole().getClass().equals(Role.RoleType.User) || (cs.getUser().getRole().getClass().equals(Role.RoleType.InitiativesEmployee.getClass()))|| (cs.getUser().getRole().getClass().equals(Role.RoleType.BankEmployee.getClass()))){
-            Object[] row = new Object[9];
-            row[0] = cs;
-            row[1] = cs.getTitle();
-            row[2] = cs.getDescription();
-            row[3] = cs.getSender();
-            row[4] = cs.getSender().getRole();
-            row[5] = cs.getSender().getCategory();
-            row[6] = cs.getDeadline();
-            row[7] = cs.getLocation();
-            row[8] = ' ';
+            if (cs.getUser().getRole().getClass().equals(Role.RoleType.User.getClass()) || (cs.getUser().getRole().getClass().equals(Role.RoleType.InitiativesEmployee.getClass()))) {
+                Object[] row = new Object[9];
+                row[0] = cs;
+                row[1] = cs.getTitle();
+                row[2] = cs.getDescription();
+                row[3] = cs.getSender();
+                row[4] = cs.getSender().getRole();
+                row[5] = cs.getSender().getCategory();
+                row[6] = cs.getDeadline();
+                row[7] = cs.getLocation();
+                row[8] = ' ';
 
-            model.addRow(row);
-        }
+                model.addRow(row);
+            }
         }
     }
 
@@ -152,11 +152,9 @@ public class FundraisingEventsPendingRequests extends javax.swing.JPanel {
         } else {
             CreateEventByOrganizationEmployee workrequest = (CreateEventByOrganizationEmployee) tblPendingRequest.getValueAt(selectedRow, 0);
             workrequest.setReceiver(userAccount);
-             JOptionPane.showMessageDialog(null, "Request Assigned");
-            btnAssign.setEnabled(false); 
-            
-        
-            
+            JOptionPane.showMessageDialog(null, "Request Assigned");
+            btnAssign.setEnabled(false);
+
         }
     }//GEN-LAST:event_btnAssignActionPerformed
 
