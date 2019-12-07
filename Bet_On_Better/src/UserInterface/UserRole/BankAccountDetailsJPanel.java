@@ -182,7 +182,7 @@ public class BankAccountDetailsJPanel extends javax.swing.JPanel {
         btnSave.setEnabled(true);
         VerificationRequest workRequest = new VerificationRequest();
         workRequest.setSender(useraccount);
-        useraccount.getWorkQueue().getWorkRequestList().add(workRequest);
+        //useraccount.getWorkQueue().getWorkRequestList().add(workRequest);
         for (Organization organization : enterprise.getOrganizationDirectory().getOrganizationList()) {
             for (UserAccount useracc : organization.getUserAccountDirectory().getUserAccountList()) {
                 if (useracc.getUsername().equals(useraccount.getUsername())) {
