@@ -169,7 +169,7 @@ public class InitiativesEmployeeLeftJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
         rightContainer.remove(this);
         CardLayout rightCardLayout = (CardLayout) rightContainer.getLayout();
-        rightContainer.add("Test", new Test(rightContainer,eventdirectory,createEventByOrganizationEmployeeDirectory,enterprise,userAccount));
+        rightContainer.add("Test", new InitiativesEmployeeNewWorkRequest(rightContainer,eventdirectory,createEventByOrganizationEmployeeDirectory,enterprise,userAccount));
          rightCardLayout.next(rightContainer);
         
     }//GEN-LAST:event_btnNewRequestActionPerformed

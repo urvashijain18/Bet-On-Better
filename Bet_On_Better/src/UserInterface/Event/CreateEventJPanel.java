@@ -6,7 +6,6 @@
 package UserInterface.Event;
 
 import Business.EcoSystem;
-import Business.EndUser.EndUser;
 import Business.Enterprise.Enterprise;
 import Business.FundRaiserEvents.Event;
 import Business.FundRaiserEvents.EventDirectory;
@@ -15,9 +14,6 @@ import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
 import Business.UserAccount.UserAccountDirectory;
 import Business.WorkRequest.VerificationRequest;
-import Business.WorkRequest.WorkRequest;
-import UserInterface.FundRaisingAdminRole.AdminTargetDateJPanel;
-import UserInterface.UserRole.BankAccountDetailsJPanel;
 import UserInterface.UserRole.UserHomeJPanel;
 import java.awt.CardLayout;
 import java.util.Date;
@@ -34,8 +30,7 @@ public class CreateEventJPanel extends javax.swing.JPanel {
    private JPanel rightContainer;
    private UserAccountDirectory userAccountDirectory;
    private EventDirectory eventdirectory;
-   private Enterprise enterprise;
-   private EndUser user;
+   //private Enterprise enterprise;
    private UserAccount useraccount;
    private EcoSystem system;
     /**
