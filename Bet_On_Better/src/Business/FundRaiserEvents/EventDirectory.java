@@ -8,19 +8,20 @@ package Business.FundRaiserEvents;
 import Business.UserAccount.UserAccount;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 /**
  *
  * @author Urvashi
  */
 public class EventDirectory {
-    private ArrayList<Event> eventList;
-    
-    public ArrayList<Event> getEventDirectory() {
-        return eventList;
+    private List<Event> eventList;
+
+    public EventDirectory() {
+        this.eventList = new ArrayList<>();
     }
 
-    public ArrayList<Event> getEventList() {
+    public List<Event> getEventList() {
         return eventList;
     }
 
@@ -28,9 +29,6 @@ public class EventDirectory {
         this.eventList = eventList;
     }
     
-    public ArrayList<Event> getOrganizationList() {
-        return eventList;
-    }
     public void deleteEvent(Event event){
         eventList.remove(event);
     }

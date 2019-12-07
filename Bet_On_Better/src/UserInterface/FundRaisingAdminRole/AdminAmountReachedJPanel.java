@@ -5,9 +5,13 @@
  */
 package UserInterface.FundRaisingAdminRole;
 
+import Business.EcoSystem;
+import Business.Enterprise.Enterprise;
 import Business.FundRaiserEvents.Event;
 import Business.FundRaiserEvents.EventDirectory;
+import Business.Network.Network;
 import java.awt.CardLayout;
+import java.util.Date;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
@@ -20,36 +24,45 @@ public class AdminAmountReachedJPanel extends javax.swing.JPanel {
 
     private JPanel rightContainer;
     private EventDirectory eventdirectory;
+    private EcoSystem system;
 
     /**
      * Creates new form AdminAmountReachedJPanel
+     * @param rightContainer
+     * @param system
      */
-    public AdminAmountReachedJPanel(JPanel rightContainer, EventDirectory eventdirectory) {
+    public AdminAmountReachedJPanel(JPanel rightContainer, EcoSystem system) {
         initComponents();
         this.rightContainer = rightContainer;
-        this.eventdirectory = eventdirectory;
+        this.system = system;
         populateAmountTable();
     }
 
     private void populateAmountTable() {
         DefaultTableModel dtm = (DefaultTableModel) tblTargetAmountReached.getModel();
         dtm.setRowCount(0);
-        for (Event event : eventdirectory.getEventDirectory()) {
-            if (event.getRaisedAmt().equals(event.getRequestAmt())) {
-                Object[] row = new Object[9];
-                row[0] = event;
-                row[1] = event.getEventName();
-                row[2] = event.getDescription();
-                row[3] = event.getCategory();
-                row[4] = event.getRaisedBy();
-                row[5] = event.getRequestAmt();
-                row[6] = event.getRaisedAmt();
-                row[7] = event.getCreateDate();
-                row[8] = event.getTargetDate();
-
-                dtm.addRow(row);
+        for (Network network : system.getNetworkList()) {
+            for (Enterprise enterprise : network.getEnterpriseDirectory().getEnterpriseList()) {
+                eventdirectory = enterprise.getEventDirectory();
+                if (enterprise.getEnterpriseType().getValue().equals(Enterprise.EnterpriseType.FundRaiser.getValue())) {
+                    for (Event event : eventdirectory.getEventList()) {
+                        if (event.getStatus().equals("Verified") &&
+                                (event.getRequestAmt().equals(event.getRaisedAmt()))) {
+                            Object[] row = new Object[9];
+                            row[0] = event;
+                            row[1] = event.getEventName();
+                            row[2] = event.getDescription();
+                            row[3] = event.getCategory();
+                            row[4] = event.getRaisedBy();
+                            row[5] = event.getRequestAmt();
+                            row[6] = event.getRaisedAmt();
+                            row[7] = event.getCreateDate();
+                            row[8] = event.getTargetDate();
+                            dtm.addRow(row);
+                        }
+                    }
+                }
             }
-
         }
     }
 

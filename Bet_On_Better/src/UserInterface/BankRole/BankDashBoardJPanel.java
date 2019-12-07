@@ -8,6 +8,7 @@ package UserInterface.BankRole;
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
 import Business.FundRaiserEvents.EventDirectory;
+import Business.Network.Network;
 import Business.UserAccount.UserAccount;
 import java.awt.CardLayout;
 import javax.swing.JPanel;
@@ -27,13 +28,19 @@ public class BankDashBoardJPanel extends javax.swing.JPanel {
     /**
      * Creates new form BankDashBoard
      */
-    public BankDashBoardJPanel(JPanel rightContainer, EventDirectory eventdirectory, UserAccount userAccount, EcoSystem system, Enterprise enterprise) {
+    public BankDashBoardJPanel(JPanel rightContainer, UserAccount userAccount, EcoSystem system, Enterprise enterprise) {
         initComponents();
         this.rightContainer = rightContainer;
-        this.eventdirectory = eventdirectory;
         this.system=system;
         this.enterprise = enterprise;
         this.userAccount = userAccount;
+        for(Network network : system.getNetworkList()){
+            for(Enterprise enterprise1 : network.getEnterpriseDirectory().getEnterpriseList()){
+              if(enterprise1.getEnterpriseType().getValue().equals(Enterprise.EnterpriseType.FundRaiser.getValue())){
+                  this.eventdirectory = enterprise.getEventDirectory();
+              }  
+            }
+        }
     }
 
     /**
@@ -100,7 +107,7 @@ public class BankDashBoardJPanel extends javax.swing.JPanel {
 
     private void btnApprovedRequestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnApprovedRequestActionPerformed
         CardLayout rightLayout = (CardLayout) rightContainer.getLayout();
-        rightContainer.add("BankApprovedRequestsJPanel", new BankApprovedRequestsJPanel(rightContainer, eventdirectory));
+        rightContainer.add("BankApprovedRequestsJPanel", new BankApprovedRequestsJPanel(rightContainer, system));
         rightLayout.next(rightContainer);
     }//GEN-LAST:event_btnApprovedRequestActionPerformed
 

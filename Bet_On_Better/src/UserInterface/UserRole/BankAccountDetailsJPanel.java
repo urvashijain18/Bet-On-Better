@@ -39,7 +39,8 @@ public class BankAccountDetailsJPanel extends javax.swing.JPanel {
         this.enterprise = enterprise;
         this.useraccount = useraccount;
         this.eventdirectory = eventdirectory;
-        // this.system = system;
+        txtName.setText(useraccount.getName());
+        //txtBankName.setText(enterprise.getName());
     }
 
     /**
@@ -65,6 +66,8 @@ public class BankAccountDetailsJPanel extends javax.swing.JPanel {
         btnSave = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
         txtBankAddress = new javax.swing.JTextField();
+
+        txtName.setEditable(false);
 
         jLabel1.setText("Name :");
 
