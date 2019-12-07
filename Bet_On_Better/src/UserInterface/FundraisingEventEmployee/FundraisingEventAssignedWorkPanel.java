@@ -207,15 +207,20 @@ public class FundraisingEventAssignedWorkPanel extends javax.swing.JPanel {
         if (role.equals(Role.RoleType.User)){
             // ADD this row in event directory
             
-        } else{
+        } else if (role.equals(Role.RoleType.InitiativesEmployee)){
             
         jLabel2.setVisible(true);
         txtRequestAmt.setVisible(true);
         btnSet.setVisible(true);
+        }
+        
+        else if (role.equals(Role.RoleType.BankEmployee)){
+                
+                }
             
         
               
-        }
+        
            
 //            
 //        rightContainer.remove(this);

@@ -5,17 +5,50 @@
  */
 package UserInterface.BankRole;
 
+import Business.EcoSystem;
+import Business.Enterprise.Enterprise;
+import Business.FundRaiserEvents.EventDirectory;
+import Business.Role.Role;
+import Business.UserAccount.UserAccount;
+import Business.UserAccount.UserAccountDirectory;
+import Business.WorkRequest.CreateEventByOrganizationEmployee;
+import Business.WorkRequest.WorkRequest;
+import javax.swing.JPanel;
+
 /**
  *
  * @author @author Urvashi
  */
 public class BankFundAllocationJPanel extends javax.swing.JPanel {
-
+   
+    private JPanel rightContainer;
+    private UserAccountDirectory userAccountDirectory;
+    private Enterprise enterprise;
+    private EventDirectory eventdirectory;
+    private UserAccount userAccount;
+    private EcoSystem system;
+    private CreateEventByOrganizationEmployee workRequest;
     /**
      * Creates new form BankFundTransferJPanel
      */
-    public BankFundAllocationJPanel() {
-        initComponents();
+    
+
+    BankFundAllocationJPanel(JPanel rightContainer, CreateEventByOrganizationEmployee workRequest, UserAccount userAccount) {
+       initComponents();
+       this.rightContainer = rightContainer;
+       this.enterprise = enterprise;
+       this.userAccount =userAccount;
+       this.workRequest = workRequest;
+       
+       
+           if(workRequest.getUser().getRole().getClass().equals(Role.RoleType.FundRaisingEmployee)){
+               txtUserName.setText(workRequest.getSender().getUsername());
+               txtRequestedAmt.setText(String.valueOf(workRequest.getRequestedAtm()));
+               txtAccNum.setText("1234456");
+               
+           
+       }
+    
     }
 
     /**
@@ -33,11 +66,11 @@ public class BankFundAllocationJPanel extends javax.swing.JPanel {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jTextField6 = new javax.swing.JTextField();
-        jTextField7 = new javax.swing.JTextField();
-        jTextField8 = new javax.swing.JTextField();
-        jTextField9 = new javax.swing.JTextField();
+        btnAllocate = new javax.swing.JButton();
+        txtUserName = new javax.swing.JTextField();
+        txtAccNum = new javax.swing.JTextField();
+        txtRequestedAmt = new javax.swing.JTextField();
+        txtAllocated = new javax.swing.JTextField();
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel1.setText("FUND ALLOCATION ACTION");
@@ -54,29 +87,34 @@ public class BankFundAllocationJPanel extends javax.swing.JPanel {
         jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel9.setText("Allocated Amount:");
 
-        jButton1.setText("Allocate Funds");
-
-        jTextField6.addActionListener(new java.awt.event.ActionListener() {
+        btnAllocate.setText("Allocate Funds");
+        btnAllocate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField6ActionPerformed(evt);
+                btnAllocateActionPerformed(evt);
             }
         });
 
-        jTextField7.addActionListener(new java.awt.event.ActionListener() {
+        txtUserName.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField7ActionPerformed(evt);
+                txtUserNameActionPerformed(evt);
             }
         });
 
-        jTextField8.addActionListener(new java.awt.event.ActionListener() {
+        txtAccNum.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField8ActionPerformed(evt);
+                txtAccNumActionPerformed(evt);
             }
         });
 
-        jTextField9.addActionListener(new java.awt.event.ActionListener() {
+        txtRequestedAmt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField9ActionPerformed(evt);
+                txtRequestedAmtActionPerformed(evt);
+            }
+        });
+
+        txtAllocated.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtAllocatedActionPerformed(evt);
             }
         });
 
@@ -99,13 +137,13 @@ public class BankFundAllocationJPanel extends javax.swing.JPanel {
                                     .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addGap(42, 42, 42)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jTextField7, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jTextField6, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jTextField8)
-                                    .addComponent(jTextField9, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(txtAccNum, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(txtUserName, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(txtRequestedAmt)
+                                    .addComponent(txtAllocated, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(221, 221, 221)
-                                .addComponent(jButton1)))
+                                .addComponent(btnAllocate)))
                         .addGap(100, 100, 100))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jLabel1)
@@ -123,13 +161,13 @@ public class BankFundAllocationJPanel extends javax.swing.JPanel {
                         .addComponent(jLabel5)
                         .addGap(17, 17, 17))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtUserName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(24, 24, 24)
-                        .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtAccNum, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(24, 24, 24)
-                        .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtRequestedAmt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(27, 27, 27)
-                        .addComponent(jTextField9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(txtAllocated, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addGap(30, 30, 30)
@@ -139,39 +177,49 @@ public class BankFundAllocationJPanel extends javax.swing.JPanel {
                         .addGap(33, 33, 33)
                         .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(46, 46, 46)
-                .addComponent(jButton1)
+                .addComponent(btnAllocate)
                 .addContainerGap(122, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField6ActionPerformed
+    private void txtUserNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUserNameActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField6ActionPerformed
+    }//GEN-LAST:event_txtUserNameActionPerformed
 
-    private void jTextField7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField7ActionPerformed
+    private void txtAccNumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAccNumActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField7ActionPerformed
+    }//GEN-LAST:event_txtAccNumActionPerformed
 
-    private void jTextField8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField8ActionPerformed
+    private void txtRequestedAmtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtRequestedAmtActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField8ActionPerformed
+    }//GEN-LAST:event_txtRequestedAmtActionPerformed
 
-    private void jTextField9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField9ActionPerformed
+    private void txtAllocatedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAllocatedActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField9ActionPerformed
+    }//GEN-LAST:event_txtAllocatedActionPerformed
+
+    private void btnAllocateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAllocateActionPerformed
+        // TODO add your handling code here:
+        String username = txtUserName.getText();
+        int accNum = Integer.parseInt(txtAccNum.getText());
+         int requestAum = Integer.parseInt(txtRequestedAmt.getText());
+         int allocatedAmt = Integer.parseInt(txtAllocated.getText());
+         workRequest.setTargetAtm(allocatedAmt);
+         workRequest.setSender(userAccount);
+    }//GEN-LAST:event_btnAllocateActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btnAllocate;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField jTextField7;
-    private javax.swing.JTextField jTextField8;
-    private javax.swing.JTextField jTextField9;
+    private javax.swing.JTextField txtAccNum;
+    private javax.swing.JTextField txtAllocated;
+    private javax.swing.JTextField txtRequestedAmt;
+    private javax.swing.JTextField txtUserName;
     // End of variables declaration//GEN-END:variables
 }

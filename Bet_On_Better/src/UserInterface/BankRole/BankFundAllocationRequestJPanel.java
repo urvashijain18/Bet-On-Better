@@ -15,6 +15,9 @@ import Business.Role.UserRole;
 import Business.UserAccount.UserAccount;
 import Business.UserAccount.UserAccountDirectory;
 import Business.WorkRequest.CreateEventByOrganizationEmployee;
+import UserInterface.FundraisingEventEmployee.FundraisingEventAssignedWorkPanel;
+import java.awt.CardLayout;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 
@@ -150,6 +153,20 @@ public class BankFundAllocationRequestJPanel extends javax.swing.JPanel {
 
     private void btnActionTakenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActionTakenActionPerformed
         // TODO add your handling code here:
+         int selectedRow = tblFundAllocationRecords.getSelectedRow();
+          if (selectedRow < 0) {
+            JOptionPane.showMessageDialog(null, "Please select a row from the table", "Warning", JOptionPane.WARNING_MESSAGE);
+        } else{
+              CreateEventByOrganizationEmployee workrequest = (CreateEventByOrganizationEmployee) tblFundAllocationRecords.getValueAt(selectedRow, 0);
+               workrequest.setStatus("Approved By Bank Employee");
+               workrequest.setSender(userAccount);
+               JOptionPane.showConfirmDialog(null, "Request has been approved");
+               rightContainer.remove(this);
+        CardLayout rightCardLayout = (CardLayout) rightContainer.getLayout();
+        rightContainer.add("BankFundAllocationJPanel", new BankFundAllocationJPanel(rightContainer, workrequest, userAccount));
+        rightCardLayout.next(rightContainer);
+          }
+        
     }//GEN-LAST:event_btnActionTakenActionPerformed
 
 

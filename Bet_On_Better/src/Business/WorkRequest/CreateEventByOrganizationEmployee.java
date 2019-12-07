@@ -22,6 +22,17 @@ public class CreateEventByOrganizationEmployee extends WorkRequest {
     private int requestedAtm;
     private UserAccount user;
     private String Status;
+    private int targetAtm;
+
+    public int getTargetAtm() {
+        return targetAtm;
+    }
+
+    public void setTargetAtm(int targetAtm) {
+        this.targetAtm = targetAtm;
+    }
+    
+    
 
     public String getStatus() {
         return Status;
