@@ -165,8 +165,7 @@ public class BankAccountDetailsJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_txtRoutingNumberActionPerformed
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
-        for (Organization organization : enterprise.getOrganizationDirectory().getOrganizationList()) {
-            for (UserAccount account : organization.getUserAccountDirectory().getUserAccountList()) {
+            for (UserAccount account : enterprise.getUserAccountDirectory().getUserAccountList()) {
                 if (account.getUsername().equals(useraccount.getUsername())) {
                     AccountDetails accountDetails = new AccountDetails();
                     accountDetails.setBankName(txtBankName.getText());
@@ -178,7 +177,6 @@ public class BankAccountDetailsJPanel extends javax.swing.JPanel {
                     account.setAccountDetails(accountDetails);
                 }
             }
-        }
         btnSave.setEnabled(true);
         VerificationRequest workRequest = new VerificationRequest();
         workRequest.setSender(useraccount);
