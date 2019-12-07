@@ -20,12 +20,12 @@ public class EventDirectory {
         return eventList;
     }
 
-    public void setEventDirectory(ArrayList<Event> eventDirectory) {
-        this.eventList = eventDirectory;
+    public ArrayList<Event> getEventList() {
+        return eventList;
     }
 
-    public EventDirectory() {
-        eventList = new ArrayList();
+    public void setEventList(ArrayList<Event> eventList) {
+        this.eventList = eventList;
     }
     
     public ArrayList<Event> getOrganizationList() {
@@ -34,7 +34,8 @@ public class EventDirectory {
     public void deleteEvent(Event event){
         eventList.remove(event);
     }
-    public Event createEvent(String category, Date createDate, String description, String name, UserAccount raisedBy, Double requestAmount, Date targetDate){
+    public Event createEvent(String category, Date createDate, String description, String name, UserAccount raisedBy, 
+            Double requestAmount, Date targetDate){
         Event event = new Event();
         event.setCategory(category);
         event.setCreateDate(createDate);

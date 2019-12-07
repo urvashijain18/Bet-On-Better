@@ -5,6 +5,7 @@
  */
 package Business.Enterprise;
 
+import Business.FundRaiserEvents.EventDirectory;
 import Business.Organization.Organization;
 import Business.Organization.OrganizationDirectory;
 
@@ -15,11 +16,15 @@ import Business.Organization.OrganizationDirectory;
 public abstract class Enterprise extends Organization{
     private EnterpriseType enterpriseType;
     private OrganizationDirectory organizationDirectory;
+    private EventDirectory eventDirectory;
 
-    public OrganizationDirectory getOrganizationDirectory() {
-        return organizationDirectory;
+    public Enterprise(String name,EnterpriseType type){
+        super(name);
+        this.enterpriseType=type;
+        organizationDirectory=new OrganizationDirectory();
+        eventDirectory = new EventDirectory();
     }
-    
+
     public enum EnterpriseType{
         FundRaiser("FundRaiser"), Bank("Bank"), Advertising("Advertising");
         
@@ -44,10 +49,16 @@ public abstract class Enterprise extends Organization{
     public void setEnterpriseType(EnterpriseType enterpriseType) {
         this.enterpriseType = enterpriseType;
     }
+
+    public EventDirectory getEventDirectory() {
+        return eventDirectory;
+    }
     
-    public Enterprise(String name,EnterpriseType type){
-        super(name);
-        this.enterpriseType=type;
-        organizationDirectory=new OrganizationDirectory();
+    public OrganizationDirectory getOrganizationDirectory() {
+        return organizationDirectory;
+    }
+   
+    public void setEventDirectory(EventDirectory eventDirectory) {
+        this.eventDirectory = eventDirectory;
     }
 }

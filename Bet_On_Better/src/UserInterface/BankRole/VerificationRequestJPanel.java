@@ -11,6 +11,8 @@ import Business.Network.Network;
 import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
 import Business.WorkRequest.VerificationRequest;
+import java.awt.CardLayout;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 
@@ -80,6 +82,11 @@ public class VerificationRequestJPanel extends javax.swing.JPanel {
 
         btnActionTaken.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         btnActionTaken.setText("Take Action");
+        btnActionTaken.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnActionTakenActionPerformed(evt);
+            }
+        });
 
         tblVerifRecords.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -120,6 +127,21 @@ public class VerificationRequestJPanel extends javax.swing.JPanel {
                 .addContainerGap(152, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnActionTakenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActionTakenActionPerformed
+        int selectedRow = tblVerifRecords.getSelectedRow();
+        if (selectedRow < 0) {
+            JOptionPane.showMessageDialog(null, "Please select a row from the table", "Warning", JOptionPane.WARNING_MESSAGE);
+        } else {
+            VerificationRequest workRequest = (VerificationRequest) tblVerifRecords.getValueAt(selectedRow, 0);
+            workRequest.setReceiver(userAccount);
+            workRequest.getEvent().setStatus("Assigned to Bank Employee");
+            VerificationJPanel verificationJPanel = new VerificationJPanel(rightContainer, workRequest, system);
+            rightContainer.add("VerificationJPanel", verificationJPanel);
+            CardLayout layout = (CardLayout) rightContainer.getLayout();
+            layout.next(rightContainer);
+        }
+    }//GEN-LAST:event_btnActionTakenActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
