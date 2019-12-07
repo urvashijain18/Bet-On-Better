@@ -147,7 +147,7 @@ public class AdminLeftJPanel extends javax.swing.JPanel {
     private void btnHomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHomeActionPerformed
         rightContainer.remove(this);
         CardLayout rightLayout = (CardLayout) rightContainer.getLayout();
-        rightContainer.add("AdminWorkAreaJPanel", new AdminWorkAreaJPanel(rightContainer, eventdirectory));
+        rightContainer.add("AdminWorkAreaJPanel", new AdminWorkAreaJPanel(rightContainer, system));
         rightLayout.next(rightContainer);
     }//GEN-LAST:event_btnHomeActionPerformed
 

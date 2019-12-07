@@ -27,7 +27,7 @@ public class FundRaisingAdmin extends Role{
 
     @Override
     public JPanel createRightWorkArea(JPanel userProcessContainer, UserAccount account, Organization organization, Enterprise enterprise, EcoSystem business, EventDirectory eventdirectory) {
-        return new AdminWorkAreaJPanel(userProcessContainer, eventdirectory);
+        return new AdminWorkAreaJPanel(userProcessContainer, business);
     }
 
     @Override

@@ -143,13 +143,16 @@ public class NetworkAdminLeftPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_btnManageEnterpriseActionPerformed
 
     private void btnLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogoutActionPerformed
-        leftContainer.remove(this);
+        leftContainer.removeAll();
+        rightContainer.removeAll();
         CardLayout leftCardLayout = (CardLayout) leftContainer.getLayout();
+        CardLayout rightCardLayout = (CardLayout) rightContainer.getLayout();
         leftContainer.add("UserLogin", new UserLogin(leftContainer, rightContainer, userAccountDirectory, 
                 eventdirectory,  fundraisingemployeeAccountDirectory,  advertisingemployeeAccountDirectory,  
                 bankemployeeAccountDirectory, system, dB4OUtil));
         leftCardLayout.next(leftContainer);
-        rightContainer.removeAll();
+        rightContainer.add("blank", new JPanel());
+        rightCardLayout.next(rightContainer);
         dB4OUtil.storeSystem(system);
     }//GEN-LAST:event_btnLogoutActionPerformed
 

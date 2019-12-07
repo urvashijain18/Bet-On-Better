@@ -32,7 +32,7 @@ import javax.swing.JPanel;
     @Override
     public JPanel createRightWorkArea(JPanel container, UserAccount account, 
             Organization organization, Enterprise enterprise, EcoSystem business, EventDirectory eventdirectory) {
-        return new BankDashBoardJPanel(container, eventdirectory, account, business, enterprise);
+        return new BankDashBoardJPanel(container, account, business, enterprise);
     }
     
     @Override

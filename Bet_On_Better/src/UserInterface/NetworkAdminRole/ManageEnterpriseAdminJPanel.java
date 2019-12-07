@@ -272,7 +272,8 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
         } else if (enterprise.getEnterpriseType().equals(Enterprise.EnterpriseType.Advertising)) {
             role = new AdvertisingAdmin();
         }
-        enterprise.getUserAccountDirectory().createUserAccount(username, password, role);
+        UserAccount account = enterprise.getUserAccountDirectory().createUserAccount(username, password, role);
+        account.setName(name);
         JOptionPane.showMessageDialog(null, "Admin Account Created Successfully");
         usernameJTextField.setText("");
         passwordJPasswordField.setText("");
