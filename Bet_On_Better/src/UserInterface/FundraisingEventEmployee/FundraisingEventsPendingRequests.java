@@ -150,7 +150,7 @@ public class FundraisingEventsPendingRequests extends javax.swing.JPanel {
         } else {
             CreateEventByOrganizationEmployee workrequest = (CreateEventByOrganizationEmployee) tblPendingRequest.getValueAt(selectedRow, 0);
             workrequest.setReceiver(userAccount);
-            JOptionPane.showMessageDialog(null, "Request Assigned");
+             JOptionPane.showMessageDialog(null, "Request Assigned");
             btnAssign.setEnabled(false); 
             
         

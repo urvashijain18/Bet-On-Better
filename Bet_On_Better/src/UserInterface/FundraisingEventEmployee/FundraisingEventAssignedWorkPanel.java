@@ -232,6 +232,7 @@ public class FundraisingEventAssignedWorkPanel extends javax.swing.JPanel {
         int selectedRow = tblAssignedRequest.getSelectedRow();
         CreateEventByOrganizationEmployee workrequest = (CreateEventByOrganizationEmployee) tblAssignedRequest.getValueAt(selectedRow, 0);
         workrequest.setSender(userAccount);
+        workrequest.setStatus("Approved By Fundraising Employee");
         workrequest.setRequestedAtm(Integer.parseInt(txtRequestAmt.getText()));
         
     }//GEN-LAST:event_btnSetActionPerformed
