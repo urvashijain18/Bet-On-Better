@@ -254,7 +254,7 @@ public class VerificationJPanel extends javax.swing.JPanel {
                     if(initiative.getStatus().equals("Verified")){
                     enterprise.getEventDirectory().createEvent(initiative.getCategory(), initiative.getCreateDate(), 
                             initiative.getDescription(), initiative.getEventName(), request.getUser(), 
-                            initiative.getRequestAmt(), initiative.getTargetDate());
+                            initiative.getRequestAmt(), initiative.getTargetDate(), initiative.getStatus());
                     }
                 }
             }
