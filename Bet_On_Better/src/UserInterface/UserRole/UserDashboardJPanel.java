@@ -195,7 +195,7 @@ public class UserDashboardJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_btnBackActionPerformed
 
     private void btnNewInitiativeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNewInitiativeActionPerformed
-        rightContainer.remove(this);
+        rightContainer.removeAll();
         CardLayout rightLayout = (CardLayout) rightContainer.getLayout();
         rightContainer.add("RaiseInitiativeJPanel", new RaiseInitiativeJPanel(rightContainer, enterprise, useraccount, eventdirectory, system));
         rightLayout.next(rightContainer);

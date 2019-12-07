@@ -192,7 +192,7 @@ public class UserLogin extends javax.swing.JPanel {
             return;
         }else{
             CardLayout rightLayout = (CardLayout)rightContainer.getLayout();
-            rightContainer.add("workArea",userAccount.getRole().createRightWorkArea(leftContainer, 
+            rightContainer.add("workArea",userAccount.getRole().createRightWorkArea(rightContainer, 
                     userAccount, inOrganization, inEnterprise, system, eventdirectory));
             rightLayout.next(rightContainer);
             CardLayout leftLayout = (CardLayout)leftContainer.getLayout();
