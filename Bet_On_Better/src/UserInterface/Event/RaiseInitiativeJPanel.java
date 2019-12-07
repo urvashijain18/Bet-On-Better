@@ -101,7 +101,7 @@ public class RaiseInitiativeJPanel extends javax.swing.JPanel {
 
         categoryComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        btnAccDetails.setText("Account Details");
+        btnAccDetails.setText("Next >>");
         btnAccDetails.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAccDetailsActionPerformed(evt);
@@ -204,9 +204,9 @@ public class RaiseInitiativeJPanel extends javax.swing.JPanel {
         VerificationRequest workRequest = new VerificationRequest();
         workRequest.setSender(useraccount);
         workRequest.setEvent(event);
-        useraccount.getWorkQueue().getWorkRequestList().add(workRequest);
+        //useraccount.getWorkQueue().getWorkRequestList().add(workRequest);
         for (Organization organization : enterprise.getOrganizationDirectory().getOrganizationList()) {
-            for (UserAccount useracc : organization.getUserAccountDirectory().getUserAccountList()) {
+            for (UserAccount useracc : enterprise.getUserAccountDirectory().getUserAccountList()) {
                 if (useracc.getUsername().equals(useraccount.getUsername())) {
                     organization.getWorkQueue().getWorkRequestList().add(workRequest);
                 }
