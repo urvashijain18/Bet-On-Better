@@ -8,7 +8,10 @@ package UserInterface.FundraisingEventEmployee;
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
 import Business.FundRaiserEvents.EventDirectory;
+import Business.Role.FundTransferBankEmployee;
+import Business.Role.InitiativesEmployee;
 import Business.Role.Role;
+import Business.Role.UserRole;
 import Business.WorkQueue.CreateEventByOrganizationEmployeeDirectory;
 import Business.WorkRequest.CreateEventByOrganizationEmployee;
 import javax.swing.JOptionPane;
@@ -199,15 +202,15 @@ public class FundraisingEventAssignedWorkPanel extends javax.swing.JPanel {
             CreateEventByOrganizationEmployee workrequest = (CreateEventByOrganizationEmployee) tblAssignedRequest.getValueAt(selectedRow, 0);
             role = workrequest.getSender().getRole();
         }
-        if (role.equals(Role.RoleType.User)) {
+        if (role.getClass().equals(UserRole.class)) {
             // ADD this row in event directory
 
-        } else if (role.equals(Role.RoleType.InitiativesEmployee)) {
+        } else if (role.getClass().equals(InitiativesEmployee.class)) {
 
             jLabel2.setVisible(true);
             txtRequestAmt.setVisible(true);
             btnSet.setVisible(true);
-        } else if (role.equals(Role.RoleType.BankEmployee)) {
+        } else if (role.getClass().equals(FundTransferBankEmployee.class)) {
 
             CreateEventByOrganizationEmployee workrequest = (CreateEventByOrganizationEmployee) tblAssignedRequest.getValueAt(selectedRow, 0);
             workrequest.setSender(userAccount);
