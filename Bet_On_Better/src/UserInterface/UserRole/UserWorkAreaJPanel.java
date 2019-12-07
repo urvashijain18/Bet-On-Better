@@ -129,7 +129,7 @@ public class UserWorkAreaJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
         rightContainer.remove(this);
         CardLayout rightCardLayout = (CardLayout) rightContainer.getLayout();
-        rightContainer.add("UserHomeJPanel", new UserHomeJPanel(rightContainer, eventdirectory, useraccount));
+        rightContainer.add("UserHomeJPanel", new UserHomeJPanel(rightContainer, system, useraccount));
         rightCardLayout.next(rightContainer);        
     }//GEN-LAST:event_btnHomeActionPerformed
 

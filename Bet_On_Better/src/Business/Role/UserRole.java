@@ -28,7 +28,7 @@ public class UserRole extends Role{
     @Override
     public JPanel createRightWorkArea(JPanel userProcessContainer, UserAccount account, 
             Organization organization, Enterprise enterprise, EcoSystem business, EventDirectory eventdirectory) {
-     return new UserHomeJPanel(userProcessContainer, eventdirectory, account);
+     return new UserHomeJPanel(userProcessContainer, business, account);
     }
 
     @Override

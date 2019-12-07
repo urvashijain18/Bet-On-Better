@@ -192,6 +192,7 @@ public class CreateNewUser extends javax.swing.JPanel {
     }//GEN-LAST:event_btnBackActionPerformed
 
     private void btnCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateActionPerformed
+        String name  = txtName.getName();
         String username = txtUserName.getText();
         String pwd = passwordField.getText();
         String rePwd = confirmPasswordField.getText();
@@ -235,6 +236,7 @@ public class CreateNewUser extends javax.swing.JPanel {
                     if(userAccount == null){
                         if (enterprise.getEnterpriseType().getValue().equals(Enterprise.EnterpriseType.FundRaiser.getValue())) {
                             userAccount = enterprise.getUserAccountDirectory().createUserAccount(username, pwd, role);
+                            userAccount.setName(name);
                         }
                     }
                 }
