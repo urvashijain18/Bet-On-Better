@@ -139,7 +139,7 @@ public class FundraisingEventEmployeeLeftJPanel extends javax.swing.JPanel  {
         // TODO add your handling code here:
          rightContainer.remove(this);
         CardLayout rightCardLayout = (CardLayout) rightContainer.getLayout();
-        rightContainer.add("FundraisingEventsPendingRequests", new FundraisingEventsPendingRequests(rightContainer, eventdirectory,enterprise));
+        rightContainer.add("FundraisingEventsPendingRequests", new FundraisingEventsPendingRequests(rightContainer, eventdirectory,enterprise,useraccount));
         rightCardLayout.next(rightContainer);
     }//GEN-LAST:event_btnPendingRequestsActionPerformed
 
