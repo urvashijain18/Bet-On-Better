@@ -178,11 +178,15 @@ public class InitiativesEmployeeLeftJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
         leftContainer.remove(this);
         CardLayout leftCardLayout = (CardLayout) leftContainer.getLayout();
+        CardLayout rightCardLayout = (CardLayout) rightContainer.getLayout();
         leftContainer.add("UserLogin", new UserLogin(leftContainer, rightContainer, 
                 userAccountDirectory, eventdirectory, fundraisingemployeeAccountDirectory, 
                 advertisingemployeeAccountDirectory, bankemployeeAccountDirectory, system, dB4OUtil));
         leftCardLayout.next(leftContainer);
         rightContainer.removeAll();
+        JPanel blank = new JPanel();
+        rightContainer.add("blank", blank);
+        rightCardLayout.next(rightContainer);
         dB4OUtil.storeSystem(system);
     }//GEN-LAST:event_btnLogoutActionPerformed
 

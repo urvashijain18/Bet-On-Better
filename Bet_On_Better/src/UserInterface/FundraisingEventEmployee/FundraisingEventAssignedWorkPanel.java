@@ -57,6 +57,7 @@ public class FundraisingEventAssignedWorkPanel extends javax.swing.JPanel {
         model.setRowCount(0);
        
         for (CreateEventByOrganizationEmployee cs : enterprise.getCreateEventByOrganizationEmployeeDirectory().getCreateEventByOrganizationEmployeeList()) {
+            if(cs.getReceiver()!=null){
             if(userAccount.getUsername().equals(cs.getReceiver().getUsername())){
             Object[] row = new Object[9];
             row[0] = cs;
@@ -71,6 +72,7 @@ public class FundraisingEventAssignedWorkPanel extends javax.swing.JPanel {
 
             model.addRow(row);
         }
+            }
         }
     }
     
@@ -101,7 +103,7 @@ public class FundraisingEventAssignedWorkPanel extends javax.swing.JPanel {
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, true, false, false, false, false
+                false, false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {

@@ -71,6 +71,7 @@ public class FundraisingEventEmployeeLeftJPanel extends javax.swing.JPanel  {
         btnPendingRequests = new javax.swing.JButton();
         btnApprovedRequests = new javax.swing.JButton();
         btnLogout = new javax.swing.JButton();
+        btnAssignedReq = new javax.swing.JButton();
 
         btnHome.setText("Home");
         btnHome.addActionListener(new java.awt.event.ActionListener() {
@@ -100,17 +101,25 @@ public class FundraisingEventEmployeeLeftJPanel extends javax.swing.JPanel  {
             }
         });
 
+        btnAssignedReq.setText("Assigned Requests");
+        btnAssignedReq.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAssignedReqActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(btnHome)
                     .addComponent(btnPendingRequests)
-                    .addComponent(btnApprovedRequests)
-                    .addComponent(btnLogout))
+                    .addComponent(btnApprovedRequests, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnLogout)
+                    .addComponent(btnAssignedReq, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(44, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -120,9 +129,11 @@ public class FundraisingEventEmployeeLeftJPanel extends javax.swing.JPanel  {
                 .addComponent(btnHome)
                 .addGap(51, 51, 51)
                 .addComponent(btnPendingRequests)
-                .addGap(53, 53, 53)
+                .addGap(45, 45, 45)
                 .addComponent(btnApprovedRequests)
-                .addGap(123, 123, 123)
+                .addGap(44, 44, 44)
+                .addComponent(btnAssignedReq)
+                .addGap(64, 64, 64)
                 .addComponent(btnLogout)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -168,9 +179,18 @@ public class FundraisingEventEmployeeLeftJPanel extends javax.swing.JPanel  {
         dB4OUtil.storeSystem(system);
     }//GEN-LAST:event_btnLogoutActionPerformed
 
+    private void btnAssignedReqActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAssignedReqActionPerformed
+        // TODO add your handling code here:
+        rightContainer.remove(this);
+        CardLayout rightCardLayout = (CardLayout) rightContainer.getLayout();
+        rightContainer.add("FundraisingEventAssignedWorkPanel", new FundraisingEventAssignedWorkPanel(rightContainer, enterprise, useraccount));
+        rightCardLayout.next(rightContainer);
+    }//GEN-LAST:event_btnAssignedReqActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnApprovedRequests;
+    private javax.swing.JButton btnAssignedReq;
     private javax.swing.JButton btnHome;
     private javax.swing.JButton btnLogout;
     private javax.swing.JButton btnPendingRequests;

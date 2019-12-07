@@ -65,6 +65,7 @@ public abstract class Organization {
         this.name = name;
         workQueue = new WorkQueue();
         //employeeDirectory = new EmployeeDirectory();
+        createEventByOrganizationEmployeeDirectory = new CreateEventByOrganizationEmployeeDirectory();
         userAccountDirectory = new UserAccountDirectory();
         organizationID = counter;
         ++counter;

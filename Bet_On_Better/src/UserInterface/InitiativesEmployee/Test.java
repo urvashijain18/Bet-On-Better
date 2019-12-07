@@ -7,18 +7,12 @@ package UserInterface.InitiativesEmployee;
 
 import Business.FundRaiserEvents.EventDirectory;
 import Business.WorkQueue.CreateEventByOrganizationEmployeeDirectory;
-import static java.time.Clock.system;
 import java.util.Date;
 import javax.swing.JPanel;
 import Business.DB4OUtil.DB4OUtil;
-import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
-import Business.Network.Network;
 import Business.UserAccount.UserAccount;
-import Business.WorkQueue.WorkQueue;
 import Business.WorkRequest.CreateEventByOrganizationEmployee;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  *
@@ -147,13 +141,11 @@ private UserAccount userAccount;
         Date deadline = jDateChooser1.getDate();
         String location = txtLocation.getText();
         
-        CreateEventByOrganizationEmployee createNewWorkRequest = createEventByOrganizationEmployeeDirectory.createNewWorkRequest(0, title, description, deadline,location, new Date());
+        CreateEventByOrganizationEmployee createNewWorkRequest = enterprise.getCreateEventByOrganizationEmployeeDirectory().createNewWorkRequest(0, title, description, deadline,location, new Date());
         createNewWorkRequest.setSender(userAccount);
         createNewWorkRequest.setUser(userAccount);
-         enterprise.setCreateEventByOrganizationEmployeeDirectory(createEventByOrganizationEmployeeDirectory);
-            
-        
-//        dB4OUtil.storeSystem(system);
+        // enterprise.setCreateEventByOrganizationEmployeeDirectory(createEventByOrganizationEmployeeDirectory);
+        //        dB4OUtil.storeSystem(system);
           
     }//GEN-LAST:event_btnCreateActionPerformed
 
