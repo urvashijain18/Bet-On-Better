@@ -33,7 +33,7 @@ public class EventDirectory {
         eventList.remove(event);
     }
     public Event createEvent(String category, Date createDate, String description, String name, UserAccount raisedBy, 
-            Double requestAmount, Date targetDate){
+            Double requestAmount, Date targetDate, String status){
         Event event = new Event();
         event.setCategory(category);
         event.setCreateDate(createDate);
@@ -43,6 +43,7 @@ public class EventDirectory {
         event.setRaisedBy(raisedBy.getUsername());
         event.setRequestAmt(requestAmount);
         event.setTargetDate(targetDate);
+        event.setStatus(status);
         eventList.add(event);
         return event;
     }
