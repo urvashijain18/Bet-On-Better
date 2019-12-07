@@ -40,9 +40,10 @@ public class VerificationRequestJPanel extends javax.swing.JPanel {
         for (Network network : system.getNetworkList()) {
             for (Enterprise enterprise : network.getEnterpriseDirectory().getEnterpriseList()) {
                 for (Organization organization : enterprise.getOrganizationDirectory().getOrganizationList()) {
-                    if (organization.getOrganizationType().equals(Organization.Type.FundRaisingEvents)) {
+                    if (organization.getOrganizationType().equals(Organization.Type.Initiatives)) {
                         for (int i = 0; i < organization.getWorkQueue().getWorkRequestList().size(); i++) {
                             VerificationRequest request = (VerificationRequest) organization.getWorkQueue().getWorkRequestList().get(i);
+                            if(request.getEvent().getStatus().equalsIgnoreCase("Sent for verification")){
                             Object[] row = new Object[7];
                             row[0] = request;
                             row[1] = request.getUser().getName();
@@ -52,6 +53,7 @@ public class VerificationRequestJPanel extends javax.swing.JPanel {
                             row[5] = request.getUser().getAccountDetails().getRoutingNumber();
                             row[6] = request.getUser().getAccountDetails().getSWIFTCode();
                             model.addRow(row);
+                            }
                         }
                     }
                 }
