@@ -7,9 +7,9 @@ package UserInterface.BankAdminRole;
 
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
-import Business.FundRaiserEvents.EventDirectory;
-import Business.Network.Network;
 import Business.Organization.Organization;
+import Business.Role.AccVerificationBankEmployee;
+import Business.Role.FundTransferBankEmployee;
 import Business.UserAccount.UserAccount;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
@@ -22,30 +22,31 @@ public class AdminBankWorkAreaJPanel extends javax.swing.JPanel {
 
     private JPanel rightContainer;
     private EcoSystem system;
+    private Enterprise enterprise;
 
     /**
      * Creates new form AdminBankWorkAreaJPanel
      */
-    public AdminBankWorkAreaJPanel(JPanel rightContainer, EcoSystem system) {
+    public AdminBankWorkAreaJPanel(JPanel rightContainer, EcoSystem system, Enterprise enterprise) {
         initComponents();
         this.rightContainer = rightContainer;
         this.system = system;
+        this.enterprise = enterprise;
         populateTable();
     }
 
     private void populateTable() {
         DefaultTableModel model = (DefaultTableModel) tblExistingEmployee.getModel();
         model.setRowCount(0);
-        for (Network network : system.getNetworkList()) {
-            for (Enterprise enterprise : network.getEnterpriseDirectory().getEnterpriseList()) {
-                for (Organization organization : enterprise.getOrganizationDirectory().getOrganizationList()) {
-                    for (UserAccount userAccount : organization.getUserAccountDirectory().getUserAccountList()) {
-                        Object[] row = new Object[3];
-                        row[0] = userAccount.getName();
-                        row[1] = organization.getName();
-                        row[2] = userAccount.getUsername();
-                        model.addRow(row);
-                    }
+        for (Organization organization : enterprise.getOrganizationDirectory().getOrganizationList()) {
+            for (UserAccount userAccount : organization.getUserAccountDirectory().getUserAccountList()) {
+                if (userAccount.getRole().getClass().equals(AccVerificationBankEmployee.class)
+                        || userAccount.getRole().getClass().equals(FundTransferBankEmployee.class)) {
+                    Object[] row = new Object[3];
+                    row[0] = userAccount.getName();
+                    row[1] = organization.getName();
+                    row[2] = userAccount.getUsername();
+                    model.addRow(row);
                 }
             }
         }

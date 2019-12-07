@@ -39,38 +39,42 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
         populateTable();
         populateNetworkComboBox();
     }
+
     private void populateTable() {
         DefaultTableModel model = (DefaultTableModel) enterpriseJTable.getModel();
         model.setRowCount(0);
         for (Network network : system.getNetworkList()) {
             for (Enterprise enterprise : network.getEnterpriseDirectory().getEnterpriseList()) {
                 for (UserAccount userAccount : enterprise.getUserAccountDirectory().getUserAccountList()) {
-                    Object[] row = new Object[3];
-                    row[0] = enterprise.getName();
-                    row[1] = network.getName();
-                    row[2] = userAccount.getUsername();
-
-                    model.addRow(row);
+                    if (userAccount.getRole().getClass().equals(FundRaisingAdmin.class)||
+                        userAccount.getRole().getClass().equals(BankAdmin.class) ||
+                        userAccount.getRole().getClass().equals(AdvertisingAdmin.class)) {
+                        Object[] row = new Object[3];
+                        row[0] = enterprise.getName();
+                        row[1] = network.getName();
+                        row[2] = userAccount.getUsername();
+                        model.addRow(row);
+                    }
                 }
             }
         }
     }
-    
-    
-    private void populateNetworkComboBox(){
+
+    private void populateNetworkComboBox() {
         networkJComboBox.removeAllItems();
-        
-        for (Network network : system.getNetworkList()){
+
+        for (Network network : system.getNetworkList()) {
             networkJComboBox.addItem(network);
         }
     }
-    
-    private void populateEnterpriseComboBox(Network network){
+
+    private void populateEnterpriseComboBox(Network network) {
         enterpriseJComboBox.removeAllItems();
-        for (Enterprise enterprise : network.getEnterpriseDirectory().getEnterpriseList()){
+        for (Enterprise enterprise : network.getEnterpriseDirectory().getEnterpriseList()) {
             enterpriseJComboBox.addItem(enterprise);
         }
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -228,7 +232,7 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
 
     private void networkJComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_networkJComboBoxActionPerformed
         Network network = (Network) networkJComboBox.getSelectedItem();
-        if (network != null){
+        if (network != null) {
             populateEnterpriseComboBox(network);
         }
     }//GEN-LAST:event_networkJComboBoxActionPerformed
@@ -240,32 +244,32 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_backJButtonActionPerformed
 
     private void submitJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitJButtonActionPerformed
-        if(enterpriseJComboBox.getSelectedItem().equals("--Select--")){
+        if (enterpriseJComboBox.getSelectedItem().equals("--Select--")) {
             JOptionPane.showMessageDialog(null, "Please select a Enterprise Type");
             return;
         }
         Enterprise enterprise = (Enterprise) enterpriseJComboBox.getSelectedItem();
         Role role = null;
-        if(usernameJTextField.getText().equals("")){
+        if (usernameJTextField.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "Please enter username");
             return;
         }
         String username = usernameJTextField.getText();
-        if(passwordJPasswordField.getText().equals("")){
+        if (passwordJPasswordField.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "Please enter password");
             return;
         }
         String password = String.valueOf(passwordJPasswordField.getPassword());
-        if(nameJTextField.getText().equals("")){
+        if (nameJTextField.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "Please enter name");
             return;
         }
         String name = nameJTextField.getText();
-        if(enterprise.getEnterpriseType().equals(Enterprise.EnterpriseType.Bank)){
+        if (enterprise.getEnterpriseType().equals(Enterprise.EnterpriseType.Bank)) {
             role = new BankAdmin();
-        }else if(enterprise.getEnterpriseType().equals(Enterprise.EnterpriseType.FundRaiser)){
+        } else if (enterprise.getEnterpriseType().equals(Enterprise.EnterpriseType.FundRaiser)) {
             role = new FundRaisingAdmin();
-        }else if(enterprise.getEnterpriseType().equals(Enterprise.EnterpriseType.Advertising)){
+        } else if (enterprise.getEnterpriseType().equals(Enterprise.EnterpriseType.Advertising)) {
             role = new AdvertisingAdmin();
         }
         enterprise.getUserAccountDirectory().createUserAccount(username, password, role);

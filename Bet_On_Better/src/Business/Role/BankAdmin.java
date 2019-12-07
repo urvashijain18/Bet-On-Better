@@ -29,7 +29,7 @@ import javax.swing.JPanel;
     @Override
     public JPanel createRightWorkArea(JPanel container, UserAccount account, Organization organization, 
             Enterprise enterprise, EcoSystem business, EventDirectory eventdirectory) {
-        return new AdminBankWorkAreaJPanel(container, business);
+        return new AdminBankWorkAreaJPanel(container, business, enterprise);
     }
 
     @Override

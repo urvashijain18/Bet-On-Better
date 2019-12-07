@@ -7,38 +7,40 @@ package UserInterface.BankAdminRole;
 
 import Business.BankEmployee.BankEmployeeAccountDirectory;
 import Business.EcoSystem;
-import Business.Enterprise.BankEnterprise;
 import Business.Enterprise.Enterprise;
-import Business.FundRaiserEvents.EventDirectory;
-import Business.FundRaisingEmployee.FundRaisingEmployeeAccountDirectory;
-import Business.Organization.AccountVerificationOrganization;
-import Business.Organization.FundTransferOrganization;
 import Business.Organization.Organization;
 import Business.Role.AccVerificationBankEmployee;
 import Business.Role.FundTransferBankEmployee;
 import Business.Role.Role;
-import UserInterface.FundRaisingAdminRole.AdminWorkAreaJPanel;
-import UserInterface.UserLogin;
+import Business.UserAccount.UserAccount;
 import java.awt.CardLayout;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author devma
  */
 public class AdminCreateBankEmployeesJPanel extends javax.swing.JPanel {
-private JPanel rightContainer;
-private JPanel leftContainer;
-private BankEmployeeAccountDirectory bankemployeeAccountDirectory;
-private Enterprise enterprise;
-private EcoSystem system;
+
+    private JPanel rightContainer;
+    private JPanel leftContainer;
+    private BankEmployeeAccountDirectory bankemployeeAccountDirectory;
+    private Enterprise enterprise;
+    private EcoSystem system;
+
     /**
      * Creates new form AdminCreateBankEmployeesJPanel
+     * @param rightContainer
+     * @param leftContainer
+     * @param bankemployeeAccountDirectory
+     * @param enterprise
+     * @param system
      */
-    public AdminCreateBankEmployeesJPanel(JPanel rightContainer,JPanel leftContainer,
+    public AdminCreateBankEmployeesJPanel(JPanel rightContainer, JPanel leftContainer,
             BankEmployeeAccountDirectory bankemployeeAccountDirectory, Enterprise enterprise, EcoSystem system) {
         initComponents();
         this.rightContainer = rightContainer;
@@ -46,6 +48,33 @@ private EcoSystem system;
         this.bankemployeeAccountDirectory = bankemployeeAccountDirectory;
         this.enterprise = enterprise;
         this.system = system;
+        populateComboBox();
+        populateEmployeeTable();
+    }
+
+    private void populateComboBox() {
+        OrganizationComboBox.removeAllItems();
+        OrganizationComboBox.addItem(new String("--Select--"));
+        for (Organization organization : enterprise.getOrganizationDirectory().getOrganizationList()) {
+            OrganizationComboBox.addItem(organization);
+        }
+    }
+
+    private void populateEmployeeTable() {
+        DefaultTableModel model = (DefaultTableModel) tblEmployee.getModel();
+        model.setRowCount(0);
+        for (Organization organization : enterprise.getOrganizationDirectory().getOrganizationList()) {
+            for (UserAccount userAccount : organization.getUserAccountDirectory().getUserAccountList()) {
+                if (userAccount.getRole().getClass().equals(AccVerificationBankEmployee.class) ||
+                        userAccount.getRole().getClass().equals(FundTransferBankEmployee.class)) {
+                    Object[] row = new Object[3];
+                    row[0] = userAccount.getName();
+                    row[1] = organization.getName();
+                    row[2] = userAccount.getUsername();
+                    model.addRow(row);
+                }
+            }
+        }
     }
 
     /**
@@ -68,10 +97,11 @@ private EcoSystem system;
         passwordField = new javax.swing.JPasswordField();
         confirmPasswordField = new javax.swing.JPasswordField();
         jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        btnAccVerificationEmployee = new javax.swing.JRadioButton();
-        btnFundTransferEmployee = new javax.swing.JRadioButton();
         btnCreate = new javax.swing.JButton();
+        jLabel7 = new javax.swing.JLabel();
+        OrganizationComboBox = new javax.swing.JComboBox();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tblEmployee = new javax.swing.JTable();
 
         btnBack.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         btnBack.setText("<< Back");
@@ -96,15 +126,6 @@ private EcoSystem system;
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel5.setText("Confirm Password : ");
 
-        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel6.setText("Role : ");
-
-        btnGrp.add(btnAccVerificationEmployee);
-        btnAccVerificationEmployee.setText("Account Verification Employee");
-
-        btnGrp.add(btnFundTransferEmployee);
-        btnFundTransferEmployee.setText("Fund Transfer Employee");
-
         btnCreate.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         btnCreate.setText("Create");
         btnCreate.addActionListener(new java.awt.event.ActionListener() {
@@ -113,52 +134,75 @@ private EcoSystem system;
             }
         });
 
+        jLabel7.setText("Organization Name: ");
+
+        OrganizationComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        OrganizationComboBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                OrganizationComboBoxActionPerformed(evt);
+            }
+        });
+
+        tblEmployee.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Employee Name", "Organization", "UserName"
+            }
+        ));
+        jScrollPane1.setViewportView(tblEmployee);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addGap(52, 52, 52)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(txtUserName)
-                    .addComponent(txtName)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnAccVerificationEmployee)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnFundTransferEmployee))
-                    .addComponent(passwordField)
-                    .addComponent(confirmPasswordField))
-                .addGap(144, 144, 144))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
+                        .addGap(50, 50, 50)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 501, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(189, 189, 189)
+                        .addComponent(btnCreate)))
+                .addGap(0, 49, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
                         .addComponent(btnBack)
-                        .addGap(85, 85, 85)
+                        .addGap(139, 139, 139)
                         .addComponent(jLabel1))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(205, 205, 205)
-                        .addComponent(btnCreate)))
+                        .addGap(122, 122, 122)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(passwordField, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(txtUserName, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(txtName, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(confirmPasswordField, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel4)
+                                    .addComponent(jLabel5)
+                                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel7))
+                                .addGap(18, 18, 18)
+                                .addComponent(OrganizationComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(154, 154, 154)))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(39, 39, 39)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(19, 19, 19)
-                        .addComponent(btnBack)))
                 .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnBack)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(51, 51, 51)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
@@ -168,20 +212,19 @@ private EcoSystem system;
                     .addComponent(jLabel3))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(passwordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(passwordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(confirmPasswordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                    .addComponent(confirmPasswordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5))
+                .addGap(27, 27, 27)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(btnAccVerificationEmployee)
-                    .addComponent(btnFundTransferEmployee))
-                .addGap(37, 37, 37)
+                    .addComponent(OrganizationComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel7))
+                .addGap(35, 35, 35)
                 .addComponent(btnCreate)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(37, 37, 37))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -192,6 +235,7 @@ private EcoSystem system;
     }//GEN-LAST:event_btnBackActionPerformed
 
     private void btnCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateActionPerformed
+        String name = txtName.getText();
         String username = txtUserName.getText();
         String pwd = passwordField.getText();
         String rePwd = confirmPasswordField.getText();
@@ -226,27 +270,23 @@ private EcoSystem system;
             return;
         }
 
-        if (btnGrp.getSelection() == null) {
-            JOptionPane.showMessageDialog(null, "Please select a role");
-            return;
-        }
-        
         Role role = null;
-        if (btnAccVerificationEmployee.isSelected()) {
+        Organization organization = (Organization) OrganizationComboBox.getSelectedItem();
+        if (organization.getOrganizationType().equals(Organization.Type.AccVerif)) {
             role = new AccVerificationBankEmployee();
-        }else if (btnFundTransferEmployee.isSelected()) {
+        } else if (organization.getOrganizationType().equals(Organization.Type.FundTransfer)) {
             role = new FundTransferBankEmployee();
         }
-        enterprise.getUserAccountDirectory().createUserAccount(username, pwd, role);
-        
+
+        UserAccount account = organization.getUserAccountDirectory().createUserAccount(username, pwd, role);
+        account.setName(name);
         bankemployeeAccountDirectory.createEmployeeAccount(username, pwd, role);
         JOptionPane.showMessageDialog(null, "Account Created Successfully");
-        CardLayout rightLayout = (CardLayout) rightContainer.getLayout();        
-        rightContainer.add("AdminWorkAreaJPanel", new AdminBankWorkAreaJPanel(rightContainer, system));
+        CardLayout rightLayout = (CardLayout) rightContainer.getLayout();
+        rightContainer.add("AdminWorkAreaJPanel", new AdminBankWorkAreaJPanel(rightContainer, system, enterprise));
         rightLayout.next(rightContainer);
- }                                         
+    }
 
-    
     private boolean usernamePatternCorrect() {
         Pattern p = Pattern.compile("^[a-zA-Z0-9]+$");
         Matcher m = p.matcher(txtUserName.getText());
@@ -261,12 +301,15 @@ private EcoSystem system;
         return b;
     }//GEN-LAST:event_btnCreateActionPerformed
 
+    private void OrganizationComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OrganizationComboBoxActionPerformed
+
+    }//GEN-LAST:event_OrganizationComboBoxActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JRadioButton btnAccVerificationEmployee;
+    private javax.swing.JComboBox OrganizationComboBox;
     private javax.swing.JButton btnBack;
     private javax.swing.JButton btnCreate;
-    private javax.swing.JRadioButton btnFundTransferEmployee;
     private javax.swing.ButtonGroup btnGrp;
     private javax.swing.JPasswordField confirmPasswordField;
     private javax.swing.JLabel jLabel1;
@@ -274,8 +317,10 @@ private EcoSystem system;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JPasswordField passwordField;
+    private javax.swing.JTable tblEmployee;
     private javax.swing.JTextField txtName;
     private javax.swing.JTextField txtUserName;
     // End of variables declaration//GEN-END:variables

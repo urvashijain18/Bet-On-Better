@@ -13,6 +13,7 @@ import Business.FundRaisingEmployee.FundRaisingEmployeeAccountDirectory;
 import Business.Enterprise.Enterprise;
 import Business.FundRaiserEvents.EventDirectory;
 import Business.UserAccount.UserAccountDirectory;
+import UserInterface.FundRaisingAdminRole.CreateOrganization;
 import UserInterface.UserLogin;
 import java.awt.CardLayout;
 import java.awt.Component;
@@ -67,6 +68,7 @@ public class AdminBankLeftJPanel extends javax.swing.JPanel {
         btnHome = new javax.swing.JButton();
         btnCreateEmployee = new javax.swing.JButton();
         btnLogOut = new javax.swing.JButton();
+        btnCreateOrganization = new javax.swing.JButton();
 
         btnHome.setText("Home");
         btnHome.addActionListener(new java.awt.event.ActionListener() {
@@ -89,6 +91,13 @@ public class AdminBankLeftJPanel extends javax.swing.JPanel {
             }
         });
 
+        btnCreateOrganization.setText("Create Organization");
+        btnCreateOrganization.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCreateOrganizationActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -98,7 +107,8 @@ public class AdminBankLeftJPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(btnHome, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnLogOut, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnCreateEmployee, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btnCreateEmployee, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnCreateOrganization, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(21, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -108,7 +118,9 @@ public class AdminBankLeftJPanel extends javax.swing.JPanel {
                 .addComponent(btnHome)
                 .addGap(66, 66, 66)
                 .addComponent(btnCreateEmployee)
-                .addGap(78, 78, 78)
+                .addGap(18, 18, 18)
+                .addComponent(btnCreateOrganization)
+                .addGap(37, 37, 37)
                 .addComponent(btnLogOut)
                 .addContainerGap(110, Short.MAX_VALUE))
         );
@@ -117,7 +129,7 @@ public class AdminBankLeftJPanel extends javax.swing.JPanel {
     private void btnHomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHomeActionPerformed
         rightContainer.remove(this);
         CardLayout rightLayout = (CardLayout) rightContainer.getLayout();
-        rightContainer.add("AdminWorkAreaJPanel", new AdminBankWorkAreaJPanel(rightContainer, system));
+        rightContainer.add("AdminWorkAreaJPanel", new AdminBankWorkAreaJPanel(rightContainer, system, enterprise));
         rightLayout.next(rightContainer);
     }//GEN-LAST:event_btnHomeActionPerformed
 
@@ -141,9 +153,17 @@ public class AdminBankLeftJPanel extends javax.swing.JPanel {
         dB4OUtil.storeSystem(system);
     }//GEN-LAST:event_btnLogOutActionPerformed
 
+    private void btnCreateOrganizationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateOrganizationActionPerformed
+        rightContainer.remove(this);
+        CardLayout rightLayout = (CardLayout) rightContainer.getLayout();
+        rightContainer.add("AdminCreateBankOrganization", new AdminCreateBankOrganization(rightContainer, enterprise.getOrganizationDirectory()));
+        rightLayout.next(rightContainer); 
+    }//GEN-LAST:event_btnCreateOrganizationActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCreateEmployee;
+    private javax.swing.JButton btnCreateOrganization;
     private javax.swing.JButton btnHome;
     private javax.swing.JButton btnLogOut;
     // End of variables declaration//GEN-END:variables
