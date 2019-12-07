@@ -43,8 +43,10 @@ public class InitiativesEmployeeLeftJPanel extends javax.swing.JPanel {
      * Creates new form FundraisingEmployeeRightJPanel
      */
 
-    public InitiativesEmployeeLeftJPanel(JPanel leftContainer, JPanel rightContainer, UserAccountDirectory userAccountDirectory, EventDirectory eventdirectory, BankEmployeeAccountDirectory bankemployeeAccountDirectory, FundRaisingEmployeeAccountDirectory fundraisingemployeeAccountDirectory, AdvertisingEmployeeAccountDirectory advertisingemployeeAccountDirectory, EcoSystem business, DB4OUtil dB4OUtil, Enterprise enterprise ) {
-         initComponents();
+    
+
+    public InitiativesEmployeeLeftJPanel(JPanel leftContainer, JPanel rightContainer, UserAccount account, UserAccountDirectory userAccountDirectory, EventDirectory eventdirectory, BankEmployeeAccountDirectory bankemployeeAccountDirectory, FundRaisingEmployeeAccountDirectory fundraisingemployeeAccountDirectory, AdvertisingEmployeeAccountDirectory advertisingemployeeAccountDirectory, EcoSystem business, DB4OUtil dB4OUtil, Enterprise enterprise) {
+     initComponents();
        this.leftContainer = leftContainer;
         this.rightContainer = rightContainer;
         this.userAccountDirectory = userAccountDirectory;
@@ -56,6 +58,7 @@ public class InitiativesEmployeeLeftJPanel extends javax.swing.JPanel {
         this.dB4OUtil = dB4OUtil;
         this.enterprise = enterprise;
         this.system = business;
+        this.userAccount = account;    
     }
 
     /**
@@ -166,7 +169,7 @@ public class InitiativesEmployeeLeftJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
         rightContainer.remove(this);
         CardLayout rightCardLayout = (CardLayout) rightContainer.getLayout();
-        rightContainer.add("Test", new Test(rightContainer,eventdirectory,createEventByOrganizationEmployeeDirectory,enterprise));
+        rightContainer.add("Test", new Test(rightContainer,eventdirectory,createEventByOrganizationEmployeeDirectory,enterprise,userAccount));
          rightCardLayout.next(rightContainer);
         
     }//GEN-LAST:event_btnNewRequestActionPerformed

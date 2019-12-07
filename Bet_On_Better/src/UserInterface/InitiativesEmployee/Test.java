@@ -14,6 +14,7 @@ import Business.DB4OUtil.DB4OUtil;
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
 import Business.Network.Network;
+import Business.UserAccount.UserAccount;
 import Business.WorkQueue.WorkQueue;
 import Business.WorkRequest.CreateEventByOrganizationEmployee;
 import java.util.ArrayList;
@@ -29,15 +30,17 @@ private EventDirectory eventdirectory;
 private CreateEventByOrganizationEmployeeDirectory createEventByOrganizationEmployeeDirectory;
 private DB4OUtil dB4OUtil;
 private Enterprise enterprise;
+private UserAccount userAccount;
     /**
      * Creates new form Test
      */
-    public Test(JPanel rightContainer, EventDirectory eventdirectory, CreateEventByOrganizationEmployeeDirectory createEventByOrganizationEmployeeDirectory,Enterprise enterprise ) {
+    public Test(JPanel rightContainer, EventDirectory eventdirectory, CreateEventByOrganizationEmployeeDirectory createEventByOrganizationEmployeeDirectory,Enterprise enterprise, UserAccount userAccount ) {
         initComponents();
         this.eventdirectory = eventdirectory;
         this.rightContainer = rightContainer;
         this.createEventByOrganizationEmployeeDirectory = createEventByOrganizationEmployeeDirectory;
         this.enterprise = enterprise;
+        this.userAccount = userAccount;
     
     }
 
@@ -143,8 +146,9 @@ private Enterprise enterprise;
         String description = txtDescription.getText();
         Date deadline = jDateChooser1.getDate();
         String location = txtLocation.getText();
+        
         CreateEventByOrganizationEmployee createNewWorkRequest = createEventByOrganizationEmployeeDirectory.createNewWorkRequest(0, title, description, deadline,location, new Date());
-       
+        createNewWorkRequest.setSender(userAccount);
          enterprise.setCreateEventByOrganizationEmployeeDirectory(createEventByOrganizationEmployeeDirectory);
             
         

@@ -69,4 +69,9 @@ public class CreateEventByOrganizationEmployee extends WorkRequest {
         this.description = description;
     }
     
+    @Override 
+    public String toString(){
+        return String.valueOf(this.requestID);
+    }
+    
 }

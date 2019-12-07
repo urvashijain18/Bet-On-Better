@@ -37,7 +37,7 @@ public class InitiativesEmployee extends Role {
             FundRaisingEmployeeAccountDirectory fundraisingemployeeAccountDirectory,
             AdvertisingEmployeeAccountDirectory advertisingemployeeAccountDirectory,
             EcoSystem business, DB4OUtil dB4OUtil, Enterprise enterprise, UserAccount account) {
-        return new InitiativesEmployeeLeftJPanel(leftContainer, rightContainer, userAccountDirectory, eventdirectory, bankemployeeAccountDirectory, fundraisingemployeeAccountDirectory, advertisingemployeeAccountDirectory, business, dB4OUtil, enterprise);
+        return new InitiativesEmployeeLeftJPanel(leftContainer, rightContainer, account,userAccountDirectory, eventdirectory, bankemployeeAccountDirectory, fundraisingemployeeAccountDirectory, advertisingemployeeAccountDirectory, business, dB4OUtil, enterprise);
     
     
 
