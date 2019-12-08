@@ -188,19 +188,64 @@ public class BankAccountDetailsJPanel extends javax.swing.JPanel {
             for (UserAccount account : enterprise.getUserAccountDirectory().getUserAccountList()) {
                 if (account.getUsername().equals(useraccount.getUsername())) {
                     AccountDetails accountDetails = new AccountDetails();
+                    if(txtBankName.getText() == null || txtBankName.getText().equals("")){
+                        JOptionPane.showMessageDialog(null, "Please provide bank name");
+                        return;
+                    }
                     accountDetails.setBankName(txtBankName.getText());
                     accountDetails.setName(txtName.getText());
+                    if(txtAccountNumber.getText() == null || txtAccountNumber.getText().equals("")){
+                        JOptionPane.showMessageDialog(null, "Please provide Account Number");
+                        return;
+                    }
+                    if(Integer.parseInt(txtAccountNumber.getText())<0){
+                        JOptionPane.showMessageDialog(null, "Account Number cannot be negative");
+                        return;
+                    }
+                    if(txtAccountNumber.getText().length()>9){
+                        JOptionPane.showMessageDialog(null, "Account Number should be of 9 digits only");
+                        return;
+                    }
                     accountDetails.setAccountNumber(Integer.parseInt(txtAccountNumber.getText()));
+                    if(txtRoutingNumber.getText() == null || txtRoutingNumber.getText().equals("")){
+                        JOptionPane.showMessageDialog(null, "Please provide Routing Number");
+                        return;
+                    }
+                    if(Integer.parseInt(txtRoutingNumber.getText())<0){
+                        JOptionPane.showMessageDialog(null, "Routing Number cannot be negative");
+                        return;
+                    }
+                    if(txtAccountNumber.getText().length()>9){
+                        JOptionPane.showMessageDialog(null, "Routing Number should be of 9 digits only");
+                        return;
+                    }
                     accountDetails.setRoutingNumber(Integer.parseInt(txtRoutingNumber.getText()));
+                    if(txtSwiftCode.getText() == null || txtSwiftCode.getText().equals("")){
+                        JOptionPane.showMessageDialog(null, "Please provide SWIFT Code");
+                        return;
+                    }
+                    if(Integer.parseInt(txtSwiftCode.getText())<0){
+                        JOptionPane.showMessageDialog(null, "SWIFT Code cannot be negative");
+                        return;
+                    }
+                    if(txtSwiftCode.getText().length()>8){
+                        JOptionPane.showMessageDialog(null, "SWIFT Code cannot exceed 9 digits");
+                        return;
+                    }
                     accountDetails.setSWIFTCode(Integer.parseInt(txtSwiftCode.getText()));
                     accountDetails.setBankAddress(txtBankAddress.getText());
                     account.setAccountDetails(accountDetails);
+                    txtBankName.setText("");
+                    txtAccountNumber.setText("");
+                    txtRoutingNumber.setText("");
+                    txtSwiftCode.setText("");
+                    txtName.setText("");
+                    txtBankAddress.setText("");
                 }
             }
         btnSave.setEnabled(true);
         VerificationRequest workRequest = new VerificationRequest();
         workRequest.setSender(useraccount);
-        //useraccount.getWorkQueue().getWorkRequestList().add(workRequest);
         for (Organization organization : enterprise.getOrganizationDirectory().getOrganizationList()) {
             for (UserAccount useracc : organization.getUserAccountDirectory().getUserAccountList()) {
                 if (useracc.getUsername().equals(useraccount.getUsername())) {
