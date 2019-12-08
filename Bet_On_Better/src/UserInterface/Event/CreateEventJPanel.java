@@ -8,7 +8,8 @@ package UserInterface.Event;
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
 import Business.Network.Network;
-import Business.Role.InitiativesEmployee;
+import Business.Organization.Organization;
+import Business.Role.FundRaisingEmployee;
 import Business.Role.UserRole;
 import Business.UserAccount.UserAccount;
 import Business.WorkRequest.CreateEventByOrganizationEmployee;
@@ -175,34 +176,46 @@ public class CreateEventJPanel extends javax.swing.JPanel {
         Date targetDate = jDateChooser1.getDate();
         String Description = txtDesc.getText();
         Date createDate = new Date();
-        for (Network network : system.getNetworkList()) {
-            for (Enterprise enterprise : network.getEnterpriseDirectory().getEnterpriseList()) {
-                for (UserAccount useracc : enterprise.getUserAccountDirectory().getUserAccountList()) {
-                    if (useracc.getUsername().equals(useraccount.getUsername())) {
-                        if (useracc.getRole().getClass().equals(UserRole.class)) {
-                            CreateEventByOrganizationEmployee request = enterprise.getCreateEventByOrganizationEmployeeDirectory().
-                                    createNewWorkRequest(eventName, Description, targetDate, network.getName(), createDate);
-                            request.setSender(useraccount);
-                            request.setRequestedAtm(requestAmount);
-                            request.setStatus("Pending for Approval");
-                            JOptionPane.showMessageDialog(null, "Event created and is pending for approval.");
-                        } else if (useracc.getRole().getClass().equals(InitiativesEmployee.class)) {
-                            if (enterprise.getEnterpriseType().getValue().equals(Enterprise.EnterpriseType.FundRaiser.getValue())) {
-                                if (workrequest.getStatus().equals("Assigned")) {
-                                    workrequest.setStatus("Approved");
-                                    enterprise.getEventDirectory().createEvent(" ", workrequest.getRequestDate(),
-                                            workrequest.getDescription(), workrequest.getTitle(), workrequest.getSender(),
-                                            new Double(workrequest.getRequestedAtm()), workrequest.getDeadline(), workrequest.getStatus());
-                                }
+        if (useraccount.getRole().getClass().equals(UserRole.class)) {
+            for (Network network : system.getNetworkList()) {
+                for (Enterprise enterprise : network.getEnterpriseDirectory().getEnterpriseList()) {
+                    for (UserAccount useracc : enterprise.getUserAccountDirectory().getUserAccountList()) {
+                        if (useracc.getUsername().equals(useraccount.getUsername())) {
+                            if (useracc.getRole().getClass().equals(UserRole.class)) {
+                                CreateEventByOrganizationEmployee request = enterprise.getCreateEventByOrganizationEmployeeDirectory().
+                                        createNewWorkRequest(eventName, Description, targetDate, network.getName(), createDate);
+                                request.setSender(useraccount);
+                                request.setRequestedAtm(requestAmount);
+                                request.setStatus("Pending for Approval");
+                                JOptionPane.showMessageDialog(null, "Event created and is pending for approval.");
                             }
-                            workrequest.setStatus("Approved");
-                            JOptionPane.showMessageDialog(null, "Event created");
                         }
                     }
                 }
             }
+        } else if (useraccount.getRole().getClass().equals(FundRaisingEmployee.class)){
+            for (Network network : system.getNetworkList()) {
+                for (Enterprise enterprise : network.getEnterpriseDirectory().getEnterpriseList()) {
+                    for (Organization organization : enterprise.getOrganizationDirectory().getOrganizationList()) {
+                        for (UserAccount useracc : organization.getUserAccountDirectory().getUserAccountList()) {
+                            if (useracc.getUsername().equals(useraccount.getUsername())) {
+                                if (enterprise.getEnterpriseType().getValue().equals(Enterprise.EnterpriseType.FundRaiser.getValue())) {
+                                    if (workrequest.getStatus().equals("Approved")) {
+                                        enterprise.getEventDirectory().createEvent(" ", workrequest.getRequestDate(),
+                                                workrequest.getDescription(), workrequest.getTitle(), workrequest.getSender(),
+                                                new Double(workrequest.getRequestedAtm()), workrequest.getDeadline(), workrequest.getStatus());
+                                    }
+                                }
+                                workrequest.setStatus("Approved");
+                                JOptionPane.showMessageDialog(null, "Event created");
+                            }
+                        }
+                    }
+                }
+            }
+
         }
-        
+
         rightContainer.remove(this);
         CardLayout rightCardLayout = (CardLayout) rightContainer.getLayout();
         rightContainer.add("UserHomeJPanel", new UserHomeJPanel(rightContainer, system, useraccount));

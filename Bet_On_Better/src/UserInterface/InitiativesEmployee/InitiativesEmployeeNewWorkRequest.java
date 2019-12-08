@@ -13,6 +13,7 @@ import Business.DB4OUtil.DB4OUtil;
 import Business.Enterprise.Enterprise;
 import Business.UserAccount.UserAccount;
 import Business.WorkRequest.CreateEventByOrganizationEmployee;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -144,8 +145,7 @@ private UserAccount userAccount;
         CreateEventByOrganizationEmployee createNewWorkRequest = enterprise.getCreateEventByOrganizationEmployeeDirectory().createNewWorkRequest(title, description, deadline,location, new Date());
         createNewWorkRequest.setSender(userAccount);
         createNewWorkRequest.setUser(userAccount);
-        // enterprise.setCreateEventByOrganizationEmployeeDirectory(createEventByOrganizationEmployeeDirectory);
-        //        dB4OUtil.storeSystem(system);
+        JOptionPane.showMessageDialog(null, "Event request created");
           
     }//GEN-LAST:event_btnCreateActionPerformed
 
