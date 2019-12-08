@@ -83,10 +83,12 @@ public class BankApprovedRequestsJPanel extends javax.swing.JPanel {
         btnVerifDtls = new javax.swing.JButton();
         btnFundTransferDtls = new javax.swing.JButton();
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        setBackground(new java.awt.Color(153, 153, 153));
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel1.setText("APPROVED VERIFICATION REQUESTS");
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel2.setText("COMPLETED FUND ALLOCATION REQUESTS");
 
         tblFundAllocationRecords.setModel(new javax.swing.table.DefaultTableModel(
@@ -109,6 +111,7 @@ public class BankApprovedRequestsJPanel extends javax.swing.JPanel {
         ));
         jScrollPane2.setViewportView(tblVerifRecords);
 
+        btnVerifDtls.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         btnVerifDtls.setText("View Details");
         btnVerifDtls.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -116,6 +119,7 @@ public class BankApprovedRequestsJPanel extends javax.swing.JPanel {
             }
         });
 
+        btnFundTransferDtls.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         btnFundTransferDtls.setText("View Details");
         btnFundTransferDtls.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

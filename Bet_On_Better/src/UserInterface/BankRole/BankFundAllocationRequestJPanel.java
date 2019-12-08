@@ -90,7 +90,9 @@ public class BankFundAllocationRequestJPanel extends javax.swing.JPanel {
         tblFundAllocationRecords = new javax.swing.JTable();
         btnActionTaken = new javax.swing.JButton();
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        setBackground(new java.awt.Color(153, 153, 153));
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel1.setText("FUND ALLOCATION REQUESTS ");
 
         tblFundAllocationRecords.setModel(new javax.swing.table.DefaultTableModel(
@@ -129,23 +131,23 @@ public class BankFundAllocationRequestJPanel extends javax.swing.JPanel {
                         .addGap(26, 26, 26)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 885, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(370, 370, 370)
+                        .addGap(270, 270, 270)
                         .addComponent(jLabel1))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(395, 395, 395)
+                        .addGap(391, 391, 391)
                         .addComponent(btnActionTaken)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(57, 57, 57)
+                .addGap(53, 53, 53)
                 .addComponent(jLabel1)
-                .addGap(42, 42, 42)
+                .addGap(46, 46, 46)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(57, 57, 57)
                 .addComponent(btnActionTaken)
-                .addContainerGap(303, Short.MAX_VALUE))
+                .addContainerGap(252, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
