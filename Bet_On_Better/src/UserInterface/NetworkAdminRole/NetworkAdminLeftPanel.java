@@ -65,6 +65,10 @@ public class NetworkAdminLeftPanel extends javax.swing.JPanel {
         btnManageEnterprise = new javax.swing.JButton();
         btnManageEnterpriseAdmin = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(0, 153, 153));
+
+        btnManageNetwork.setBackground(new java.awt.Color(255, 255, 255));
+        btnManageNetwork.setFont(new java.awt.Font("Batang", 1, 11)); // NOI18N
         btnManageNetwork.setText("Manage Network");
         btnManageNetwork.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -72,6 +76,8 @@ public class NetworkAdminLeftPanel extends javax.swing.JPanel {
             }
         });
 
+        btnLogout.setBackground(new java.awt.Color(255, 255, 255));
+        btnLogout.setFont(new java.awt.Font("Batang", 1, 11)); // NOI18N
         btnLogout.setText("Logout");
         btnLogout.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -79,6 +85,8 @@ public class NetworkAdminLeftPanel extends javax.swing.JPanel {
             }
         });
 
+        btnManageEnterprise.setBackground(new java.awt.Color(255, 255, 255));
+        btnManageEnterprise.setFont(new java.awt.Font("Batang", 1, 11)); // NOI18N
         btnManageEnterprise.setText("Manage Enterprise");
         btnManageEnterprise.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -86,6 +94,8 @@ public class NetworkAdminLeftPanel extends javax.swing.JPanel {
             }
         });
 
+        btnManageEnterpriseAdmin.setBackground(new java.awt.Color(255, 255, 255));
+        btnManageEnterpriseAdmin.setFont(new java.awt.Font("Batang", 1, 11)); // NOI18N
         btnManageEnterpriseAdmin.setText("Manage Enterprise Admin");
         btnManageEnterpriseAdmin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
