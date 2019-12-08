@@ -62,7 +62,7 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
 
     private void populateNetworkComboBox() {
         networkJComboBox.removeAllItems();
-
+        //networkJComboBox.addItem(new String("--Select--"));
         for (Network network : system.getNetworkList()) {
             networkJComboBox.addItem(network);
         }
@@ -269,6 +269,7 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void networkJComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_networkJComboBoxActionPerformed
+        
         Network network = (Network) networkJComboBox.getSelectedItem();
         if (network != null) {
             populateEnterpriseComboBox(network);
@@ -288,17 +289,17 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
         }
         Enterprise enterprise = (Enterprise) enterpriseJComboBox.getSelectedItem();
         Role role = null;
-        if (usernameJTextField.getText().equals("")) {
+        if (usernameJTextField.getText() == null || usernameJTextField.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "Please enter username");
             return;
         }
         String username = usernameJTextField.getText();
-        if (passwordJPasswordField.getText().equals("")) {
+        if (passwordJPasswordField.getText()== null || passwordJPasswordField.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "Please enter password");
             return;
         }
         String password = String.valueOf(passwordJPasswordField.getPassword());
-        if (nameJTextField.getText().equals("")) {
+        if (nameJTextField.getText() == null || nameJTextField.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "Please enter name");
             return;
         }
@@ -313,6 +314,7 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
         UserAccount account = enterprise.getUserAccountDirectory().createUserAccount(username, password, role);
         account.setName(name);
         JOptionPane.showMessageDialog(null, "Admin Account Created Successfully");
+        populateNetworkComboBox();
         usernameJTextField.setText("");
         passwordJPasswordField.setText("");
         nameJTextField.setText("");

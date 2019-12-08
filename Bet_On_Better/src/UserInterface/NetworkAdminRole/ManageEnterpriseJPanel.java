@@ -235,12 +235,12 @@ public class ManageEnterpriseJPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "Invalid Input!");
             return;
         }
-        if(nameJTextField.getText().equals("")){
+        if(nameJTextField.getText() == null || nameJTextField.getText().equals("")){
             JOptionPane.showMessageDialog(null, "Please enter name");
             return;
         }
         String name = nameJTextField.getText();
-        Enterprise enterprise = network.getEnterpriseDirectory().createAndAddEnterprise(name, type);
+        network.getEnterpriseDirectory().createAndAddEnterprise(name, type);
         JOptionPane.showMessageDialog(null, "Enterprise Created Successfully");
         populateComboBox();
         nameJTextField.setText("");
