@@ -72,6 +72,9 @@ public class AdminAdvertisingLeftJPanel extends javax.swing.JPanel {
 
         jButton3.setText("jButton3");
 
+        setBackground(new java.awt.Color(0, 153, 153));
+
+        btnHome.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         btnHome.setText("Home");
         btnHome.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -79,6 +82,7 @@ public class AdminAdvertisingLeftJPanel extends javax.swing.JPanel {
             }
         });
 
+        jButton1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jButton1.setText("Create New Employee");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -86,6 +90,7 @@ public class AdminAdvertisingLeftJPanel extends javax.swing.JPanel {
             }
         });
 
+        btnLogOut.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         btnLogOut.setText("Logout");
         btnLogOut.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -93,6 +98,7 @@ public class AdminAdvertisingLeftJPanel extends javax.swing.JPanel {
             }
         });
 
+        jButton2.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jButton2.setText("Create Organization");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -100,6 +106,7 @@ public class AdminAdvertisingLeftJPanel extends javax.swing.JPanel {
             }
         });
 
+        jButton4.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jButton4.setText("Send E-mail");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -126,15 +133,15 @@ public class AdminAdvertisingLeftJPanel extends javax.swing.JPanel {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(55, 55, 55)
                 .addComponent(btnHome)
-                .addGap(35, 35, 35)
-                .addComponent(jButton1)
-                .addGap(32, 32, 32)
+                .addGap(36, 36, 36)
                 .addComponent(jButton2)
-                .addGap(28, 28, 28)
+                .addGap(31, 31, 31)
+                .addComponent(jButton1)
+                .addGap(37, 37, 37)
                 .addComponent(jButton4)
                 .addGap(26, 26, 26)
                 .addComponent(btnLogOut)
-                .addContainerGap(79, Short.MAX_VALUE))
+                .addContainerGap(70, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 

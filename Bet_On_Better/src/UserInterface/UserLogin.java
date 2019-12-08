@@ -94,10 +94,13 @@ public class UserLogin extends javax.swing.JPanel {
         btnLogin = new javax.swing.JButton();
         btnNewUSer = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(0, 153, 153));
+
         jLabel1.setText("User Name");
 
         jLabel2.setText("Password");
 
+        btnLogin.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         btnLogin.setText("Login");
         btnLogin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -105,6 +108,7 @@ public class UserLogin extends javax.swing.JPanel {
             }
         });
 
+        btnNewUSer.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         btnNewUSer.setText("New User?");
         btnNewUSer.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -142,11 +146,11 @@ public class UserLogin extends javax.swing.JPanel {
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(73, 73, 73)
                 .addComponent(btnLogin)
-                .addGap(18, 18, 18)
+                .addGap(33, 33, 33)
                 .addComponent(btnNewUSer)
-                .addContainerGap(212, Short.MAX_VALUE))
+                .addContainerGap(142, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
