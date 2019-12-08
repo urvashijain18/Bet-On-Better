@@ -76,6 +76,9 @@ public class InitiativesEmployeeLeftJPanel extends javax.swing.JPanel {
         btnNewRequest = new javax.swing.JButton();
         btnLogout = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(0, 153, 153));
+
+        btnHome.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         btnHome.setText("Home");
         btnHome.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -83,6 +86,7 @@ public class InitiativesEmployeeLeftJPanel extends javax.swing.JPanel {
             }
         });
 
+        btnPendingRequests.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         btnPendingRequests.setText("Pending Requests");
         btnPendingRequests.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -90,6 +94,7 @@ public class InitiativesEmployeeLeftJPanel extends javax.swing.JPanel {
             }
         });
 
+        btnApprovedRequests.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         btnApprovedRequests.setText("Approved Requests");
         btnApprovedRequests.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -97,6 +102,7 @@ public class InitiativesEmployeeLeftJPanel extends javax.swing.JPanel {
             }
         });
 
+        btnNewRequest.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         btnNewRequest.setText("Create New Work Request");
         btnNewRequest.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -104,6 +110,7 @@ public class InitiativesEmployeeLeftJPanel extends javax.swing.JPanel {
             }
         });
 
+        btnLogout.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         btnLogout.setText("Logout");
         btnLogout.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -117,12 +124,12 @@ public class InitiativesEmployeeLeftJPanel extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnHome)
-                    .addComponent(btnPendingRequests)
-                    .addComponent(btnApprovedRequests)
-                    .addComponent(btnNewRequest)
-                    .addComponent(btnLogout))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btnNewRequest, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnApprovedRequests, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnPendingRequests, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnHome, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnLogout, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
