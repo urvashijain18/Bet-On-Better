@@ -5,6 +5,7 @@
  */
 package Business.FundRaiserEvents;
 
+import Business.UserAccount.UserAccount;
 import java.util.Date;
 
 /**
@@ -22,7 +23,16 @@ public class Event {
     String raisedBy;
     String status;
     String organizationType;
+      UserAccount donatedBy;
 
+    public UserAccount getDonatedBy() {
+        return donatedBy;
+    }
+
+    public void setDonatedBy(UserAccount donatedBy) {
+        this.donatedBy = donatedBy;
+    }
+    
     public String getStatus() {
         return status;
     }

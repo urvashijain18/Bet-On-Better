@@ -6,8 +6,10 @@
 package UserInterface.UserRole;
 
 import Business.EcoSystem;
+import Business.EndUser.Donation;
 import Business.Enterprise.Enterprise;
 import Business.FundRaiserEvents.EventDirectory;
+import Business.Network.Network;
 import Business.UserAccount.UserAccount;
 import Business.UserAccount.UserAccountDirectory;
 import Business.WorkRequest.CreateEventByOrganizationEmployee;
@@ -15,6 +17,7 @@ import UserInterface.Event.CreateEventJPanel;
 import UserInterface.Event.RaiseInitiativeJPanel;
 import java.awt.CardLayout;
 import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -43,8 +46,34 @@ public class UserDashboardJPanel extends javax.swing.JPanel {
         this.useraccount = useraccount;
         this.system = system;
         this.enterprise = enterprise;
+        populateDonationTable();
     }
 
+    
+    private void populateDonationTable() {
+        DefaultTableModel model = (DefaultTableModel) tblDonation.getModel();
+        model.setRowCount(0);
+     for(Network network : system.getNetworkList()){
+      for(Enterprise enterprise : network.getEnterpriseDirectory().getEnterpriseList()){
+          for (Donation donation : enterprise.getDonationDirectory().getDonationList()){
+              if(useraccount.getUsername().equals(donation.getEvent().getDonatedBy())){
+                  Object[] row = new Object[7];
+                  row[0] = donation.getEvent().getEventName();
+                  row[1] = donation.getEvent().getRaisedBy();
+                  row[2] = donation.getEvent().getRequestAmt();
+                  row[3] = donation.getEvent().getRaisedAmt();
+                  row[4] = donation.getEvent().getCreateDate();
+                  row[5] = donation.getEvent().getTargetDate();
+                  
+                   model.addRow(row);
+              }
+          }
+                  
+          
+      }
+      }   
+     
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -58,7 +87,7 @@ public class UserDashboardJPanel extends javax.swing.JPanel {
         jTable1 = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        tblDonation = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
         btnDetails = new javax.swing.JButton();
         btnEdit = new javax.swing.JButton();
@@ -79,7 +108,7 @@ public class UserDashboardJPanel extends javax.swing.JPanel {
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel1.setText("Donations Made by you");
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        tblDonation.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -87,9 +116,9 @@ public class UserDashboardJPanel extends javax.swing.JPanel {
                 "Fundraiser Name", "Raised By", "Target Amount", "Raised Amount", "Raised Date", "Target Date"
             }
         ));
-        jScrollPane2.setViewportView(jTable2);
-        if (jTable2.getColumnModel().getColumnCount() > 0) {
-            jTable2.getColumnModel().getColumn(1).setHeaderValue("Raised By");
+        jScrollPane2.setViewportView(tblDonation);
+        if (tblDonation.getColumnModel().getColumnCount() > 0) {
+            tblDonation.getColumnModel().getColumn(1).setHeaderValue("Raised By");
         }
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
@@ -156,11 +185,11 @@ public class UserDashboardJPanel extends javax.swing.JPanel {
                         .addGap(26, 26, 26)
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(61, 61, 61)
                         .addComponent(btnDetails)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 52, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 55, Short.MAX_VALUE)
                 .addComponent(jLabel2)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -212,6 +241,6 @@ public class UserDashboardJPanel extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTable jTable2;
+    private javax.swing.JTable tblDonation;
     // End of variables declaration//GEN-END:variables
 }
