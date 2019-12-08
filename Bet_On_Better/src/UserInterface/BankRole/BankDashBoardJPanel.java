@@ -56,6 +56,9 @@ public class BankDashBoardJPanel extends javax.swing.JPanel {
         btnApprovedRequest = new javax.swing.JButton();
         btnFundAllocationRequest = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(153, 153, 153));
+
+        btnVerifRequest.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         btnVerifRequest.setText("Verification Request");
         btnVerifRequest.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -63,6 +66,7 @@ public class BankDashBoardJPanel extends javax.swing.JPanel {
             }
         });
 
+        btnApprovedRequest.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         btnApprovedRequest.setText("Approved Request");
         btnApprovedRequest.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -70,6 +74,7 @@ public class BankDashBoardJPanel extends javax.swing.JPanel {
             }
         });
 
+        btnFundAllocationRequest.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         btnFundAllocationRequest.setText("Fund Allocation Request");
         btnFundAllocationRequest.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -84,11 +89,11 @@ public class BankDashBoardJPanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(75, 75, 75)
                 .addComponent(btnVerifRequest)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 263, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 231, Short.MAX_VALUE)
                 .addComponent(btnApprovedRequest)
                 .addGap(80, 80, 80))
             .addGroup(layout.createSequentialGroup()
-                .addGap(259, 259, 259)
+                .addGap(255, 255, 255)
                 .addComponent(btnFundAllocationRequest)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -99,9 +104,9 @@ public class BankDashBoardJPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnVerifRequest)
                     .addComponent(btnApprovedRequest))
-                .addGap(29, 29, 29)
+                .addGap(103, 103, 103)
                 .addComponent(btnFundAllocationRequest)
-                .addContainerGap(290, Short.MAX_VALUE))
+                .addContainerGap(216, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
