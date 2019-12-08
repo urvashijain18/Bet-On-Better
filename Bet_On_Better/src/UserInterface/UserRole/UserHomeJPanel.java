@@ -52,7 +52,9 @@ public class UserHomeJPanel extends javax.swing.JPanel {
                 if (enterprise.getEnterpriseType().getValue().equals(Enterprise.EnterpriseType.FundRaiser.getValue())) {
                     for (Event event : eventdirectory.getEventList()) {
                         if (event.getStatus().equals("Verified")
-                                || event.getStatus().equals("Allocated")) {
+                                || event.getStatus().equals("Allocated")
+                                || event.getStatus().equals("Approved")
+                                || event.getStatus().equals("Assigned")) {
                             Object[] row = new Object[9];
                             row[0] = event;
                             row[1] = event.getEventName();

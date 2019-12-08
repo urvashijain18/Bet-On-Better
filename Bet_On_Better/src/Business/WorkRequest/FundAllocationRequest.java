@@ -17,7 +17,13 @@ public class FundAllocationRequest extends WorkRequest{
     private String transferStatus;
     private double requestedAmount;
     private double allocatedAmount;
+    private static int Reqcounter = 10001;
 
+    public FundAllocationRequest() {
+        requestId = Reqcounter;
+        Reqcounter++;
+    } 
+    
     public int getRequestId() {
         return requestId;
     }

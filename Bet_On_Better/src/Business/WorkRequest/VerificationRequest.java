@@ -20,7 +20,13 @@ public class VerificationRequest extends WorkRequest{
     private String reason;
     private UserAccount user;
     private Event event;
+    private static int Reqcounter = 1001;
 
+    public VerificationRequest() {
+        requestId = Reqcounter;
+        Reqcounter++;
+    } 
+    
     public Event getEvent() {
         return event;
     }
