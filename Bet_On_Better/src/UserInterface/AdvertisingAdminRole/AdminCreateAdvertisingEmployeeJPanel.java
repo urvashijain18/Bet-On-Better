@@ -252,6 +252,11 @@ public class AdminCreateAdvertisingEmployeeJPanel extends javax.swing.JPanel {
         String pwd = passwordField.getText();
         String rePwd = confirmPasswordField.getText();
 
+        if (name == null || name.equals("")) {
+            JOptionPane.showMessageDialog(null, "Name cannot be empty");
+            return;
+        } 
+        
         if (username == null || username.equals("")) {
             JOptionPane.showMessageDialog(null, "UserName cannot be empty");
             return;
@@ -281,15 +286,17 @@ public class AdminCreateAdvertisingEmployeeJPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "Confirm Password should match password");
             return;
         }
+        if(OrganizationComboBox.getSelectedItem().equals("--Select--")){
+            JOptionPane.showMessageDialog(null, "Please select organization");
+            return;
+        }
 
         Role role = null;
         Organization organization = (Organization) OrganizationComboBox.getSelectedItem();
         if (organization.getOrganizationType().equals(Organization.Type.Email)) {
             role = new EmailAdvertistingEmployee();
-
             UserAccount account = organization.getUserAccountDirectory().createUserAccount(username, pwd, role);
             account.setName(name);
-            //bankemployeeAccountDirectory.createEmployeeAccount(username, pwd, role);
             JOptionPane.showMessageDialog(null, "Account Created Successfully");
             CardLayout rightLayout = (CardLayout) rightContainer.getLayout();
             rightContainer.add("AdvertisingWorkAreaJPanel", new AdvertisingWorkAreaJPanel(rightContainer, system, enterprise));

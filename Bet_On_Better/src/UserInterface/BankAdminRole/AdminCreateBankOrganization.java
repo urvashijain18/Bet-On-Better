@@ -9,6 +9,7 @@ import Business.Organization.Organization;
 import Business.Organization.Organization.Type;
 import Business.Organization.OrganizationDirectory;
 import java.awt.CardLayout;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 
@@ -190,8 +191,20 @@ public class AdminCreateBankOrganization extends javax.swing.JPanel {
 
     private void addJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addJButtonActionPerformed
         String name = txtName.getText();
+        if (name == null || name.equals("")) {
+            JOptionPane.showMessageDialog(null, "Name cannot be empty");
+            return;
+        } 
+        
+        if(organizationJComboBox.getSelectedItem().equals("--Select--")){
+            JOptionPane.showMessageDialog(null, "Please select organization type");
+            return;
+        }
         Type type = (Type) organizationJComboBox.getSelectedItem();
         directory.createOrganization(name, type);
+        JOptionPane.showMessageDialog(null, "Organization created successfully");
+        populateCombo();
+        txtName.setText("");
         populateTable();
     }//GEN-LAST:event_addJButtonActionPerformed
 

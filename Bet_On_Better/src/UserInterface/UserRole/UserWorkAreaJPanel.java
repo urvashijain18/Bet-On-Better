@@ -153,7 +153,7 @@ public class UserWorkAreaJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_btnDashboardActionPerformed
 
     private void btnLogOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogOutActionPerformed
-        leftContainer.remove(this);
+        leftContainer.removeAll();
         CardLayout leftCardLayout = (CardLayout) leftContainer.getLayout();
         CardLayout righCardLayout = (CardLayout) rightContainer.getLayout();
         leftContainer.add("UserLogin", new UserLogin(leftContainer, rightContainer, 

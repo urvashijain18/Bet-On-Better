@@ -9,6 +9,7 @@ import Business.Organization.Organization;
 import Business.Organization.Organization.Type;
 import Business.Organization.OrganizationDirectory;
 import java.awt.CardLayout;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 
@@ -32,6 +33,7 @@ private JPanel rightContainer;
     
     private void populateCombo() {
         organizationJComboBox.removeAllItems();
+        organizationJComboBox.addItem(new String("--Select--"));
         for (Organization.Type type : Organization.Type.values()) {
             if (type.getValue().equals(Organization.Type.Email.getValue())) {
                 organizationJComboBox.addItem(type);
@@ -193,8 +195,20 @@ private JPanel rightContainer;
 
     private void addJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addJButtonActionPerformed
         String name = txtName.getText();
+        if (name == null || name.equals("")) {
+            JOptionPane.showMessageDialog(null, "Name cannot be empty");
+            return;
+        } 
+        
+        if(organizationJComboBox.getSelectedItem().equals("--Select--")){
+            JOptionPane.showMessageDialog(null, "Please select organization type");
+            return;
+        }
         Type type = (Type) organizationJComboBox.getSelectedItem();
         directory.createOrganization(name, type);
+        JOptionPane.showMessageDialog(null, "Organization created successfully");
+        populateCombo();
+        txtName.setText("");
         populateTable();
     }//GEN-LAST:event_addJButtonActionPerformed
 

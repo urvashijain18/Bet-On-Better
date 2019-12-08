@@ -11,6 +11,7 @@ import Business.Organization.Organization;
 import Business.Role.AccVerificationBankEmployee;
 import Business.Role.FundTransferBankEmployee;
 import Business.UserAccount.UserAccount;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 
@@ -43,7 +44,7 @@ public class AdminBankWorkAreaJPanel extends javax.swing.JPanel {
                 if (userAccount.getRole().getClass().equals(AccVerificationBankEmployee.class)
                         || userAccount.getRole().getClass().equals(FundTransferBankEmployee.class)) {
                     Object[] row = new Object[3];
-                    row[0] = userAccount.getName();
+                    row[0] = userAccount;
                     row[1] = organization.getName();
                     row[2] = userAccount.getUsername();
                     model.addRow(row);
@@ -120,7 +121,16 @@ public class AdminBankWorkAreaJPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
-        // TODO add your handling code here:
+        int selectedrow = tblExistingEmployee.getSelectedRow();
+        if (selectedrow < 0) {
+            JOptionPane.showMessageDialog(null, "Please select a row");
+        } else {
+            UserAccount account = (UserAccount) tblExistingEmployee.getValueAt(selectedrow, 0);
+            for (Organization organization : enterprise.getOrganizationDirectory().getOrganizationList()) {
+                organization.getUserAccountDirectory().getUserAccountList().remove(account);
+            }
+        }
+        populateTable();
     }//GEN-LAST:event_btnDeleteActionPerformed
 
 

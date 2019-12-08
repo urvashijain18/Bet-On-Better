@@ -160,13 +160,17 @@ public class AdminAdvertisingLeftJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void btnLogOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogOutActionPerformed
-        leftContainer.remove(this);
+        leftContainer.removeAll();
         CardLayout leftCardLayout = (CardLayout) leftContainer.getLayout();
-        leftContainer.add("UserLogin", new UserLogin(leftContainer, rightContainer, userAccountDirectory, 
-                eventdirectory, fundraisingemployeeAccountDirectory, advertisingemployeeAccountDirectory, 
-                bankemployeeAccountDirectory, system, dB4OUtil));
+        CardLayout righCardLayout = (CardLayout) rightContainer.getLayout();
+        leftContainer.add("UserLogin", new UserLogin(leftContainer, rightContainer, 
+                userAccountDirectory, eventdirectory, fundraisingemployeeAccountDirectory, 
+                advertisingemployeeAccountDirectory, bankemployeeAccountDirectory, system, dB4OUtil));
         leftCardLayout.next(leftContainer);
         rightContainer.removeAll();
+        rightContainer.add("blank", new JPanel());
+        righCardLayout.next(rightContainer);
+        dB4OUtil.storeSystem(system);
     }//GEN-LAST:event_btnLogOutActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
