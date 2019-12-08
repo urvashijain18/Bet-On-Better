@@ -74,6 +74,9 @@ public class UserWorkAreaJPanel extends javax.swing.JPanel {
         btnPromote = new javax.swing.JButton();
         btnLogOut = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(0, 153, 153));
+
+        btnHome.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         btnHome.setText("Home");
         btnHome.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -81,6 +84,7 @@ public class UserWorkAreaJPanel extends javax.swing.JPanel {
             }
         });
 
+        btnDashboard.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         btnDashboard.setText("Dashboard");
         btnDashboard.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -88,8 +92,15 @@ public class UserWorkAreaJPanel extends javax.swing.JPanel {
             }
         });
 
+        btnPromote.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         btnPromote.setText("Promote");
+        btnPromote.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPromoteActionPerformed(evt);
+            }
+        });
 
+        btnLogOut.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         btnLogOut.setText("Log Out");
         btnLogOut.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -102,24 +113,24 @@ public class UserWorkAreaJPanel extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(21, 21, 21)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnHome)
+                    .addComponent(btnLogOut, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnDashboard)
-                    .addComponent(btnPromote)
-                    .addComponent(btnLogOut))
-                .addContainerGap(45, Short.MAX_VALUE))
+                    .addComponent(btnHome, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnPromote, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(26, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
+                .addContainerGap(81, Short.MAX_VALUE)
                 .addComponent(btnHome)
-                .addGap(49, 49, 49)
+                .addGap(57, 57, 57)
                 .addComponent(btnDashboard)
-                .addGap(65, 65, 65)
+                .addGap(73, 73, 73)
                 .addComponent(btnPromote)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 158, Short.MAX_VALUE)
+                .addGap(72, 72, 72)
                 .addComponent(btnLogOut)
                 .addGap(65, 65, 65))
         );
@@ -154,6 +165,10 @@ public class UserWorkAreaJPanel extends javax.swing.JPanel {
         righCardLayout.next(rightContainer);
         dB4OUtil.storeSystem(system);
     }//GEN-LAST:event_btnLogOutActionPerformed
+
+    private void btnPromoteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPromoteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnPromoteActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

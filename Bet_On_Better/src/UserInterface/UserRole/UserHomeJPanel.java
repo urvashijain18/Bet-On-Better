@@ -79,49 +79,28 @@ public class UserHomeJPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        checkBoxEducation = new javax.swing.JCheckBox();
-        checkBoxFoodnHunger = new javax.swing.JCheckBox();
-        checkBoxEvents = new javax.swing.JCheckBox();
-        jSeparator1 = new javax.swing.JSeparator();
-        checkBoxHealth = new javax.swing.JCheckBox();
-        checkBoxAnimal = new javax.swing.JCheckBox();
-        jLabel1 = new javax.swing.JLabel();
-        txtBoxSearch = new javax.swing.JTextField();
-        btnSearch = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblEventsAvailable = new javax.swing.JTable();
         btnDetails = new javax.swing.JButton();
         btnDonate = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
 
-        checkBoxEducation.setText("Education");
-
-        checkBoxFoodnHunger.setText("Food and Hunger");
-
-        checkBoxEvents.setText("Events");
-
-        jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
-
-        checkBoxHealth.setText("Health");
-
-        checkBoxAnimal.setText("Animals");
-
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jLabel1.setText("Filter by Category");
-
-        btnSearch.setText("Search");
+        setBackground(new java.awt.Color(153, 153, 153));
 
         tblEventsAvailable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Funraiser Name", "Raised By", "Target Amount", "Raised Amount", "Target Date", "Raised Date"
+                "Fundraiser Name", "Raised By", "Target Amount", "Raised Amount", "Target Date", "Raised Date"
             }
         ));
         jScrollPane1.setViewportView(tblEventsAvailable);
 
+        btnDetails.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         btnDetails.setText("Details");
 
+        btnDonate.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         btnDonate.setText("Donate");
         btnDonate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -129,70 +108,39 @@ public class UserHomeJPanel extends javax.swing.JPanel {
             }
         });
 
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLabel2.setText("Home");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createSequentialGroup()
-                            .addContainerGap()
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(checkBoxEvents)
-                                .addComponent(checkBoxFoodnHunger)
-                                .addComponent(checkBoxEducation)
-                                .addComponent(checkBoxAnimal)
-                                .addComponent(checkBoxHealth)
-                                .addComponent(txtBoxSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(74, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(btnSearch)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 2, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 524, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(35, 35, 35)
                         .addComponent(btnDetails)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnDonate)
-                        .addGap(23, 23, 23))))
+                        .addComponent(btnDonate))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 524, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(67, 67, 67))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(284, 284, 284)
+                .addComponent(jLabel2)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.TRAILING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(28, 28, 28)
-                        .addComponent(jLabel1)
-                        .addGap(18, 18, 18)
-                        .addComponent(checkBoxAnimal)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(checkBoxHealth)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(checkBoxEducation)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(checkBoxFoodnHunger)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(checkBoxEvents)
-                        .addGap(80, 80, 80)
-                        .addComponent(txtBoxSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnSearch))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(24, 24, 24)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(58, 58, 58)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnDetails)
-                            .addComponent(btnDonate))))
-                .addContainerGap(114, Short.MAX_VALUE))
+                .addContainerGap(32, Short.MAX_VALUE)
+                .addComponent(jLabel2)
+                .addGap(28, 28, 28)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(47, 47, 47)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnDetails)
+                    .addComponent(btnDonate))
+                .addGap(73, 73, 73))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -213,16 +161,8 @@ public class UserHomeJPanel extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnDetails;
     private javax.swing.JButton btnDonate;
-    private javax.swing.JButton btnSearch;
-    private javax.swing.JCheckBox checkBoxAnimal;
-    private javax.swing.JCheckBox checkBoxEducation;
-    private javax.swing.JCheckBox checkBoxEvents;
-    private javax.swing.JCheckBox checkBoxFoodnHunger;
-    private javax.swing.JCheckBox checkBoxHealth;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTable tblEventsAvailable;
-    private javax.swing.JTextField txtBoxSearch;
     // End of variables declaration//GEN-END:variables
 }

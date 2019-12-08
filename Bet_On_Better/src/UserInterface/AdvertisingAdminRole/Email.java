@@ -61,13 +61,13 @@ public Email() {
         mail_label= new JLabel("Send to : ");
         mail_label.setPreferredSize(new Dimension(100,20));
         
-        mail_text= new JTextField("...");
-        mail_text.setPreferredSize(new Dimension(150,20));
+//        mail_text= new JTextField("...");
+//        mail_text.setPreferredSize(new Dimension(150,20));
         
         sub_label= new JLabel("Subject : ");
         sub_label.setPreferredSize(new Dimension(100,20));
         
-        sub_text= new JTextField("...");
+        sub_text= new JTextField("Please donate for this cause!!");
         sub_text.setPreferredSize(new Dimension(150,20));
         
         msg_label= new JLabel("Message : ");
@@ -77,7 +77,7 @@ public Email() {
         scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
         scroll.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);  
           
-        msg_text= new JTextArea("...",10,15);
+        msg_text= new JTextArea(10,15);
  
         scroll.setViewportView(msg_text);
 
