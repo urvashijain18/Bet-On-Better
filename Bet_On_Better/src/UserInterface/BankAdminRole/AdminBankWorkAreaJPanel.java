@@ -80,6 +80,11 @@ public class AdminBankWorkAreaJPanel extends javax.swing.JPanel {
         jScrollPane1.setViewportView(tblExistingEmployee);
 
         btnDelete.setText("Delete");
+        btnDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeleteActionPerformed(evt);
+            }
+        });
 
         btnView.setText("View");
 
@@ -116,6 +121,10 @@ public class AdminBankWorkAreaJPanel extends javax.swing.JPanel {
                 .addContainerGap(131, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnDeleteActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
