@@ -23,10 +23,11 @@ public class CreateEventByOrganizationEmployee extends WorkRequest {
     private UserAccount user;
     private String Status;
     private int targetAtm;
-    private static int counter = 10001;
+    private static int Reqcounter = 10001;
 
     public CreateEventByOrganizationEmployee() {
-        counter++;
+        requestID = Reqcounter;
+        Reqcounter++;
     }
 
     public int getTargetAtm() {
