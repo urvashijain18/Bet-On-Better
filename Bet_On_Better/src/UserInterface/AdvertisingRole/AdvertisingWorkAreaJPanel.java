@@ -5,17 +5,49 @@
  */
 package UserInterface.AdvertisingRole;
 
+import Business.EcoSystem;
+import Business.Enterprise.Enterprise;
+import Business.Organization.Organization;
+import Business.Role.EmailAdvertistingEmployee;
+import Business.UserAccount.UserAccount;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author @author Urvashi
  */
 public class AdvertisingWorkAreaJPanel extends javax.swing.JPanel {
 
+    private JPanel rightContainer;
+    private EcoSystem system;
+    private Enterprise enterprise;
+
     /**
      * Creates new form AdvertisingWorkAreaJPanel
      */
-    public AdvertisingWorkAreaJPanel() {
+    public AdvertisingWorkAreaJPanel(JPanel rightContainer, EcoSystem system, Enterprise enterprise) {
         initComponents();
+        this.system = system;
+        this.rightContainer = rightContainer;
+        this.enterprise = enterprise;
+    }
+
+    private void populateTable() {
+        DefaultTableModel model = (DefaultTableModel) tblExistingEmployee.getModel();
+        model.setRowCount(0);
+        for (Organization organization : enterprise.getOrganizationDirectory().getOrganizationList()) {
+            for (UserAccount userAccount : organization.getUserAccountDirectory().getUserAccountList()) {
+                if (userAccount.getRole().getClass().equals(EmailAdvertistingEmployee.class)) {
+                    Object[] row = new Object[3];
+                    row[0] = userAccount.getName();
+                    row[1] = organization.getName();
+                    row[2] = userAccount.getUsername();
+                    model.addRow(row);
+                }
+            }
+        }
     }
 
     /**
@@ -27,19 +59,82 @@ public class AdvertisingWorkAreaJPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel1 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tblExistingEmployee = new javax.swing.JTable();
+        btnDelete = new javax.swing.JButton();
+
+        jLabel1.setText("Hi Admin!");
+
+        tblExistingEmployee.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Employee Name", "Organization", "UserName"
+            }
+        ));
+        jScrollPane1.setViewportView(tblExistingEmployee);
+
+        btnDelete.setText("Delete");
+        btnDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeleteActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(166, 166, 166)
+                        .addComponent(jLabel1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 363, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(150, 150, 150)
+                                .addComponent(btnDelete)))))
+                .addContainerGap(27, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(25, 25, 25)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30)
+                .addComponent(btnDelete)
+                .addContainerGap(96, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
+int selectedRow = tblExistingEmployee.getSelectedRow();
+    if(selectedRow >=0)
+    {
+    int dialogButton = JOptionPane.YES_NO_OPTION;
+    int dialogResult = JOptionPane.showConfirmDialog(null, "Would you like to delete?", "Warning", dialogButton);
+    if(dialogResult == JOptionPane.YES_OPTION){
+    
+    populateTable();
+    }
+    }
+    else{
+    JOptionPane.showMessageDialog(null, "Please select a row from the table", "Warning", JOptionPane.WARNING_MESSAGE);
+    }        // TODO add your handling code here:
+    }//GEN-LAST:event_btnDeleteActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnDelete;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable tblExistingEmployee;
     // End of variables declaration//GEN-END:variables
 }

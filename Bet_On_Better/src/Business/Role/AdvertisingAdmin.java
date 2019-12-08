@@ -15,8 +15,10 @@ import Business.FundRaisingEmployee.FundRaisingEmployeeAccountDirectory;
 import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
 import Business.UserAccount.UserAccountDirectory;
+import UserInterface.AdvertisingAdminRole.AdminAdvertisingLeftJPanel;
 import UserInterface.AdvertisingRole.AdvertisingLeftPanel;
 import UserInterface.AdvertisingRole.AdvertisingWorkAreaJPanel;
+import static java.time.Clock.system;
 import javax.swing.JPanel;
 
 /**
@@ -27,8 +29,8 @@ import javax.swing.JPanel;
     public class AdvertisingAdmin extends Role{
 
     @Override
-    public JPanel createRightWorkArea(JPanel userProcessContainer, UserAccount account, Organization organization, Enterprise enterprise, EcoSystem business, EventDirectory eventdirectory) {
-      return new AdvertisingWorkAreaJPanel();
+    public JPanel createRightWorkArea(JPanel rightContainer, UserAccount account, Organization organization, Enterprise enterprise, EcoSystem system, EventDirectory eventdirectory) {
+      return new AdvertisingWorkAreaJPanel(rightContainer,  system, enterprise);
     }
 
     @Override
@@ -38,7 +40,7 @@ import javax.swing.JPanel;
             FundRaisingEmployeeAccountDirectory fundraisingemployeeAccountDirectory, 
             AdvertisingEmployeeAccountDirectory advertisingemployeeAccountDirectory, 
             EcoSystem business, DB4OUtil dB4OUtil, Enterprise enterprise, UserAccount account) {
-        return new AdvertisingLeftPanel();
+        return new AdminAdvertisingLeftJPanel(leftContainer, rightContainer, userAccountDirectory, enterprise, eventdirectory, advertisingemployeeAccountDirectory, bankemployeeAccountDirectory, fundraisingemployeeAccountDirectory, business, dB4OUtil);
     }
 }
 
