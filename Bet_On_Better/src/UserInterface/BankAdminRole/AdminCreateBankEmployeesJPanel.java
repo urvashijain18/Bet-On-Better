@@ -245,6 +245,11 @@ public class AdminCreateBankEmployeesJPanel extends javax.swing.JPanel {
         String pwd = passwordField.getText();
         String rePwd = confirmPasswordField.getText();
 
+        if (name == null || name.equals("")) {
+            JOptionPane.showMessageDialog(null, "Name cannot be empty");
+            return;
+        } 
+        
         if (username == null || username.equals("")) {
             JOptionPane.showMessageDialog(null, "UserName cannot be empty");
             return;
@@ -272,6 +277,11 @@ public class AdminCreateBankEmployeesJPanel extends javax.swing.JPanel {
 
         if (!pwd.equals(rePwd)) {
             JOptionPane.showMessageDialog(null, "Confirm Password should match password");
+            return;
+        }
+        
+        if(OrganizationComboBox.getSelectedItem().equals("--Select--")){
+            JOptionPane.showMessageDialog(null, "Please select organization");
             return;
         }
 
