@@ -15,6 +15,7 @@ import Business.FundRaiserEvents.EventDirectory;
 import Business.UserAccount.UserAccountDirectory;
 import UserInterface.UserLogin;
 import java.awt.CardLayout;
+import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 /**
@@ -169,7 +170,10 @@ public class AdminAdvertisingLeftJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        Email email = new Email();  // TODO add your handling code here:
+        Email email = new Email();
+        email.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        email.setSize(800,400);
+        email.setVisible(true); // TODO add your handling code here:
     }//GEN-LAST:event_jButton4ActionPerformed
 
 

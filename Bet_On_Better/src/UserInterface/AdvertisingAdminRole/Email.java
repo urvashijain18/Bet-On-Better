@@ -36,13 +36,13 @@ Container cp;
     
     JButton send_button;
 
-    public static void main(String[] args) 
-    {
-        Email email = new Email();
-        email.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        email.setSize(800,400);
-        email.setVisible(true);        
-    }
+//    public static void main(String[] args) 
+//    {
+//        Email email = new Email();
+//        email.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//        email.setSize(800,400);
+//        email.setVisible(true);        
+//    }
     
 /**
  *
@@ -107,7 +107,7 @@ public Email() {
                 String subject = sub_text.getText();
                 String message =  msg_text.getText();
                 
-                String user = "aum.d@yahoo.com";
+                String user = "sam.99.ff@gmail.com";
                 String pass = "IS@neu2019";
 
                 SendEmail.send(to,subject, message, user, pass);
