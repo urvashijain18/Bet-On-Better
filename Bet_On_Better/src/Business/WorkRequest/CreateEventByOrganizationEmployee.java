@@ -13,7 +13,7 @@ import java.util.Date;
  * @author MMI
  */
 public class CreateEventByOrganizationEmployee extends WorkRequest {
-     private int requestID;
+    private int requestID;
     private String title;
     private String description;
     private String location;
@@ -23,6 +23,11 @@ public class CreateEventByOrganizationEmployee extends WorkRequest {
     private UserAccount user;
     private String Status;
     private int targetAtm;
+    private static int counter = 10001;
+
+    public CreateEventByOrganizationEmployee() {
+        counter++;
+    }
 
     public int getTargetAtm() {
         return targetAtm;
@@ -31,8 +36,6 @@ public class CreateEventByOrganizationEmployee extends WorkRequest {
     public void setTargetAtm(int targetAtm) {
         this.targetAtm = targetAtm;
     }
-    
-    
 
     public String getStatus() {
         return Status;
@@ -49,10 +52,6 @@ public class CreateEventByOrganizationEmployee extends WorkRequest {
     public void setUser(UserAccount user) {
         this.user = user;
     }
-
-    
-    
-    
 
     public int getRequestedAtm() {
         return requestedAtm;
@@ -77,7 +76,6 @@ public class CreateEventByOrganizationEmployee extends WorkRequest {
     public void setEventDate(Date eventDate) {
         this.eventDate = eventDate;
     }
-    
 
     public int getRequestID() {
         return requestID;
@@ -95,7 +93,6 @@ public class CreateEventByOrganizationEmployee extends WorkRequest {
         this.deadline = deadline;
     }
     
-
     public String getTitle() {
         return title;
     }

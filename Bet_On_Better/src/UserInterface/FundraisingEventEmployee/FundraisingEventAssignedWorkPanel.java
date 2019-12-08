@@ -7,7 +7,7 @@ package UserInterface.FundraisingEventEmployee;
 
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
-import Business.FundRaiserEvents.EventDirectory;
+import Business.Network.Network;
 import Business.Role.FundTransferBankEmployee;
 import Business.Role.InitiativesEmployee;
 import Business.Role.Role;
@@ -18,6 +18,8 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 import Business.UserAccount.UserAccount;
+import UserInterface.Event.CreateEventJPanel;
+import java.awt.CardLayout;
 
 /**
  *
@@ -27,7 +29,6 @@ public class FundraisingEventAssignedWorkPanel extends javax.swing.JPanel {
 
     private JPanel rightContainer;
     private EcoSystem system;
-    private EventDirectory eventDirectory;
     private CreateEventByOrganizationEmployeeDirectory createEventByOrganizationEmployeeDirectory;
     private Enterprise enterprise;
     private UserAccount userAccount;
@@ -35,13 +36,12 @@ public class FundraisingEventAssignedWorkPanel extends javax.swing.JPanel {
     /**
      * Creates new form FundraisingEventAssignedWorkPanel
      */
-
-    FundraisingEventAssignedWorkPanel(JPanel rightContainer, Enterprise enterprise, UserAccount userAccount) {
+    public FundraisingEventAssignedWorkPanel(JPanel rightContainer, Enterprise enterprise, UserAccount userAccount, EcoSystem system) {
         initComponents();
         this.rightContainer = rightContainer;
         this.enterprise = enterprise;
         this.userAccount = userAccount;
-
+        this.system = system;
         populateTable();
 
         jLabel2.setVisible(false);
@@ -195,34 +195,35 @@ public class FundraisingEventAssignedWorkPanel extends javax.swing.JPanel {
     private void btnApproveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnApproveActionPerformed
         // TODO add your handling code here:
         int selectedRow = tblAssignedRequest.getSelectedRow();
-        Role role = null;
         if (selectedRow < 0) {
             JOptionPane.showMessageDialog(null, "Please select a row from the table", "Warning", JOptionPane.WARNING_MESSAGE);
-        } else {
-            CreateEventByOrganizationEmployee workrequest = (CreateEventByOrganizationEmployee) tblAssignedRequest.getValueAt(selectedRow, 0);
-            role = workrequest.getSender().getRole();
         }
+        CreateEventByOrganizationEmployee workrequest = (CreateEventByOrganizationEmployee) tblAssignedRequest.getValueAt(selectedRow, 0);
+        Role role = workrequest.getSender().getRole();
+
         if (role.getClass().equals(UserRole.class)) {
-            // ADD this row in event directory
-
+            for (Network network : system.getNetworkList()) {
+                for (Enterprise enterprise1 : network.getEnterpriseDirectory().getEnterpriseList()) {
+                    if (enterprise1.getEnterpriseType().getValue().equals(Enterprise.EnterpriseType.FundRaiser.getValue())) {
+                        if (workrequest.getStatus().equals("Assigned")) {
+                            workrequest.setStatus("Approved");
+                            enterprise.getEventDirectory().createEvent(" ", workrequest.getRequestDate(),
+                                   workrequest.getDescription(), workrequest.getTitle(), workrequest.getSender(), 0.00, workrequest.getDeadline(), workrequest.getStatus());
+                        }
+                    }
+                }
+            }
         } else if (role.getClass().equals(InitiativesEmployee.class)) {
-
             jLabel2.setVisible(true);
             txtRequestAmt.setVisible(true);
             btnSet.setVisible(true);
         } else if (role.getClass().equals(FundTransferBankEmployee.class)) {
-
-            CreateEventByOrganizationEmployee workrequest = (CreateEventByOrganizationEmployee) tblAssignedRequest.getValueAt(selectedRow, 0);
-            workrequest.setSender(userAccount);
-            workrequest.setStatus("Approved By Fundraising Employee");
-
+            //workrequest.setSender(userAccount);
+            workrequest.setStatus("Approved");
+            rightContainer.add("CreateEventJPanel", new CreateEventJPanel(rightContainer, rightContainer, userAccount, system, workrequest));
+            CardLayout righCardLayout = (CardLayout)rightContainer.getLayout();
+            righCardLayout.next(rightContainer);
         }
-
-//            
-//        rightContainer.remove(this);
-//        CardLayout rightCardLayout = (CardLayout) rightContainer.getLayout();
-//        rightContainer.add("FundraisingEventAssignedWorkPanel", new FundraisingEventAssignedWorkPanel(rightContainer, enterprise, userAccount));
-//        rightCardLayout.next(rightContainer);
 
     }//GEN-LAST:event_btnApproveActionPerformed
 

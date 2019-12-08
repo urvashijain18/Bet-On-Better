@@ -183,7 +183,7 @@ public class FundraisingEventEmployeeLeftJPanel extends javax.swing.JPanel  {
         // TODO add your handling code here:
         rightContainer.remove(this);
         CardLayout rightCardLayout = (CardLayout) rightContainer.getLayout();
-        rightContainer.add("FundraisingEventAssignedWorkPanel", new FundraisingEventAssignedWorkPanel(rightContainer, enterprise, useraccount));
+        rightContainer.add("FundraisingEventAssignedWorkPanel", new FundraisingEventAssignedWorkPanel(rightContainer, enterprise, useraccount, system));
         rightCardLayout.next(rightContainer);
     }//GEN-LAST:event_btnAssignedReqActionPerformed
 
