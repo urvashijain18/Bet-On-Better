@@ -70,6 +70,9 @@ public class AdminBankLeftJPanel extends javax.swing.JPanel {
         btnLogOut = new javax.swing.JButton();
         btnCreateOrganization = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(0, 153, 153));
+
+        btnHome.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         btnHome.setText("Home");
         btnHome.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -77,6 +80,7 @@ public class AdminBankLeftJPanel extends javax.swing.JPanel {
             }
         });
 
+        btnCreateEmployee.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         btnCreateEmployee.setText("Create New Employee");
         btnCreateEmployee.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -84,6 +88,7 @@ public class AdminBankLeftJPanel extends javax.swing.JPanel {
             }
         });
 
+        btnLogOut.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         btnLogOut.setText("Logout");
         btnLogOut.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -91,6 +96,7 @@ public class AdminBankLeftJPanel extends javax.swing.JPanel {
             }
         });
 
+        btnCreateOrganization.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         btnCreateOrganization.setText("Create Organization");
         btnCreateOrganization.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -109,18 +115,18 @@ public class AdminBankLeftJPanel extends javax.swing.JPanel {
                     .addComponent(btnLogOut, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnCreateEmployee, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnCreateOrganization, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(21, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(47, 47, 47)
                 .addComponent(btnHome)
-                .addGap(66, 66, 66)
-                .addComponent(btnCreateEmployee)
-                .addGap(18, 18, 18)
-                .addComponent(btnCreateOrganization)
                 .addGap(37, 37, 37)
+                .addComponent(btnCreateOrganization)
+                .addGap(41, 41, 41)
+                .addComponent(btnCreateEmployee)
+                .addGap(43, 43, 43)
                 .addComponent(btnLogOut)
                 .addContainerGap(110, Short.MAX_VALUE))
         );
