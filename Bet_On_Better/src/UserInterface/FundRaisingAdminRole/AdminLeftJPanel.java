@@ -70,6 +70,9 @@ public class AdminLeftJPanel extends javax.swing.JPanel {
         btnCreateOrganization = new javax.swing.JButton();
         btnNewEmployee = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(0, 153, 153));
+
+        btnHome.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         btnHome.setText("Home");
         btnHome.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -77,6 +80,7 @@ public class AdminLeftJPanel extends javax.swing.JPanel {
             }
         });
 
+        btnPendingApprovals.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         btnPendingApprovals.setText("Pending Request");
         btnPendingApprovals.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -84,8 +88,10 @@ public class AdminLeftJPanel extends javax.swing.JPanel {
             }
         });
 
+        btnWithdrawalReq.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         btnWithdrawalReq.setText("Withdrawal Request");
 
+        btnLogOut.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         btnLogOut.setText("Logout");
         btnLogOut.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -93,6 +99,7 @@ public class AdminLeftJPanel extends javax.swing.JPanel {
             }
         });
 
+        btnCreateOrganization.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         btnCreateOrganization.setText("Create New Organization");
         btnCreateOrganization.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -100,6 +107,7 @@ public class AdminLeftJPanel extends javax.swing.JPanel {
             }
         });
 
+        btnNewEmployee.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         btnNewEmployee.setText("Create New Employee");
         btnNewEmployee.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -119,10 +127,9 @@ public class AdminLeftJPanel extends javax.swing.JPanel {
                     .addComponent(btnPendingApprovals, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnWithdrawalReq, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnCreateOrganization)
-                            .addComponent(btnNewEmployee))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addComponent(btnCreateOrganization)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(btnNewEmployee, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -130,15 +137,15 @@ public class AdminLeftJPanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(76, 76, 76)
                 .addComponent(btnHome)
-                .addGap(59, 59, 59)
+                .addGap(47, 47, 47)
                 .addComponent(btnPendingApprovals)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 64, Short.MAX_VALUE)
+                .addGap(44, 44, 44)
                 .addComponent(btnWithdrawalReq)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
                 .addComponent(btnCreateOrganization)
-                .addGap(18, 18, 18)
+                .addGap(42, 42, 42)
                 .addComponent(btnNewEmployee)
-                .addGap(51, 51, 51)
+                .addGap(36, 36, 36)
                 .addComponent(btnLogOut)
                 .addGap(78, 78, 78))
         );

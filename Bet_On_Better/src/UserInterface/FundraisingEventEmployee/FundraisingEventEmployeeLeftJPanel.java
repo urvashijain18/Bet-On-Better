@@ -73,6 +73,9 @@ public class FundraisingEventEmployeeLeftJPanel extends javax.swing.JPanel  {
         btnLogout = new javax.swing.JButton();
         btnAssignedReq = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(0, 153, 153));
+
+        btnHome.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         btnHome.setText("Home");
         btnHome.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -80,6 +83,7 @@ public class FundraisingEventEmployeeLeftJPanel extends javax.swing.JPanel  {
             }
         });
 
+        btnPendingRequests.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         btnPendingRequests.setText("Pending Requests");
         btnPendingRequests.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -87,6 +91,7 @@ public class FundraisingEventEmployeeLeftJPanel extends javax.swing.JPanel  {
             }
         });
 
+        btnApprovedRequests.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         btnApprovedRequests.setText("Approved Requests");
         btnApprovedRequests.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -94,6 +99,7 @@ public class FundraisingEventEmployeeLeftJPanel extends javax.swing.JPanel  {
             }
         });
 
+        btnLogout.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         btnLogout.setText("Logout");
         btnLogout.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -101,6 +107,7 @@ public class FundraisingEventEmployeeLeftJPanel extends javax.swing.JPanel  {
             }
         });
 
+        btnAssignedReq.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         btnAssignedReq.setText("Assigned Requests");
         btnAssignedReq.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -113,29 +120,29 @@ public class FundraisingEventEmployeeLeftJPanel extends javax.swing.JPanel  {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnHome)
-                    .addComponent(btnPendingRequests)
+                    .addComponent(btnAssignedReq, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnApprovedRequests, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnLogout)
-                    .addComponent(btnAssignedReq, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(44, Short.MAX_VALUE))
+                    .addComponent(btnPendingRequests, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnHome, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnLogout, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(20, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(49, 49, 49)
                 .addComponent(btnHome)
-                .addGap(51, 51, 51)
+                .addGap(50, 50, 50)
                 .addComponent(btnPendingRequests)
                 .addGap(45, 45, 45)
                 .addComponent(btnApprovedRequests)
-                .addGap(44, 44, 44)
+                .addGap(45, 45, 45)
                 .addComponent(btnAssignedReq)
-                .addGap(64, 64, 64)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
                 .addComponent(btnLogout)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(36, 36, 36))
         );
     }// </editor-fold>//GEN-END:initComponents
 
