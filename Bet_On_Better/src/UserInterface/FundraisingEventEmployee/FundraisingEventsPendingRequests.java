@@ -8,18 +8,10 @@ package UserInterface.FundraisingEventEmployee;
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
 import Business.FundRaiserEvents.EventDirectory;
-import Business.Network.Network;
-import Business.Organization.Organization;
-import Business.Role.Role;
-import Business.UserAccount.UserAccount;
+import Business.Role.InitiativesEmployee;
+import Business.Role.UserRole;
 import Business.WorkQueue.CreateEventByOrganizationEmployeeDirectory;
 import Business.WorkRequest.CreateEventByOrganizationEmployee;
-import Business.WorkRequest.VerificationRequest;
-import Business.WorkRequest.WorkRequest;
-import UserInterface.BankRole.BankDashBoardJPanel;
-import UserInterface.BankRole.VerificationRequestJPanel;
-import java.awt.CardLayout;
-import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
@@ -56,7 +48,8 @@ public class FundraisingEventsPendingRequests extends javax.swing.JPanel {
         DefaultTableModel model = (DefaultTableModel) tblPendingRequest.getModel();
         model.setRowCount(0);
         for (CreateEventByOrganizationEmployee cs : createEventByOrganizationEmployeeDirectory.getCreateEventByOrganizationEmployeeList()) {
-            if (cs.getSender().getRole().getClass().equals(Role.RoleType.User.getClass()) || (cs.getSender().getRole().getClass().equals(Role.RoleType.InitiativesEmployee.getClass()))) {
+            if (cs.getSender().getRole().getClass().equals(UserRole.class) || 
+                    cs.getSender().getRole().getClass().equals(InitiativesEmployee.class)) {
                 Object[] row = new Object[9];
                 row[0] = cs;
                 row[1] = cs.getTitle();
@@ -151,10 +144,10 @@ public class FundraisingEventsPendingRequests extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "Please select a row from the table", "Warning", JOptionPane.WARNING_MESSAGE);
         } else {
             CreateEventByOrganizationEmployee workrequest = (CreateEventByOrganizationEmployee) tblPendingRequest.getValueAt(selectedRow, 0);
+            workrequest.setStatus("Assigned");
             workrequest.setReceiver(userAccount);
             JOptionPane.showMessageDialog(null, "Request Assigned");
             btnAssign.setEnabled(false);
-
         }
     }//GEN-LAST:event_btnAssignActionPerformed
 

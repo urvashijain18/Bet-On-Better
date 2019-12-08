@@ -141,7 +141,7 @@ private UserAccount userAccount;
         Date deadline = jDateChooser1.getDate();
         String location = txtLocation.getText();
         
-        CreateEventByOrganizationEmployee createNewWorkRequest = enterprise.getCreateEventByOrganizationEmployeeDirectory().createNewWorkRequest(0, title, description, deadline,location, new Date());
+        CreateEventByOrganizationEmployee createNewWorkRequest = enterprise.getCreateEventByOrganizationEmployeeDirectory().createNewWorkRequest(title, description, deadline,location, new Date());
         createNewWorkRequest.setSender(userAccount);
         createNewWorkRequest.setUser(userAccount);
         // enterprise.setCreateEventByOrganizationEmployeeDirectory(createEventByOrganizationEmployeeDirectory);

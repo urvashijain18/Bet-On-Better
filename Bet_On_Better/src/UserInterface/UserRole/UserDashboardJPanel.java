@@ -10,11 +10,10 @@ import Business.Enterprise.Enterprise;
 import Business.FundRaiserEvents.EventDirectory;
 import Business.UserAccount.UserAccount;
 import Business.UserAccount.UserAccountDirectory;
+import Business.WorkRequest.CreateEventByOrganizationEmployee;
 import UserInterface.Event.CreateEventJPanel;
 import UserInterface.Event.RaiseInitiativeJPanel;
-import UserInterface.UserLogin;
 import java.awt.CardLayout;
-import java.awt.Component;
 import javax.swing.JPanel;
 
 /**
@@ -180,11 +179,11 @@ public class UserDashboardJPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCreateEventActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateEventActionPerformed
-        // TODO add your handling code here:
         rightContainer.remove(this);
         CardLayout rightCardLayout = (CardLayout) rightContainer.getLayout();
+        CreateEventByOrganizationEmployee workrequest = null;
         rightContainer.add("CreateEventJPanel", new CreateEventJPanel(leftContainer, rightContainer, 
-                userAccountDirectory, eventdirectory, useraccount, system));
+                 useraccount, system, workrequest));
         rightCardLayout.next(rightContainer);        
     }//GEN-LAST:event_btnCreateEventActionPerformed
 

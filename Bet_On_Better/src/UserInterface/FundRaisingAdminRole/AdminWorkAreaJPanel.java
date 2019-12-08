@@ -43,7 +43,8 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
                 eventDirectory = enterprise.getEventDirectory();
                 if (enterprise.getEnterpriseType().getValue().equals(Enterprise.EnterpriseType.FundRaiser.getValue())) {
                     for (Event event : eventDirectory.getEventList()) {
-                        if (event.getStatus().equals("Verified")) {
+                        if (event.getStatus().equals("Verified")
+                                || event.getStatus().equals("Approved")) {
                             Object[] row = new Object[9];
                             row[0] = event;
                             row[1] = event.getEventName();

@@ -7,13 +7,11 @@ package UserInterface.Event;
 
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
-import Business.FundRaiserEvents.Event;
-import Business.FundRaiserEvents.EventDirectory;
 import Business.Network.Network;
-import Business.Organization.Organization;
+import Business.Role.InitiativesEmployee;
+import Business.Role.UserRole;
 import Business.UserAccount.UserAccount;
-import Business.UserAccount.UserAccountDirectory;
-import Business.WorkRequest.VerificationRequest;
+import Business.WorkRequest.CreateEventByOrganizationEmployee;
 import UserInterface.UserRole.UserHomeJPanel;
 import java.awt.CardLayout;
 import java.util.Date;
@@ -26,29 +24,28 @@ import javax.swing.JPanel;
  */
 public class CreateEventJPanel extends javax.swing.JPanel {
 
-   private JPanel leftContainer;
-   private JPanel rightContainer;
-   private UserAccountDirectory userAccountDirectory;
-   private EventDirectory eventdirectory;
-   //private Enterprise enterprise;
-   private UserAccount useraccount;
-   private EcoSystem system;
+    private JPanel leftContainer;
+    private JPanel rightContainer;
+    private UserAccount useraccount;
+    private EcoSystem system;
+    private CreateEventByOrganizationEmployee workrequest;
+
     /**
      * Creates new form CreateEventJPanel
      */
-    
-  
-    
-
-    public CreateEventJPanel(JPanel leftContainer, JPanel rightContainer, UserAccountDirectory userAccountDirectory, EventDirectory eventdirectory, 
-            UserAccount useraccount, EcoSystem system) {
-              initComponents();
-              this.leftContainer =leftContainer;
-               this.rightContainer = rightContainer;
-               this.userAccountDirectory = userAccountDirectory;
-               this.eventdirectory = eventdirectory;
-               this.useraccount = useraccount;
-               this.system = system;
+    public CreateEventJPanel(JPanel leftContainer, JPanel rightContainer,
+            UserAccount useraccount, EcoSystem system, CreateEventByOrganizationEmployee workrequest) {
+        initComponents();
+        this.leftContainer = leftContainer;
+        this.rightContainer = rightContainer;
+        this.useraccount = useraccount;
+        this.system = system;
+        this.workrequest = workrequest;
+        if (workrequest != null) {
+            txtEventName.setText(workrequest.getTitle());
+            txtDesc.setText(workrequest.getDescription());
+            txtReqAmt.setText(String.valueOf(workrequest.getRequestedAtm()));
+        }
     }
 
     /**
@@ -74,13 +71,13 @@ public class CreateEventJPanel extends javax.swing.JPanel {
         jDateChooser1 = new com.toedter.calendar.JDateChooser();
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel1.setText("CREATE NEW FUND RAISER EVENT");
+        jLabel1.setText("CREATE NEW EVENT");
 
         jLabel2.setText("Event Name");
 
-        jLabel3.setText("Request Amount");
+        jLabel3.setText("Amount");
 
-        jLabel4.setText("Target Completion Date");
+        jLabel4.setText("Event Date ");
 
         jLabel5.setText("Description");
 
@@ -105,12 +102,18 @@ public class CreateEventJPanel extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(btnBack)
+                .addGap(152, 152, 152)
+                .addComponent(jLabel1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(110, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                .addContainerGap(129, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btnCancel)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(258, 258, 258)
                         .addComponent(btnCreate))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -120,29 +123,24 @@ public class CreateEventJPanel extends javax.swing.JPanel {
                             .addComponent(jLabel3))
                         .addGap(53, 53, 53)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtEventName, javax.swing.GroupLayout.DEFAULT_SIZE, 221, Short.MAX_VALUE)
-                            .addComponent(txtDesc, javax.swing.GroupLayout.DEFAULT_SIZE, 221, Short.MAX_VALUE)
-                            .addComponent(txtReqAmt, javax.swing.GroupLayout.DEFAULT_SIZE, 221, Short.MAX_VALUE)
-                            .addComponent(jDateChooser1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addGap(191, 191, 191))
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(215, 215, 215)
-                        .addComponent(jLabel1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(btnBack)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(txtEventName)
+                            .addComponent(txtDesc)
+                            .addComponent(txtReqAmt)
+                            .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(124, 124, 124))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(18, 18, 18)
-                .addComponent(btnBack)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel1)
-                .addGap(43, 43, 43)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(btnBack)
+                        .addGap(49, 49, 49))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel1)
+                        .addGap(34, 34, 34)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(txtEventName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -157,13 +155,13 @@ public class CreateEventJPanel extends javax.swing.JPanel {
                         .addGap(24, 24, 24)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel5)
-                            .addComponent(txtDesc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(128, 128, 128)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnCreate)
-                            .addComponent(btnCancel)))
+                            .addComponent(txtDesc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(140, Short.MAX_VALUE))
+                .addGap(27, 27, 27)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnCreate)
+                    .addComponent(btnCancel))
+                .addContainerGap(70, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -173,43 +171,42 @@ public class CreateEventJPanel extends javax.swing.JPanel {
 
     private void btnCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateActionPerformed
         String eventName = txtEventName.getText();
-        String category = " ";
-        Double requestAmount = (Double.parseDouble(txtReqAmt.getText()));
+        Integer requestAmount = (Integer.parseInt(txtReqAmt.getText()));
         Date targetDate = jDateChooser1.getDate();
-        String Description = txtDesc.getText();  
-        Event event = new Event();
-        event.setCategory(category);
-        event.setCreateDate(new Date());
-        event.setDescription(Description);
-        event.setEventName(eventName);
-        event.setRaisedAmt(0.00);
-        event.setRaisedBy(useraccount.getUsername());
-        event.setRequestAmt(requestAmount);
-        event.setTargetDate(targetDate);
-        //eventdirectory.createEvent(category,new Date(), Description, eventName, useraccount, requestAmount,  targetDate);
-        VerificationRequest workRequest = new VerificationRequest();
-        workRequest.setSender(useraccount);
-        workRequest.setEvent(event);
-        useraccount.getWorkQueue().getWorkRequestList().add(workRequest);
-        for(Network network : system.getNetworkList()){
-            for(Enterprise enterprise : network.getEnterpriseDirectory().getEnterpriseList()){
-                for(Organization organization : enterprise.getOrganizationDirectory().getOrganizationList()){
-                   // if(organization.getUserAccountDirectory().getUserAccountList().equals(userAccountDirectory)){
-                    for(UserAccount useracc : organization.getUserAccountDirectory().getUserAccountList()){
-                        if(useracc.getUsername().equals(useraccount.getUsername())){
-                        organization.getWorkQueue().getWorkRequestList().add(workRequest);
+        String Description = txtDesc.getText();
+        Date createDate = new Date();
+        for (Network network : system.getNetworkList()) {
+            for (Enterprise enterprise : network.getEnterpriseDirectory().getEnterpriseList()) {
+                for (UserAccount useracc : enterprise.getUserAccountDirectory().getUserAccountList()) {
+                    if (useracc.getUsername().equals(useraccount.getUsername())) {
+                        if (useracc.getRole().getClass().equals(UserRole.class)) {
+                            CreateEventByOrganizationEmployee request = enterprise.getCreateEventByOrganizationEmployeeDirectory().
+                                    createNewWorkRequest(eventName, Description, targetDate, network.getName(), createDate);
+                            request.setSender(useraccount);
+                            request.setRequestedAtm(requestAmount);
+                            request.setStatus("Pending for Approval");
+                            JOptionPane.showMessageDialog(null, "Event created and is pending for approval.");
+                        } else if (useracc.getRole().getClass().equals(InitiativesEmployee.class)) {
+                            if (enterprise.getEnterpriseType().getValue().equals(Enterprise.EnterpriseType.FundRaiser.getValue())) {
+                                if (workrequest.getStatus().equals("Assigned")) {
+                                    workrequest.setStatus("Approved");
+                                    enterprise.getEventDirectory().createEvent(" ", workrequest.getRequestDate(),
+                                            workrequest.getDescription(), workrequest.getTitle(), workrequest.getSender(),
+                                            new Double(workrequest.getRequestedAtm()), workrequest.getDeadline(), workrequest.getStatus());
+                                }
+                            }
+                            workrequest.setStatus("Approved");
+                            JOptionPane.showMessageDialog(null, "Event created");
+                        }
                     }
                 }
             }
         }
-        }
-        JOptionPane.showMessageDialog(null, "Event created and is pending for approval.");
-       rightContainer.remove(this);
+        
+        rightContainer.remove(this);
         CardLayout rightCardLayout = (CardLayout) rightContainer.getLayout();
         rightContainer.add("UserHomeJPanel", new UserHomeJPanel(rightContainer, system, useraccount));
         rightCardLayout.next(rightContainer);
-      
-                // TODO add your handling code here:
     }//GEN-LAST:event_btnCreateActionPerformed
 
 
