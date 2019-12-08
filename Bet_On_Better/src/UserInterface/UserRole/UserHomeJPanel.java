@@ -6,6 +6,7 @@
 package UserInterface.UserRole;
 
 import Business.EcoSystem;
+import Business.EndUser.Donation;
 import Business.Enterprise.Enterprise;
 import Business.FundRaiserEvents.Event;
 import Business.FundRaiserEvents.EventDirectory;
@@ -151,8 +152,9 @@ public class UserHomeJPanel extends javax.swing.JPanel {
         } else {
             Event event = (Event) tblEventsAvailable.getValueAt(selectedRow, 0);
             rightContainer.remove(this);
+            Donation d = null;
             CardLayout rightCardLayout = (CardLayout) rightContainer.getLayout();
-            rightContainer.add("DonateJPanel", new DonateJPanel(rightContainer, event, useraccount, system));
+            rightContainer.add("DonateJPanel", new DonateJPanel(rightContainer, event, useraccount, system, d));
             rightCardLayout.next(rightContainer);
         }
     }//GEN-LAST:event_btnDonateActionPerformed
