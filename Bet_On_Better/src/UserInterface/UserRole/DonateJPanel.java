@@ -9,7 +9,6 @@ import Business.EcoSystem;
 import Business.EndUser.Donation;
 import Business.Enterprise.Enterprise;
 import Business.FundRaiserEvents.Event;
-import Business.FundRaiserEvents.EventDirectory;
 import Business.Network.Network;
 import Business.UserAccount.UserAccount;
 import java.awt.CardLayout;
@@ -34,8 +33,9 @@ public class DonateJPanel extends javax.swing.JPanel {
      * @param event
      * @param userAccount
      * @param system
+     * @param d
      */
-    public DonateJPanel(JPanel rightContainer, Event event, UserAccount userAccount, EcoSystem system) {
+    public DonateJPanel(JPanel rightContainer, Event event, UserAccount userAccount, EcoSystem system, Donation d) {
         initComponents();
         this.rightContainer = rightContainer;
         this.event = event;
@@ -45,6 +45,9 @@ public class DonateJPanel extends javax.swing.JPanel {
         txtEventDate.setText(event.getCreateDate().toString());
         txtDesc.setText(event.getDescription());
         txtUserName.setText(userAccount.getName());
+        if(d!=null){
+            txtDonation.setText(String.valueOf(d.getDonation()));
+        }
     }
 
     /**
@@ -110,6 +113,7 @@ public class DonateJPanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(163, 163, 163)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel5)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel7)
@@ -130,9 +134,6 @@ public class DonateJPanel extends javax.swing.JPanel {
                             .addComponent(txtDesc, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 128, Short.MAX_VALUE)
                             .addComponent(txtUserName)))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel5)
-                        .addGap(30, 30, 30))
-                    .addGroup(layout.createSequentialGroup()
                         .addComponent(btnPayNow)
                         .addGap(102, 102, 102)))
                 .addContainerGap(175, Short.MAX_VALUE))
@@ -140,9 +141,9 @@ public class DonateJPanel extends javax.swing.JPanel {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(35, 35, 35)
+                .addGap(32, 32, 32)
                 .addComponent(jLabel5)
-                .addGap(39, 39, 39)
+                .addGap(42, 42, 42)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
                     .addComponent(txtEventName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -177,6 +178,23 @@ public class DonateJPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnPayNowActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPayNowActionPerformed
+        if(txtDonation.getText()==null || txtDonation.getText().equals("")){
+            JOptionPane.showMessageDialog(null , "Please provide donation amount");
+            return;
+        }
+        if(Double.parseDouble(txtDonation.getText())<=0){
+            JOptionPane.showMessageDialog(null , "Donation Amount cannot be negative or 0");
+            return;
+        }
+        if(txtAddress.getText()==null || txtAddress.getText().equals("")){
+            JOptionPane.showMessageDialog(null , "Please provide Address");
+            return;
+        }
+        if(txtEmail.getText()==null || txtEmail.getText().equals("")){
+            JOptionPane.showMessageDialog(null , "Please provide Email");
+            return;
+        }
+      
         double raisedAmt = event.getRaisedAmt();
         double donation = Double.parseDouble(txtDonation.getText());
         event.setRaisedAmt(raisedAmt + donation);

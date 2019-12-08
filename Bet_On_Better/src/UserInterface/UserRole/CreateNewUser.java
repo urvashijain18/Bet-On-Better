@@ -205,12 +205,14 @@ public class CreateNewUser extends javax.swing.JPanel {
         String username = txtUserName.getText();
         String pwd = passwordField.getText();
         String rePwd = confirmPasswordField.getText();
-
+        if (name == null || name.equals("")) {
+            JOptionPane.showMessageDialog(null, "Name cannot be empty");
+            return;
+        }
         if (username == null || username.equals("")) {
             JOptionPane.showMessageDialog(null, "UserName cannot be empty");
             return;
         }
-
         if (!usernamePatternCorrect()) {
             JOptionPane.showMessageDialog(null, "Username should be the form of xxx");
             return;
@@ -233,6 +235,11 @@ public class CreateNewUser extends javax.swing.JPanel {
 
         if (!pwd.equals(rePwd)) {
             JOptionPane.showMessageDialog(null, "Confirm Password should match password");
+            return;
+        }
+        
+        if(networkJComboBox.getSelectedItem().equals("--Select--")){
+            JOptionPane.showMessageDialog(null, "Please select location");
             return;
         }
 
@@ -279,6 +286,7 @@ public class CreateNewUser extends javax.swing.JPanel {
 
     private void populateComboBox() {
         networkJComboBox.removeAllItems();
+        networkJComboBox.addItem(new String("--Select--"));
         for (Network network : system.getNetworkList()) {
             networkJComboBox.addItem(network);
         }
